@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--background);
 }
 
 code {
@@ -24,4 +25,10 @@ code {
 
 body.theme-changing * {
   transition: none !important;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
