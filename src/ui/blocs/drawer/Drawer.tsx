@@ -4,6 +4,8 @@ import IconButton from '@components/buttons/IconButton'
 import { ChevronLeftIcon, ChevronRightIcon, WavesIcon } from '@resources/Icons'
 import { useTheme } from '@hooks/contexts/ThemeContext'
 import Icon from '@components/resources/Icon'
+import { DrawerRoutes } from '@constants/routes/DrawerRoutes'
+import DrawerItem from '@ui/blocs/drawer/DrawerItem'
 
 const Drawer = (): ReactNode => {
     const {
@@ -16,12 +18,16 @@ const Drawer = (): ReactNode => {
         <div
             className={'drawer'}
             style={{
-                width: isDrawerOpen ? 300 : 60,
-                minWidth: isDrawerOpen ? 300 : 60
+                width: isDrawerOpen ? 250 : 60,
+                minWidth: isDrawerOpen ? 250 : 60
             }}
         >
             <div
                 className={'drawer-toggle'}
+                style={{
+                    width: isDrawerOpen ? '100%' : 60,
+                    minWidth: isDrawerOpen ? '100%' : 60
+                }}
             >
                 <IconButton
                     onClick={() => {
@@ -52,6 +58,18 @@ const Drawer = (): ReactNode => {
                         Flow
                     </h1>
                 </div>
+            </div>
+            <div
+                className={'drawer-content'}
+            >
+                {Object.entries(DrawerRoutes).map(([key, route]) => {
+                    return (
+                        <DrawerItem
+                            key={key}
+                            route={route}
+                        />
+                    )
+                })}
             </div>
         </div>
     )

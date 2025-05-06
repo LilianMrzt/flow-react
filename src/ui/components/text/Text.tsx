@@ -17,7 +17,7 @@ const Text: FC<TextProps> = ({
         <p
             className={`text ${wrap ? 'wrap' : ''}`}
             style={{
-                fontSize: fontSize ?? 14,
+                fontSize: fontSize ?? 16,
                 color: color ?? theme.text,
                 textAlign: textAlign ?? 'center',
                 width: width ?? 'fit-content'

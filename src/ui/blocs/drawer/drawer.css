@@ -8,12 +8,12 @@
 
 .drawer-toggle {
     height: 60px;
-    width: 100%;
     border-bottom: 1px solid var(--outline);
     display: flex;
     align-items: center;
     padding: 12px;
     gap: 12px;
+    transition: width 150ms ease-in-out, min-width 150ms ease-in-out;
 }
 
 .drawer-toggle-app-name {
@@ -29,4 +29,11 @@
     color: var(--primary);
     font-weight: 600;
     user-select: none;
+}
+
+.drawer-content {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
 }
