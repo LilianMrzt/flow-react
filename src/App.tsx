@@ -1,5 +1,6 @@
 import React, { ReactNode } from 'react'
 import './app.css'
+import Drawer from '@ui/blocs/drawer/Drawer'
 import Header from '@ui/blocs/header/Header'
 
 const App = (): ReactNode => {
@@ -7,9 +8,11 @@ const App = (): ReactNode => {
         <div
             className={'app'}
         >
-            <Header/>
-            <main>
-
+            <Drawer/>
+            <main
+                className={'main'}
+            >
+                <Header/>
             </main>
         </div>
     )

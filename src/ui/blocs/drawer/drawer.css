@@ -1,0 +1,6 @@
+.drawer {
+    height: 100%;
+    border-right: 1px solid var(--outline);
+    background-color: var(--surface);
+    transition: width 150ms ease-in-out;
+}
