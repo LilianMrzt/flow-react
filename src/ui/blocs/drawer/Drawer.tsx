@@ -15,7 +15,8 @@ const Drawer = (): ReactNode => {
         <div
             className={'drawer'}
             style={{
-                width: isDrawerOpen ? 300 : 60
+                width: isDrawerOpen ? 300 : 60,
+                minWidth: isDrawerOpen ? 300 : 60
             }}
         >
             <div
