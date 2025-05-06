@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import './app.css'
 
-const App = () => {
+const App = (): ReactNode => {
     return (
         <div
             className={'app'}

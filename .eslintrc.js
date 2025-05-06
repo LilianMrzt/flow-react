@@ -47,7 +47,20 @@ module.exports = {
         'no-multi-spaces': ['error'],
         'space-before-blocks': ['error', { functions: 'never', keywords: 'always', classes: 'always' }],
         'import/no-unresolved': 'off',
-        'no-duplicate-imports': ['error', { includeExports: true }]
+        'no-duplicate-imports': ['error', { includeExports: true }],
+        '@typescript-eslint/explicit-function-return-type': ['error', {
+            allowExpressions: false,
+            allowTypedFunctionExpressions: true,
+            allowHigherOrderFunctions: true
+        }],
+        '@typescript-eslint/typedef': ['error', {
+            variableDeclaration: false,
+            variableDeclarationIgnoreFunction: false,
+            memberVariableDeclaration: true,
+            parameter: false,
+            propertyDeclaration: true
+        }],
+        '@typescript-eslint/explicit-module-boundary-types': 'error'
     },
     overrides: [
         {

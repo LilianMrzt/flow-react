@@ -1,15 +1,14 @@
-import React, { createContext, useContext, useState, useEffect, type FC, type ReactNode } from 'react'
-import { themes , ThemeType } from '@constants/Themes'
-
-interface ThemeContextProps {
-    themeName: ThemeType
-    theme: typeof themes.default
-    setNewTheme: (newThemeName: ThemeType) => void
-}
+import React, { createContext, useContext, useState, useEffect, type FC } from 'react'
+import { themes } from '@constants/Themes'
+import { ThemeContextProps } from '@interfaces/hooks/contexts/ThemeContextProps'
+import { ThemeProviderProps } from '@interfaces/hooks/contexts/ThemeProviderProps'
+import { ThemeType } from '@interfaces/types/ThemeType'
 
 const ThemeContext = createContext<ThemeContextProps | undefined>(undefined)
 
-export const ThemeProvider: FC<{ children: ReactNode }> = ({ children }) => {
+export const ThemeProvider: FC<ThemeProviderProps> = ({
+    children
+}) => {
     const [themeName, setThemeName] = useState<ThemeType>('default')
 
     const theme = themes[themeName]
