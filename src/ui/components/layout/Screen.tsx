@@ -6,11 +6,13 @@ import SubTitle from '@components/text/SubTitle'
 import Text from '@components/text/Text'
 import Row from '@components/layout/Row'
 import { useTheme } from '@hooks/contexts/ThemeContext'
+import Button from '@components/buttons/Button'
 
 const Screen: FC<ScreenProps> = ({
     children,
     label,
-    description
+    description,
+    buttonContent
 }): ReactNode => {
     const {
         theme
@@ -28,11 +30,18 @@ const Screen: FC<ScreenProps> = ({
             >
                 <Row
                     justifyContent={'space-between'}
-                    height={32}
+                    height={40}
                 >
                     <SubTitle>
                         {label}
                     </SubTitle>
+                    {buttonContent && (
+                        <Button
+                            label={buttonContent.label}
+                            onClick={buttonContent.onClick}
+                            icon={buttonContent.icon}
+                        />
+                    )}
                 </Row>
                 <Text
                     color={theme.textSecondary}

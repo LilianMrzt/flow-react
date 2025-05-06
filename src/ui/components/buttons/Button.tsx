@@ -3,10 +3,13 @@ import Text from '@components/text/Text'
 import './button.css'
 import { useTheme } from '@hooks/contexts/ThemeContext'
 import { ButtonProps } from '@interfaces/ui/components/buttons/ButtonProps'
+import Icon from '@components/resources/Icon'
 
 const Button: FC<ButtonProps> = ({
     onClick,
     label,
+    icon,
+    color,
     borderColor,
     backgroundColor
 }) => {
@@ -18,10 +21,21 @@ const Button: FC<ButtonProps> = ({
             className={'button'}
             style={{
                 backgroundColor: backgroundColor ?? theme.primary,
-                borderColor: borderColor ?? theme.surface
+                borderColor: borderColor ?? theme.primary
             }}
         >
-            <Text>
+            {icon && (
+                <Icon
+                    color={color ?? theme.surface}
+                    size={18}
+                >
+                    {icon}
+                </Icon>
+            )}
+            <Text
+                color={color ?? theme.surface}
+                fontSize={14}
+            >
                 {label}
             </Text>
         </button>
