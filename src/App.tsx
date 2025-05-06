@@ -1,10 +1,10 @@
 import React from 'react'
-import './App.css'
+import './app.css'
 
 const App = () => {
     return (
         <div
-            className={'App'}
+            className={'app'}
         >
 
         </div>

@@ -18,12 +18,14 @@ module.exports = {
     plugins: [
         '@typescript-eslint',
         'react',
-        'react-hooks'
+        'react-hooks',
+        'import'
     ],
     extends: [
         'eslint:recommended',
         'plugin:react/recommended',
-        'plugin:@typescript-eslint/recommended'
+        'plugin:@typescript-eslint/recommended',
+        'plugin:import/recommended'
     ],
     rules: {
         '@typescript-eslint/ban-ts-comment': 'off',
@@ -44,10 +46,7 @@ module.exports = {
         'brace-style': ['error', '1tbs', { allowSingleLine: false }],
         'no-multi-spaces': ['error'],
         'space-before-blocks': ['error', { functions: 'never', keywords: 'always', classes: 'always' }],
-        '@typescript-eslint/consistent-type-imports': ['error', {
-            prefer: 'type-imports',
-            disallowTypeAnnotations: false
-        }],
+        'import/no-unresolved': 'off',
         'no-duplicate-imports': ['error', { includeExports: true }]
     },
     overrides: [
