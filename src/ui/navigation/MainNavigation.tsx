@@ -1,6 +1,8 @@
 import React, { ReactNode } from 'react'
 import { Navigate, Route, Routes } from 'react-router'
 import { DrawerRoutes } from '@constants/routes/DrawerRoutes'
+import DashboardScreen from '@ui/views/DashboardScreen'
+import ProjectsScreen from '@ui/views/ProjectsScreen'
 
 const MainNavigation = (): ReactNode => {
     return (
@@ -16,11 +18,11 @@ const MainNavigation = (): ReactNode => {
             />
             <Route
                 path={DrawerRoutes.dashboard.path}
-                element={<div />}
+                element={<DashboardScreen />}
             />
             <Route
                 path={DrawerRoutes.projects.path}
-                element={<div />}
+                element={<ProjectsScreen />}
             />
         </Routes>
     )
