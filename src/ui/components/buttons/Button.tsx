@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 import Text from '@components/text/Text'
 import './button.css'
 import { useTheme } from '@hooks/contexts/ThemeContext'
-import { ButtonProps } from '@interfaces/ui/components/ButtonProps'
+import { ButtonProps } from '@interfaces/ui/components/buttons/ButtonProps'
 
 const Button: FC<ButtonProps> = ({
     onClick,

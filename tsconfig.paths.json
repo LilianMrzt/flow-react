@@ -10,8 +10,8 @@
       "@utils/*": ["./utils/*"],
       "@constants/*": ["./constants/*"],
       "@hooks/*": ["./hooks/*"],
+      "@modules/*": ["./modules/*"],
       "@services/*": ["./services/*"],
-      "@styles/*": ["./styles/*"],
       "@api/*": ["./api/*"]
     }
   }

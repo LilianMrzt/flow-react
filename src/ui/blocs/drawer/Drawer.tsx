@@ -1,8 +1,14 @@
 import React, { ReactNode, useState } from 'react'
 import './drawer.css'
-import Button from '@components/buttons/Button'
+import IconButton from '@components/buttons/IconButton'
+import { ChevronLeftIcon, ChevronRightIcon } from '@resources/Icons'
+import { useTheme } from '@hooks/contexts/ThemeContext'
 
 const Drawer = (): ReactNode => {
+    const {
+        theme
+    }
+ = useTheme()
     const [isDrawerOpen, setIsDrawerOpen] = useState(false)
 
     return (
@@ -12,12 +18,26 @@ const Drawer = (): ReactNode => {
                 width: isDrawerOpen ? 300 : 60
             }}
         >
-            <Button
-                onClick={() => {
-                    setIsDrawerOpen(!isDrawerOpen)
-                }}
-                label={'Click'}
-            />
+            <div
+                className={'drawer-toggle'}
+            >
+                <IconButton
+                    onClick={() => {
+                        setIsDrawerOpen(!isDrawerOpen)
+                    }}
+                    iconSize={24}
+                    className={'drawer-toggle-button'}
+                    backgroundColor={theme.surface}
+                    hoverBackgroundColor={theme.secondary}
+                    hoverColor={theme.primary}
+                >
+                    {isDrawerOpen ? (
+                        <ChevronLeftIcon/>
+                    ) : (
+                        <ChevronRightIcon/>
+                    )}
+                </IconButton>
+            </div>
         </div>
     )
 }

@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import './text.css'
 import { useTheme } from '@hooks/contexts/ThemeContext'
-import { TextProps } from '@interfaces/ui/text/TextProps'
+import { TextProps } from '@interfaces/ui/components/text/TextProps'
 
 const Text: FC<TextProps> = ({
     children,

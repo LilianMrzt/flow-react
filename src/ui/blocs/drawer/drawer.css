@@ -4,3 +4,22 @@
     background-color: var(--surface);
     transition: width 150ms ease-in-out;
 }
+
+.drawer-toggle {
+    height: 60px;
+    width: 100%;
+    border-bottom: 1px solid var(--outline);
+    display: flex;
+    align-items: center;
+    padding: 12px;
+}
+
+.drawer-toggle-button {
+    background-color: red;
+    height: 36px;
+    width: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+}
