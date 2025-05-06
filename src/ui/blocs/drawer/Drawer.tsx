@@ -26,8 +26,6 @@ const Drawer = (): ReactNode => {
                     onClick={() => {
                         setIsDrawerOpen(!isDrawerOpen)
                     }}
-                    iconSize={24}
-                    className={'drawer-toggle-button'}
                     backgroundColor={theme.surface}
                     hoverBackgroundColor={theme.secondary}
                     hoverColor={theme.primary}

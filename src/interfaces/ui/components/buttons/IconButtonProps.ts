@@ -9,4 +9,6 @@ export interface IconButtonProps {
     color?: CSSProperties['color']
     hoverBackgroundColor?: CSSProperties['backgroundColor']
     hoverColor?: CSSProperties['color']
+    padding?: CSSProperties['padding']
+    borderRadius?: CSSProperties['borderRadius']
 }

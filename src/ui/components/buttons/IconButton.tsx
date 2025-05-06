@@ -12,7 +12,9 @@ const IconButton: FC<IconButtonProps> = ({
     backgroundColor,
     color,
     hoverBackgroundColor,
-    hoverColor
+    hoverColor,
+    padding,
+    borderRadius
 }) => {
     const { theme } = useTheme()
 
@@ -39,7 +41,9 @@ const IconButton: FC<IconButtonProps> = ({
         <button
             className={`icon-button ${className}`}
             style={{
-                backgroundColor: isHovered && hoverBackgroundColor ? hoverBackgroundColor : componentBackgroundColor
+                backgroundColor: isHovered && hoverBackgroundColor ? hoverBackgroundColor : componentBackgroundColor,
+                padding: padding ?? 6,
+                borderRadius: borderRadius ?? 4
             }}
             onClick={(event) => {
                 event.stopPropagation()
@@ -50,7 +54,7 @@ const IconButton: FC<IconButtonProps> = ({
         >
             <Icon
                 color={isHovered && hoverColor ? hoverColor : componentColor}
-                size={iconSize ?? 20}
+                size={iconSize ?? 24}
             >
                 {children}
             </Icon>
