@@ -3,6 +3,7 @@
     border-right: 1px solid var(--outline);
     background-color: var(--surface);
     transition: width 150ms ease-in-out, min-width 150ms ease-in-out;
+    overflow: hidden;
 }
 
 .drawer-toggle {
@@ -12,4 +13,20 @@
     display: flex;
     align-items: center;
     padding: 12px;
+    gap: 12px;
+}
+
+.drawer-toggle-app-name {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: fit-content;
+}
+
+.drawer-toggle-app-name-text {
+    font-size: 1.8rem;
+    font-family: 'Poppins', sans-serif;
+    color: var(--primary);
+    font-weight: 600;
+    user-select: none;
 }

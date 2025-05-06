@@ -1,8 +1,9 @@
 import React, { ReactNode, useState } from 'react'
 import './drawer.css'
 import IconButton from '@components/buttons/IconButton'
-import { ChevronLeftIcon, ChevronRightIcon } from '@resources/Icons'
+import { ChevronLeftIcon, ChevronRightIcon, WavesIcon } from '@resources/Icons'
 import { useTheme } from '@hooks/contexts/ThemeContext'
+import Icon from '@components/resources/Icon'
 
 const Drawer = (): ReactNode => {
     const {
@@ -36,6 +37,21 @@ const Drawer = (): ReactNode => {
                         <ChevronRightIcon/>
                     )}
                 </IconButton>
+                <div
+                    className={'drawer-toggle-app-name'}
+                >
+                    <Icon
+                        size={24}
+                        color={theme.primary}
+                    >
+                        <WavesIcon/>
+                    </Icon>
+                    <h1
+                        className={'drawer-toggle-app-name-text'}
+                    >
+                        Flow
+                    </h1>
+                </div>
             </div>
         </div>
     )
