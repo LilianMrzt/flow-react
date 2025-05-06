@@ -3,7 +3,10 @@ import Screen from '@components/layout/Screen'
 
 const ProjectsScreen = (): ReactNode => {
     return (
-        <Screen>
+        <Screen
+            label={'Projects'}
+            description={'Manage and organize your projects'}
+        >
             ProjectsScreen
         </Screen>
     )

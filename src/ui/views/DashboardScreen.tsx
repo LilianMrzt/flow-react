@@ -3,7 +3,10 @@ import Screen from '@components/layout/Screen'
 
 const DashboardScreen = (): ReactNode => {
     return (
-        <Screen>
+        <Screen
+            label={'Dashboard'}
+            description={'Your projects and task overview'}
+        >
             Dashboard
         </Screen>
     )

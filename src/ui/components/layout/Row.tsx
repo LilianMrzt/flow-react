@@ -18,8 +18,8 @@ const Row: FC<RowProps> = ({
                 gap: gap ?? 8,
                 justifyContent: justifyContent ?? 'center',
                 alignItems: alignItems ?? 'center',
-                height: height ?? '100%',
-                width: width ?? 'fit-content'
+                height: height ?? 'fit-content',
+                width: width ?? '100%'
             }}
         >
             {children}
