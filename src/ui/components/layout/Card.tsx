@@ -1,28 +1,64 @@
-import React, { type FC, type ReactNode } from 'react'
+import React, { type FC, type ReactNode, useState } from 'react'
 import './card.css'
 import { CardProps } from '@interfaces/ui/components/layout/CardProps'
-import Column from '@components/layout/Column'
 
 const Card: FC<CardProps> = ({
     children,
-    gap,
-    justifyContent,
     className,
-    height,
     width,
-    alignItems
+    padding,
+    gap,
+    onClick,
+    hoverShadow,
+    onMouseEnter,
+    onMouseLeave
 }): ReactNode => {
+
+    const [isHovered, setIsHovered] = useState(false)
+
+    /**
+     * Gestion du click sur la card
+     */
+    const handleClick = (): void => {
+        if(onClick) {
+            onClick()
+        }
+    }
+
+    /**
+     * Gère l'événement de survol de la souris
+     */
+    const handleMouseEnter = (): void => {
+        setIsHovered(true)
+        if (onMouseEnter) {
+            onMouseEnter()
+        }
+    }
+
+    /**
+     * Gère la fin du survol de la souris
+     */
+    const handleMouseLeave = (): void => {
+        setIsHovered(false)
+        if (onMouseLeave) {
+            onMouseLeave()
+        }
+    }
+
     return (
-        <Column
-            className={`card ${className}`}
-            gap={gap}
-            justifyContent={justifyContent}
-            height={height ?? 'fit-content'}
-            width={width ?? 400}
-            alignItems={alignItems}
+        <div
+            className={`card ${isHovered && hoverShadow ? 'card-hover-shadow' : ''} ${className}`}
+            style={{
+                width: width ?? 400,
+                padding: padding ?? 24,
+                gap: gap ?? 16
+            }}
+            onClick={handleClick}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
         >
             {children}
-        </Column>
+        </div>
     )
 }
 

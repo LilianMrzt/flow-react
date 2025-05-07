@@ -53,9 +53,7 @@ const LoginScreen = (): ReactNode => {
         <div
             className={'login-screen'}
         >
-            <Card
-                gap={16}
-            >
+            <Card>
                 <SubTitle>
                     Welcome to Flow
                 </SubTitle>

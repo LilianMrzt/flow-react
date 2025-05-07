@@ -13,6 +13,7 @@ import { ReactComponent as ErrorIcon } from '@resources/assets/ErrorIcon.svg'
 import { ReactComponent as LogoutIcon } from '@resources/assets/LogoutIcon.svg'
 import { ReactComponent as LoginIcon } from '@resources/assets/LoginIcon.svg'
 import { ReactComponent as CreateUserIcon } from '@resources/assets/CreateUserIcon.svg'
+import { ReactComponent as TaskIcon } from '@resources/assets/TaskIcon.svg'
 
 export {
     ChevronLeftIcon,
@@ -29,5 +30,6 @@ export {
     ErrorIcon,
     LogoutIcon,
     LoginIcon,
-    CreateUserIcon
+    CreateUserIcon,
+    TaskIcon
 }

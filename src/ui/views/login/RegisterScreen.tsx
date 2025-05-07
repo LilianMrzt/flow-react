@@ -61,9 +61,7 @@ const RegisterScreen = (): ReactNode => {
         <div
             className={'register-screen'}
         >
-            <Card
-                gap={16}
-            >
+            <Card>
                 <SubTitle>
                     Create an account
                 </SubTitle>

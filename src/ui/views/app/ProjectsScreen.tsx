@@ -7,6 +7,7 @@ import { getUserProjectsAction } from '@api/ProjectsApiCalls'
 import { useAlert } from '@hooks/contexts/AlertContext'
 import { useProject } from '@hooks/contexts/api/ProjectsContext'
 import ProjectCard from '@ui/blocs/views/projects-screen/ProjectCard'
+import './projects-screen.css'
 
 const ProjectsScreen = (): ReactNode => {
     const [isProjectCreationModalOpen, setIsProjectCreationModalOpen] = useState(false)
@@ -45,14 +46,18 @@ const ProjectsScreen = (): ReactNode => {
                 }
             }}
         >
-            {projects.length > 0 && projects.map((project) => {
-                return (
-                    <ProjectCard
-                        key={project.slug}
-                        project={project}
-                    />
-                )
-            })}
+            <div
+                className={'projects-screen-projects-container'}
+            >
+                {projects.length > 0 && projects.map((project) => {
+                    return (
+                        <ProjectCard
+                            key={project.slug}
+                            project={project}
+                        />
+                    )
+                })}
+            </div>
             <Modal
                 isOpen={isProjectCreationModalOpen}
                 onClose={() => {
