@@ -7,12 +7,24 @@ import { loginUser } from '@api/AuthApiCalls'
 import { StorageConstants } from '@constants/StorageConstants'
 import { useAlert } from '@hooks/contexts/AlertContext'
 import { AuthRoutes } from '@constants/routes/AuthRoutes'
+import './login-screen.css'
+import Card from '@components/layout/Card'
+import SubTitle from '@components/text/SubTitle'
+import { LoginIcon } from '@resources/Icons'
+import Row from '@components/layout/Row'
+import Text from '@components/text/Text'
+import { useTheme } from '@hooks/contexts/ThemeContext'
 
 const LoginScreen = (): ReactNode => {
     const navigate = useNavigate()
+
     const {
         showAlert
     } = useAlert()
+
+    const {
+        theme
+    } = useTheme()
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -38,31 +50,54 @@ const LoginScreen = (): ReactNode => {
     }
 
     return (
-        <div>
-            <TextField
-                inputValue={email}
-                setInputValue={setEmail}
-                label={'Email'}
-                placeholder={''}
-            />
-            <TextField
-                inputValue={password}
-                setInputValue={setPassword}
-                label={'Password'}
-                placeholder={''}
-            />
-            <Button
-                onClick={() => {
-                    void handleSubmit()
-                }}
-                label={'Login'}
-            />
-            <Button
-                onClick={() => {
-                    navigate(AuthRoutes.register.path)
-                }}
-                label={'Register instead'}
-            />
+        <div
+            className={'login-screen'}
+        >
+            <Card
+                gap={16}
+            >
+                <SubTitle>
+                    Welcome to Flow
+                </SubTitle>
+                <TextField
+                    inputValue={email}
+                    setInputValue={setEmail}
+                    label={'Email'}
+                    placeholder={'example@email.com'}
+                />
+                <TextField
+                    inputValue={password}
+                    setInputValue={setPassword}
+                    label={'Password'}
+                    placeholder={'•••••••'}
+                    type={'password'}
+                />
+                <Button
+                    onClick={() => {
+                        void handleSubmit()
+                    }}
+                    label={'Login'}
+                    icon={<LoginIcon/>}
+                    width={'100%'}
+                />
+                <Row>
+                    <Text
+                        color={theme.textSecondary}
+                    >
+                        {'Don\'t have an account?'}
+                    </Text>
+                    <Button
+                        onClick={() => {
+                            navigate(AuthRoutes.register.path)
+                        }}
+                        label={'Register'}
+                        backgroundColor={theme.surface}
+                        color={theme.primary}
+                        hoverBackgroundColor={theme.secondary}
+                        borderColor={theme.surface}
+                    />
+                </Row>
+            </Card>
         </div>
     )
 }

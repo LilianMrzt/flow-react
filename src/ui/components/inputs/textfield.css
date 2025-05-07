@@ -18,5 +18,5 @@
 }
 
 .text-field::placeholder {
-    color: var(--textSecondary);
+    color: var(--outline);
 }

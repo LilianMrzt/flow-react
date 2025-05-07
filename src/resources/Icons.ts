@@ -11,6 +11,8 @@ import { ReactComponent as WarningIcon } from '@resources/assets/WarningIcon.svg
 import { ReactComponent as SuccessIcon } from '@resources/assets/SuccessIcon.svg'
 import { ReactComponent as ErrorIcon } from '@resources/assets/ErrorIcon.svg'
 import { ReactComponent as LogoutIcon } from '@resources/assets/LogoutIcon.svg'
+import { ReactComponent as LoginIcon } from '@resources/assets/LoginIcon.svg'
+import { ReactComponent as CreateUserIcon } from '@resources/assets/CreateUserIcon.svg'
 
 export {
     ChevronLeftIcon,
@@ -25,5 +27,7 @@ export {
     WarningIcon,
     SuccessIcon,
     ErrorIcon,
-    LogoutIcon
+    LogoutIcon,
+    LoginIcon,
+    CreateUserIcon
 }

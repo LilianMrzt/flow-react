@@ -8,7 +8,8 @@ const TextField: FC<TextFieldProps> = ({
     inputValue,
     setInputValue,
     label,
-    placeholder
+    placeholder,
+    type
 }): ReactNode => {
     const {
         theme
@@ -40,6 +41,7 @@ const TextField: FC<TextFieldProps> = ({
                 className={'text-field'}
                 value={inputValue}
                 placeholder={placeholder}
+                type={type ?? 'text'}
                 onChange={(e) => {
                     setInputValue(e.target.value)
                 }}

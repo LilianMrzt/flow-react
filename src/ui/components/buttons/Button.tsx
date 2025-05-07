@@ -13,7 +13,8 @@ const Button: FC<ButtonProps> = ({
     hoverColor,
     borderColor,
     backgroundColor,
-    hoverBackgroundColor
+    hoverBackgroundColor,
+    width
 }) => {
     const { theme } = useTheme()
 
@@ -42,7 +43,8 @@ const Button: FC<ButtonProps> = ({
             className={'button'}
             style={{
                 backgroundColor: isHovered ? hoverBackgroundColor ?? theme.hoverPrimary : componentBackgroundColor,
-                borderColor: borderColor ?? theme.primary
+                borderColor: borderColor ?? theme.primary,
+                width: width ?? 'fit-content'
             }}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
