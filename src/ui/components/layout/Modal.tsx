@@ -41,32 +41,37 @@ const Modal: FC<ModalProps> = ({
                             className={`modal-content ${isFadingIn && 'show'}`}
                             height={'fit-content'}
                             alignItems={'start'}
-                            gap={4}
+                            gap={16}
                         >
-                            <Row
-                                width={'100%'}
-                                justifyContent={'space-between'}
+                            <Column
+                                alignItems={'start'}
+                                gap={4}
                             >
-                                <SubTitle
-                                    fontSize={18}
+                                <Row
+                                    width={'100%'}
+                                    justifyContent={'space-between'}
                                 >
-                                    {label}
-                                </SubTitle>
-                                <IconButton
-                                    onClick={onClose}
-                                    backgroundColor={theme.surface}
-                                    hoverBackgroundColor={theme.secondary}
-                                    hoverColor={theme.primary}
+                                    <SubTitle
+                                        fontSize={18}
+                                    >
+                                        {label}
+                                    </SubTitle>
+                                    <IconButton
+                                        onClick={onClose}
+                                        backgroundColor={theme.surface}
+                                        hoverBackgroundColor={theme.secondary}
+                                        hoverColor={theme.primary}
+                                    >
+                                        <CloseIcon/>
+                                    </IconButton>
+                                </Row>
+                                <Text
+                                    color={theme.textSecondary}
+                                    fontSize={15}
                                 >
-                                    <CloseIcon/>
-                                </IconButton>
-                            </Row>
-                            <Text
-                                color={theme.textSecondary}
-                                fontSize={15}
-                            >
-                                {description}
-                            </Text>
+                                    {description}
+                                </Text>
+                            </Column>
                             {children}
                             <Row
                                 justifyContent={'flex-end'}

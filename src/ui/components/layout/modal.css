@@ -30,7 +30,7 @@
     transform-origin: center center;
     transition: transform 150ms ease-in-out;
     background-color: var(--surface);
-    padding: 12px;
+    padding: 16px;
 }
 
 .modal-content.show {
