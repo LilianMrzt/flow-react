@@ -16,7 +16,7 @@ export const loginUser = async (
     const data = await response.json()
 
     if (!response.ok) {
-        throw new Error(data.message || 'Échec de la connexion')
+        throw new Error(data.message)
     }
 
     return { token: data.token }
@@ -40,6 +40,6 @@ export const registerUser = async (
     const data = await response.json()
 
     if (!response.ok) {
-        throw new Error(data.message || 'Échec de l\'inscription')
+        throw new Error(data.message)
     }
 }
