@@ -22,7 +22,6 @@
   },
   "extends": "./tsconfig.paths.json",
   "include": [
-    "src",
-    "src/env.d.ts"
+    "src"
   ]
 }
