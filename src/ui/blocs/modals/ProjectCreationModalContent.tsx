@@ -7,6 +7,7 @@ import Button from '@components/buttons/Button'
 import { useTheme } from '@hooks/contexts/ThemeContext'
 import { ProjectCreationModalContentProps } from '@interfaces/ui/blocs/modals/ProjectCreationModalContentProps'
 import { useAlert } from '@hooks/contexts/AlertContext'
+import { createProject } from '@api/ProjectsApiCalls'
 
 const ProjectCreationModalContent: FC<ProjectCreationModalContentProps> = ({
     setIsOpen
@@ -32,12 +33,21 @@ const ProjectCreationModalContent: FC<ProjectCreationModalContentProps> = ({
     /**
      * Gestion du click sur le bouton de submit
      */
-    const handleSubmit = (): void => {
-        if (projectName && projectDescription) {
-            handleClose()
-        } else {
+    const handleSubmit = async (): Promise<void> => {
+        if (!projectName || !projectDescription) {
             showAlert('All fields need to be filled to create the project', 'warning')
+            return
         }
+
+        await createProject({
+            name: projectName,
+            description: projectDescription
+        }).then(() => {
+            showAlert('Project successfully created.' , 'success')
+            handleClose()
+        }).catch((error) => {
+            showAlert(error.message , 'error')
+        })
     }
 
     return (

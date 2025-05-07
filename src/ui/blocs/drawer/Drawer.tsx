@@ -77,7 +77,7 @@ const Drawer = (): ReactNode => {
                 })}
                 <IconButton
                     onClick={() => {
-                        sessionStorage.removeItem(StorageConstants.token)
+                        localStorage.removeItem(StorageConstants.token)
                         navigate(AuthRoutes.signIn.path)
                     }}
                     backgroundColor={theme.surface}
