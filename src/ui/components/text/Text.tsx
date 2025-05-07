@@ -10,7 +10,8 @@ const Text: FC<TextProps> = ({
     wrap,
     textAlign,
     width,
-    isSelectable = true
+    isSelectable = true,
+    maxLines
 }) => {
     const { theme } = useTheme()
 
@@ -21,7 +22,11 @@ const Text: FC<TextProps> = ({
                 fontSize: fontSize ?? 16,
                 color: color ?? theme.text,
                 textAlign: textAlign ?? 'center',
-                width: width ?? 'fit-content'
+                width: width ?? 'fit-content',
+                display: maxLines ? '-webkit-box' : undefined,
+                WebkitLineClamp: maxLines,
+                WebkitBoxOrient: maxLines ? 'vertical' : undefined,
+                overflow: maxLines ? 'hidden' : undefined
             }}
         >
             {children}

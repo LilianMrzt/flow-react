@@ -8,4 +8,5 @@ export interface TextProps {
     width?: CSSProperties['width']
     wrap?: boolean
     isSelectable?: boolean
+    maxLines?: number
 }
