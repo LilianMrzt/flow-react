@@ -6,13 +6,15 @@ import './app-layout.css'
 
 const AppLayout = (): ReactNode => {
     return (
-        <>
+        <div
+            className={'main-wrapper'}
+        >
             <Drawer />
             <main className={'main'}>
                 <Header />
                 <Outlet />
             </main>
-        </>
+        </div>
     )
 }
 

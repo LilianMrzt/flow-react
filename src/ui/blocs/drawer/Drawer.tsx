@@ -1,17 +1,22 @@
 import React, { ReactNode, useState } from 'react'
 import './drawer.css'
 import IconButton from '@components/buttons/IconButton'
-import { ChevronLeftIcon, ChevronRightIcon, WavesIcon } from '@resources/Icons'
+import { ChevronLeftIcon, ChevronRightIcon, LogoutIcon, WavesIcon } from '@resources/Icons'
 import { useTheme } from '@hooks/contexts/ThemeContext'
 import Icon from '@components/resources/Icon'
 import { DrawerRoutes } from '@constants/routes/DrawerRoutes'
 import DrawerItem from '@ui/blocs/drawer/DrawerItem'
+import { StorageConstants } from '@constants/StorageConstants'
+import { useNavigate } from 'react-router-dom'
+import { AuthRoutes } from '@constants/routes/AuthRoutes'
 
 const Drawer = (): ReactNode => {
+    const navigate = useNavigate()
+
     const {
         theme
-    }
- = useTheme()
+    } = useTheme()
+
     const [isDrawerOpen, setIsDrawerOpen] = useState(false)
 
     return (
@@ -70,6 +75,18 @@ const Drawer = (): ReactNode => {
                         />
                     )
                 })}
+                <IconButton
+                    onClick={() => {
+                        sessionStorage.removeItem(StorageConstants.token)
+                        navigate(AuthRoutes.signIn.path)
+                    }}
+                    backgroundColor={theme.surface}
+                    hoverBackgroundColor={theme.secondary}
+                    hoverColor={theme.primary}
+                    padding={8}
+                >
+                    <LogoutIcon/>
+                </IconButton>
             </div>
         </div>
     )

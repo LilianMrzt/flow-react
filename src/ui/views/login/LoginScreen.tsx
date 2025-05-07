@@ -6,6 +6,7 @@ import TextField from '@components/inputs/TextField'
 import { loginUser } from '@api/AuthApiCalls'
 import { StorageConstants } from '@constants/StorageConstants'
 import { useAlert } from '@hooks/contexts/AlertContext'
+import { AuthRoutes } from '@constants/routes/AuthRoutes'
 
 const LoginScreen = (): ReactNode => {
     const navigate = useNavigate()
@@ -58,6 +59,7 @@ const LoginScreen = (): ReactNode => {
             />
             <Button
                 onClick={() => {
+                    navigate(AuthRoutes.register.path)
                 }}
                 label={'Register instead'}
             />

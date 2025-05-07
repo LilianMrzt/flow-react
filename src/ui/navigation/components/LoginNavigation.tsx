@@ -1,16 +1,30 @@
 import React, { ReactNode } from 'react'
-import { Route } from 'react-router'
+import { Navigate, Route, Routes } from 'react-router'
 import { AuthRoutes } from '@constants/routes/AuthRoutes'
-import LoginScreen from '@ui/views/LoginScreen'
+import LoginScreen from '@ui/views/login/LoginScreen'
+import RegisterScreen from '@ui/views/login/RegisterScreen'
 
 const LoginNavigation = (): ReactNode => {
     return (
-        <Route>
+        <Routes>
+            <Route
+                path={'/'}
+                element={
+                    <Navigate
+                        to={AuthRoutes.signIn.path}
+                        replace
+                    />
+                }
+            />
             <Route
                 path={AuthRoutes.signIn.path}
                 element={<LoginScreen />}
             />
-        </Route>
+            <Route
+                path={AuthRoutes.register.path}
+                element={<RegisterScreen />}
+            />
+        </Routes>
     )
 }
 

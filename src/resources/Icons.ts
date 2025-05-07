@@ -10,6 +10,7 @@ import { ReactComponent as CloseIcon } from '@resources/assets/CloseIcon.svg'
 import { ReactComponent as WarningIcon } from '@resources/assets/WarningIcon.svg'
 import { ReactComponent as SuccessIcon } from '@resources/assets/SuccessIcon.svg'
 import { ReactComponent as ErrorIcon } from '@resources/assets/ErrorIcon.svg'
+import { ReactComponent as LogoutIcon } from '@resources/assets/LogoutIcon.svg'
 
 export {
     ChevronLeftIcon,
@@ -23,5 +24,6 @@ export {
     CloseIcon,
     WarningIcon,
     SuccessIcon,
-    ErrorIcon
+    ErrorIcon,
+    LogoutIcon
 }
