@@ -9,13 +9,14 @@ const Text: FC<TextProps> = ({
     color,
     wrap,
     textAlign,
-    width
+    width,
+    isSelectable = true
 }) => {
     const { theme } = useTheme()
 
     return (
         <p
-            className={`text ${wrap ? 'wrap' : ''}`}
+            className={`text ${wrap ? 'wrap' : ''} ${isSelectable ? 'is-selectable' : ''}`}
             style={{
                 fontSize: fontSize ?? 16,
                 color: color ?? theme.text,

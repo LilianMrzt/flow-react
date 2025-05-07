@@ -9,4 +9,5 @@
     align-items: center;
     justify-content: center;
     gap: 8px;
+    transition: background-color 150ms ease-in-out;
 }

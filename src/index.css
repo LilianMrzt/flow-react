@@ -17,6 +17,7 @@ code {
 
 :root {
   --primary: '';
+  --hoverPrimary: '';
   --secondary: '';
   --tertiary: '';
   --background: '';

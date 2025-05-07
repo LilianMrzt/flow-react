@@ -1,5 +1,6 @@
 export const DefaultTheme = {
     primary: '#316EE6',
+    hoverPrimary: '#2758B8',
     secondary: '#E5ECFA',
     tertiary: '#F3F4F6',
     background: '#F9FAFB',

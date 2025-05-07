@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, useState } from 'react'
 import Text from '@components/text/Text'
 import './button.css'
 import { useTheme } from '@hooks/contexts/ThemeContext'
@@ -10,31 +10,55 @@ const Button: FC<ButtonProps> = ({
     label,
     icon,
     color,
+    hoverColor,
     borderColor,
-    backgroundColor
+    backgroundColor,
+    hoverBackgroundColor
 }) => {
     const { theme } = useTheme()
+
+    const [isHovered, setIsHovered] = useState(false)
+
+    const componentBackgroundColor = backgroundColor ?? theme.primary
+    const componentColor = color ?? theme.surface
+
+    /**
+     * Gère l'événement de survol de la souris
+     */
+    const handleMouseEnter = (): void => {
+        setIsHovered(true)
+    }
+
+    /**
+     * Gère la fin du survol de la souris
+     */
+    const handleMouseLeave = (): void => {
+        setIsHovered(false)
+    }
 
     return (
         <button
             onClick={onClick}
             className={'button'}
             style={{
-                backgroundColor: backgroundColor ?? theme.primary,
+                backgroundColor: isHovered ? hoverBackgroundColor ?? theme.hoverPrimary : componentBackgroundColor,
                 borderColor: borderColor ?? theme.primary
             }}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
         >
             {icon && (
                 <Icon
-                    color={color ?? theme.surface}
+                    color={isHovered && hoverColor ? hoverColor : componentColor}
                     size={18}
                 >
                     {icon}
                 </Icon>
             )}
             <Text
-                color={color ?? theme.surface}
+                color={isHovered && hoverColor ? hoverColor : componentColor}
                 fontSize={14}
+                isSelectable={false}
             >
                 {label}
             </Text>

@@ -10,3 +10,7 @@
 .text.wrap {
     white-space: pre-wrap;
 }
+
+.text.is-selectable {
+    user-select: text;
+}

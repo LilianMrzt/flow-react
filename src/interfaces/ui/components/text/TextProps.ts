@@ -7,4 +7,5 @@ export interface TextProps {
     textAlign?: CSSProperties['textAlign']
     width?: CSSProperties['width']
     wrap?: boolean
+    isSelectable?: boolean
 }

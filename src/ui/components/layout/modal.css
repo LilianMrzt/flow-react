@@ -1,0 +1,38 @@
+.modal-background {
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    z-index: 999999;
+    transition: opacity 150ms ease-in-out;
+    width: 100vw;
+    height: 100vh;
+}
+
+.modal-background.fade-in {
+    opacity: 1;
+}
+
+.modal-background.fade-out {
+    opacity: 0;
+}
+
+.modal-content {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 8px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(0.95);
+    transform-origin: center center;
+    transition: transform 150ms ease-in-out;
+    background-color: var(--surface);
+    padding: 12px;
+}
+
+.modal-content.show {
+    transform: translate(-50%, -50%) scale(1);
+}

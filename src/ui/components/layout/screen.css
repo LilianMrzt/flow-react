@@ -1,5 +1,5 @@
 .screen {
     height: calc(100vh - 60px) !important;
-    padding: 24px;
+    padding: 12px 24px;
     overflow: auto;
 }

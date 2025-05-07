@@ -5,6 +5,8 @@ export interface ButtonProps {
     label: string
     icon?: ReactElement
     color?: CSSProperties['color']
+    hoverColor?: CSSProperties['color']
     backgroundColor?: CSSProperties['backgroundColor']
+    hoverBackgroundColor?: CSSProperties['backgroundColor']
     borderColor?: CSSProperties['borderColor']
 }

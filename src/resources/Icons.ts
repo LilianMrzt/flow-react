@@ -6,6 +6,7 @@ import { ReactComponent as DashboardIcon } from '@resources/assets/DashboardIcon
 import { ReactComponent as AddIcon } from '@resources/assets/AddIcon.svg'
 import { ReactComponent as SettingsIcon } from '@resources/assets/SettingsIcon.svg'
 import { ReactComponent as GroupIcon } from '@resources/assets/GroupIcon.svg'
+import { ReactComponent as CloseIcon } from '@resources/assets/CloseIcon.svg'
 
 export {
     ChevronLeftIcon,
@@ -15,5 +16,6 @@ export {
     DashboardIcon,
     AddIcon,
     SettingsIcon,
-    GroupIcon
+    GroupIcon,
+    CloseIcon
 }
