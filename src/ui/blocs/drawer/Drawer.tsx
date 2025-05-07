@@ -6,9 +6,9 @@ import { useTheme } from '@hooks/contexts/ThemeContext'
 import Icon from '@components/resources/Icon'
 import { DrawerRoutes } from '@constants/routes/DrawerRoutes'
 import DrawerItem from '@ui/blocs/drawer/DrawerItem'
-import { StorageConstants } from '@constants/StorageConstants'
 import { useNavigate } from 'react-router-dom'
 import { AuthRoutes } from '@constants/routes/AuthRoutes'
+import { useUser } from '@hooks/contexts/api/UserContext'
 
 const Drawer = (): ReactNode => {
     const navigate = useNavigate()
@@ -16,6 +16,10 @@ const Drawer = (): ReactNode => {
     const {
         theme
     } = useTheme()
+
+    const {
+        logout
+    } = useUser()
 
     const [isDrawerOpen, setIsDrawerOpen] = useState(false)
 
@@ -77,7 +81,7 @@ const Drawer = (): ReactNode => {
                 })}
                 <IconButton
                     onClick={() => {
-                        localStorage.removeItem(StorageConstants.token)
+                        logout()
                         navigate(AuthRoutes.signIn.path)
                     }}
                     backgroundColor={theme.surface}

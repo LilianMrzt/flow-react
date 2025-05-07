@@ -1,9 +1,13 @@
+import { UserObject } from '@interfaces/objects/api/user/UserObject'
+import { UserLoginObject } from '@interfaces/objects/api/user/UserLoginObject'
+import { UserRegisterObject } from '@interfaces/objects/api/user/UserRegisterObject'
+
 /**
  * Fonction pour se connecter via l'interface
  * @param userData
  */
 export const loginUserAction = async (
-    userData: { password: string; email: string }
+    userData: UserLoginObject
 ): Promise<{ token: string }> => {
     const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/auth/login`, {
         method: 'POST',
@@ -19,7 +23,9 @@ export const loginUserAction = async (
         throw new Error(data.message)
     }
 
-    return { token: data.token }
+    return {
+        token: data.token
+    }
 }
 
 /**
@@ -27,7 +33,7 @@ export const loginUserAction = async (
  * @param userData
  */
 export const registerUserAction = async (
-    userData: { email: string; password: string; firstName: string; lastName: string }
+    userData: UserRegisterObject
 ): Promise<void> => {
     const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/auth/users`, {
         method: 'POST',
@@ -42,4 +48,26 @@ export const registerUserAction = async (
     if (!response.ok) {
         throw new Error(data.message)
     }
+}
+
+/**
+ * Récupère l'utilisateur via le token
+ * @param token
+ */
+export const getUserFromTokenAction = async (
+    token: string
+): Promise<UserObject> => {
+    const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/auth/me`, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    })
+
+    const data = await response.json()
+
+    if (!response.ok) {
+        throw new Error(data.message)
+    }
+
+    return data
 }

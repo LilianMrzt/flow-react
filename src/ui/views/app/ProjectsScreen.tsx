@@ -48,7 +48,7 @@ const ProjectsScreen = (): ReactNode => {
             {projects.length > 0 && projects.map((project) => {
                 return (
                     <ProjectCard
-                        key={project.id}
+                        key={project.slug}
                         project={project}
                     />
                 )
