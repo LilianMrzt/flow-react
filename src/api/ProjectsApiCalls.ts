@@ -5,7 +5,7 @@ import { StorageConstants } from '@constants/StorageConstants'
  * Crée un nouveau projet
  * @param projectData
  */
-export const createProject = async (
+export const createProjectAction = async (
     projectData: { name: string; description?: string }
 ): Promise<ProjectObject> => {
     const token = localStorage.getItem(StorageConstants.token)
@@ -32,7 +32,7 @@ export const createProject = async (
  * Récupère un projet par slug (avec ses membres)
  * @param slug
  */
-export const getProjectBySlug = async (
+export const getProjectBySlugAction = async (
     slug: string
 ): Promise<ProjectObject> => {
     const token = localStorage.getItem(StorageConstants.token)
@@ -55,7 +55,7 @@ export const getProjectBySlug = async (
 /**
  * Récupère tous les projets de l'utilisateur connecté
  */
-export const getUserProjects = async (): Promise<ProjectObject[]> => {
+export const getUserProjectsAction = async (): Promise<ProjectObject[]> => {
     const token = localStorage.getItem(StorageConstants.token)
 
     const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/projects`, {

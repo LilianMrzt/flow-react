@@ -2,7 +2,7 @@ import React, { ReactNode, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Button from '@components/buttons/Button'
 import TextField from '@components/inputs/TextField'
-import { registerUser } from '@api/AuthApiCalls'
+import { registerUserAction } from '@api/AuthApiCalls'
 import { useAlert } from '@hooks/contexts/AlertContext'
 import { AuthRoutes } from '@constants/routes/AuthRoutes'
 import './login-screen.css'
@@ -44,7 +44,7 @@ const RegisterScreen = (): ReactNode => {
             return
         }
 
-        await registerUser({
+        await registerUserAction({
             email: email,
             password: password,
             lastName: lastName,

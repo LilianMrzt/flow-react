@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import Button from '@components/buttons/Button'
 import { DrawerRoutes } from '@constants/routes/DrawerRoutes'
 import TextField from '@components/inputs/TextField'
-import { loginUser } from '@api/AuthApiCalls'
+import { loginUserAction } from '@api/AuthApiCalls'
 import { StorageConstants } from '@constants/StorageConstants'
 import { useAlert } from '@hooks/contexts/AlertContext'
 import { AuthRoutes } from '@constants/routes/AuthRoutes'
@@ -38,7 +38,7 @@ const LoginScreen = (): ReactNode => {
             return
         }
 
-        await loginUser({
+        await loginUserAction({
             email: email,
             password: password
         }).then((response) => {

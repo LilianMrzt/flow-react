@@ -52,7 +52,7 @@ export const ThemeProvider: FC<ThemeProviderProps> = ({
 export const useTheme = (): ThemeContextProps => {
     const context = useContext(ThemeContext)
     if (!context) {
-        throw new Error('useTheme must be used within an ThemeProvider')
+        throw new Error('useTheme must be used within a ThemeProvider')
     }
     return context
 }

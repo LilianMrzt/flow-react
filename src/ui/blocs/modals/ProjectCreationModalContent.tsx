@@ -7,7 +7,8 @@ import Button from '@components/buttons/Button'
 import { useTheme } from '@hooks/contexts/ThemeContext'
 import { ProjectCreationModalContentProps } from '@interfaces/ui/blocs/modals/ProjectCreationModalContentProps'
 import { useAlert } from '@hooks/contexts/AlertContext'
-import { createProject } from '@api/ProjectsApiCalls'
+import { createProjectAction } from '@api/ProjectsApiCalls'
+import { useProject } from '@hooks/contexts/api/ProjectsContext'
 
 const ProjectCreationModalContent: FC<ProjectCreationModalContentProps> = ({
     setIsOpen
@@ -19,6 +20,10 @@ const ProjectCreationModalContent: FC<ProjectCreationModalContentProps> = ({
     const {
         showAlert
     } = useAlert()
+
+    const {
+        createProjectStateUpdate
+    } = useProject()
 
     const [projectName, setProjectName] = useState('')
     const [projectDescription, setProjectDescription] = useState('')
@@ -39,11 +44,12 @@ const ProjectCreationModalContent: FC<ProjectCreationModalContentProps> = ({
             return
         }
 
-        await createProject({
+        await createProjectAction({
             name: projectName,
             description: projectDescription
-        }).then(() => {
+        }).then((res) => {
             showAlert('Project successfully created.' , 'success')
+            createProjectStateUpdate(res)
             handleClose()
         }).catch((error) => {
             showAlert(error.message , 'error')
