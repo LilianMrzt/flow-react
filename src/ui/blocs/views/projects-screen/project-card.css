@@ -1,0 +1,6 @@
+.project-card {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    background-color: var(--primary);
+}

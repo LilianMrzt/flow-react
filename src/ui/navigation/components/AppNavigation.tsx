@@ -3,10 +3,10 @@ import ProtectedRoute from '@ui/navigation/ProtectedRoute'
 import { Navigate, Route } from 'react-router'
 import { DrawerRoutes } from '@constants/routes/DrawerRoutes'
 import DashboardScreen from '@ui/views/app/DashboardScreen'
-import ProjectsScreen from '@ui/views/app/ProjectsScreen'
 import TeamsScreen from '@ui/views/app/TeamsScreen'
 import SettingsScreen from '@ui/views/app/SettingsScreen'
 import AppLayout from '@ui/navigation/AppLayout'
+import ProjectsNavigation from '@ui/navigation/components/ProjectsNavigation'
 
 const AppNavigation = (): ReactNode => {
     return (
@@ -29,10 +29,7 @@ const AppNavigation = (): ReactNode => {
                     path={DrawerRoutes.dashboard.path}
                     element={<DashboardScreen />}
                 />
-                <Route
-                    path={DrawerRoutes.projects.path}
-                    element={<ProjectsScreen />}
-                />
+                {ProjectsNavigation()}
                 <Route
                     path={DrawerRoutes.teams.path}
                     element={<TeamsScreen />}

@@ -29,7 +29,7 @@ export const createProjectAction = async (
 }
 
 /**
- * Récupère un projet par slug (avec ses membres)
+ * Récupère un projet par slug
  * @param slug
  */
 export const getProjectBySlugAction = async (

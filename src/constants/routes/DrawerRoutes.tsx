@@ -1,6 +1,7 @@
 import React from 'react'
 import { RouteType } from '@interfaces/types/RouteType'
-import { DashboardIcon, GroupIcon, ProjectsIcon, SettingsIcon } from '@resources/Icons'
+import { DashboardIcon, GroupIcon, SettingsIcon } from '@resources/Icons'
+import { ProjectsRoutes } from '@constants/routes/ProjectsRoutes'
 
 export const DrawerRoutes: Record<string, RouteType> = {
     dashboard: {
@@ -8,11 +9,7 @@ export const DrawerRoutes: Record<string, RouteType> = {
         label: 'Dashboard',
         icon: <DashboardIcon/>
     },
-    projects: {
-        path: '/projects',
-        label: 'Projects',
-        icon: <ProjectsIcon/>
-    },
+    projects: ProjectsRoutes.projects,
     teams: {
         path: '/teams',
         label: 'Teams',
