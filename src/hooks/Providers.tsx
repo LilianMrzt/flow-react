@@ -2,6 +2,7 @@ import React, { FC, ReactNode } from 'react'
 import { ThemeProvider } from '@hooks/contexts/ThemeContext'
 import { ProvidersProps } from '@interfaces/hooks/ProvidersProps'
 import { BrowserRouter } from 'react-router-dom'
+import { AlertProvider } from '@hooks/contexts/AlertContext'
 
 const Providers: FC<ProvidersProps> = ({
     children
@@ -9,7 +10,9 @@ const Providers: FC<ProvidersProps> = ({
     return (
         <BrowserRouter>
             <ThemeProvider>
-                {children}
+                <AlertProvider>
+                    {children}
+                </AlertProvider>
             </ThemeProvider>
         </BrowserRouter>
     )

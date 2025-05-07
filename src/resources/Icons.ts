@@ -7,6 +7,9 @@ import { ReactComponent as AddIcon } from '@resources/assets/AddIcon.svg'
 import { ReactComponent as SettingsIcon } from '@resources/assets/SettingsIcon.svg'
 import { ReactComponent as GroupIcon } from '@resources/assets/GroupIcon.svg'
 import { ReactComponent as CloseIcon } from '@resources/assets/CloseIcon.svg'
+import { ReactComponent as WarningIcon } from '@resources/assets/WarningIcon.svg'
+import { ReactComponent as SuccessIcon } from '@resources/assets/SuccessIcon.svg'
+import { ReactComponent as ErrorIcon } from '@resources/assets/ErrorIcon.svg'
 
 export {
     ChevronLeftIcon,
@@ -17,5 +20,8 @@ export {
     AddIcon,
     SettingsIcon,
     GroupIcon,
-    CloseIcon
+    CloseIcon,
+    WarningIcon,
+    SuccessIcon,
+    ErrorIcon
 }

@@ -6,6 +6,7 @@ import Row from '@components/layout/Row'
 import Button from '@components/buttons/Button'
 import { useTheme } from '@hooks/contexts/ThemeContext'
 import { ProjectCreationModalContentProps } from '@interfaces/ui/blocs/modals/ProjectCreationModalContentProps'
+import { useAlert } from '@hooks/contexts/AlertContext'
 
 const ProjectCreationModalContent: FC<ProjectCreationModalContentProps> = ({
     setIsOpen
@@ -13,6 +14,10 @@ const ProjectCreationModalContent: FC<ProjectCreationModalContentProps> = ({
     const {
         theme
     } = useTheme()
+
+    const {
+        showAlert
+    } = useAlert()
 
     const [projectName, setProjectName] = useState('')
     const [projectDescription, setProjectDescription] = useState('')
@@ -22,6 +27,17 @@ const ProjectCreationModalContent: FC<ProjectCreationModalContentProps> = ({
      */
     const handleClose = (): void => {
         setIsOpen(false)
+    }
+
+    /**
+     * Gestion du click sur le bouton de submit
+     */
+    const handleSubmit = (): void => {
+        if (projectName && projectDescription) {
+            handleClose()
+        } else {
+            showAlert('All fields need to be filled to create the project', 'warning')
+        }
     }
 
     return (
@@ -55,9 +71,7 @@ const ProjectCreationModalContent: FC<ProjectCreationModalContentProps> = ({
                 />
                 <Button
                     label={'Create project'}
-                    onClick={() => {
-                        handleClose()
-                    }}
+                    onClick={handleSubmit}
                 />
             </Row>
         </Column>
