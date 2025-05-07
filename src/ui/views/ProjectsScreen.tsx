@@ -22,18 +22,15 @@ const ProjectsScreen = (): ReactNode => {
             ProjectsScreen
             <Modal
                 isOpen={isProjectCreationModalOpen}
-                setIsOpen={setIsProjectCreationModalOpen}
                 onClose={() => {
                     setIsProjectCreationModalOpen(false)
                 }}
                 label={'Create a new project'}
                 description={'Fill in the details to create a new project.'}
-                buttonContent={{
-                    label: 'Create project',
-                    onClick: () => {}
-                }}
             >
-                <ProjectCreationModalContent/>
+                <ProjectCreationModalContent
+                    setIsOpen={setIsProjectCreationModalOpen}
+                />
             </Modal>
         </Screen>
     )

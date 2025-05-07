@@ -10,16 +10,13 @@ import SubTitle from '@components/text/SubTitle'
 import { handleFadeEffect } from '@utils/AnimationUtils'
 import IconButton from '@components/buttons/IconButton'
 import Text from '@components/text/Text'
-import Button from '@components/buttons/Button'
 
 const Modal: FC<ModalProps> = ({
     isOpen,
-    setIsOpen,
     children,
     onClose,
     label,
-    description,
-    buttonContent
+    description
 }): ReactNode => {
     const { theme } = useTheme()
 
@@ -73,25 +70,6 @@ const Modal: FC<ModalProps> = ({
                                 </Text>
                             </Column>
                             {children}
-                            <Row
-                                justifyContent={'flex-end'}
-                            >
-                                <Button
-                                    label={'Cancel'}
-                                    onClick={() => {
-                                        setIsOpen(false)
-                                    }}
-                                    backgroundColor={theme.surface}
-                                    hoverBackgroundColor={theme.secondary}
-                                    borderColor={theme.outline}
-                                    color={theme.text}
-                                    hoverColor={theme.primary}
-                                />
-                                <Button
-                                    label={buttonContent.label}
-                                    onClick={buttonContent.onClick}
-                                />
-                            </Row>
                         </Column>
                     </div>
                 )
