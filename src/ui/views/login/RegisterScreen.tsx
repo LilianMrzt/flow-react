@@ -49,10 +49,11 @@ const RegisterScreen = (): ReactNode => {
             password: password,
             lastName: lastName,
             firstName: firstName
-        }).then((response) => {
-            if (response.success) {
-                navigate(AuthRoutes.signIn.path)
-            }
+        }).then(() => {
+            showAlert('Account created successfully.' , 'success')
+            navigate(AuthRoutes.signIn.path)
+        }).catch((error) => {
+            showAlert(error.message , 'error')
         })
     }
 

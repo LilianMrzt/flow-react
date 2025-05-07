@@ -42,10 +42,10 @@ const LoginScreen = (): ReactNode => {
             email: email,
             password: password
         }).then((response) => {
-            if (response.success) {
-                sessionStorage.setItem(StorageConstants.token, response.token || '')
-                navigate(DrawerRoutes.dashboard.path)
-            }
+            sessionStorage.setItem(StorageConstants.token, response.token || '')
+            navigate(DrawerRoutes.dashboard.path)
+        }).catch((error) => {
+            showAlert(error.message , 'error')
         })
     }
 
