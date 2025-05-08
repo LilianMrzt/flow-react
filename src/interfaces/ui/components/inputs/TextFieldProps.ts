@@ -7,4 +7,5 @@ export interface TextFieldProps {
     placeholder: string
     type?: HTMLInputTypeAttribute
     icon?: ReactElement
+    name?: string
 }

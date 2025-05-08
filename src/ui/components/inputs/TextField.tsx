@@ -11,7 +11,8 @@ const TextField: FC<TextFieldProps> = ({
     label,
     placeholder,
     type,
-    icon
+    icon,
+    name
 }): ReactNode => {
     const {
         theme
@@ -67,6 +68,8 @@ const TextField: FC<TextFieldProps> = ({
                     style={{
                         borderColor: isActive ? theme.primary : theme.outline
                     }}
+                    name={name}
+                    autoComplete={name}
                 />
             </div>
         </div>

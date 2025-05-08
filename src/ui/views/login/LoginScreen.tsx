@@ -62,6 +62,7 @@ const LoginScreen = (): ReactNode => {
                     setInputValue={setEmail}
                     label={'Email'}
                     placeholder={'example@email.com'}
+                    name={'user-email'}
                 />
                 <TextField
                     inputValue={password}
@@ -69,6 +70,7 @@ const LoginScreen = (): ReactNode => {
                     label={'Password'}
                     placeholder={'•••••••'}
                     type={'password'}
+                    name={'user-password'}
                 />
                 <Button
                     onClick={() => {
