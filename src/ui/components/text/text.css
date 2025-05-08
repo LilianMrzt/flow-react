@@ -3,8 +3,9 @@
     padding: 0;
     transition: color 150ms ease-in-out, width 150ms ease-in-out;
     font-family: "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    white-space: nowrap;
     user-select: none;
+    overflow-wrap: break-word;
+    overflow: hidden;
 }
 
 .text.wrap {

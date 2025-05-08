@@ -9,8 +9,7 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     z-index: 1000;
     opacity: 0;
-    transform: scale(0.95);
-    transition: opacity 150ms ease-in-out, transform 150ms ease-in-out;
+    transition: opacity 150ms ease-in-out;
 }
 
 .menu-dropdown.left {
@@ -23,10 +22,8 @@
 
 .menu-dropdown.fade-in {
     opacity: 1;
-    transform: scale(1);
 }
 
 .menu-dropdown.fade-out {
     opacity: 0;
-    transform: scale(0.95);
 }

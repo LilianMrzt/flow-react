@@ -23,10 +23,11 @@ const Text: FC<TextProps> = ({
                 color: color ?? theme.text,
                 textAlign: textAlign ?? 'center',
                 width: width ?? 'fit-content',
+                textOverflow: !maxLines ? 'ellipsis' : undefined,
                 display: maxLines ? '-webkit-box' : undefined,
                 WebkitLineClamp: maxLines,
                 WebkitBoxOrient: maxLines ? 'vertical' : undefined,
-                overflow: maxLines ? 'hidden' : undefined
+                whiteSpace: maxLines ? 'normal' : 'nowrap'
             }}
         >
             {children}

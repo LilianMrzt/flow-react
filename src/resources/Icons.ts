@@ -17,6 +17,10 @@ import { ReactComponent as TaskIcon } from '@resources/assets/TaskIcon.svg'
 import { ReactComponent as SearchIcon } from '@resources/assets/SearchIcon.svg'
 import { ReactComponent as UserIcon } from '@resources/assets/UserIcon.svg'
 import { ReactComponent as FileTextIcon } from '@resources/assets/FileTextIcon.svg'
+import { ReactComponent as ChartIcon } from '@resources/assets/ChartIcon.svg'
+import { ReactComponent as CircleCheckIcon } from '@resources/assets/CircleCheckIcon.svg'
+import { ReactComponent as ClockIcon } from '@resources/assets/ClockIcon.svg'
+import { ReactComponent as ListTodoIcon } from '@resources/assets/ListTodoIcon.svg'
 
 export {
     ChevronLeftIcon,
@@ -37,5 +41,9 @@ export {
     TaskIcon,
     SearchIcon,
     UserIcon,
-    FileTextIcon
+    FileTextIcon,
+    ChartIcon,
+    CircleCheckIcon,
+    ClockIcon,
+    ListTodoIcon
 }
