@@ -8,11 +8,22 @@ import './dashboard-screen.css'
 import DashboardCard from '@ui/blocs/views/dashboard-screen/DashboardCard'
 import { ChartIcon, CircleCheckIcon, ClockIcon, ListTodoIcon } from '@resources/Icons'
 import { IconColors } from '@constants/themes/IconColors'
+import Row from '@components/layout/Row'
+import Button from '@components/buttons/Button'
+import { useNavigate } from 'react-router-dom'
+import { ProjectsRoutes } from '@constants/routes/ProjectsRoutes'
+import { useTheme } from '@hooks/contexts/ThemeContext'
 
 const DashboardScreen = (): ReactNode => {
     const {
         projects
     } = useProject()
+
+    const {
+        theme
+    } = useTheme()
+
+    const navigate = useNavigate()
 
     return (
         <Screen
@@ -49,14 +60,29 @@ const DashboardScreen = (): ReactNode => {
             </div>
             <Column
                 height={'fit-content'}
-                gap={16}
+                gap={4}
                 alignItems={'flex-start'}
             >
-                <SubTitle
-                    fontSize={20}
+                <Row
+                    width={'100%'}
+                    justifyContent={'space-between'}
                 >
-                    Active projects
-                </SubTitle>
+                    <SubTitle
+                        fontSize={20}
+                    >
+                        Active projects
+                    </SubTitle>
+                    <Button
+                        label={'View all'}
+                        onClick={() => {
+                            navigate(ProjectsRoutes.projects.path)
+                        }}
+                        backgroundColor={theme.background}
+                        color={theme.primary}
+                        borderColor={theme.background}
+                        hoverBackgroundColor={theme.secondary}
+                    />
+                </Row>
                 {projects.length > 0 ? (
                     <div/>
                 ) : (
