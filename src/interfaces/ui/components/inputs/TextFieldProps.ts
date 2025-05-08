@@ -1,4 +1,4 @@
-import { Dispatch, HTMLInputTypeAttribute, SetStateAction } from 'react'
+import { Dispatch, HTMLInputTypeAttribute, ReactElement, SetStateAction } from 'react'
 
 export interface TextFieldProps {
     inputValue: string
@@ -6,4 +6,5 @@ export interface TextFieldProps {
     label: string
     placeholder: string
     type?: HTMLInputTypeAttribute
+    icon?: ReactElement
 }

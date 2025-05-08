@@ -14,6 +14,7 @@ import { ReactComponent as LogoutIcon } from '@resources/assets/LogoutIcon.svg'
 import { ReactComponent as LoginIcon } from '@resources/assets/LoginIcon.svg'
 import { ReactComponent as CreateUserIcon } from '@resources/assets/CreateUserIcon.svg'
 import { ReactComponent as TaskIcon } from '@resources/assets/TaskIcon.svg'
+import { ReactComponent as SearchIcon } from '@resources/assets/SearchIcon.svg'
 
 export {
     ChevronLeftIcon,
@@ -31,5 +32,6 @@ export {
     LogoutIcon,
     LoginIcon,
     CreateUserIcon,
-    TaskIcon
+    TaskIcon,
+    SearchIcon
 }

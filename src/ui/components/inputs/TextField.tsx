@@ -3,13 +3,15 @@ import './textfield.css'
 import Text from '@components/text/Text'
 import { TextFieldProps } from '@interfaces/ui/components/inputs/TextFieldProps'
 import { useTheme } from '@hooks/contexts/ThemeContext'
+import Icon from '@components/resources/Icon'
 
 const TextField: FC<TextFieldProps> = ({
     inputValue,
     setInputValue,
     label,
     placeholder,
-    type
+    type,
+    icon
 }): ReactNode => {
     const {
         theme
@@ -37,20 +39,36 @@ const TextField: FC<TextFieldProps> = ({
             <Text>
                 {label}
             </Text>
-            <input
-                className={'text-field'}
-                value={inputValue}
-                placeholder={placeholder}
-                type={type ?? 'text'}
-                onChange={(e) => {
-                    setInputValue(e.target.value)
-                }}
-                onFocus={handleFocus}
-                onBlur={handleBlur}
-                style={{
-                    borderColor: isActive ? theme.primary : theme.outline
-                }}
-            />
+            <div
+                className={'text-field-container'}
+            >
+                {icon && (
+                    <span
+                        className="text-field-icon"
+                    >
+                        <Icon
+                            size={20}
+                            color={theme.outline}
+                        >
+                            {icon}
+                        </Icon>
+                    </span>
+                )}
+                <input
+                    className={`text-field ${icon ? 'text-field-with-icon' : ''}`}
+                    value={inputValue}
+                    placeholder={placeholder}
+                    type={type ?? 'text'}
+                    onChange={(e) => {
+                        setInputValue(e.target.value)
+                    }}
+                    onFocus={handleFocus}
+                    onBlur={handleBlur}
+                    style={{
+                        borderColor: isActive ? theme.primary : theme.outline
+                    }}
+                />
+            </div>
         </div>
     )
 }
