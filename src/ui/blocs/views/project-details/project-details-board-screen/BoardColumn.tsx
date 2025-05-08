@@ -1,8 +1,13 @@
-import React, { ReactNode } from 'react'
+import React, { FC, ReactNode } from 'react'
 import './board-column.css'
 import Text from '@components/text/Text'
+import {
+    BoardColumnProps
+} from '@interfaces/ui/blocs/views/project-details/project-details-board-screen/BoardColumnProps'
 
-const BoardColumn = (): ReactNode => {
+const BoardColumn: FC<BoardColumnProps> = ({
+    column
+}): ReactNode => {
     return (
         <div
             className={'board-column'}
@@ -11,10 +16,10 @@ const BoardColumn = (): ReactNode => {
                 className={'board-column-header'}
             >
                 <Text>
-                    A faire
+                    {column.name}
                 </Text>
                 <Text>
-                    0
+                    {column.tasks.length.toString()}
                 </Text>
             </div>
             <div
