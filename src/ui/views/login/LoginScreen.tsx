@@ -1,7 +1,6 @@
 import React, { ReactNode, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Button from '@components/buttons/Button'
-import { DrawerRoutes } from '@constants/routes/DrawerRoutes'
 import TextField from '@components/inputs/TextField'
 import { loginUserAction } from '@api/AuthApiCalls'
 import { StorageConstants } from '@constants/StorageConstants'
@@ -14,6 +13,7 @@ import { LoginIcon } from '@resources/Icons'
 import Row from '@components/layout/Row'
 import Text from '@components/text/Text'
 import { useTheme } from '@hooks/contexts/ThemeContext'
+import { AppRoutes } from '@constants/routes/AppRoutes'
 
 const LoginScreen = (): ReactNode => {
     const navigate = useNavigate()
@@ -43,7 +43,7 @@ const LoginScreen = (): ReactNode => {
             password: password
         }).then((response) => {
             localStorage.setItem(StorageConstants.token, response.token || '')
-            navigate(DrawerRoutes.dashboard.path)
+            navigate(AppRoutes.dashboard.path)
         }).catch((error) => {
             showAlert(error.message , 'error')
         })

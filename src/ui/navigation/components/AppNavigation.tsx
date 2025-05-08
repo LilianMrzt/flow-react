@@ -1,7 +1,6 @@
 import React, { ReactNode } from 'react'
 import ProtectedRoute from '@ui/navigation/ProtectedRoute'
 import { Navigate, Route } from 'react-router'
-import { DrawerRoutes } from '@constants/routes/DrawerRoutes'
 import DashboardScreen from '@ui/views/app/DashboardScreen'
 import TeamsScreen from '@ui/views/app/TeamsScreen'
 import SettingsScreen from '@ui/views/app/SettingsScreen'
@@ -22,18 +21,18 @@ const AppNavigation = (): ReactNode => {
                     path={'/'}
                     element={
                         <Navigate
-                            to={DrawerRoutes.dashboard.path}
+                            to={AppRoutes.dashboard.path}
                             replace
                         />
                     }
                 />
                 <Route
-                    path={DrawerRoutes.dashboard.path}
+                    path={AppRoutes.dashboard.path}
                     element={<DashboardScreen />}
                 />
                 {ProjectsNavigation()}
                 <Route
-                    path={DrawerRoutes.teams.path}
+                    path={AppRoutes.teams.path}
                     element={<TeamsScreen />}
                 />
                 <Route

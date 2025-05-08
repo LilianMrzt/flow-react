@@ -1,5 +1,5 @@
 import { RouteType } from '@interfaces/types/RouteType'
-import { SettingsIcon } from '@resources/Icons'
+import { DashboardIcon, GroupIcon } from '@resources/Icons'
 import React from 'react'
 
 export const AppRoutes: Record<string, RouteType> = {
@@ -9,7 +9,16 @@ export const AppRoutes: Record<string, RouteType> = {
     },
     settings: {
         path: '/settings',
-        label: 'Settings',
-        icon: <SettingsIcon/>
+        label: 'Settings'
+    },
+    dashboard: {
+        path: '/dashboard',
+        label: 'Dashboard',
+        icon: <DashboardIcon/>
+    },
+    teams: {
+        path: '/teams',
+        label: 'Teams',
+        icon: <GroupIcon/>
     }
 }

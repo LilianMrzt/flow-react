@@ -1,7 +1,7 @@
 import React, { type ReactElement } from 'react'
 import { Navigate, Outlet } from 'react-router-dom'
 import { isTokenValid } from '@utils/AuthUtils'
-import { DrawerRoutes } from '@constants/routes/DrawerRoutes'
+import { AppRoutes } from '@constants/routes/AppRoutes'
 
 const LoggedRoute = (): ReactElement => {
     const isAuthenticated = isTokenValid()
@@ -9,7 +9,7 @@ const LoggedRoute = (): ReactElement => {
     if (isAuthenticated) {
         return (
             <Navigate
-                to={DrawerRoutes.dashboard.path}
+                to={AppRoutes.dashboard.path}
                 replace
             />
         )
