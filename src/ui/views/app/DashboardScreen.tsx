@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, useState } from 'react'
+import React, { ReactNode, useEffect } from 'react'
 import Screen from '@components/layout/Screen'
 import { useProject } from '@hooks/contexts/api/ProjectsContext'
 import NoActiveProjectsSection from '@ui/blocs/views/dashboard-screen/NoActiveProjectsSection'
@@ -21,7 +21,9 @@ import Skeleton from '@components/layout/Skeleton'
 const DashboardScreen = (): ReactNode => {
     const {
         projects,
-        getProjectsStateUpdate
+        getProjectsStateUpdate,
+        setHasFetchedOnceDashboardScreen,
+        hasFetchedOnceDashboardScreen
     } = useProject()
 
     const {
@@ -32,8 +34,6 @@ const DashboardScreen = (): ReactNode => {
         showAlert
     } = useAlert()
 
-    const [hasFetchedOnce, setHasFetchedOnce] = useState(false)
-
     useEffect(() => {
         const fetchProjects = async (): Promise<void> => {
             await getUserProjectsAction()
@@ -42,7 +42,9 @@ const DashboardScreen = (): ReactNode => {
                 }).catch((error) => {
                     showAlert(error.message , 'error')
                 }).finally(() => {
-                    setHasFetchedOnce(true)
+                    setTimeout(() => {
+                        setHasFetchedOnceDashboardScreen(true)
+                    }, 800)
                 })
         }
 
@@ -96,7 +98,7 @@ const DashboardScreen = (): ReactNode => {
                     <SubTitle
                         fontSize={20}
                     >
-                        Active projects
+                        Latest projects
                     </SubTitle>
                     <Button
                         label={'View all'}
@@ -109,7 +111,7 @@ const DashboardScreen = (): ReactNode => {
                         hoverBackgroundColor={theme.secondary}
                     />
                 </Row>
-                {!hasFetchedOnce ? (
+                {!hasFetchedOnceDashboardScreen ? (
                     <div
                         className={'dashboard-screen-skeleton-container'}
                     >

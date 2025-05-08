@@ -9,7 +9,8 @@ export const ProjectProvider: FC<ProjectProviderProps> = ({
     children
 }) => {
     const [projects, setProjects] = useState<ProjectObject[]>([])
-
+    const [hasFetchedOnceDashboardScreen, setHasFetchedOnceDashboardScreen] = useState(false)
+    const [hasFetchedOnceProjectsScreen, setHasFetchedOnceProjectsScreen] = useState(false)
     /**
      * Gestion de l'état des projets lors de la création d'un nouveau projet
      * @param newProject
@@ -37,7 +38,11 @@ export const ProjectProvider: FC<ProjectProviderProps> = ({
             value={{
                 projects,
                 createProjectStateUpdate,
-                getProjectsStateUpdate
+                getProjectsStateUpdate,
+                hasFetchedOnceDashboardScreen,
+                setHasFetchedOnceDashboardScreen,
+                hasFetchedOnceProjectsScreen,
+                setHasFetchedOnceProjectsScreen
             }}
         >
             {children}

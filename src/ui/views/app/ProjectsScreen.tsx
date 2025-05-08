@@ -9,6 +9,7 @@ import { useProject } from '@hooks/contexts/api/ProjectsContext'
 import ProjectCard from '@ui/blocs/views/projects-screen/ProjectCard'
 import './projects-screen.css'
 import NoProjectsSection from '@ui/blocs/views/projects-screen/NoProjectsSection'
+import Skeleton from '@components/layout/Skeleton'
 
 const ProjectsScreen = (): ReactNode => {
     const [isProjectCreationModalOpen, setIsProjectCreationModalOpen] = useState(false)
@@ -19,7 +20,9 @@ const ProjectsScreen = (): ReactNode => {
 
     const {
         projects,
-        getProjectsStateUpdate
+        getProjectsStateUpdate,
+        hasFetchedOnceProjectsScreen,
+        setHasFetchedOnceProjectsScreen
     } = useProject()
 
     useEffect(() => {
@@ -29,6 +32,10 @@ const ProjectsScreen = (): ReactNode => {
                     getProjectsStateUpdate(res)
                 }).catch((error) => {
                     showAlert(error.message , 'error')
+                }).finally(() => {
+                    setTimeout(() => {
+                        setHasFetchedOnceProjectsScreen(true)
+                    }, 800)
                 })
         }
 
@@ -47,7 +54,21 @@ const ProjectsScreen = (): ReactNode => {
                 }
             }}
         >
-            {projects.length > 0 ? (
+            {!hasFetchedOnceProjectsScreen ? (
+                <div
+                    className={'projects-screen-projects-container'}
+                >
+                    {Array.from({ length: 4 }).map((_, i) => {
+                        return (
+                            <Skeleton
+                                key={i}
+                                width={'100%'}
+                                height={193}
+                            />
+                        )
+                    })}
+                </div>
+            ) : projects.length > 0 ? (
                 <div
                     className={'projects-screen-projects-container'}
                 >
