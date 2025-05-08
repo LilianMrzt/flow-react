@@ -9,9 +9,12 @@ export const WebSocketProvider: React.FC<WebSocketProviderProps> = ({
     children
 }) => {
     useEffect(() => {
-        socket.connect()
+        const timeout = setTimeout(() => {
+            socket.connect()
+        }, 100)
 
         return (): void => {
+            clearTimeout(timeout)
             socket.disconnect()
         }
     }, [])
