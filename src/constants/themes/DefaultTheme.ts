@@ -6,7 +6,7 @@ export const DefaultTheme = {
     background: '#F9FAFB',
     surface: '#FFFFFF',
     text: '#1E232D',
-    textSecondary: '#575A62',
+    textSecondary: '#6c7993',
     error: '#f04343',
     outline: '#E7E9EF'
 }

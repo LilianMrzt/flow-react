@@ -37,7 +37,7 @@ const AppNavigation = (): ReactNode => {
                     element={<TeamsScreen />}
                 />
                 <Route
-                    path={DrawerRoutes.settings.path}
+                    path={AppRoutes.settings.path}
                     element={<SettingsScreen />}
                 />
                 <Route

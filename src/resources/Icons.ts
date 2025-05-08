@@ -16,6 +16,7 @@ import { ReactComponent as CreateUserIcon } from '@resources/assets/CreateUserIc
 import { ReactComponent as TaskIcon } from '@resources/assets/TaskIcon.svg'
 import { ReactComponent as SearchIcon } from '@resources/assets/SearchIcon.svg'
 import { ReactComponent as UserIcon } from '@resources/assets/UserIcon.svg'
+import { ReactComponent as FileTextIcon } from '@resources/assets/FileTextIcon.svg'
 
 export {
     ChevronLeftIcon,
@@ -35,5 +36,6 @@ export {
     CreateUserIcon,
     TaskIcon,
     SearchIcon,
-    UserIcon
+    UserIcon,
+    FileTextIcon
 }

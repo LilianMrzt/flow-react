@@ -7,4 +7,5 @@ export interface IconProps {
     fill?: CSSProperties['color']
     backgroundColor?: CSSProperties['backgroundColor']
     padding?: CSSProperties['padding']
+    borderRadius?: CSSProperties['borderRadius']
 }
