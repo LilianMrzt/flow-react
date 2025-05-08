@@ -1,0 +1,5 @@
+.no-active-projects-section {
+    padding: 40px;
+    border: 1px solid var(--outline);
+    border-radius: 8px;
+}

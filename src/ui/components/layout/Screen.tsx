@@ -23,10 +23,12 @@ const Screen: FC<ScreenProps> = ({
             className={'screen'}
             alignItems={'flex-start'}
             justifyContent={'flex-start'}
+            gap={24}
         >
             <Column
                 alignItems={'flex-start'}
                 height={'fit-content'}
+                gap={0}
             >
                 <Row
                     justifyContent={'space-between'}
