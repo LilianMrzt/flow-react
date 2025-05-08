@@ -1,0 +1,32 @@
+.menu-dropdown {
+    position: absolute;
+    top: 100%;
+    margin-top: 8px;
+    min-width: 220px;
+    background-color: var(--surface);
+    border: 1px solid var(--outline);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    opacity: 0;
+    transform: scale(0.95);
+    transition: opacity 150ms ease-in-out, transform 150ms ease-in-out;
+}
+
+.menu-dropdown.left {
+    left: 0;
+}
+
+.menu-dropdown.right {
+    right: 0;
+}
+
+.menu-dropdown.fade-in {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.menu-dropdown.fade-out {
+    opacity: 0;
+    transform: scale(0.95);
+}

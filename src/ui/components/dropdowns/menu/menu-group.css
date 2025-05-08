@@ -1,0 +1,4 @@
+.menu-group {
+    display: flex;
+    flex-direction: column;
+}
