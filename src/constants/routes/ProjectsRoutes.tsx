@@ -14,5 +14,19 @@ export const ProjectsRoutes: Record<string, RouteType> = {
         pathFn: ({ slug }) => {
             return `/projects/${slug}`
         }
+    },
+    projectDetailsBoard: {
+        path: '/projects/:slug/board',
+        label: 'Project Board',
+        pathFn: ({ slug }) => {
+            return `/projects/${slug}/board`
+        }
+    },
+    projectDetailsSettings: {
+        path: '/projects/:slug/settings',
+        label: 'Project Board',
+        pathFn: ({ slug }) => {
+            return `/projects/${slug}/settings`
+        }
     }
 }
