@@ -4,7 +4,7 @@
 }
 
 .screen-header {
-    padding: 12px 24px;
+    padding: 12px 24px 0;
 }
 
 .screen-content {
@@ -12,6 +12,8 @@
     overflow-x: auto;
     height: 100%;
     width: 100%;
-    padding: 12px 24px;
-    display: block;
+    padding: 0 24px 12px;
+    gap: 16px;
+    display: flex;
+    flex-direction: column;
 }

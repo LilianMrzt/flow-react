@@ -54,7 +54,7 @@ const Screen: FC<ScreenProps> = ({
                 </Text>
             </Column>
             <div
-                className={`screen-content ${className}`}
+                className={`screen-content ${className ? className : ''}`}
             >
                 {children}
             </div>

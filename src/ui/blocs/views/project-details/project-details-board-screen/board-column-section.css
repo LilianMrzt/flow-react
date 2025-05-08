@@ -1,0 +1,7 @@
+.board-column-section {
+    display: flex;
+    align-items: start;
+    gap: 16px;
+    height: 100%;
+    padding: 0 24px 12px;
+}

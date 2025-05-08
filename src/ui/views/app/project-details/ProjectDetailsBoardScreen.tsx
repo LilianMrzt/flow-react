@@ -1,7 +1,8 @@
 import React, { ReactNode } from 'react'
 import Screen from '@components/layout/Screen'
-import Text from '@components/text/Text'
 import { useLoadedProject } from '@hooks/contexts/api/LoadedProjectContext'
+import './project-details-screen.css'
+import BoardColumnsSection from '@ui/blocs/views/project-details/project-details-board-screen/BoardColumnsSection'
 
 const ProjectDetailsBoardScreen = (): ReactNode => {
     const {
@@ -14,13 +15,9 @@ const ProjectDetailsBoardScreen = (): ReactNode => {
         <Screen
             label={'Project Details'}
             description={'Project details and tasks'}
+            className={'project-details-screen'}
         >
-            <Text>
-                {loadedProject.name}
-            </Text>
-            <Text>
-                {loadedProject.description}
-            </Text>
+            <BoardColumnsSection/>
         </Screen>
     )
 }
