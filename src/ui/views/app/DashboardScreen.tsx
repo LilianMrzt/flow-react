@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react'
+import React, { ReactNode, useEffect, useState } from 'react'
 import Screen from '@components/layout/Screen'
 import { useProject } from '@hooks/contexts/api/ProjectsContext'
 import NoActiveProjectsSection from '@ui/blocs/views/dashboard-screen/NoActiveProjectsSection'
@@ -13,15 +13,40 @@ import Button from '@components/buttons/Button'
 import { useNavigate } from 'react-router-dom'
 import { ProjectsRoutes } from '@constants/routes/ProjectsRoutes'
 import { useTheme } from '@hooks/contexts/ThemeContext'
+import ActiveProjectsSection from '@ui/blocs/views/dashboard-screen/ActiveProjectsSection'
+import { getUserProjectsAction } from '@api/ProjectsApiCalls'
+import { useAlert } from '@hooks/contexts/AlertContext'
 
 const DashboardScreen = (): ReactNode => {
     const {
-        projects
+        projects,
+        getProjectsStateUpdate
     } = useProject()
 
     const {
         theme
     } = useTheme()
+
+    const {
+        showAlert
+    } = useAlert()
+
+    const [hasFetchedOnce, setHasFetchedOnce] = useState(false)
+
+    useEffect(() => {
+        const fetchProjects = async (): Promise<void> => {
+            await getUserProjectsAction()
+                .then((res) => {
+                    getProjectsStateUpdate(res)
+                }).catch((error) => {
+                    showAlert(error.message , 'error')
+                }).finally(() => {
+                    setHasFetchedOnce(true)
+                })
+        }
+
+        void fetchProjects()
+    }, [])
 
     const navigate = useNavigate()
 
@@ -83,11 +108,14 @@ const DashboardScreen = (): ReactNode => {
                         hoverBackgroundColor={theme.secondary}
                     />
                 </Row>
-                {projects.length > 0 ? (
-                    <div/>
+                {!hasFetchedOnce ? (
+                    <div />
+                ) : projects.length > 0 ? (
+                    <ActiveProjectsSection />
                 ) : (
-                    <NoActiveProjectsSection/>
+                    <NoActiveProjectsSection />
                 )}
+
             </Column>
         </Screen>
     )
