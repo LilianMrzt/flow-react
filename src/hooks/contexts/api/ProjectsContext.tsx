@@ -9,6 +9,8 @@ export const ProjectProvider: FC<ProjectProviderProps> = ({
     children
 }) => {
     const [projects, setProjects] = useState<ProjectObject[]>([])
+    const [recentProjects, setRecentProjects] = useState<ProjectObject[]>([])
+
     const [hasFetchedOnceDashboardScreen, setHasFetchedOnceDashboardScreen] = useState(false)
     const [hasFetchedOnceProjectsScreen, setHasFetchedOnceProjectsScreen] = useState(false)
     /**
@@ -25,20 +27,32 @@ export const ProjectProvider: FC<ProjectProviderProps> = ({
 
     /**
      * Gestion de l'état des projets lors de la récupération des projets
-     * @param projects
+     * @param projectsParam
      */
     const getProjectsStateUpdate = (
-        projects: ProjectObject[]
+        projectsParam: ProjectObject[]
     ): void => {
-        setProjects(projects)
+        setProjects(projectsParam)
+    }
+
+    /**
+     * Gestion de l'état des projets lors de la récupération des projets récents
+     * @param recentProjectsParam
+     */
+    const getRecentProjectsStateUpdate = (
+        recentProjectsParam: ProjectObject[]
+    ): void => {
+        setRecentProjects(recentProjectsParam)
     }
 
     return (
         <ProjectContext.Provider
             value={{
                 projects,
+                recentProjects,
                 createProjectStateUpdate,
                 getProjectsStateUpdate,
+                getRecentProjectsStateUpdate,
                 hasFetchedOnceDashboardScreen,
                 setHasFetchedOnceDashboardScreen,
                 hasFetchedOnceProjectsScreen,

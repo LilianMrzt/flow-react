@@ -5,14 +5,14 @@ import ProjectCard from '@ui/blocs/views/projects-screen/ProjectCard'
 
 const ActiveProjectsSection = (): ReactNode => {
     const {
-        projects
+        recentProjects
     } = useProject()
 
     return (
         <div
             className={'active-projects-section'}
         >
-            {projects.map((project) => {
+            {recentProjects.map((project) => {
                 return (
                     <ProjectCard
                         key={project.slug}

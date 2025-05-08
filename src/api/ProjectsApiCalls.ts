@@ -53,12 +53,36 @@ export const getProjectBySlugAction = async (
 }
 
 /**
- * Récupère tous les projets de l'utilisateur connecté
+ * Récupère tous les projets de l'utilisateur connecté avec pagination
  */
-export const getUserProjectsAction = async (): Promise<ProjectObject[]> => {
+export const getUserProjectsPaginatedAction = async (
+    limit = 10,
+    offset = 0
+): Promise<ProjectObject[]> => {
     const token = localStorage.getItem(StorageConstants.token)
 
-    const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/projects`, {
+    const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/projects?limit=${limit}&offset=${offset}`, {
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    })
+
+    const data = await response.json()
+
+    if (!response.ok) {
+        throw new Error(data.message)
+    }
+
+    return data.projects
+}
+
+/**
+ * Récupère les 4 projets les plus récents de l'utilisateur
+ */
+export const getRecentUserProjectsAction = async (): Promise<ProjectObject[]> => {
+    const token = localStorage.getItem(StorageConstants.token)
+
+    const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/projects/recent`, {
         headers: {
             'Authorization': `Bearer ${token}`
         }

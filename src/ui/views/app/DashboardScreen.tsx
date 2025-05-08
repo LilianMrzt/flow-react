@@ -14,14 +14,15 @@ import { useNavigate } from 'react-router-dom'
 import { ProjectsRoutes } from '@constants/routes/ProjectsRoutes'
 import { useTheme } from '@hooks/contexts/ThemeContext'
 import ActiveProjectsSection from '@ui/blocs/views/dashboard-screen/ActiveProjectsSection'
-import { getUserProjectsAction } from '@api/ProjectsApiCalls'
+import { getRecentUserProjectsAction } from '@api/ProjectsApiCalls'
 import { useAlert } from '@hooks/contexts/AlertContext'
 import Skeleton from '@components/layout/Skeleton'
 
 const DashboardScreen = (): ReactNode => {
     const {
+        recentProjects,
         projects,
-        getProjectsStateUpdate,
+        getRecentProjectsStateUpdate,
         setHasFetchedOnceDashboardScreen,
         hasFetchedOnceDashboardScreen
     } = useProject()
@@ -36,9 +37,9 @@ const DashboardScreen = (): ReactNode => {
 
     useEffect(() => {
         const fetchProjects = async (): Promise<void> => {
-            await getUserProjectsAction()
+            await getRecentUserProjectsAction()
                 .then((res) => {
-                    getProjectsStateUpdate(res)
+                    getRecentProjectsStateUpdate(res)
                 }).catch((error) => {
                     showAlert(error.message , 'error')
                 }).finally(() => {
@@ -49,7 +50,7 @@ const DashboardScreen = (): ReactNode => {
         }
 
         void fetchProjects()
-    }, [])
+    }, [projects])
 
     const navigate = useNavigate()
 
@@ -125,7 +126,7 @@ const DashboardScreen = (): ReactNode => {
                             )
                         })}
                     </div>
-                ) : projects.length > 0 ? (
+                ) : recentProjects.length > 0 ? (
                     <ActiveProjectsSection />
                 ) : (
                     <NoActiveProjectsSection />
