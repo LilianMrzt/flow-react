@@ -6,4 +6,5 @@ export interface ScreenProps {
     label: string
     description: string
     buttonContent?: ButtonProps
+    className?: string
 }

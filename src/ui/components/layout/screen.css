@@ -1,5 +1,17 @@
 .screen {
     height: calc(100vh - 60px) !important;
+    width: 100%;
+}
+
+.screen-header {
     padding: 12px 24px;
-    overflow: auto;
+}
+
+.screen-content {
+    overflow-y: auto;
+    overflow-x: auto;
+    height: 100%;
+    width: 100%;
+    padding: 12px 24px;
+    display: block;
 }

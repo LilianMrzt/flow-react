@@ -12,7 +12,8 @@ const Screen: FC<ScreenProps> = ({
     children,
     label,
     description,
-    buttonContent
+    buttonContent,
+    className
 }): ReactNode => {
     const {
         theme
@@ -29,6 +30,7 @@ const Screen: FC<ScreenProps> = ({
                 alignItems={'flex-start'}
                 height={'fit-content'}
                 gap={0}
+                className={'screen-header'}
             >
                 <Row
                     justifyContent={'space-between'}
@@ -51,7 +53,11 @@ const Screen: FC<ScreenProps> = ({
                     {description}
                 </Text>
             </Column>
-            {children}
+            <div
+                className={`screen-content ${className}`}
+            >
+                {children}
+            </div>
         </Column>
     )
 }
