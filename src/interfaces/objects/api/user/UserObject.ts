@@ -6,4 +6,6 @@ export interface UserObject {
     firstName?: string
     lastName?: string
     memberships: MembershipObject[]
+    color: string
+    profilePictureUrl: string | null
 }
