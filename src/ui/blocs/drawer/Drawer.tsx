@@ -1,25 +1,17 @@
 import React, { ReactNode, useState } from 'react'
 import './drawer.css'
 import IconButton from '@components/buttons/IconButton'
-import { ChevronLeftIcon, ChevronRightIcon, LogoutIcon, WavesIcon } from '@resources/Icons'
+import { ChevronLeftIcon, ChevronRightIcon, WavesIcon } from '@resources/Icons'
 import { useTheme } from '@hooks/contexts/ThemeContext'
 import Icon from '@components/resources/Icon'
 import { DrawerRoutes } from '@constants/routes/DrawerRoutes'
 import DrawerItem from '@ui/blocs/drawer/DrawerItem'
-import { useNavigate } from 'react-router-dom'
-import { AuthRoutes } from '@constants/routes/AuthRoutes'
-import { useUser } from '@hooks/contexts/api/UserContext'
 
 const Drawer = (): ReactNode => {
-    const navigate = useNavigate()
 
     const {
         theme
     } = useTheme()
-
-    const {
-        logout
-    } = useUser()
 
     const [isDrawerOpen, setIsDrawerOpen] = useState(false)
 
@@ -79,18 +71,6 @@ const Drawer = (): ReactNode => {
                         />
                     )
                 })}
-                <IconButton
-                    onClick={() => {
-                        logout()
-                        navigate(AuthRoutes.signIn.path)
-                    }}
-                    backgroundColor={theme.surface}
-                    hoverBackgroundColor={theme.secondary}
-                    hoverColor={theme.primary}
-                    padding={8}
-                >
-                    <LogoutIcon/>
-                </IconButton>
             </div>
         </div>
     )

@@ -24,6 +24,7 @@ code {
   --surface: '';
   --text: '';
   --textSecondary: '';
+  --error: '';
   --outline: '';
 }
 

@@ -58,6 +58,7 @@ const MenuItem: FC<MenuItemProps> = ({
             <Text
                 color={isHovered ? theme.primary : componentColor}
                 fontSize={14}
+                isSelectable={false}
             >
                 {label}
             </Text>

@@ -16,7 +16,9 @@ const IconButton: FC<IconButtonProps> = ({
     padding,
     borderRadius
 }) => {
-    const { theme } = useTheme()
+    const {
+        theme
+    } = useTheme()
 
     const [isHovered, setIsHovered] = useState(false)
 

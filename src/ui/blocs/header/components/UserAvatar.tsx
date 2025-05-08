@@ -1,8 +1,10 @@
-import React, { ReactNode } from 'react'
+import React, { ReactNode, useState } from 'react'
 import { useUser } from '@hooks/contexts/api/UserContext'
 import './user-avatar.css'
 import Text from '@components/text/Text'
 import { useTheme } from '@hooks/contexts/ThemeContext'
+import MenuWrapper from '@components/dropdowns/menu/MenuWrapper'
+import AvatarDropdown from '@ui/blocs/header/components/AvatarDropdown'
 
 const UserAvatar = (): ReactNode => {
     const {
@@ -13,6 +15,8 @@ const UserAvatar = (): ReactNode => {
         theme
     } = useTheme()
 
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+
     if (!user) {
         return (
             <div/>
@@ -22,28 +26,46 @@ const UserAvatar = (): ReactNode => {
     const initials = `${user.firstName?.[0] ?? ''}${user.lastName?.[0] ?? ''}`.toUpperCase()
 
     return (
-        user.profilePictureUrl ? (
-            <img
-                className={'user-avatar'}
-                src={user.profilePictureUrl}
-                alt={'Profile'}
-            />
-        ) : (
-            <div
-                className={'user-avatar'}
-                style={{
-                    backgroundColor: user.color
-                }}
-            >
-                <Text
-                    color={theme.surface}
-                    isSelectable={false}
-                    fontSize={14}
+        <MenuWrapper
+            onClose={() => {
+                setIsDropdownOpen(false)
+            }}
+        >
+            {user.profilePictureUrl ? (
+                <img
+                    className={'user-avatar'}
+                    src={user.profilePictureUrl}
+                    alt={'Profile'}
+                    onClick={() => {
+                        setIsDropdownOpen(!isDropdownOpen)
+                    }}
+                />
+            ) : (
+                <div
+                    className={'user-avatar'}
+                    style={{
+                        backgroundColor: user.color
+                    }}
+                    onClick={() => {
+                        setIsDropdownOpen(!isDropdownOpen)
+                    }}
                 >
-                    {initials}
-                </Text>
-            </div>
-        )
+                    <Text
+                        color={theme.surface}
+                        isSelectable={false}
+                        fontSize={14}
+                    >
+                        {initials}
+                    </Text>
+                </div>
+            )}
+            <AvatarDropdown
+                isOpen={isDropdownOpen}
+                onClose={() => {
+                    setIsDropdownOpen(false)
+                }}
+            />
+        </MenuWrapper>
     )
 }
 

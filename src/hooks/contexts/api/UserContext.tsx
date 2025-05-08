@@ -45,7 +45,7 @@ export const UserProvider: FC<UserProviderProps> = ({
         setUser(null)
     }
 
-    if (loading) {
+    if (loading || !user) {
         return (
             <div/>
         )
