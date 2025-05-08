@@ -10,6 +10,7 @@ import { AvatarDropdownProps } from '@interfaces/ui/blocs/header/components/Avat
 import { useUser } from '@hooks/contexts/api/UserContext'
 import { AuthRoutes } from '@constants/routes/AuthRoutes'
 import { useNavigate } from 'react-router-dom'
+import { AppRoutes } from '@constants/routes/AppRoutes'
 
 const AvatarDropdown: FC<AvatarDropdownProps> = ({
     isOpen,
@@ -48,13 +49,17 @@ const AvatarDropdown: FC<AvatarDropdownProps> = ({
             <MenuGroup>
                 <MenuItem
                     label={'Profile'}
-                    onClick={() => {}}
+                    onClick={() => {
+                        navigate(AppRoutes.profile.path)
+                    }}
                     onClose={onClose}
                     icon={<UserIcon/>}
                 />
                 <MenuItem
                     label={'Settings'}
-                    onClick={() => {}}
+                    onClick={() => {
+                        navigate(AppRoutes.settings.path)
+                    }}
                     onClose={onClose}
                     icon={<SettingsIcon/>}
                 />

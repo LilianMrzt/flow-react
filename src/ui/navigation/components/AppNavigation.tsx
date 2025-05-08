@@ -7,6 +7,8 @@ import TeamsScreen from '@ui/views/app/TeamsScreen'
 import SettingsScreen from '@ui/views/app/SettingsScreen'
 import AppLayout from '@ui/navigation/AppLayout'
 import ProjectsNavigation from '@ui/navigation/components/ProjectsNavigation'
+import { AppRoutes } from '@constants/routes/AppRoutes'
+import ProfileScreen from '@ui/views/app/ProfileScreen'
 
 const AppNavigation = (): ReactNode => {
     return (
@@ -37,6 +39,10 @@ const AppNavigation = (): ReactNode => {
                 <Route
                     path={DrawerRoutes.settings.path}
                     element={<SettingsScreen />}
+                />
+                <Route
+                    path={AppRoutes.profile.path}
+                    element={<ProfileScreen />}
                 />
             </Route>
         </Route>
