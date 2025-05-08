@@ -1,12 +1,12 @@
 import React, { ReactNode } from 'react'
 import './active-projects-section.css'
-import { useProject } from '@hooks/contexts/api/ProjectsContext'
+import { useProjects } from '@hooks/contexts/api/ProjectsContext'
 import ProjectCard from '@ui/blocs/views/projects-screen/ProjectCard'
 
 const ActiveProjectsSection = (): ReactNode => {
     const {
         recentProjects
-    } = useProject()
+    } = useProjects()
 
     return (
         <div

@@ -5,7 +5,7 @@ import Modal from '@components/layout/Modal'
 import ProjectCreationModalContent from '@ui/blocs/modals/ProjectCreationModalContent'
 import { getUserProjectsPaginatedAction } from '@api/ProjectsApiCalls'
 import { useAlert } from '@hooks/contexts/AlertContext'
-import { useProject } from '@hooks/contexts/api/ProjectsContext'
+import { useProjects } from '@hooks/contexts/api/ProjectsContext'
 import ProjectCard from '@ui/blocs/views/projects-screen/ProjectCard'
 import './projects-screen.css'
 import NoProjectsSection from '@ui/blocs/views/projects-screen/NoProjectsSection'
@@ -25,7 +25,7 @@ const ProjectsScreen = (): ReactNode => {
         getProjectsStateUpdate,
         hasFetchedOnceProjectsScreen,
         setHasFetchedOnceProjectsScreen
-    } = useProject()
+    } = useProjects()
 
     useEffect(() => {
         const fetchProjects = async (): Promise<void> => {

@@ -1,18 +1,18 @@
 import React, { ReactNode } from 'react'
 import { Navigate } from 'react-router'
 import { ProjectsRoutes } from '@constants/routes/ProjectsRoutes'
-import { useLoadedProject } from '@hooks/contexts/api/LoadedProjectContext'
+import { useProjects } from '@hooks/contexts/api/ProjectsContext'
 
 const ProjectDetailsScreen = (): ReactNode => {
     const {
-        slug
-    } = useLoadedProject()
+        activeProjectSlug
+    } = useProjects()
 
-    if (!slug) return null
+    if (!activeProjectSlug) return null
 
     return (
         <Navigate
-            to={ProjectsRoutes.projectDetailsBoard.pathFn!({ slug: slug })}
+            to={ProjectsRoutes.projectDetailsBoard.pathFn!({ slug: activeProjectSlug })}
             replace
         />
     )

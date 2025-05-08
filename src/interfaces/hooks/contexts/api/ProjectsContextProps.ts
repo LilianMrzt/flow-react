@@ -1,7 +1,7 @@
 import { ProjectObject } from '@interfaces/objects/api/project/ProjectObject'
 import { Dispatch, SetStateAction } from 'react'
 
-export interface ProjectContextProps {
+export interface ProjectsContextProps {
     projects: ProjectObject[]
     recentProjects: ProjectObject[]
     createProjectStateUpdate: (newProject: ProjectObject) => void
@@ -11,4 +11,6 @@ export interface ProjectContextProps {
     setHasFetchedOnceDashboardScreen: Dispatch<SetStateAction<boolean>>
     hasFetchedOnceProjectsScreen: boolean
     setHasFetchedOnceProjectsScreen: Dispatch<SetStateAction<boolean>>
+    activeProjectSlug: string | null
+    setActiveProjectSlug: Dispatch<SetStateAction<string | null>>
 }

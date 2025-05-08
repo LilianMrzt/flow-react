@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
 
-export interface ProjectProviderProps {
+export interface ProjectsProviderProps {
     children: ReactNode
 }

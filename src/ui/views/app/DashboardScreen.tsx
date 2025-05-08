@@ -1,6 +1,6 @@
 import React, { ReactNode, useEffect } from 'react'
 import Screen from '@components/layout/Screen'
-import { useProject } from '@hooks/contexts/api/ProjectsContext'
+import { useProjects } from '@hooks/contexts/api/ProjectsContext'
 import NoActiveProjectsSection from '@ui/blocs/views/dashboard-screen/NoActiveProjectsSection'
 import SubTitle from '@components/text/SubTitle'
 import Column from '@components/layout/Column'
@@ -25,7 +25,7 @@ const DashboardScreen = (): ReactNode => {
         getRecentProjectsStateUpdate,
         setHasFetchedOnceDashboardScreen,
         hasFetchedOnceDashboardScreen
-    } = useProject()
+    } = useProjects()
 
     const {
         theme

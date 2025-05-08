@@ -1,5 +1,5 @@
 import React, { FC, ReactNode } from 'react'
-import { ProjectProvider } from '@hooks/contexts/api/ProjectsContext'
+import { ProjectsProvider } from '@hooks/contexts/api/ProjectsContext'
 import { ApiProvidersProps } from '@interfaces/hooks/ApiProvidersProps'
 import { UserProvider } from '@hooks/contexts/api/UserContext'
 
@@ -8,9 +8,9 @@ const ApiProviders: FC<ApiProvidersProps> = ({
 }): ReactNode => {
     return (
         <UserProvider>
-            <ProjectProvider>
+            <ProjectsProvider>
                 {children}
-            </ProjectProvider>
+            </ProjectsProvider>
         </UserProvider>
     )
 }

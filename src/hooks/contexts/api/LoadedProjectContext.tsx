@@ -3,8 +3,8 @@ import { LoadedProjectContextProps } from '@interfaces/hooks/contexts/api/Loaded
 import { LoadedProjectProviderProps } from '@interfaces/hooks/contexts/api/LoadedProjectProviderProps'
 import { ProjectObject } from '@interfaces/objects/api/project/ProjectObject'
 import { getProjectBySlugAction } from '@api/ProjectsApiCalls'
-import { useParams } from 'react-router'
 import { useAlert } from '@hooks/contexts/AlertContext'
+import { useProjects } from '@hooks/contexts/api/ProjectsContext'
 
 const LoadedProjectContext = createContext<LoadedProjectContextProps | undefined>(undefined)
 
@@ -12,23 +12,23 @@ export const LoadedProjectProvider: FC<LoadedProjectProviderProps> = ({
     children
 }) => {
     const {
+        activeProjectSlug
+    } = useProjects()
+
+    const {
         showAlert
     } = useAlert()
 
     const [loadedProject, setLoadedProject] = useState<ProjectObject | null>(null)
-
-    const {
-        slug
-    } = useParams<{ slug: string }>()
 
     /**
      * Récupération du projet actuel via son slug
      */
     useEffect(() => {
         const fetchProject = async (): Promise<void> => {
-            if (!slug) return
+            if (!activeProjectSlug) return
 
-            await getProjectBySlugAction(slug)
+            await getProjectBySlugAction(activeProjectSlug)
                 .then((res) => {
                     setLoadedProject(res)
                 })
@@ -38,13 +38,12 @@ export const LoadedProjectProvider: FC<LoadedProjectProviderProps> = ({
         }
 
         void fetchProject()
-    }, [slug])
+    }, [activeProjectSlug])
 
     return (
         <LoadedProjectContext.Provider
             value={{
-                loadedProject,
-                slug
+                loadedProject
             }}
         >
             {children}

@@ -8,7 +8,7 @@ import { useTheme } from '@hooks/contexts/ThemeContext'
 import { ProjectCreationModalContentProps } from '@interfaces/ui/blocs/modals/ProjectCreationModalContentProps'
 import { useAlert } from '@hooks/contexts/AlertContext'
 import { createProjectAction } from '@api/ProjectsApiCalls'
-import { useProject } from '@hooks/contexts/api/ProjectsContext'
+import { useProjects } from '@hooks/contexts/api/ProjectsContext'
 
 const ProjectCreationModalContent: FC<ProjectCreationModalContentProps> = ({
     setIsOpen
@@ -23,7 +23,7 @@ const ProjectCreationModalContent: FC<ProjectCreationModalContentProps> = ({
 
     const {
         createProjectStateUpdate
-    } = useProject()
+    } = useProjects()
 
     const [projectName, setProjectName] = useState('')
     const [projectDescription, setProjectDescription] = useState('')

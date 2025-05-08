@@ -1,15 +1,16 @@
-import React, { createContext, useContext, useState, type FC } from 'react'
-import { ProjectContextProps } from '@interfaces/hooks/contexts/api/ProjectContextProps'
-import { ProjectProviderProps } from '@interfaces/hooks/contexts/api/ProjectProviderProps'
+import React, { createContext, useContext, useState, type FC, useEffect } from 'react'
+import { ProjectsContextProps } from '@interfaces/hooks/contexts/api/ProjectsContextProps'
+import { ProjectsProviderProps } from '@interfaces/hooks/contexts/api/ProjectsProviderProps'
 import { ProjectObject } from '@interfaces/objects/api/project/ProjectObject'
 
-const ProjectContext = createContext<ProjectContextProps | undefined>(undefined)
+const ProjectsContext = createContext<ProjectsContextProps | undefined>(undefined)
 
-export const ProjectProvider: FC<ProjectProviderProps> = ({
+export const ProjectsProvider: FC<ProjectsProviderProps> = ({
     children
 }) => {
     const [projects, setProjects] = useState<ProjectObject[]>([])
     const [recentProjects, setRecentProjects] = useState<ProjectObject[]>([])
+    const [activeProjectSlug, setActiveProjectSlug] = useState<string | null>(null)
 
     const [hasFetchedOnceDashboardScreen, setHasFetchedOnceDashboardScreen] = useState(false)
     const [hasFetchedOnceProjectsScreen, setHasFetchedOnceProjectsScreen] = useState(false)
@@ -45,8 +46,20 @@ export const ProjectProvider: FC<ProjectProviderProps> = ({
         setRecentProjects(recentProjectsParam)
     }
 
+    /**
+     * Récupération du slug des projets en fonction de la localisation
+     */
+    useEffect(() => {
+        const match = location.pathname.match(/^\/projects\/([^/]+)/)
+        if (match) {
+            setActiveProjectSlug(match[1])
+        } else {
+            setActiveProjectSlug(null)
+        }
+    }, [location.pathname])
+
     return (
-        <ProjectContext.Provider
+        <ProjectsContext.Provider
             value={{
                 projects,
                 recentProjects,
@@ -56,18 +69,20 @@ export const ProjectProvider: FC<ProjectProviderProps> = ({
                 hasFetchedOnceDashboardScreen,
                 setHasFetchedOnceDashboardScreen,
                 hasFetchedOnceProjectsScreen,
-                setHasFetchedOnceProjectsScreen
+                setHasFetchedOnceProjectsScreen,
+                activeProjectSlug,
+                setActiveProjectSlug
             }}
         >
             {children}
-        </ProjectContext.Provider>
+        </ProjectsContext.Provider>
     )
 }
 
-export const useProject = (): ProjectContextProps => {
-    const context = useContext(ProjectContext)
+export const useProjects = (): ProjectsContextProps => {
+    const context = useContext(ProjectsContext)
     if (!context) {
-        throw new Error('useProject must be used within a ProjectProvider')
+        throw new Error('useProjects must be used within a ProjectsProvider')
     }
     return context
 }
