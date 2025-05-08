@@ -1,17 +1,25 @@
 import React, { ReactNode, useState } from 'react'
 import './drawer.css'
 import IconButton from '@components/buttons/IconButton'
-import { ChevronLeftIcon, ChevronRightIcon, WavesIcon } from '@resources/Icons'
+import { ChevronLeftIcon, ChevronRightIcon, FolderIcon, LayersIcon, WavesIcon } from '@resources/Icons'
 import { useTheme } from '@hooks/contexts/ThemeContext'
 import Icon from '@components/resources/Icon'
 import { DrawerRoutes } from '@constants/routes/DrawerRoutes'
 import DrawerItem from '@ui/blocs/drawer/DrawerItem'
+import { useProjects } from '@hooks/contexts/api/ProjectsContext'
+import { ProjectDetailsDrawerRoutes } from '@constants/routes/ProjectDetailsDrawerRoutes'
+import Separator from '@components/layout/Separator'
+import DrawerTitle from '@ui/blocs/drawer/DrawerTitle'
 
 const Drawer = (): ReactNode => {
 
     const {
         theme
     } = useTheme()
+
+    const {
+        activeProjectSlug
+    } = useProjects()
 
     const [isDrawerOpen, setIsDrawerOpen] = useState(false)
 
@@ -60,6 +68,11 @@ const Drawer = (): ReactNode => {
                     </h1>
                 </div>
             </div>
+            <DrawerTitle
+                isDrawerOpen={isDrawerOpen}
+                label={'App Navigation'}
+                icon={<LayersIcon/>}
+            />
             <div
                 className={'drawer-content'}
             >
@@ -72,6 +85,29 @@ const Drawer = (): ReactNode => {
                     )
                 })}
             </div>
+            {activeProjectSlug && (
+                <>
+                    <Separator/>
+                    <DrawerTitle
+                        isDrawerOpen={isDrawerOpen}
+                        label={'Project Navigation'}
+                        icon={<FolderIcon/>}
+                    />
+                    <div
+                        className={'drawer-content'}
+                    >
+                        {Object.entries(ProjectDetailsDrawerRoutes).map(([key, route]) => {
+                            return (
+                                <DrawerItem
+                                    key={key}
+                                    route={route}
+                                    isProjectDetails
+                                />
+                            )
+                        })}
+                    </div>
+                </>
+            )}
         </div>
     )
 }

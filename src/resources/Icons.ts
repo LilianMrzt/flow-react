@@ -21,6 +21,12 @@ import { ReactComponent as ChartIcon } from '@resources/assets/ChartIcon.svg'
 import { ReactComponent as CircleCheckIcon } from '@resources/assets/CircleCheckIcon.svg'
 import { ReactComponent as ClockIcon } from '@resources/assets/ClockIcon.svg'
 import { ReactComponent as ListTodoIcon } from '@resources/assets/ListTodoIcon.svg'
+import { ReactComponent as KanbanIcon } from '@resources/assets/KanbanIcon.svg'
+import { ReactComponent as ProjectSettingsIcon } from '@resources/assets/ProjectSettingsIcon.svg'
+import { ReactComponent as BacklogIcon } from '@resources/assets/BacklogIcon.svg'
+import { ReactComponent as ProjectDashboardIcon } from '@resources/assets/ProjectDashboardIcon.svg'
+import { ReactComponent as LayersIcon } from '@resources/assets/LayersIcon.svg'
+import { ReactComponent as FolderIcon } from '@resources/assets/FolderIcon.svg'
 
 export {
     ChevronLeftIcon,
@@ -45,5 +51,11 @@ export {
     ChartIcon,
     CircleCheckIcon,
     ClockIcon,
-    ListTodoIcon
+    ListTodoIcon,
+    KanbanIcon,
+    ProjectSettingsIcon,
+    BacklogIcon,
+    ProjectDashboardIcon,
+    LayersIcon,
+    FolderIcon
 }

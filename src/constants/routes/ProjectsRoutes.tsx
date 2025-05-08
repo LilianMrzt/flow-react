@@ -1,5 +1,5 @@
 import { RouteType } from '@interfaces/types/RouteType'
-import { ProjectsIcon } from '@resources/Icons'
+import { BacklogIcon, KanbanIcon, ProjectDashboardIcon, ProjectSettingsIcon, ProjectsIcon } from '@resources/Icons'
 import React from 'react'
 
 export const ProjectsRoutes: Record<string, RouteType> = {
@@ -17,16 +17,34 @@ export const ProjectsRoutes: Record<string, RouteType> = {
     },
     projectDetailsBoard: {
         path: '/projects/:slug/board',
-        label: 'Project Board',
+        label: 'Board',
         pathFn: ({ slug }) => {
             return `/projects/${slug}/board`
-        }
+        },
+        icon: <KanbanIcon/>
     },
     projectDetailsSettings: {
         path: '/projects/:slug/settings',
-        label: 'Project Board',
+        label: 'Settings',
         pathFn: ({ slug }) => {
             return `/projects/${slug}/settings`
-        }
+        },
+        icon: <ProjectSettingsIcon/>
+    },
+    projectDetailsDashboard: {
+        path: '/projects/:slug/dashboard',
+        label: 'Dashboard',
+        pathFn: ({ slug }) => {
+            return `/projects/${slug}/dashboard`
+        },
+        icon: <ProjectDashboardIcon/>
+    },
+    projectDetailsBacklog: {
+        path: '/projects/:slug/backlog',
+        label: 'Backlog',
+        pathFn: ({ slug }) => {
+            return `/projects/${slug}/backlog`
+        },
+        icon: <BacklogIcon/>
     }
 }

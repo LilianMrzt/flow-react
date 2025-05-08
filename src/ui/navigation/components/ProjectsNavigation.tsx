@@ -7,6 +7,8 @@ import ProjectDetailsScreen from '@ui/views/app/project-details/ProjectDetailsSc
 import { LoadedProjectProvider } from '@hooks/contexts/api/LoadedProjectContext'
 import { Outlet } from 'react-router-dom'
 import ProjectDetailsSettingsScreen from '@ui/views/app/project-details/ProjectDetailsSettingsScreen'
+import ProjectDetailsDashboardScreen from '@ui/views/app/project-details/ProjectDetailsDashboardScreen'
+import ProjectDetailsBacklogScreen from '@ui/views/app/project-details/ProjectDetailsBacklogScreen'
 
 const ProjectsNavigation = (): ReactNode => {
     return (
@@ -28,8 +30,16 @@ const ProjectsNavigation = (): ReactNode => {
                     element={<ProjectDetailsScreen />}
                 />
                 <Route
+                    path={ProjectsRoutes.projectDetailsDashboard.path}
+                    element={<ProjectDetailsDashboardScreen />}
+                />
+                <Route
                     path={ProjectsRoutes.projectDetailsBoard.path}
                     element={<ProjectDetailsBoardScreen />}
+                />
+                <Route
+                    path={ProjectsRoutes.projectDetailsBacklog.path}
+                    element={<ProjectDetailsBacklogScreen />}
                 />
                 <Route
                     path={ProjectsRoutes.projectDetailsSettings.path}

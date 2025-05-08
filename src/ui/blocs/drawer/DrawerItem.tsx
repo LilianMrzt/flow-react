@@ -6,17 +6,27 @@ import { useTheme } from '@hooks/contexts/ThemeContext'
 import { DrawerItemProps } from '@interfaces/ui/blocs/drawer/DrawerItemProps'
 import { useLocation } from 'react-router'
 import { useNavigate } from 'react-router-dom'
+import { useProjects } from '@hooks/contexts/api/ProjectsContext'
 
 const DrawerItem: FC<DrawerItemProps> = ({
-    route
+    route,
+    isProjectDetails = false
 }): ReactNode => {
     const location = useLocation()
     const navigate = useNavigate()
-    const { theme } = useTheme()
+    const {
+        theme
+    } = useTheme()
+
+    const {
+        activeProjectSlug
+    } = useProjects()
 
     const [isHovered, setIsHovered] = useState(false)
 
-    const isSelected = route.path === location.pathname
+    const path = isProjectDetails && activeProjectSlug ? route.pathFn!({ slug: activeProjectSlug }) : route.path
+
+    const isSelected = path === location.pathname
     const componentBackgroundColor = isSelected ? theme.secondary : (isHovered ? theme.tertiary : theme.surface)
     const componentColor = isSelected ? theme.primary : theme.text
     /**
@@ -42,7 +52,7 @@ const DrawerItem: FC<DrawerItemProps> = ({
                 backgroundColor: componentBackgroundColor
             }}
             onClick={() => {
-                navigate(route.path)
+                navigate(path)
             }}
         >
             {route.icon && (

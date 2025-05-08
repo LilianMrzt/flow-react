@@ -12,7 +12,7 @@ const ProjectDetailsScreen = (): ReactNode => {
 
     return (
         <Navigate
-            to={ProjectsRoutes.projectDetailsBoard.pathFn!({ slug: activeProjectSlug })}
+            to={ProjectsRoutes.projectDetailsDashboard.pathFn!({ slug: activeProjectSlug })}
             replace
         />
     )
