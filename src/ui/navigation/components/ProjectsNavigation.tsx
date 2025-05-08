@@ -4,11 +4,11 @@ import ProjectsScreen from '@ui/views/app/ProjectsScreen'
 import { ProjectsRoutes } from '@constants/routes/ProjectsRoutes'
 import ProjectDetailsBoardScreen from '@ui/views/app/project-details/ProjectDetailsBoardScreen'
 import ProjectDetailsScreen from '@ui/views/app/project-details/ProjectDetailsScreen'
-import { LoadedProjectProvider } from '@hooks/contexts/api/LoadedProjectContext'
 import { Outlet } from 'react-router-dom'
 import ProjectDetailsSettingsScreen from '@ui/views/app/project-details/ProjectDetailsSettingsScreen'
 import ProjectDetailsDashboardScreen from '@ui/views/app/project-details/ProjectDetailsDashboardScreen'
 import ProjectDetailsBacklogScreen from '@ui/views/app/project-details/ProjectDetailsBacklogScreen'
+import ProjectsDetailsApiProviders from '@hooks/ProjectsDetailsApiProviders'
 
 const ProjectsNavigation = (): ReactNode => {
     return (
@@ -20,9 +20,9 @@ const ProjectsNavigation = (): ReactNode => {
             <Route
                 path={ProjectsRoutes.projectDetails.path}
                 element={
-                    <LoadedProjectProvider>
+                    <ProjectsDetailsApiProviders>
                         <Outlet/>
-                    </LoadedProjectProvider>
+                    </ProjectsDetailsApiProviders>
                 }
             >
                 <Route
