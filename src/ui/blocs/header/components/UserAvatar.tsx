@@ -31,34 +31,23 @@ const UserAvatar = (): ReactNode => {
                 setIsDropdownOpen(false)
             }}
         >
-            {user.profilePictureUrl ? (
-                <img
-                    className={'user-avatar'}
-                    src={user.profilePictureUrl}
-                    alt={'Profile'}
-                    onClick={() => {
-                        setIsDropdownOpen(!isDropdownOpen)
-                    }}
-                />
-            ) : (
-                <div
-                    className={'user-avatar'}
-                    style={{
-                        backgroundColor: user.color
-                    }}
-                    onClick={() => {
-                        setIsDropdownOpen(!isDropdownOpen)
-                    }}
+            <div
+                className={'user-avatar'}
+                style={{
+                    backgroundColor: user.color
+                }}
+                onClick={() => {
+                    setIsDropdownOpen(!isDropdownOpen)
+                }}
+            >
+                <Text
+                    color={theme.surface}
+                    isSelectable={false}
+                    fontSize={14}
                 >
-                    <Text
-                        color={theme.surface}
-                        isSelectable={false}
-                        fontSize={14}
-                    >
-                        {initials}
-                    </Text>
-                </div>
-            )}
+                    {initials}
+                </Text>
+            </div>
             <AvatarDropdown
                 isOpen={isDropdownOpen}
                 onClose={() => {
