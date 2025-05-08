@@ -26,9 +26,8 @@ export const UserProvider: FC<UserProviderProps> = ({
                 .then((res) => {
                     setUser(res)
                 })
-                .catch(() => {
-                    setUser(null)
-                    localStorage.removeItem(StorageConstants.token)
+                .catch((error) => {
+                    console.error(error.message)
                 })
                 .finally(() => {
                     setLoading(false)
