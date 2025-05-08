@@ -7,12 +7,10 @@ import { AddIcon } from '@resources/Icons'
 
 const ProjectDetailsBacklogScreen = (): ReactNode => {
     const {
-        loadedProject
+        tasks
     } = useLoadedProject()
 
     const [isTaskCreationModalOpen, setIsTaskCreationModalOpen] = useState(false)
-
-    if (!loadedProject) return null
 
     return (
         <Screen
@@ -26,7 +24,7 @@ const ProjectDetailsBacklogScreen = (): ReactNode => {
                 }
             }}
         >
-            {loadedProject.tasks.map((task) => {
+            {tasks.map((task) => {
                 return (
                     <div
                         key={task?.id}
