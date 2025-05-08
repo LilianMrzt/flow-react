@@ -4,3 +4,10 @@
     gap: 16px;
     width: 100%;
 }
+
+.dashboard-screen-skeleton-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 16px;
+    width: 100%;
+}

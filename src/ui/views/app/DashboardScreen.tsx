@@ -16,6 +16,7 @@ import { useTheme } from '@hooks/contexts/ThemeContext'
 import ActiveProjectsSection from '@ui/blocs/views/dashboard-screen/ActiveProjectsSection'
 import { getUserProjectsAction } from '@api/ProjectsApiCalls'
 import { useAlert } from '@hooks/contexts/AlertContext'
+import Skeleton from '@components/layout/Skeleton'
 
 const DashboardScreen = (): ReactNode => {
     const {
@@ -109,7 +110,19 @@ const DashboardScreen = (): ReactNode => {
                     />
                 </Row>
                 {!hasFetchedOnce ? (
-                    <div />
+                    <div
+                        className={'dashboard-screen-skeleton-container'}
+                    >
+                        {Array.from({ length: 4 }).map((_, i) => {
+                            return (
+                                <Skeleton
+                                    key={i}
+                                    width={'100%'}
+                                    height={193}
+                                />
+                            )
+                        })}
+                    </div>
                 ) : projects.length > 0 ? (
                     <ActiveProjectsSection />
                 ) : (
