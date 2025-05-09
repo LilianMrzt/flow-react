@@ -5,7 +5,6 @@ import Button from '@components/buttons/Button'
 import { AddIcon, FileTextIcon } from '@resources/Icons'
 import Icon from '@components/resources/Icon'
 import { useTheme } from '@hooks/contexts/ThemeContext'
-import './no-projects-section.css'
 import { NoProjectsSectionProps } from '@interfaces/ui/blocs/views/projects-screen/NoProjectsSectionProps'
 import Card from '@components/layout/Card'
 
@@ -17,12 +16,11 @@ const NoProjectsSection: FC<NoProjectsSectionProps> = ({
     } = useTheme()
 
     return (
-        <Column
-            className={'no-projects-section'}
-        >
+        <Column>
             <Card
                 gap={16}
                 width={'100%'}
+                height={'100%'}
             >
                 <Icon
                     color={theme.textSecondary}

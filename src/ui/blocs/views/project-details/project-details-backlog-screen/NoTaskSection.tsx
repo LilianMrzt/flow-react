@@ -4,7 +4,6 @@ import { AddIcon, TaskIcon } from '@resources/Icons'
 import { useTheme } from '@hooks/contexts/ThemeContext'
 import Card from '@components/layout/Card'
 import Column from '@components/layout/Column'
-import './no-task-section.css'
 import Text from '@components/text/Text'
 import Button from '@components/buttons/Button'
 import {
@@ -19,12 +18,11 @@ const NoTaskSection: FC<NoTaskSectionProps> = ({
     } = useTheme()
 
     return (
-        <Column
-            className={'no-task-section'}
-        >
+        <Column>
             <Card
                 gap={16}
                 width={'100%'}
+                height={'100%'}
             >
                 <Icon
                     color={theme.textSecondary}

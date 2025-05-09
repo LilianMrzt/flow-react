@@ -4,6 +4,7 @@ export interface CardProps {
     children: ReactNode
     className?: string
     width?: CSSProperties['width']
+    height?: CSSProperties['height']
     padding?: CSSProperties['padding']
     gap?: CSSProperties['gap']
     onClick?: () => void

@@ -6,6 +6,7 @@ const Card: FC<CardProps> = ({
     children,
     className,
     width,
+    height,
     padding,
     gap,
     onClick,
@@ -50,6 +51,7 @@ const Card: FC<CardProps> = ({
             className={`card ${isHovered && hoverShadow ? 'card-hover-shadow' : ''} ${className}`}
             style={{
                 width: width ?? 400,
+                height: height ?? 'fit-content',
                 padding: padding ?? 24,
                 gap: gap ?? 16
             }}
