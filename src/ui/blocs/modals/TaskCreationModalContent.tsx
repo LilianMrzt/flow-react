@@ -5,7 +5,6 @@ import TextArea from '@components/inputs/TextArea'
 import Row from '@components/layout/Row'
 import Button from '@components/buttons/Button'
 import { useTheme } from '@hooks/contexts/ThemeContext'
-import { ProjectCreationModalContentProps } from '@interfaces/ui/blocs/modals/ProjectCreationModalContentProps'
 import { useAlert } from '@hooks/contexts/AlertContext'
 import { createTaskAction } from '@api/TasksApiCalls'
 import { useLoadedProject } from '@hooks/contexts/api/LoadedProjectContext'
@@ -14,8 +13,9 @@ import {
     TASK_CREATION_MODAL_PRIORITY_SELECT_OPTIONS
 } from '@constants/select-options/TaskCreationModalPrioritySelectOptions'
 import { TASK_CREATION_MODAL_TYPE_SELECT_OPTIONS } from '@constants/select-options/TaskCreationModalTypeSelectOptions'
+import { TaskCreationModalContentProps } from '@interfaces/ui/blocs/modals/TaskCreationModalContentProps'
 
-const TaskCreationModalContent: FC<ProjectCreationModalContentProps> = ({
+const TaskCreationModalContent: FC<TaskCreationModalContentProps> = ({
     setIsOpen
 }): ReactNode => {
     const {

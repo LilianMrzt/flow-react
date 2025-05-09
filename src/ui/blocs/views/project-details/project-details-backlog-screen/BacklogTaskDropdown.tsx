@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from 'react'
+import React, { FC, ReactNode, useState } from 'react'
 import MenuDropdown from '@components/dropdowns/menu/MenuDropdown'
 import {
     BacklogTaskDropdownProps
@@ -6,10 +6,9 @@ import {
 import MenuGroup from '@components/dropdowns/menu/MenuGroup'
 import { TrashIcon } from '@resources/Icons'
 import MenuItem from '@components/dropdowns/menu/MenuItem'
-import { useLoadedProject } from '@hooks/contexts/api/LoadedProjectContext'
-import { useAlert } from '@hooks/contexts/AlertContext'
-import { deleteTaskAction } from '@api/TasksApiCalls'
 import { useTheme } from '@hooks/contexts/ThemeContext'
+import Modal from '@components/layout/Modal'
+import ConfirmTaskDeletionModalContent from '@ui/blocs/modals/ConfirmTaskDeletionModalContent'
 
 const BacklogTaskDropdown: FC<BacklogTaskDropdownProps> = ({
     isOpen,
@@ -17,42 +16,43 @@ const BacklogTaskDropdown: FC<BacklogTaskDropdownProps> = ({
     task
 }): ReactNode => {
     const {
-        loadedProject
-    } = useLoadedProject()
-
-    const {
-        showAlert
-    } = useAlert()
-
-    const {
         theme
     } = useTheme()
 
-    const handleDeleteTask = async (): Promise<void> => {
-        if(!loadedProject) return
-
-        await deleteTaskAction(loadedProject.slug, task.id)
-            .then(() => {
-                showAlert('Task successfully deleted.' , 'success')
-            }).catch((error) => {
-                showAlert(error.message , 'error')
-            })
-    }
+    const [isTaskDeletionConfirmModalOpen, setIsTaskDeletionConfirmModalOpen] = useState(false)
 
     return (
-        <MenuDropdown
-            isOpen={isOpen}
-        >
-            <MenuGroup>
-                <MenuItem
-                    label={'Delete task'}
-                    onClick={handleDeleteTask}
-                    onClose={onClose}
-                    icon={<TrashIcon/>}
-                    color={theme.error}
+        <>
+            <MenuDropdown
+                isOpen={isOpen}
+            >
+                <MenuGroup>
+                    <MenuItem
+                        label={'Delete task'}
+                        onClick={() => {
+                            setIsTaskDeletionConfirmModalOpen(true)
+                        }}
+                        onClose={onClose}
+                        icon={<TrashIcon/>}
+                        color={theme.error}
+                    />
+                </MenuGroup>
+            </MenuDropdown>
+            <Modal
+                isOpen={isTaskDeletionConfirmModalOpen}
+                onClose={() => {
+                    setIsTaskDeletionConfirmModalOpen(false)
+                }}
+                label={'Confirm deletion'}
+                icon={<TrashIcon/>}
+                iconColor={theme.error}
+            >
+                <ConfirmTaskDeletionModalContent
+                    setIsOpen={setIsTaskDeletionConfirmModalOpen}
+                    task={task}
                 />
-            </MenuGroup>
-        </MenuDropdown>
+            </Modal>
+        </>
     )
 }
 

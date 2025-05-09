@@ -9,5 +9,6 @@ export const DefaultTheme = {
     text: '#1E232D',
     textSecondary: '#6c7993',
     error: '#f04343',
+    hoverError: '#ec1414',
     outline: '#E7E9EF'
 }

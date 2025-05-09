@@ -10,13 +10,16 @@ import SubTitle from '@components/text/SubTitle'
 import { handleFadeEffect } from '@utils/AnimationUtils'
 import IconButton from '@components/buttons/IconButton'
 import Text from '@components/text/Text'
+import Icon from '@components/resources/Icon'
 
 const Modal: FC<ModalProps> = ({
     isOpen,
     children,
     onClose,
     label,
-    description
+    description,
+    icon,
+    iconColor
 }): ReactNode => {
     const { theme } = useTheme()
 
@@ -48,11 +51,23 @@ const Modal: FC<ModalProps> = ({
                                     width={'100%'}
                                     justifyContent={'space-between'}
                                 >
-                                    <SubTitle
-                                        fontSize={18}
+                                    <Row
+                                        justifyContent={'start'}
                                     >
-                                        {label}
-                                    </SubTitle>
+                                        {icon && (
+                                            <Icon
+                                                size={20}
+                                                color={iconColor ?? theme.textSecondary}
+                                            >
+                                                {icon}
+                                            </Icon>
+                                        )}
+                                        <SubTitle
+                                            fontSize={18}
+                                        >
+                                            {label}
+                                        </SubTitle>
+                                    </Row>
                                     <IconButton
                                         onClick={onClose}
                                         backgroundColor={theme.surface}
@@ -62,12 +77,14 @@ const Modal: FC<ModalProps> = ({
                                         <CloseIcon/>
                                     </IconButton>
                                 </Row>
-                                <Text
-                                    color={theme.textSecondary}
-                                    fontSize={15}
-                                >
-                                    {description}
-                                </Text>
+                                {description && (
+                                    <Text
+                                        color={theme.textSecondary}
+                                        fontSize={15}
+                                    >
+                                        {description}
+                                    </Text>
+                                )}
                             </Column>
                             {children}
                         </Column>
