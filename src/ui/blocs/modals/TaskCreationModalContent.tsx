@@ -14,6 +14,12 @@ import {
 } from '@constants/select-options/TaskCreationModalPrioritySelectOptions'
 import { TASK_CREATION_MODAL_TYPE_SELECT_OPTIONS } from '@constants/select-options/TaskCreationModalTypeSelectOptions'
 import { TaskCreationModalContentProps } from '@interfaces/ui/blocs/modals/TaskCreationModalContentProps'
+import {
+    TASK_CREATION_MODAL_COLUMN_SELECT_OPTIONS
+} from '@constants/select-options/TaskCreationModalColumnSelectOptions'
+import {
+    TASK_CREATION_MODAL_ASSIGNEE_SELECT_OPTIONS
+} from '@constants/select-options/TaskCreationModalAssignedUserSelectOptions'
 
 const TaskCreationModalContent: FC<TaskCreationModalContentProps> = ({
     setIsOpen
@@ -34,6 +40,8 @@ const TaskCreationModalContent: FC<TaskCreationModalContentProps> = ({
     const [taskDescription, setTaskDescription] = useState('')
     const [taskPriority, setTaskPriority] = useState(TASK_CREATION_MODAL_PRIORITY_SELECT_OPTIONS[2].value)
     const [taskType, setTaskType] = useState(TASK_CREATION_MODAL_TYPE_SELECT_OPTIONS[0].value)
+    const [taskColumnId, setTaskColumnId] = useState(TASK_CREATION_MODAL_COLUMN_SELECT_OPTIONS(loadedProject)[0].value)
+    const [taskAssignedUser, setTaskAssignedUser] = useState(TASK_CREATION_MODAL_ASSIGNEE_SELECT_OPTIONS(loadedProject)[0].value)
 
     /**
      * Gestion de la fermeture du Modal
@@ -57,7 +65,9 @@ const TaskCreationModalContent: FC<TaskCreationModalContentProps> = ({
             title: taskTitle,
             description: taskDescription,
             type: taskType,
-            priority: taskPriority
+            priority: taskPriority,
+            columnId: taskColumnId === 'none' ? undefined : taskColumnId,
+            assignedUser: taskAssignedUser === 'none' ? undefined : taskAssignedUser
         }).then(() => {
             showAlert('Task successfully created.' , 'success')
             handleClose()
@@ -99,6 +109,21 @@ const TaskCreationModalContent: FC<TaskCreationModalContentProps> = ({
                     options={TASK_CREATION_MODAL_PRIORITY_SELECT_OPTIONS}
                 />
             </Row>
+            <Row gap={16}>
+                <Select
+                    label={'Status'}
+                    value={taskColumnId}
+                    onChange={setTaskColumnId}
+                    options={TASK_CREATION_MODAL_COLUMN_SELECT_OPTIONS(loadedProject)}
+                />
+                <Select
+                    label={'Assigned to'}
+                    value={taskAssignedUser}
+                    onChange={setTaskAssignedUser}
+                    options={TASK_CREATION_MODAL_ASSIGNEE_SELECT_OPTIONS(loadedProject)}
+                />
+            </Row>
+
             <Row
                 justifyContent={'flex-end'}
             >

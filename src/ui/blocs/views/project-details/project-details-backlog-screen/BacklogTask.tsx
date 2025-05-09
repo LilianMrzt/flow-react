@@ -119,7 +119,7 @@ const BacklogTask: FC<BacklogTaskProps> = ({
             </TableCell>
             <TableCell>
                 <Select
-                    value={task.column?.id ?? 'no-status'}
+                    value={task.column?.id ?? COLUMN_MODIFICATION_BACKLOG_SELECT_OPTIONS(loadedProject)[0].value}
                     onChange={handleColumnChange}
                     options={COLUMN_MODIFICATION_BACKLOG_SELECT_OPTIONS(loadedProject)}
                     backgroundColor={isHovered ? theme.secondary : theme.surface}

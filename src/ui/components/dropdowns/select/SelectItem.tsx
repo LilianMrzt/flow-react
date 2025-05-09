@@ -2,7 +2,6 @@ import React, { FC, ReactNode, useState } from 'react'
 import Text from '@components/text/Text'
 import './select-item.css'
 import Icon from '@components/resources/Icon'
-import { CheckIcon } from '@resources/Icons'
 import { useTheme } from '@hooks/contexts/ThemeContext'
 import { SelectItemProps } from '@interfaces/ui/components/dropdowns/select/SelectItemProps'
 
@@ -47,18 +46,6 @@ const SelectItem: FC<SelectItemProps> = ({
                 backgroundColor
             }}
         >
-            {isSelected && (
-                <div
-                    className={'select-item-selected-icon'}
-                >
-                    <Icon
-                        size={18}
-                        color={color}
-                    >
-                        <CheckIcon/>
-                    </Icon>
-                </div>
-            )}
             {option.icon && (
                 <Icon
                     size={20}

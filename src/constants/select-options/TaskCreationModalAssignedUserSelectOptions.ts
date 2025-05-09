@@ -1,8 +1,7 @@
 import { SelectOption } from '@interfaces/objects/front/SelectOption'
-import { BoardColumnObject } from '@interfaces/objects/api/board-column/BoardColumnObject'
 import { ProjectObject } from '@interfaces/objects/api/project/ProjectObject'
 
-export const COLUMN_MODIFICATION_BACKLOG_SELECT_OPTIONS = (
+export const TASK_CREATION_MODAL_ASSIGNEE_SELECT_OPTIONS = (
     loadedProject: ProjectObject | null
 ): SelectOption[] => {
     return [
@@ -10,10 +9,10 @@ export const COLUMN_MODIFICATION_BACKLOG_SELECT_OPTIONS = (
             value: 'none',
             label: 'None'
         },
-        ...(loadedProject?.columns ?? []).map((col: BoardColumnObject) => {
+        ...(loadedProject?.members ?? []).map((member) => {
             return {
-                value: col.id,
-                label: col.name
+                value: member.user.id,
+                label: `${member.user.firstName} ${member.user.lastName}`
             }
         })
     ]

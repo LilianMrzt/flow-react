@@ -24,7 +24,6 @@ const Select: FC<SelectProps> = ({
     } = useTheme()
 
     const inputRef = useRef<HTMLDivElement | null>(null)
-    const wrapperRef = useRef<HTMLDivElement | null>(null)
 
     const [isOpen, setIsOpen] = useState(false)
     const [isVisible, setIsVisible] = useState(false)
@@ -35,7 +34,7 @@ const Select: FC<SelectProps> = ({
         return o.value === value
     })
 
-    useClickOutside(wrapperRef, () => {
+    useClickOutside(inputRef, () => {
         setIsOpen(false)
     })
 
@@ -59,7 +58,6 @@ const Select: FC<SelectProps> = ({
 
     return (
         <div
-            ref={wrapperRef}
             className={'select-wrapper'}
         >
             {label && (

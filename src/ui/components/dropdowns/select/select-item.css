@@ -4,13 +4,9 @@
     transition: background-color 0.15s ease-in-out;
     display: flex;
     align-items: center;
-    padding: 8px 12px 8px 40px;
+    padding: 8px 12px;
     position: relative;
     gap: 12px;
     height: 40px;
 }
 
-.select-item-selected-icon {
-    position: absolute;
-    left: 12px;
-}

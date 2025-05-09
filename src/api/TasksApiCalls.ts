@@ -13,7 +13,8 @@ export const createTaskAction = async (
         description: string
         type: string
         priority: string
-        columnId?: string
+        columnId?: string,
+        assignedUser?: string,
     }
 ): Promise<TaskObject> => {
     const token = localStorage.getItem(StorageConstants.token)
