@@ -8,7 +8,13 @@ import { StorageConstants } from '@constants/StorageConstants'
  */
 export const createTaskAction = async (
     projectSlug: string,
-    taskData: { title: string; description: string; columnId?: string }
+    taskData: {
+        title: string
+        description: string
+        type: string
+        priority: string
+        columnId?: string
+    }
 ): Promise<TaskObject> => {
     const token = localStorage.getItem(StorageConstants.token)
 

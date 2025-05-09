@@ -8,6 +8,7 @@ import Icon from '@components/resources/Icon'
 import { ChevronDownIcon } from '@resources/Icons'
 import SelectItem from '@components/dropdowns/select/SelectItem'
 import { handleFadeEffect } from '@utils/AnimationUtils'
+import Row from '@components/layout/Row'
 
 const Select: FC<SelectProps> = ({
     label,
@@ -58,11 +59,23 @@ const Select: FC<SelectProps> = ({
                         })
                     }}
                 >
-                    <Text
-                        isSelectable={false}
+                    <Row
+                        width={'fit-content'}
                     >
-                        {selected?.label ?? 'Select an option'}
-                    </Text>
+                        {selected?.icon && (
+                            <Icon
+                                color={selected.iconColor ?? theme.textSecondary}
+                            >
+                                {selected.icon}
+                            </Icon>
+                        )}
+                        <Text
+                            isSelectable={false}
+                            maxLines={1}
+                        >
+                            {selected?.label ?? 'Select an option'}
+                        </Text>
+                    </Row>
                     <Icon
                         size={20}
                         color={theme.textSecondary}

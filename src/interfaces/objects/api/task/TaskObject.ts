@@ -5,6 +5,8 @@ export interface TaskObject {
     id: string
     title: string
     description: string
+    type: string
+    priority: string
     project: ProjectObject
     column: BoardColumnObject | null
 }

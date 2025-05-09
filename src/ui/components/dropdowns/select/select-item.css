@@ -6,6 +6,8 @@
     align-items: center;
     padding: 8px 12px 8px 40px;
     position: relative;
+    gap: 12px;
+    height: 40px;
 }
 
 .select-item-selected-icon {

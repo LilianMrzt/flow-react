@@ -33,8 +33,8 @@ const SelectItem: FC<SelectItemProps> = ({
 
     const isSelected = option.value === value
 
-    const backgroundColor = isSelected ? (isHovered ? theme.hoverSecondary : theme.secondary) : (isHovered ? theme.secondary : theme.surface)
-    const color = isSelected || isHovered ? theme.primary : theme.text
+    const backgroundColor = isSelected ? (isHovered ? theme.hoverSecondary : theme.secondary) : (isHovered ? theme.tertiary : theme.surface)
+    const color = isSelected ? theme.primary : theme.text
 
     return (
         <div
@@ -59,8 +59,16 @@ const SelectItem: FC<SelectItemProps> = ({
                     </Icon>
                 </div>
             )}
+            {option.icon && (
+                <Icon
+                    color={option.iconColor ?? theme.textSecondary}
+                >
+                    {option.icon}
+                </Icon>
+            )}
             <Text
                 color={color}
+                maxLines={1}
             >
                 {option.label}
             </Text>

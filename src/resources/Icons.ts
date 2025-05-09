@@ -29,6 +29,10 @@ import { ReactComponent as LayersIcon } from '@resources/assets/LayersIcon.svg'
 import { ReactComponent as FolderIcon } from '@resources/assets/FolderIcon.svg'
 import { ReactComponent as ChevronDownIcon } from '@resources/assets/ChevronDownIcon.svg'
 import { ReactComponent as CheckIcon } from '@resources/assets/CheckIcon.svg'
+import { ReactComponent as ChevronsDownIcon } from '@resources/assets/ChevronsDownIcon.svg'
+import { ReactComponent as ChevronsUpIcon } from '@resources/assets/ChevronsUpIcon.svg'
+import { ReactComponent as ChevronUpIcon } from '@resources/assets/ChevronUpIcon.svg'
+import { ReactComponent as EqualIcon } from '@resources/assets/EqualIcon.svg'
 
 export {
     ChevronLeftIcon,
@@ -61,5 +65,9 @@ export {
     LayersIcon,
     FolderIcon,
     ChevronDownIcon,
-    CheckIcon
+    CheckIcon,
+    ChevronsDownIcon,
+    ChevronsUpIcon,
+    ChevronUpIcon,
+    EqualIcon
 }

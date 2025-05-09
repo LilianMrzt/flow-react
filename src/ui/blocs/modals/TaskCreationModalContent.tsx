@@ -9,6 +9,11 @@ import { ProjectCreationModalContentProps } from '@interfaces/ui/blocs/modals/Pr
 import { useAlert } from '@hooks/contexts/AlertContext'
 import { createTaskAction } from '@api/TasksApiCalls'
 import { useLoadedProject } from '@hooks/contexts/api/LoadedProjectContext'
+import Select from '@components/dropdowns/select/Select'
+import {
+    TASK_CREATION_MODAL_PRIORITY_SELECT_OPTIONS
+} from '@constants/select-options/TaskCreationModalPrioritySelectOptions'
+import { TASK_CREATION_MODAL_TYPE_SELECT_OPTIONS } from '@constants/select-options/TaskCreationModalTypeSelectOptions'
 
 const TaskCreationModalContent: FC<ProjectCreationModalContentProps> = ({
     setIsOpen
@@ -27,6 +32,8 @@ const TaskCreationModalContent: FC<ProjectCreationModalContentProps> = ({
 
     const [taskTitle, setTaskTitle] = useState('')
     const [taskDescription, setTaskDescription] = useState('')
+    const [taskPriority, setTaskPriority] = useState(TASK_CREATION_MODAL_PRIORITY_SELECT_OPTIONS[2].value)
+    const [taskType, setTaskType] = useState(TASK_CREATION_MODAL_TYPE_SELECT_OPTIONS[0].value)
 
     /**
      * Gestion de la fermeture du Modal
@@ -48,7 +55,9 @@ const TaskCreationModalContent: FC<ProjectCreationModalContentProps> = ({
 
         await createTaskAction(loadedProject?.slug, {
             title: taskTitle,
-            description: taskDescription
+            description: taskDescription,
+            type: taskType,
+            priority: taskPriority
         }).then(() => {
             showAlert('Task successfully created.' , 'success')
             handleClose()
@@ -74,6 +83,22 @@ const TaskCreationModalContent: FC<ProjectCreationModalContentProps> = ({
                 label={'Description'}
                 placeholder={'Task description'}
             />
+            <Row
+                gap={16}
+            >
+                <Select
+                    label={'Type'}
+                    value={taskType}
+                    onChange={setTaskType}
+                    options={TASK_CREATION_MODAL_TYPE_SELECT_OPTIONS}
+                />
+                <Select
+                    label={'Priority'}
+                    value={taskPriority}
+                    onChange={setTaskPriority}
+                    options={TASK_CREATION_MODAL_PRIORITY_SELECT_OPTIONS}
+                />
+            </Row>
             <Row
                 justifyContent={'flex-end'}
             >
