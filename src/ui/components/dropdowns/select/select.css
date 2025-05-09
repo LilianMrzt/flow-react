@@ -23,14 +23,11 @@
 
 .select-dropdown {
     position: absolute;
-    top: calc(100% + 4px);
-    left: 0;
-    width: 100%;
     border: 1px solid var(--outline);
     border-radius: 4px;
     background-color: var(--surface);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    z-index: 10;
+    z-index: 9999999;
     overflow: hidden;
     padding: 4px;
     transition: opacity 150ms ease-in-out;

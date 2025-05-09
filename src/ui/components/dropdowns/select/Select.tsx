@@ -9,6 +9,7 @@ import { ChevronDownIcon } from '@resources/Icons'
 import SelectItem from '@components/dropdowns/select/SelectItem'
 import { handleFadeEffect } from '@utils/AnimationUtils'
 import Row from '@components/layout/Row'
+import { createPortal } from 'react-dom'
 
 const Select: FC<SelectProps> = ({
     label,
@@ -20,17 +21,19 @@ const Select: FC<SelectProps> = ({
         theme
     } = useTheme()
 
-    const ref = useRef<HTMLDivElement>(null)
+    const inputRef = useRef<HTMLDivElement | null>(null)
+    const wrapperRef = useRef<HTMLDivElement | null>(null)
 
     const [isOpen, setIsOpen] = useState(false)
     const [isVisible, setIsVisible] = useState(false)
     const [isFadingIn, setIsFadingIn] = useState(false)
+    const [coords, setCoords] = useState({ top: 0, left: 0, width: 0 })
 
     const selected = options.find(o => {
         return o.value === value
     })
 
-    useClickOutside(ref, () => {
+    useClickOutside(wrapperRef, () => {
         setIsOpen(false)
     })
 
@@ -38,15 +41,32 @@ const Select: FC<SelectProps> = ({
         handleFadeEffect(isOpen, setIsVisible, setIsFadingIn)
     }, [isOpen])
 
+    /**
+     * Gestion des coordonnées et de la largeur du Dropdown
+     */
+    useEffect(() => {
+        if (isOpen && inputRef.current) {
+            const rect = inputRef.current.getBoundingClientRect()
+            setCoords({
+                top: rect.bottom + window.scrollY + 4,
+                left: rect.left + window.scrollX,
+                width: rect.width
+            })
+        }
+    }, [isOpen])
+
     return (
         <div
+            ref={wrapperRef}
             className={'select-wrapper'}
         >
-            <Text>
-                {label}
-            </Text>
+            {label && (
+                <Text>
+                    {label}
+                </Text>
+            )}
             <div
-                ref={ref}
+                ref={inputRef}
             >
                 <div
                     className={'select-input'}
@@ -85,24 +105,31 @@ const Select: FC<SelectProps> = ({
                     </Icon>
                 </div>
                 {isVisible && (
-                    <div
-                        className={`select-dropdown ${isFadingIn ? 'fade-in' : 'fade-out'}`}
-                    >
-                        {options.map(option => {
-                            return (
-                                <SelectItem
-                                    key={option.value}
-                                    onClick={() => {
-                                        onChange(option.value)
-                                        setIsOpen(false)
-                                    }}
-                                    option={option}
-                                    value={value}
-                                />
-                            )
-                        })}
-                    </div>
-                )}
+                    createPortal(
+                        <div
+                            className={`select-dropdown ${isFadingIn ? 'fade-in' : 'fade-out'}`}
+                            style={{
+                                top: coords.top,
+                                left: coords.left,
+                                width: coords.width
+                            }}
+                        >
+                            {options.map(option => {
+                                return (
+                                    <SelectItem
+                                        key={option.value}
+                                        onClick={() => {
+                                            onChange(option.value)
+                                            setIsOpen(false)
+                                        }}
+                                        option={option}
+                                        value={value}
+                                    />
+                                )
+                            })}
+                        </div>,
+                        document.body
+                    ))}
             </div>
         </div>
     )
