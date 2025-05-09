@@ -14,6 +14,10 @@ import {
     TASK_CREATION_MODAL_PRIORITY_SELECT_OPTIONS
 } from '@constants/select-options/TaskCreationModalPrioritySelectOptions'
 import { TASK_CREATION_MODAL_TYPE_SELECT_OPTIONS } from '@constants/select-options/TaskCreationModalTypeSelectOptions'
+import IconButton from '@components/buttons/IconButton'
+import { MoreIcon } from '@resources/Icons'
+import MenuWrapper from '@components/dropdowns/menu/MenuWrapper'
+import BacklogTaskDropdown from '@ui/blocs/views/project-details/project-details-backlog-screen/BacklogTaskDropdown'
 
 const BacklogTask: FC<BacklogTaskProps> = ({
     task
@@ -23,6 +27,7 @@ const BacklogTask: FC<BacklogTaskProps> = ({
     } = useTheme()
 
     const [isHovered, setIsHovered] = useState(false)
+    const [isActionMenuOpen, setIsActionMenuOpen] = useState(false)
 
     /**
      * Gère l'événement de survol de la souris
@@ -37,6 +42,8 @@ const BacklogTask: FC<BacklogTaskProps> = ({
     const handleMouseLeave = (): void => {
         setIsHovered(false)
     }
+
+    const moreIconButtonBackgroundColor = isHovered ? theme.secondary : theme.surface
 
     return (
         <TableRow
@@ -83,11 +90,31 @@ const BacklogTask: FC<BacklogTaskProps> = ({
                 </Text>
             </TableCell>
             <TableCell>
-                <Text
-                    maxLines={1}
-                >
-                    {task.title}
-                </Text>
+                <Row>
+                    <MenuWrapper
+                        onClose={() => {
+                            setIsActionMenuOpen(false)
+                        }}
+                    >
+                        <IconButton
+                            onClick={() => {
+                                setIsActionMenuOpen(true)
+                            }}
+                            iconSize={18}
+                            backgroundColor={moreIconButtonBackgroundColor}
+                            hoverBackgroundColor={theme.hoverSecondary}
+                        >
+                            <MoreIcon/>
+                        </IconButton>
+                        <BacklogTaskDropdown
+                            isOpen={isActionMenuOpen}
+                            onClose={() => {
+                                setIsActionMenuOpen(false)
+                            }}
+                            task={task}
+                        />
+                    </MenuWrapper>
+                </Row>
             </TableCell>
         </TableRow>
     )

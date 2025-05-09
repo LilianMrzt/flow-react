@@ -1,7 +1,6 @@
 .menu-dropdown {
     position: absolute;
-    top: 100%;
-    margin-top: 8px;
+    top: calc(100% + 4px);
     min-width: 220px;
     background-color: var(--surface);
     border: 1px solid var(--outline);
@@ -10,6 +9,7 @@
     z-index: 1000;
     opacity: 0;
     transition: opacity 150ms ease-in-out;
+    cursor: default;
 }
 
 .menu-dropdown.left {

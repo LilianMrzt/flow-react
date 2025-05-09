@@ -23,7 +23,7 @@ const BacklogTable = (): ReactNode => {
         'Priority',
         'Title',
         'Status',
-        'Actions'
+        ''
     ]
 
     return (

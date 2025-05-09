@@ -50,13 +50,13 @@ const MenuItem: FC<MenuItemProps> = ({
             {icon && (
                 <Icon
                     size={16}
-                    color={isHovered ? theme.primary : componentColor}
+                    color={isHovered && !color ? theme.primary : componentColor}
                 >
                     {icon}
                 </Icon>
             )}
             <Text
-                color={isHovered ? theme.primary : componentColor}
+                color={isHovered && !color ? theme.primary : componentColor}
                 fontSize={14}
                 isSelectable={false}
             >

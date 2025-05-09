@@ -57,15 +57,27 @@ export const LoadedProjectProvider: FC<LoadedProjectProviderProps> = ({
 
         socket.emit(WebSocketEvents.JOIN_PROJECT_ROOM, loadedProject.id)
 
-        socket.on(WebSocketEvents.TASK_CREATED, (newTask: TaskObject) => {
+        const handleTaskCreated = (newTask: TaskObject): void => {
             setTasks(prev => {
                 return [...prev, newTask]
             })
-        })
+        }
+
+        const handleTaskDeleted = (deletedTaskId: string): void => {
+            setTasks(prev => {
+                return prev.filter(task => {
+                    return task.id !== deletedTaskId
+                })
+            })
+        }
+
+        socket.on(WebSocketEvents.TASK_CREATED, handleTaskCreated)
+        socket.on(WebSocketEvents.TASK_DELETED, handleTaskDeleted)
 
         return (): void => {
             socket.emit(WebSocketEvents.LEAVE_PROJECT_ROOM, activeProjectSlug)
-            socket.off(WebSocketEvents.TASK_CREATED)
+            socket.off(WebSocketEvents.TASK_CREATED, handleTaskCreated)
+            socket.off(WebSocketEvents.TASK_DELETED, handleTaskDeleted)
         }
     }, [socket, loadedProject])
 

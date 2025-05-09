@@ -35,3 +35,27 @@ export const createTaskAction = async (
 
     return data.task
 }
+
+/**
+ * Supprime une tâche d’un projet
+ * @param projectSlug
+ * @param taskId
+ */
+export const deleteTaskAction = async (
+    projectSlug: string,
+    taskId: string
+): Promise<void> => {
+    const token = localStorage.getItem(StorageConstants.token)
+
+    const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/projects/${projectSlug}/tasks/${taskId}`, {
+        method: 'DELETE',
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    })
+
+    if (!response.ok) {
+        const data = await response.json()
+        throw new Error(data.message)
+    }
+}
