@@ -6,10 +6,10 @@ import { TableCell } from '@components/tables/TableCell'
 import { useTheme } from '@hooks/contexts/ThemeContext'
 import Text from '@components/text/Text'
 import { TableBody } from '@components/tables/TableBody'
-import { useLoadedProject } from '@hooks/contexts/api/LoadedProjectContext'
 import BacklogTask from '@ui/blocs/views/project-details/project-details-backlog-screen/BacklogTask'
 import BacklogTableColumns from '@components/tables/columns/BacklogTableColumns'
 import Row from '@components/layout/Row'
+import { useTasks } from '@hooks/contexts/api/TasksProvider'
 
 const BacklogTable = (): ReactNode => {
     const {
@@ -18,7 +18,7 @@ const BacklogTable = (): ReactNode => {
 
     const {
         tasks
-    } = useLoadedProject()
+    } = useTasks()
 
     const tableHeaderColumns = [
         'Priority',

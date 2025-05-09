@@ -5,9 +5,6 @@ import { ProjectObject } from '@interfaces/objects/api/project/ProjectObject'
 import { getProjectBySlugAction } from '@api/ProjectsApiCalls'
 import { useAlert } from '@hooks/contexts/AlertContext'
 import { useProjects } from '@hooks/contexts/api/ProjectsContext'
-import { useWebSocket } from '@hooks/contexts/api/WebSocketContext'
-import { TaskObject } from '@interfaces/objects/api/task/TaskObject'
-import { WebSocketEvents } from '@constants/WebSocketEvents'
 
 const LoadedProjectContext = createContext<LoadedProjectContextProps | undefined>(undefined)
 
@@ -22,10 +19,7 @@ export const LoadedProjectProvider: FC<LoadedProjectProviderProps> = ({
         showAlert
     } = useAlert()
 
-    const socket = useWebSocket()
-
     const [loadedProject, setLoadedProject] = useState<ProjectObject | null>(null)
-    const [tasks, setTasks] = useState<TaskObject[]>([])
 
     /**
      * Récupération du projet actuel via son slug
@@ -37,7 +31,6 @@ export const LoadedProjectProvider: FC<LoadedProjectProviderProps> = ({
             await getProjectBySlugAction(activeProjectSlug)
                 .then((res) => {
                     setLoadedProject(res)
-                    setTasks(res.tasks || [])
                 })
                 .catch((error) => {
                     showAlert(error.message , 'error')
@@ -47,45 +40,10 @@ export const LoadedProjectProvider: FC<LoadedProjectProviderProps> = ({
         void fetchProject()
     }, [activeProjectSlug])
 
-    /**
-     * Établit une connexion WebSocket à la room du projet actif pour écouter les événements de création de tâches en temps réel.
-     * Lorsqu'une tâche est créée par un autre utilisateur, elle est ajoutée au state local.
-     * Nettoie proprement la connexion à la room lors du démontage ou changement de projet.
-     */
-    useEffect(() => {
-        if (!socket || !loadedProject) return
-
-        socket.emit(WebSocketEvents.JOIN_PROJECT_ROOM, loadedProject.id)
-
-        const handleTaskCreated = (newTask: TaskObject): void => {
-            setTasks(prev => {
-                return [...prev, newTask]
-            })
-        }
-
-        const handleTaskDeleted = (deletedTaskId: string): void => {
-            setTasks(prev => {
-                return prev.filter(task => {
-                    return task.id !== deletedTaskId
-                })
-            })
-        }
-
-        socket.on(WebSocketEvents.TASK_CREATED, handleTaskCreated)
-        socket.on(WebSocketEvents.TASK_DELETED, handleTaskDeleted)
-
-        return (): void => {
-            socket.emit(WebSocketEvents.LEAVE_PROJECT_ROOM, activeProjectSlug)
-            socket.off(WebSocketEvents.TASK_CREATED, handleTaskCreated)
-            socket.off(WebSocketEvents.TASK_DELETED, handleTaskDeleted)
-        }
-    }, [socket, loadedProject])
-
     return (
         <LoadedProjectContext.Provider
             value={{
-                loadedProject,
-                tasks
+                loadedProject
             }}
         >
             {children}

@@ -4,15 +4,15 @@ import TaskCreationModalContent from '@ui/blocs/modals/TaskCreationModalContent'
 import Modal from '@components/layout/Modal'
 import { AddIcon } from '@resources/Icons'
 import BacklogTable from '@ui/blocs/views/project-details/project-details-backlog-screen/BacklogTable'
-import { useLoadedProject } from '@hooks/contexts/api/LoadedProjectContext'
 import NoTaskSection from '@ui/blocs/views/project-details/project-details-backlog-screen/NoTaskSection'
+import { useTasks } from '@hooks/contexts/api/TasksProvider'
 
 const ProjectDetailsBacklogScreen = (): ReactNode => {
     const [isTaskCreationModalOpen, setIsTaskCreationModalOpen] = useState(false)
 
     const {
         tasks
-    } = useLoadedProject()
+    } = useTasks()
 
     return (
         <Screen
