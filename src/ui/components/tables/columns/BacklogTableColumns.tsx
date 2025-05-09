@@ -5,7 +5,8 @@ const BacklogTableColumns = (): ReactNode => {
         <colgroup>
             <col
                 style={{
-                    width: '100px'
+                    width: '100px',
+                    textAlign: 'center'
                 }}
             />
             <col

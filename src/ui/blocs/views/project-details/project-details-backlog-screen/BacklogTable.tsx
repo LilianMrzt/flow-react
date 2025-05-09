@@ -9,6 +9,7 @@ import { TableBody } from '@components/tables/TableBody'
 import { useLoadedProject } from '@hooks/contexts/api/LoadedProjectContext'
 import BacklogTask from '@ui/blocs/views/project-details/project-details-backlog-screen/BacklogTask'
 import BacklogTableColumns from '@components/tables/columns/BacklogTableColumns'
+import Row from '@components/layout/Row'
 
 const BacklogTable = (): ReactNode => {
     const {
@@ -41,11 +42,17 @@ const BacklogTable = (): ReactNode => {
                                     key={index}
                                     isHeader
                                 >
-                                    <Text
-                                        color={theme.textSecondary}
-                                    >
-                                        {tableRow}
-                                    </Text>
+                                    {index === 0 ? (
+                                        <Row>
+                                            <Text color={theme.textSecondary}>
+                                                {tableRow}
+                                            </Text>
+                                        </Row>
+                                    ) : (
+                                        <Text color={theme.textSecondary}>
+                                            {tableRow}
+                                        </Text>
+                                    )}
                                 </TableCell>
                             )
                         })
