@@ -27,6 +27,8 @@ import { ReactComponent as BacklogIcon } from '@resources/assets/BacklogIcon.svg
 import { ReactComponent as ProjectDashboardIcon } from '@resources/assets/ProjectDashboardIcon.svg'
 import { ReactComponent as LayersIcon } from '@resources/assets/LayersIcon.svg'
 import { ReactComponent as FolderIcon } from '@resources/assets/FolderIcon.svg'
+import { ReactComponent as ChevronDownIcon } from '@resources/assets/ChevronDownIcon.svg'
+import { ReactComponent as CheckIcon } from '@resources/assets/CheckIcon.svg'
 
 export {
     ChevronLeftIcon,
@@ -57,5 +59,7 @@ export {
     BacklogIcon,
     ProjectDashboardIcon,
     LayersIcon,
-    FolderIcon
+    FolderIcon,
+    ChevronDownIcon,
+    CheckIcon
 }

@@ -2,6 +2,7 @@ export const DefaultTheme = {
     primary: '#316EE6',
     hoverPrimary: '#2758B8',
     secondary: '#E5ECFA',
+    hoverSecondary: '#d0dcf6',
     tertiary: '#F3F4F6',
     background: '#F9FAFB',
     surface: '#FFFFFF',
