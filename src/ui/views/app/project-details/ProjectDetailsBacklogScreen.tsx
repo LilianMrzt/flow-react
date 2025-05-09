@@ -1,14 +1,11 @@
 import React, { ReactNode, useState } from 'react'
 import Screen from '@components/layout/Screen'
-import { useLoadedProject } from '@hooks/contexts/api/LoadedProjectContext'
 import TaskCreationModalContent from '@ui/blocs/modals/TaskCreationModalContent'
 import Modal from '@components/layout/Modal'
 import { AddIcon } from '@resources/Icons'
+import BacklogTable from '@ui/blocs/views/project-details/project-details-backlog-screen/BacklogTable'
 
 const ProjectDetailsBacklogScreen = (): ReactNode => {
-    const {
-        tasks
-    } = useLoadedProject()
 
     const [isTaskCreationModalOpen, setIsTaskCreationModalOpen] = useState(false)
 
@@ -24,15 +21,7 @@ const ProjectDetailsBacklogScreen = (): ReactNode => {
                 }
             }}
         >
-            {tasks.map((task) => {
-                return (
-                    <div
-                        key={task?.id}
-                    >
-                        {task?.title}
-                    </div>
-                )
-            })}
+            <BacklogTable/>
             <Modal
                 isOpen={isTaskCreationModalOpen}
                 onClose={() => {
