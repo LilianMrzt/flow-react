@@ -33,6 +33,8 @@ import { ReactComponent as ChevronsDownIcon } from '@resources/assets/ChevronsDo
 import { ReactComponent as ChevronsUpIcon } from '@resources/assets/ChevronsUpIcon.svg'
 import { ReactComponent as ChevronUpIcon } from '@resources/assets/ChevronUpIcon.svg'
 import { ReactComponent as EqualIcon } from '@resources/assets/EqualIcon.svg'
+import { ReactComponent as EvolutionIcon } from '@resources/assets/EvolutionIcon.svg'
+import { ReactComponent as BugIcon } from '@resources/assets/BugIcon.svg'
 
 export {
     ChevronLeftIcon,
@@ -69,5 +71,7 @@ export {
     ChevronsDownIcon,
     ChevronsUpIcon,
     ChevronUpIcon,
-    EqualIcon
+    EqualIcon,
+    EvolutionIcon,
+    BugIcon
 }

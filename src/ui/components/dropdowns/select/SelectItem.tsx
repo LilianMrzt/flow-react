@@ -61,6 +61,7 @@ const SelectItem: FC<SelectItemProps> = ({
             )}
             {option.icon && (
                 <Icon
+                    size={20}
                     color={option.iconColor ?? theme.textSecondary}
                 >
                     {option.icon}

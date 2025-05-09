@@ -64,6 +64,7 @@ const Select: FC<SelectProps> = ({
                     >
                         {selected?.icon && (
                             <Icon
+                                size={20}
                                 color={selected.iconColor ?? theme.textSecondary}
                             >
                                 {selected.icon}

@@ -5,17 +5,17 @@ const BacklogTableColumns = (): ReactNode => {
         <colgroup>
             <col
                 style={{
-                    width: '20%'
+                    width: '100px'
                 }}
             />
             <col
                 style={{
-                    width: '60%'
+                    width: '70%'
                 }}
             />
             <col
                 style={{
-                    width: '20%'
+                    width: '30%'
                 }}
             />
             <col
