@@ -1,4 +1,4 @@
-import React, { FC, ReactElement, ReactNode, useState } from 'react'
+import React, { FC, ReactElement, ReactNode, useRef, useState } from 'react'
 import {
     BacklogTaskProps
 } from '@interfaces/ui/blocs/views/project-details/project-details-backlog-screen/BacklogTaskProps'
@@ -25,6 +25,8 @@ const BacklogTask: FC<BacklogTaskProps> = ({
     const {
         theme
     } = useTheme()
+
+    const wrapperRef = useRef<HTMLDivElement | null>(null)
 
     const [isHovered, setIsHovered] = useState(false)
     const [isActionMenuOpen, setIsActionMenuOpen] = useState(false)
@@ -95,6 +97,7 @@ const BacklogTask: FC<BacklogTaskProps> = ({
                         onClose={() => {
                             setIsActionMenuOpen(false)
                         }}
+                        anchorRef={wrapperRef}
                     >
                         <IconButton
                             onClick={() => {
@@ -112,6 +115,7 @@ const BacklogTask: FC<BacklogTaskProps> = ({
                                 setIsActionMenuOpen(false)
                             }}
                             task={task}
+                            anchorRef={wrapperRef}
                         />
                     </MenuWrapper>
                 </Row>

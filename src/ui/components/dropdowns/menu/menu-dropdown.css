@@ -1,6 +1,5 @@
 .menu-dropdown {
     position: absolute;
-    top: calc(100% + 4px);
     min-width: 220px;
     background-color: var(--surface);
     border: 1px solid var(--outline);
@@ -10,14 +9,6 @@
     opacity: 0;
     transition: opacity 150ms ease-in-out;
     cursor: default;
-}
-
-.menu-dropdown.left {
-    left: 0;
-}
-
-.menu-dropdown.right {
-    right: 0;
 }
 
 .menu-dropdown.fade-in {

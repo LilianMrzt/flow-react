@@ -13,7 +13,8 @@ import ConfirmTaskDeletionModalContent from '@ui/blocs/modals/ConfirmTaskDeletio
 const BacklogTaskDropdown: FC<BacklogTaskDropdownProps> = ({
     isOpen,
     onClose,
-    task
+    task,
+    anchorRef
 }): ReactNode => {
     const {
         theme
@@ -25,6 +26,7 @@ const BacklogTaskDropdown: FC<BacklogTaskDropdownProps> = ({
         <>
             <MenuDropdown
                 isOpen={isOpen}
+                anchorRef={anchorRef}
             >
                 <MenuGroup>
                     <MenuItem

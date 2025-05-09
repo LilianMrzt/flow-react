@@ -1,22 +1,21 @@
-import React, { type FC, useRef } from 'react'
+import React, { type FC } from 'react'
 import { MenuWrapperProps } from '@interfaces/ui/components/dropdowns/menu/MenuWrapperProps'
 import './menu-wrapper.css'
 import { useClickOutside } from '@hooks/hooks/useClickOutside'
 
 const MenuWrapper: FC<MenuWrapperProps> = ({
     children,
-    onClose
+    onClose,
+    anchorRef
 }) => {
-    const ref = useRef<HTMLDivElement>(null)
 
-    useClickOutside(ref, () => {
+    useClickOutside(anchorRef, () => {
         onClose()
     })
 
     return (
         <div
-
-            ref={ref}
+            ref={anchorRef}
             className={'menu-wrapper'}
         >
             {children}

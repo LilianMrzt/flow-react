@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from 'react'
+import React, { ReactNode, useRef, useState } from 'react'
 import { useUser } from '@hooks/contexts/api/UserContext'
 import './user-avatar.css'
 import Text from '@components/text/Text'
@@ -15,6 +15,8 @@ const UserAvatar = (): ReactNode => {
         theme
     } = useTheme()
 
+    const wrapperRef = useRef<HTMLDivElement | null>(null)
+
     const [isDropdownOpen, setIsDropdownOpen] = useState(false)
 
     if (!user) {
@@ -30,6 +32,7 @@ const UserAvatar = (): ReactNode => {
             onClose={() => {
                 setIsDropdownOpen(false)
             }}
+            anchorRef={wrapperRef}
         >
             <div
                 className={'user-avatar'}
@@ -53,6 +56,7 @@ const UserAvatar = (): ReactNode => {
                 onClose={() => {
                     setIsDropdownOpen(false)
                 }}
+                anchorRef={wrapperRef}
             />
         </MenuWrapper>
     )
