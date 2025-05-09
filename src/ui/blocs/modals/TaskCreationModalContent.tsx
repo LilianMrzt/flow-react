@@ -1,7 +1,6 @@
 import React, { FC, ReactNode, useState } from 'react'
 import TextField from '@components/inputs/TextField'
 import Column from '@components/layout/Column'
-import TextArea from '@components/inputs/TextArea'
 import Row from '@components/layout/Row'
 import Button from '@components/buttons/Button'
 import { useTheme } from '@hooks/contexts/ThemeContext'
@@ -20,6 +19,7 @@ import {
 import {
     TASK_CREATION_MODAL_ASSIGNEE_SELECT_OPTIONS
 } from '@constants/select-options/TaskCreationModalAssignedUserSelectOptions'
+import RichTextEditor from '@components/inputs/rich-text-editor/RichTextEditor'
 
 const TaskCreationModalContent: FC<TaskCreationModalContentProps> = ({
     setIsOpen
@@ -87,7 +87,7 @@ const TaskCreationModalContent: FC<TaskCreationModalContentProps> = ({
                 setInputValue={setTaskTitle}
                 placeholder={'Task title'}
             />
-            <TextArea
+            <RichTextEditor
                 inputValue={taskDescription}
                 setInputValue={setTaskDescription}
                 label={'Description'}
