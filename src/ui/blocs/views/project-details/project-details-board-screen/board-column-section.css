@@ -1,7 +1,7 @@
 .board-column-section {
-    display: flex;
-    align-items: start;
+    display: grid;
+    grid-auto-flow: column;
+    align-items: stretch;
     gap: 16px;
-    min-height: 100%;
     padding: 0 24px 24px;
 }

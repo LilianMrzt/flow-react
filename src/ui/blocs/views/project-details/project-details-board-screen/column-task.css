@@ -1,0 +1,8 @@
+.column-task {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    background-color: var(--surface);
+    border-radius: 8px;
+    height: 200px;
+}
