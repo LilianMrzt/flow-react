@@ -15,10 +15,9 @@
     border: 1px solid;
     cursor: pointer;
     user-select: none;
-    background-color: var(--surface);
     color: var(--text);
     min-height: 40px;
-    transition: border 150ms ease-in-out;
+    transition: background-color 150ms ease-in-out, border 150ms ease-in-out;
 }
 
 .select-dropdown {

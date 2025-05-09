@@ -11,12 +11,12 @@ const BacklogTableColumns = (): ReactNode => {
             />
             <col
                 style={{
-                    width: '70%'
+                    width: '80%'
                 }}
             />
             <col
                 style={{
-                    width: '30%'
+                    width: '20%'
                 }}
             />
             <col

@@ -15,7 +15,9 @@ const Select: FC<SelectProps> = ({
     label,
     value,
     onChange,
-    options
+    options,
+    backgroundColor,
+    borderColor
 }) => {
     const {
         theme
@@ -71,7 +73,8 @@ const Select: FC<SelectProps> = ({
                 <div
                     className={'select-input'}
                     style={{
-                        borderColor: isOpen ? theme.primary : theme.outline
+                        borderColor: isOpen ? theme.primary : borderColor ?? theme.outline,
+                        backgroundColor: backgroundColor ?? theme.surface
                     }}
                     onClick={() => {
                         return setIsOpen(prev => {

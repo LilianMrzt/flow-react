@@ -68,13 +68,23 @@ export const TasksProvider: FC<TasksProviderProps> = ({
             })
         }
 
+        const handleTaskUpdated = (updatedTask: TaskObject): void => {
+            setTasks(prev => {
+                return prev.map(t => {
+                    return t.id === updatedTask.id ? updatedTask : t
+                })
+            })
+        }
+
         socket.on(WebSocketEvents.TASK_CREATED, handleTaskCreated)
         socket.on(WebSocketEvents.TASK_DELETED, handleTaskDeleted)
+        socket.on(WebSocketEvents.TASK_UPDATED, handleTaskUpdated)
 
         return (): void => {
             socket.emit(WebSocketEvents.LEAVE_PROJECT_ROOM, loadedProject.slug)
             socket.off(WebSocketEvents.TASK_CREATED, handleTaskCreated)
             socket.off(WebSocketEvents.TASK_DELETED, handleTaskDeleted)
+            socket.off(WebSocketEvents.TASK_UPDATED, handleTaskUpdated)
         }
     }, [socket, loadedProject])
 

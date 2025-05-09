@@ -18,6 +18,13 @@ import IconButton from '@components/buttons/IconButton'
 import { MoreIcon } from '@resources/Icons'
 import MenuWrapper from '@components/dropdowns/menu/MenuWrapper'
 import BacklogTaskDropdown from '@ui/blocs/views/project-details/project-details-backlog-screen/BacklogTaskDropdown'
+import Select from '@components/dropdowns/select/Select'
+import { updateTaskAction } from '@api/TasksApiCalls'
+import { useLoadedProject } from '@hooks/contexts/api/LoadedProjectContext'
+import { useAlert } from '@hooks/contexts/AlertContext'
+import {
+    COLUMN_MODIFICATION_BACKLOG_SELECT_OPTIONS
+} from '@constants/select-options/ColumnModificationBacklogSelectOptions'
 
 const BacklogTask: FC<BacklogTaskProps> = ({
     task
@@ -31,6 +38,14 @@ const BacklogTask: FC<BacklogTaskProps> = ({
     const [isHovered, setIsHovered] = useState(false)
     const [isActionMenuOpen, setIsActionMenuOpen] = useState(false)
 
+    const {
+        loadedProject
+    } = useLoadedProject()
+
+    const {
+        showAlert
+    } = useAlert()
+
     /**
      * Gère l'événement de survol de la souris
      */
@@ -43,6 +58,24 @@ const BacklogTask: FC<BacklogTaskProps> = ({
      */
     const handleMouseLeave = (): void => {
         setIsHovered(false)
+    }
+
+    /**
+     * Gestion du changement de colonne / status d'une tache
+     * @param value
+     */
+    const handleColumnChange = (value: string): void => {
+        if (!loadedProject) return
+
+        const columnId = value === 'no-status' ? null : value
+
+        updateTaskAction(loadedProject.slug, task.id, { columnId: columnId })
+            .then(() => {
+                showAlert('Task successfully updated.', 'success')
+            })
+            .catch((error) => {
+                showAlert(error.message, 'error')
+            })
     }
 
     const moreIconButtonBackgroundColor = isHovered ? theme.secondary : theme.surface
@@ -85,11 +118,13 @@ const BacklogTask: FC<BacklogTaskProps> = ({
                 </Row>
             </TableCell>
             <TableCell>
-                <Text
-                    maxLines={1}
-                >
-                    {task.title}
-                </Text>
+                <Select
+                    value={task.column?.id ?? 'no-status'}
+                    onChange={handleColumnChange}
+                    options={COLUMN_MODIFICATION_BACKLOG_SELECT_OPTIONS(loadedProject)}
+                    backgroundColor={isHovered ? theme.secondary : theme.surface}
+                    borderColor={isHovered ? theme.hoverSecondary : theme.outline}
+                />
             </TableCell>
             <TableCell>
                 <Row>
