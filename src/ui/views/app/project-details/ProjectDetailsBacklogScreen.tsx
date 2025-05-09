@@ -4,24 +4,35 @@ import TaskCreationModalContent from '@ui/blocs/modals/TaskCreationModalContent'
 import Modal from '@components/layout/Modal'
 import { AddIcon } from '@resources/Icons'
 import BacklogTable from '@ui/blocs/views/project-details/project-details-backlog-screen/BacklogTable'
+import { useLoadedProject } from '@hooks/contexts/api/LoadedProjectContext'
+import NoTaskSection from '@ui/blocs/views/project-details/project-details-backlog-screen/NoTaskSection'
 
 const ProjectDetailsBacklogScreen = (): ReactNode => {
-
     const [isTaskCreationModalOpen, setIsTaskCreationModalOpen] = useState(false)
+
+    const {
+        tasks
+    } = useLoadedProject()
 
     return (
         <Screen
             label={'Project Backlog'}
             description={'Backlog'}
             buttonContent={{
-                label: 'Add Task',
+                label: 'New Task',
                 icon: <AddIcon/>,
                 onClick: () => {
                     setIsTaskCreationModalOpen(true)
                 }
             }}
         >
-            <BacklogTable/>
+            {tasks.length > 0 ? (
+                <BacklogTable/>
+            ) : (
+                <NoTaskSection
+                    setIsTaskCreationModalOpen={setIsTaskCreationModalOpen}
+                />
+            )}
             <Modal
                 isOpen={isTaskCreationModalOpen}
                 onClose={() => {

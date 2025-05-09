@@ -1,16 +1,18 @@
 import React, { FC, ReactNode } from 'react'
+import Icon from '@components/resources/Icon'
+import { AddIcon, TaskIcon } from '@resources/Icons'
+import { useTheme } from '@hooks/contexts/ThemeContext'
+import Card from '@components/layout/Card'
 import Column from '@components/layout/Column'
+import './no-task-section.css'
 import Text from '@components/text/Text'
 import Button from '@components/buttons/Button'
-import { AddIcon, FileTextIcon } from '@resources/Icons'
-import Icon from '@components/resources/Icon'
-import { useTheme } from '@hooks/contexts/ThemeContext'
-import './no-projects-section.css'
-import { NoProjectsSectionProps } from '@interfaces/ui/blocs/views/projects-screen/NoProjectsSectionProps'
-import Card from '@components/layout/Card'
+import {
+    NoTaskSectionProps
+} from '@interfaces/ui/blocs/views/project-details/project-details-backlog-screen/NoTaskSectionProps'
 
-const NoProjectsSection: FC<NoProjectsSectionProps> = ({
-    setIsProjectCreationModalOpen
+const NoTaskSection: FC<NoTaskSectionProps> = ({
+    setIsTaskCreationModalOpen
 }): ReactNode => {
     const {
         theme
@@ -18,7 +20,7 @@ const NoProjectsSection: FC<NoProjectsSectionProps> = ({
 
     return (
         <Column
-            className={'no-projects-section'}
+            className={'no-task-section'}
         >
             <Card
                 gap={16}
@@ -31,22 +33,22 @@ const NoProjectsSection: FC<NoProjectsSectionProps> = ({
                     size={40}
                     borderRadius={'50%'}
                 >
-                    <FileTextIcon/>
+                    <TaskIcon/>
                 </Icon>
                 <Text>
-                    No projects.
+                    No Task found.
                 </Text>
                 <Text
                     color={theme.textSecondary}
                     wrap
                 >
-                    {'You haven\'t created a project yet. Start by creating your first project to organize your tasks.'}
+                    There are no tasks for this project yet. Start by creating your first task.
                 </Text>
                 <Button
-                    label={'New project'}
+                    label={'New Task'}
                     icon={<AddIcon/>}
                     onClick={() => {
-                        setIsProjectCreationModalOpen(true)
+                        setIsTaskCreationModalOpen(true)
                     }}
                 />
             </Card>
@@ -54,4 +56,4 @@ const NoProjectsSection: FC<NoProjectsSectionProps> = ({
     )
 }
 
-export default NoProjectsSection
+export default NoTaskSection
