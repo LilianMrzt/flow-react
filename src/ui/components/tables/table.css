@@ -1,0 +1,41 @@
+.table-container {
+    border-radius: 16px;
+    width: 100%;
+}
+
+.table {
+    width: 100%;
+    border-spacing: 0;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.table-head {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background-color: var(--background);
+    box-shadow: 0 1px 0 var(--outline);
+}
+
+.table-head,
+.table-body {
+    background-color: var(--background);
+}
+
+.table-cell {
+    padding: 16px;
+    text-align: start;
+    vertical-align: middle;
+    height: 75px;
+    box-sizing: border-box;
+}
+
+.table-cell.table-cell-header {
+    padding: 0 16px;
+    height: 50px;
+}
+
+.table-row.header-row {
+    border-top: none;
+}

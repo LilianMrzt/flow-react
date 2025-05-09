@@ -6,6 +6,7 @@
     user-select: none;
     overflow-wrap: break-word;
     overflow: hidden;
+    word-break: break-word;
 }
 
 .text.wrap {

@@ -21,7 +21,7 @@ const Text: FC<TextProps> = ({
             style={{
                 fontSize: fontSize ?? 16,
                 color: color ?? theme.text,
-                textAlign: textAlign ?? 'center',
+                textAlign: textAlign ?? 'start',
                 width: width ?? 'fit-content',
                 textOverflow: !maxLines ? 'ellipsis' : undefined,
                 display: maxLines ? '-webkit-box' : undefined,
