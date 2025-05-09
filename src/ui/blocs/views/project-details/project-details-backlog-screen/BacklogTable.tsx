@@ -32,6 +32,7 @@ const BacklogTable = (): ReactNode => {
             <TableHead>
                 <TableRow
                     isHeader
+                    backgroundColor={theme.tertiary}
                 >
                     {
                         tableHeaderColumns.map((tableRow, index) => {

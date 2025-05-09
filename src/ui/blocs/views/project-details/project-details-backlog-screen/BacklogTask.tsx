@@ -35,7 +35,7 @@ const BacklogTask: FC<BacklogTaskProps> = ({
         <TableRow
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
-            backgroundColor={isHovered ? theme.secondary : theme.background}
+            backgroundColor={isHovered ? theme.secondary : theme.surface}
             className={'backlog-task'}
         >
             <TableCell>
