@@ -1,17 +1,24 @@
 import { RefObject, useEffect } from 'react'
 
 /**
- * Gestion d'un click en dehors d'un composant
- * @param ref
- * @param onClickOutside
+ * Gestion d'un click en dehors d'un ou plusieurs éléments
+ * @param refs Tableau de références à écouter
+ * @param onClickOutside Callback si clic à l'extérieur
+ * @param shouldTrigger Activation du comportement
  */
 export const useClickOutside = (
-    ref: RefObject<HTMLElement | null>,
-    onClickOutside: () => void
+    refs: RefObject<HTMLElement | null>[],
+    onClickOutside: () => void,
+    shouldTrigger: boolean = true
 ): void => {
     useEffect(() => {
+        if (!shouldTrigger) return
+
         const handleClick = (event: MouseEvent): void => {
-            if (ref.current && !ref.current.contains(event.target as Node)) {
+            const isInside = refs.some(ref => {
+                return ref.current?.contains(event.target as Node)
+            })
+            if (!isInside) {
                 onClickOutside()
             }
         }
@@ -20,5 +27,5 @@ export const useClickOutside = (
         return (): void => {
             document.removeEventListener('mousedown', handleClick)
         }
-    }, [ref, onClickOutside])
+    }, [refs, onClickOutside, shouldTrigger])
 }

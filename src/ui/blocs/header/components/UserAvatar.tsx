@@ -33,6 +33,7 @@ const UserAvatar = (): ReactNode => {
                 setIsDropdownOpen(false)
             }}
             anchorRef={wrapperRef}
+            isMenuOpen={isDropdownOpen}
         >
             <div
                 className={'user-avatar'}

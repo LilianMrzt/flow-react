@@ -9,6 +9,7 @@ const MenuDropdown: FC<MenuDropdownProps> = ({
     isOpen,
     position = 'right',
     anchorRef,
+    buttonRef,
     isSubMenu = false
 }) => {
     const [isVisible, setIsVisible] = useState(false)
@@ -19,8 +20,12 @@ const MenuDropdown: FC<MenuDropdownProps> = ({
      * Gestion des coordonnées du Dropdown
      */
     useEffect(() => {
-        if (isOpen && anchorRef?.current) {
-            const rect = anchorRef.current.getBoundingClientRect()
+        if (!isOpen) return
+
+        const refToUse = isSubMenu ? buttonRef : anchorRef
+
+        if (refToUse?.current) {
+            const rect = refToUse.current.getBoundingClientRect()
             const dropdownWidth = 220
 
             let top = rect.bottom + window.scrollY + 4
@@ -44,7 +49,7 @@ const MenuDropdown: FC<MenuDropdownProps> = ({
 
             setCoords({ top, left, xOffset })
         }
-    }, [isOpen, anchorRef, position, isSubMenu])
+    }, [isOpen, anchorRef, buttonRef, position, isSubMenu])
 
     useEffect(() => {
         handleFadeEffect(isOpen, setIsVisible, setIsFadingIn)
@@ -58,6 +63,7 @@ const MenuDropdown: FC<MenuDropdownProps> = ({
         <>
             {isSubMenu && (
                 <div
+                    ref={anchorRef}
                     className={'submenu-mouse-bridge'}
                     style={{
                         top: coords.top,
@@ -66,6 +72,7 @@ const MenuDropdown: FC<MenuDropdownProps> = ({
                 />
             )}
             <div
+                ref={anchorRef}
                 className={`menu-dropdown ${isFadingIn ? 'fade-in' : 'fade-out'} ${isSubMenu ? 'submenu' : ''}`}
                 style={{
                     top: coords.top,

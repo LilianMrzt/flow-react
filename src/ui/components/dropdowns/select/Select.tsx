@@ -34,7 +34,7 @@ const Select: FC<SelectProps> = ({
         return o.value === value
     })
 
-    useClickOutside(inputRef, () => {
+    useClickOutside([inputRef], () => {
         setIsOpen(false)
     })
 

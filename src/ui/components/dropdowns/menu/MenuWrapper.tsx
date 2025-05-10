@@ -6,12 +6,19 @@ import { useClickOutside } from '@hooks/hooks/useClickOutside'
 const MenuWrapper: FC<MenuWrapperProps> = ({
     children,
     onClose,
-    anchorRef
+    anchorRef,
+    subMenuRef,
+    isMenuOpen
 }) => {
+    const refs = [anchorRef]
+    if (subMenuRef) {
+        refs.push(subMenuRef)
+    }
 
-    useClickOutside(anchorRef, () => {
+    useClickOutside(refs, () => {
         onClose()
-    })
+    },
+    isMenuOpen)
 
     return (
         <div

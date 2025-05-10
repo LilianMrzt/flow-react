@@ -25,6 +25,7 @@ const BacklogTaskDropdown: FC<BacklogTaskDropdownProps> = ({
     onClose,
     task,
     anchorRef,
+    subMenuRef,
     setIsHovered,
     sortedBacklogTasks
 }): ReactNode => {
@@ -152,10 +153,12 @@ const BacklogTaskDropdown: FC<BacklogTaskDropdownProps> = ({
                     <HoverMenuItem
                         label={'Move task'}
                         subMenuItems={MoveTaskSubMenuItems}
+                        submenuRef={subMenuRef}
                     />
                     <HoverMenuItem
                         label={'Priority'}
                         subMenuItems={PrioritySubMenuItems}
+                        submenuRef={subMenuRef}
                     />
                 </MenuGroup>
                 <Separator/>

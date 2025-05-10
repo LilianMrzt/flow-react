@@ -52,6 +52,7 @@ const RichTextEditorToolbar: FC<RichTextEditorToolbarProps> = ({
                     setIsColorSelectionDropdownOpen(false)
                 }}
                 anchorRef={wrapperRef}
+                isMenuOpen={isColorSelectionDropdownOpen}
             >
                 <IconButton
                     iconSize={20}

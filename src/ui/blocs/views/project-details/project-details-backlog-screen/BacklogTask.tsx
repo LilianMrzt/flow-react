@@ -38,6 +38,7 @@ const BacklogTask: FC<BacklogTaskProps> = ({
     } = useTheme()
 
     const wrapperRef = useRef<HTMLDivElement | null>(null)
+    const subMenuRef = useRef<HTMLDivElement | null>(null)
 
     const [isHovered, setIsHovered] = useState(false)
     const [isActionMenuOpen, setIsActionMenuOpen] = useState(false)
@@ -141,6 +142,8 @@ const BacklogTask: FC<BacklogTaskProps> = ({
                             setIsHovered(false)
                         }}
                         anchorRef={wrapperRef}
+                        isMenuOpen={isActionMenuOpen}
+                        subMenuRef={subMenuRef}
                     >
                         <IconButton
                             onClick={() => {
@@ -160,6 +163,7 @@ const BacklogTask: FC<BacklogTaskProps> = ({
                             }}
                             task={task}
                             anchorRef={wrapperRef}
+                            subMenuRef={subMenuRef}
                             setIsHovered={setIsHovered}
                             sortedBacklogTasks={sortedBacklogTasks}
                         />

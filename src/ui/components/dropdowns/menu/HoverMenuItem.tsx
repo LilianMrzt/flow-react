@@ -12,13 +12,14 @@ import { HoverMenuItemProps } from '@interfaces/ui/components/dropdowns/menu/Hov
 const HoverMenuItem: FC<HoverMenuItemProps> = ({
     label,
     color,
-    subMenuItems
+    subMenuItems,
+    submenuRef
 }): ReactNode => {
     const {
         theme
     } = useTheme()
 
-    const anchorRef = useRef<HTMLDivElement | null>(null)
+    const buttonRef = useRef<HTMLDivElement | null>(null)
 
     const [isHovered, setIsHovered] = useState(false)
 
@@ -45,7 +46,7 @@ const HoverMenuItem: FC<HoverMenuItemProps> = ({
             onMouseLeave={handleMouseLeave}
         >
             <div
-                ref={anchorRef}
+                ref={buttonRef}
                 className={'menu-item hover-menu-item'}
                 style={{
                     backgroundColor: isHovered ? theme.secondary : theme.surface
@@ -66,7 +67,8 @@ const HoverMenuItem: FC<HoverMenuItemProps> = ({
                 </Icon>
                 <MenuDropdown
                     isOpen={isHovered}
-                    anchorRef={anchorRef}
+                    anchorRef={submenuRef}
+                    buttonRef={buttonRef}
                     isSubMenu
                 >
                     <MenuGroup>
