@@ -5,6 +5,8 @@ import './rich-text-editor.css'
 import Text from '@components/text/Text'
 import { useTheme } from '@hooks/contexts/ThemeContext'
 import { RichTextEditorProps } from '@interfaces/ui/components/inputs/rich-text-editor/RichTextEditorProps'
+import RichTextEditorToolbar from '@components/inputs/rich-text-editor/RichTextEditorToolbar'
+import { Underline } from '@tiptap/extension-underline'
 
 const RichTextEditor: FC<RichTextEditorProps> = ({
     inputValue,
@@ -17,10 +19,17 @@ const RichTextEditor: FC<RichTextEditorProps> = ({
     } = useTheme()
 
     const editor = useEditor({
-        extensions: [StarterKit],
+        extensions: [
+            StarterKit,
+            Underline
+        ],
         content: inputValue || '',
         onUpdate: ({ editor }) => {
-            setInputValue(editor.getHTML())
+            if (editor.isEmpty) {
+                setInputValue('')
+            } else {
+                setInputValue(editor.getHTML())
+            }
         }
     })
 
@@ -40,25 +49,31 @@ const RichTextEditor: FC<RichTextEditorProps> = ({
                 </Text>
             )}
             <div
-                className={'rich-text-editor-container'}
-                onClick={() => {
-                    return editor?.commands.focus()
-                }}
+                className={'rich-text-editor'}
             >
-                <EditorContent
-                    editor={editor}
-                />
-                {editor?.isEmpty &&
-                    <div
-                        className={'rich-text-editor-placeholder'}
-                    >
-                        <Text
-                            color={theme.outline}
-                        >
-                            {placeholder}
-                        </Text>
-                    </div>
-                }
+                {editor && (
+                    <RichTextEditorToolbar
+                        editor={editor}
+                    />
+                )}
+                <div
+                    className={'rich-text-editor-container'}
+                >
+                    <EditorContent
+                        editor={editor}
+                    />
+                    {editor?.isEmpty &&
+                       <div
+                           className={'rich-text-editor-placeholder'}
+                       >
+                           <Text
+                               color={theme.outline}
+                           >
+                               {placeholder}
+                           </Text>
+                       </div>
+                    }
+                </div>
             </div>
         </div>
     )

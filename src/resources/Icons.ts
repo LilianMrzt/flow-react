@@ -38,6 +38,11 @@ import { ReactComponent as BugIcon } from '@resources/assets/BugIcon.svg'
 import { ReactComponent as TrashIcon } from '@resources/assets/TrashIcon.svg'
 import { ReactComponent as MoreIcon } from '@resources/assets/MoreIcon.svg'
 
+// text-editor
+import { ReactComponent as UnderlineIcon } from '@resources/assets/text-editor/UnderlineIcon.svg'
+import { ReactComponent as ItalicIcon } from '@resources/assets/text-editor/ItalicIcon.svg'
+import { ReactComponent as BoldIcon } from '@resources/assets/text-editor/BoldIcon.svg'
+
 export {
     ChevronLeftIcon,
     ChevronRightIcon,
@@ -77,5 +82,8 @@ export {
     EvolutionIcon,
     BugIcon,
     TrashIcon,
-    MoreIcon
+    MoreIcon,
+    UnderlineIcon,
+    ItalicIcon,
+    BoldIcon
 }

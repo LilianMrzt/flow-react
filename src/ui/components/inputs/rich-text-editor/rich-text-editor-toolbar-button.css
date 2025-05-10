@@ -1,0 +1,19 @@
+.rich-text-editor-toolbar-button {
+    border: none;
+    margin: 0;
+    padding: 4px;
+    background-color: var(--surface);
+    color: var(--text);
+    cursor: pointer;
+    transition: background-color 150ms ease;
+    border-radius: 4px;
+}
+
+.rich-text-editor-toolbar-button:hover {
+    background-color: var(--tertiary);
+}
+
+.rich-text-editor-toolbar-button.active {
+    background-color: var(--secondary);
+    color: var(--primary);
+}
