@@ -56,7 +56,7 @@ const TaskCreationModalContent: FC<TaskCreationModalContentProps> = ({
     const handleSubmit = async (): Promise<void> => {
         if (!loadedProject) return
 
-        if (!taskTitle || !taskDescription) {
+        if (!taskTitle) {
             showAlert('All fields need to be filled to create the task', 'warning')
             return
         }

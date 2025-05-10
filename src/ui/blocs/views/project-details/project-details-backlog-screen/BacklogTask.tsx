@@ -25,6 +25,9 @@ import { useAlert } from '@hooks/contexts/AlertContext'
 import {
     COLUMN_MODIFICATION_BACKLOG_SELECT_OPTIONS
 } from '@constants/select-options/ColumnModificationBacklogSelectOptions'
+import {
+    TASK_CREATION_MODAL_COLUMN_SELECT_OPTIONS
+} from '@constants/select-options/TaskCreationModalColumnSelectOptions'
 
 const BacklogTask: FC<BacklogTaskProps> = ({
     task
@@ -67,7 +70,7 @@ const BacklogTask: FC<BacklogTaskProps> = ({
     const handleColumnChange = (value: string): void => {
         if (!loadedProject) return
 
-        const columnId = value === 'no-status' ? null : value
+        const columnId = value === TASK_CREATION_MODAL_COLUMN_SELECT_OPTIONS(loadedProject)[0].value ? null : value
 
         updateTaskAction(loadedProject.slug, task.id, { columnId: columnId })
             .then(() => {
