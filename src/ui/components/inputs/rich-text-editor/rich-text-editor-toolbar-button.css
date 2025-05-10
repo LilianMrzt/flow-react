@@ -1,7 +1,7 @@
 .rich-text-editor-toolbar-button {
     border: none;
     margin: 0;
-    padding: 4px;
+    padding: 6px;
     background-color: var(--surface);
     color: var(--text);
     cursor: pointer;

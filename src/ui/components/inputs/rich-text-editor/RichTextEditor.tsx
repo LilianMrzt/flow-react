@@ -7,6 +7,8 @@ import { useTheme } from '@hooks/contexts/ThemeContext'
 import { RichTextEditorProps } from '@interfaces/ui/components/inputs/rich-text-editor/RichTextEditorProps'
 import RichTextEditorToolbar from '@components/inputs/rich-text-editor/RichTextEditorToolbar'
 import { Underline } from '@tiptap/extension-underline'
+import { TextStyle } from '@tiptap/extension-text-style'
+import { Color } from '@tiptap/extension-color'
 
 const RichTextEditor: FC<RichTextEditorProps> = ({
     inputValue,
@@ -21,7 +23,9 @@ const RichTextEditor: FC<RichTextEditorProps> = ({
     const editor = useEditor({
         extensions: [
             StarterKit,
-            Underline
+            Underline,
+            TextStyle,
+            Color
         ],
         content: inputValue || '',
         onUpdate: ({ editor }) => {

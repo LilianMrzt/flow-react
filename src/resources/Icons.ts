@@ -42,6 +42,7 @@ import { ReactComponent as MoreIcon } from '@resources/assets/MoreIcon.svg'
 import { ReactComponent as UnderlineIcon } from '@resources/assets/text-editor/UnderlineIcon.svg'
 import { ReactComponent as ItalicIcon } from '@resources/assets/text-editor/ItalicIcon.svg'
 import { ReactComponent as BoldIcon } from '@resources/assets/text-editor/BoldIcon.svg'
+import { ReactComponent as BaselineIcon } from '@resources/assets/text-editor/BaselineIcon.svg'
 
 export {
     ChevronLeftIcon,
@@ -85,5 +86,6 @@ export {
     MoreIcon,
     UnderlineIcon,
     ItalicIcon,
-    BoldIcon
+    BoldIcon,
+    BaselineIcon
 }

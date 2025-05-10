@@ -1,0 +1,14 @@
+.rich-text-editor-toolbar-color-selection-dropdown {
+    display: grid;
+    grid-template-columns: repeat(7, 28px);
+    gap: 4px;
+    background-color: var(--surface);
+}
+
+.rich-text-editor-toolbar-color-selection-dropdown-swatch {
+    width: 28px;
+    height: 28px;
+    border: 1px solid var(--outline);
+    border-radius: 4px;
+    cursor: pointer;
+}

@@ -17,7 +17,7 @@ const RichTextEditorToolbarButton: FC<RichTextEditorToolbarButtonProps> = ({
             onClick={onClick}
         >
             <Icon
-                size={16}
+                size={20}
             >
                 {icon}
             </Icon>
