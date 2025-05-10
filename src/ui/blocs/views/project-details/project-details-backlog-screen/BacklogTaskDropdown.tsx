@@ -98,6 +98,7 @@ const BacklogTaskDropdown: FC<BacklogTaskDropdownProps> = ({
                         onClose={onClose}
                         icon={<TrashIcon/>}
                         color={theme.error}
+                        iconColor={theme.error}
                     />
                 </MenuGroup>
             </MenuDropdown>

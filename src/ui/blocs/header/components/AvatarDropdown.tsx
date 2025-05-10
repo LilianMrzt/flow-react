@@ -76,6 +76,7 @@ const AvatarDropdown: FC<AvatarDropdownProps> = ({
                         navigate(AuthRoutes.signIn.path)
                     }}
                     color={theme.error}
+                    iconColor={theme.error}
                     onClose={onClose}
                 />
             </MenuGroup>

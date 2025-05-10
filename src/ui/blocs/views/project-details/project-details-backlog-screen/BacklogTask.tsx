@@ -60,7 +60,9 @@ const BacklogTask: FC<BacklogTaskProps> = ({
      * Gère la fin du survol de la souris
      */
     const handleMouseLeave = (): void => {
-        setIsHovered(false)
+        if (!isActionMenuOpen) {
+            setIsHovered(false)
+        }
     }
 
     /**
@@ -82,7 +84,7 @@ const BacklogTask: FC<BacklogTaskProps> = ({
             })
     }
 
-    const moreIconButtonBackgroundColor = isHovered ? theme.secondary : theme.surface
+    const moreIconButtonBackgroundColor = isActionMenuOpen && isHovered ? theme.hoverSecondary : isHovered ? theme.secondary : theme.surface
 
     return (
         <TableRow
@@ -135,6 +137,7 @@ const BacklogTask: FC<BacklogTaskProps> = ({
                     <MenuWrapper
                         onClose={() => {
                             setIsActionMenuOpen(false)
+                            setIsHovered(false)
                         }}
                         anchorRef={wrapperRef}
                     >
@@ -152,6 +155,7 @@ const BacklogTask: FC<BacklogTaskProps> = ({
                             isOpen={isActionMenuOpen}
                             onClose={() => {
                                 setIsActionMenuOpen(false)
+                                setIsHovered(false)
                             }}
                             task={task}
                             anchorRef={wrapperRef}
