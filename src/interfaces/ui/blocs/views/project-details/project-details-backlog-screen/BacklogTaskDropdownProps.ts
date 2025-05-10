@@ -7,4 +7,5 @@ export interface BacklogTaskDropdownProps {
     task: TaskObject
     anchorRef: RefObject<HTMLDivElement | null>
     setIsHovered: Dispatch<SetStateAction<boolean>>
+    sortedBacklogTasks: TaskObject[]
 }

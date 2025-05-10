@@ -121,3 +121,29 @@ export const updateTaskAction = async (
 
     return resData.task
 }
+
+/**
+ * Gestion de la mise à jour de l'ordre des taches dans le backlog
+ * @param projectSlug
+ * @param updates
+ */
+export const updateBacklogTasksOrdersAction = async (
+    projectSlug: string,
+    updates: { id: string, orderInBacklog: number }[]
+): Promise<void> => {
+    const token = localStorage.getItem(StorageConstants.token)
+
+    const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/projects/${projectSlug}/tasks/reorder-backlog`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({ updates })
+    })
+
+    if (!response.ok) {
+        const resData = await response.json()
+        throw new Error(resData.message)
+    }
+}

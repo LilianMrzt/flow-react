@@ -27,6 +27,11 @@ const BacklogTable = (): ReactNode => {
         ''
     ]
 
+    const sortedBacklogTasks = tasks
+        .sort((a, b) => {
+            return (a.orderInBacklog ?? 0) - (b.orderInBacklog ?? 0)
+        })
+
     return (
         <Table>
             <BacklogTableColumns/>
@@ -60,11 +65,12 @@ const BacklogTable = (): ReactNode => {
                 </TableRow>
             </TableHead>
             <TableBody>
-                {tasks.map((task) => {
+                {sortedBacklogTasks.map((task) => {
                     return (
                         <BacklogTask
                             key={task.id}
                             task={task}
+                            sortedBacklogTasks={sortedBacklogTasks}
                         />
                     )
                 })}

@@ -49,9 +49,13 @@ const BoardColumn: FC<BoardColumnProps> = ({
             })
     }
 
-    const columnTasks = tasks.filter((task: TaskObject) => {
-        return task.column?.id === column.id
-    })
+    const columnTasks = tasks
+        .filter((task: TaskObject) => {
+            return task.column?.id === column.id
+        })
+        .sort((a, b) => {
+            return (a.orderInColumn ?? 0) - (b.orderInColumn ?? 0)
+        })
 
     return (
         <div

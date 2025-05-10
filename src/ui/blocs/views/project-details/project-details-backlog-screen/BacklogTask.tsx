@@ -30,7 +30,8 @@ import {
 } from '@constants/select-options/TaskCreationModalColumnSelectOptions'
 
 const BacklogTask: FC<BacklogTaskProps> = ({
-    task
+    task,
+    sortedBacklogTasks
 }): ReactNode => {
     const {
         theme
@@ -160,6 +161,7 @@ const BacklogTask: FC<BacklogTaskProps> = ({
                             task={task}
                             anchorRef={wrapperRef}
                             setIsHovered={setIsHovered}
+                            sortedBacklogTasks={sortedBacklogTasks}
                         />
                     </MenuWrapper>
                 </Row>

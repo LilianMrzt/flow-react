@@ -11,4 +11,6 @@ export interface TaskObject {
     project: ProjectObject
     column: BoardColumnObject | null
     assignedUser: UserObject | null
+    orderInColumn: number | null
+    orderInBacklog: number | null
 }
