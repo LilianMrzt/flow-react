@@ -9,18 +9,72 @@ import MenuItem from '@components/dropdowns/menu/MenuItem'
 import { useTheme } from '@hooks/contexts/ThemeContext'
 import Modal from '@components/layout/Modal'
 import ConfirmTaskDeletionModalContent from '@ui/blocs/modals/ConfirmTaskDeletionModalContent'
+import HoverMenuItem from '@components/dropdowns/menu/HoverMenuItem'
+import Separator from '@components/layout/Separator'
+import { updateTaskAction } from '@api/TasksApiCalls'
+import {
+    TASK_CREATION_MODAL_PRIORITY_SELECT_OPTIONS
+} from '@constants/select-options/TaskCreationModalPrioritySelectOptions'
+import { MenuItemProps } from '@interfaces/ui/components/dropdowns/menu/MenuItemProps'
+import { useAlert } from '@hooks/contexts/AlertContext'
+import { useLoadedProject } from '@hooks/contexts/api/LoadedProjectContext'
 
 const BacklogTaskDropdown: FC<BacklogTaskDropdownProps> = ({
     isOpen,
     onClose,
     task,
-    anchorRef
+    anchorRef,
+    setIsHovered
 }): ReactNode => {
     const {
         theme
     } = useTheme()
 
+    const {
+        loadedProject
+    } = useLoadedProject()
+
+    const {
+        showAlert
+    } = useAlert()
+
+    if (!loadedProject) return null
+
     const [isTaskDeletionConfirmModalOpen, setIsTaskDeletionConfirmModalOpen] = useState(false)
+
+    /**
+     * Met à jour la priorité de la tâche si nécessaire
+     */
+    const handlePriorityChange = (
+        newPriority: string
+    ): void => {
+        if (task.priority === newPriority) return
+
+        updateTaskAction(loadedProject.slug, task.id, { priority: newPriority })
+            .then(() => {
+                setIsHovered(false)
+            })
+            .catch((error) => {
+                showAlert(error.message, 'error')
+            })
+    }
+
+    /**
+     * Retourne les sous-options de priorité
+     */
+    const PrioritySubMenuItems = (): MenuItemProps[] => {
+        return TASK_CREATION_MODAL_PRIORITY_SELECT_OPTIONS.map((option) => {
+            return {
+                label: option.label,
+                icon: option.icon,
+                color: option.iconColor,
+                onClick: (): void => {
+                    return handlePriorityChange(option.value)
+                },
+                onClose
+            }
+        })
+    }
 
     return (
         <>
@@ -28,6 +82,13 @@ const BacklogTaskDropdown: FC<BacklogTaskDropdownProps> = ({
                 isOpen={isOpen}
                 anchorRef={anchorRef}
             >
+                <MenuGroup>
+                    <HoverMenuItem
+                        label={'Priority'}
+                        subMenuItems={PrioritySubMenuItems}
+                    />
+                </MenuGroup>
+                <Separator/>
                 <MenuGroup>
                     <MenuItem
                         label={'Delete task'}

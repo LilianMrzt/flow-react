@@ -6,4 +6,5 @@ export interface MenuItemProps {
     label: string
     icon?: ReactElement
     color?: CSSProperties['color']
+    iconColor?: CSSProperties['color']
 }

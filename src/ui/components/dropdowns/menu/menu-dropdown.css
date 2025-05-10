@@ -18,3 +18,14 @@
 .menu-dropdown.fade-out {
     opacity: 0;
 }
+
+.menu-dropdown.submenu {
+    transition: none;
+}
+
+.submenu-mouse-bridge {
+    position: absolute;
+    width: 4px;
+    height: 50px;
+    z-index: 999999;
+}

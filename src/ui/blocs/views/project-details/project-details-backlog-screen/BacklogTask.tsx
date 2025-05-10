@@ -75,6 +75,7 @@ const BacklogTask: FC<BacklogTaskProps> = ({
         updateTaskAction(loadedProject.slug, task.id, { columnId: columnId })
             .then(() => {
                 showAlert('Task successfully updated.', 'success')
+                setIsHovered(false)
             })
             .catch((error) => {
                 showAlert(error.message, 'error')
@@ -154,6 +155,7 @@ const BacklogTask: FC<BacklogTaskProps> = ({
                             }}
                             task={task}
                             anchorRef={wrapperRef}
+                            setIsHovered={setIsHovered}
                         />
                     </MenuWrapper>
                 </Row>

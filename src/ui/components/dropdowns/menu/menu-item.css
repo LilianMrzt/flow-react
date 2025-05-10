@@ -6,4 +6,19 @@
     display: flex;
     align-items: center;
     gap: 8px;
+    background-color: var(--surface);
+}
+
+.menu-item.hover-menu-item {
+    justify-content: space-between;
+    position: relative;
+}
+
+.menu-item:hover {
+    background-color: var(--secondary);
+}
+
+.hover-menu-wrapper {
+    position: relative;
+    display: inline-block;
 }

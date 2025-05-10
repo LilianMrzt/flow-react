@@ -10,7 +10,8 @@ const MenuItem: FC<MenuItemProps> = ({
     onClose,
     label,
     icon,
-    color
+    color,
+    iconColor
 }) => {
     const {
         theme
@@ -19,6 +20,7 @@ const MenuItem: FC<MenuItemProps> = ({
     const [isHovered, setIsHovered] = useState(false)
 
     const componentColor = color ?? theme.text
+    const componentIconColor = iconColor ?? theme.text
 
     /**
      * Gère l'événement de survol de la souris
@@ -37,9 +39,6 @@ const MenuItem: FC<MenuItemProps> = ({
     return (
         <div
             className={'menu-item'}
-            style={{
-                backgroundColor: isHovered ? theme.secondary : theme.surface
-            }}
             onClick={() => {
                 onClick()
                 onClose()
@@ -50,7 +49,7 @@ const MenuItem: FC<MenuItemProps> = ({
             {icon && (
                 <Icon
                     size={16}
-                    color={isHovered && !color ? theme.primary : componentColor}
+                    color={isHovered && !iconColor ? theme.primary : componentIconColor}
                 >
                     {icon}
                 </Icon>

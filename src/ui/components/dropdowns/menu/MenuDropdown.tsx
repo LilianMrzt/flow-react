@@ -8,11 +8,12 @@ const MenuDropdown: FC<MenuDropdownProps> = ({
     children,
     isOpen,
     position = 'right',
-    anchorRef
+    anchorRef,
+    isSubMenu = false
 }) => {
     const [isVisible, setIsVisible] = useState(false)
     const [isFadingIn, setIsFadingIn] = useState(false)
-    const [coords, setCoords] = useState({ top: 0, left: 0 })
+    const [coords, setCoords] = useState({ top: 0, left: 0, xOffset: 0 })
 
     /**
      * Gestion des coordonnées du Dropdown
@@ -22,14 +23,28 @@ const MenuDropdown: FC<MenuDropdownProps> = ({
             const rect = anchorRef.current.getBoundingClientRect()
             const dropdownWidth = 220
 
-            const top = rect.bottom + window.scrollY + 4
-            const left = position === 'right'
-                ? rect.right - dropdownWidth + window.scrollX
-                : rect.left + window.scrollX
+            let top = rect.bottom + window.scrollY + 4
+            let left = rect.left + window.scrollX
+            let xOffset = 0
 
-            setCoords({ top, left })
+            if (isSubMenu) {
+                top = rect.top + window.scrollY - 4
+
+                const willOverflowRight = rect.right + dropdownWidth > window.innerWidth
+                if (willOverflowRight) {
+                    left = rect.left - dropdownWidth + window.scrollX
+                    xOffset = -4
+                } else {
+                    left = rect.right + window.scrollX
+                    xOffset = 4
+                }
+            } else if (position === 'right') {
+                left = rect.right - dropdownWidth + window.scrollX
+            }
+
+            setCoords({ top, left, xOffset })
         }
-    }, [isOpen, anchorRef, position])
+    }, [isOpen, anchorRef, position, isSubMenu])
 
     useEffect(() => {
         handleFadeEffect(isOpen, setIsVisible, setIsFadingIn)
@@ -40,15 +55,27 @@ const MenuDropdown: FC<MenuDropdownProps> = ({
     }
 
     return createPortal(
-        <div
-            className={`menu-dropdown ${isFadingIn ? 'fade-in' : 'fade-out'}`}
-            style={{
-                top: coords.top,
-                left: coords.left
-            }}
-        >
-            {children}
-        </div>,
+        <>
+            {isSubMenu && (
+                <div
+                    className={'submenu-mouse-bridge'}
+                    style={{
+                        top: coords.top,
+                        left: coords.left + (coords.xOffset > 0 ? -4 : 216)
+                    }}
+                />
+            )}
+            <div
+                className={`menu-dropdown ${isFadingIn ? 'fade-in' : 'fade-out'} ${isSubMenu ? 'submenu' : ''}`}
+                style={{
+                    top: coords.top,
+                    left: coords.left,
+                    transform: `translateX(${coords.xOffset}px)`
+                }}
+            >
+                {children}
+            </div>
+        </>,
         document.body
     )
 }
