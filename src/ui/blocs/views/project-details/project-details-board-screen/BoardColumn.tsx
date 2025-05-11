@@ -85,7 +85,7 @@ const BoardColumn: FC<BoardColumnProps> = ({
 
                     return (
                         <div
-                            key={task.id}
+                            key={`${task.id}-${task.orderInColumn}`}
                         >
                             <div
                                 className={'board-column-insertion-line'}

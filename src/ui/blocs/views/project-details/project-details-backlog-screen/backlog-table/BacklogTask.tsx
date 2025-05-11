@@ -9,7 +9,7 @@ import { TASK_CREATION_MODAL_TYPE_SELECT_OPTIONS } from '@constants/select-optio
 import Select from '@components/dropdowns/select/Select'
 import { COLUMN_MODIFICATION_BACKLOG_SELECT_OPTIONS } from '@constants/select-options/ColumnModificationBacklogSelectOptions'
 import { TASK_CREATION_MODAL_COLUMN_SELECT_OPTIONS } from '@constants/select-options/TaskCreationModalColumnSelectOptions'
-import { updateTaskAction } from '@api/TasksApiCalls'
+import { updateColumnTasksOrdersAction } from '@api/TasksApiCalls'
 import { useLoadedProject } from '@hooks/contexts/api/LoadedProjectContext'
 import { useAlert } from '@hooks/contexts/AlertContext'
 import { useTheme } from '@hooks/contexts/ThemeContext'
@@ -19,6 +19,7 @@ import BacklogTaskDropdown from '@ui/blocs/views/project-details/project-details
 import MenuWrapper from '@components/dropdowns/menu/MenuWrapper'
 import { BacklogTaskProps } from '@interfaces/ui/blocs/views/project-details/project-details-backlog-screen/backlog-table/BacklogTaskProps'
 import { useBacklogDragAndDrop } from '@hooks/hooks/useBacklogDragAndDrop'
+import { useTasks } from '@hooks/contexts/api/TasksProvider'
 
 const BacklogTask: FC<BacklogTaskProps> = ({
     task,
@@ -40,6 +41,10 @@ const BacklogTask: FC<BacklogTaskProps> = ({
     const {
         theme
     } = useTheme()
+
+    const {
+        tasks
+    } = useTasks()
 
     const wrapperRef = useRef<HTMLDivElement | null>(null)
     const subMenuRef = useRef<HTMLDivElement | null>(null)
@@ -73,13 +78,30 @@ const BacklogTask: FC<BacklogTaskProps> = ({
     const handleColumnChange = (value: string): void => {
         if (!loadedProject) return
         const columnId = value === TASK_CREATION_MODAL_COLUMN_SELECT_OPTIONS(loadedProject)[0].value ? null : value
-        updateTaskAction(loadedProject.slug, task.id, { columnId })
+
+        const columnTasks = tasks
+            .filter(t => {
+                return t.column?.id === columnId
+            })
+            .sort((a, b) => {
+                return (a.orderInColumn ?? 0) - (b.orderInColumn ?? 0)
+            })
+
+        const updates = [...columnTasks, task].map((t, i) => {
+            return {
+                id: t.id,
+                columnId,
+                orderInColumn: i
+            }
+        })
+
+        updateColumnTasksOrdersAction(loadedProject.slug, updates)
             .then(() => {
-                showAlert('Task successfully updated.', 'success')
+                showAlert('Task successfully moved to column.', 'success')
                 setIsHovered(false)
             })
             .catch((error) => {
-                return showAlert(error.message, 'error')
+                showAlert(error.message, 'error')
             })
     }
 
