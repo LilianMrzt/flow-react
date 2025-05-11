@@ -27,9 +27,13 @@ const BacklogTable = (): ReactNode => {
         >
             <BacklogTableHeader />
             {sortedBacklogTasks.map((task, index) => {
+                const previousTaskId = sortedBacklogTasks[index - 1]?.id
+                const isHoveredTop = hoveredLineId === task.id && hoveredLinePosition === 'top'
+                const isHoveredBottom = hoveredLineId === previousTaskId && hoveredLinePosition === 'bottom'
+
                 const showLine =
-                    (hoveredLineId === task.id && hoveredLinePosition === 'top') ||
-                    (hoveredLineId === sortedBacklogTasks[index - 1]?.id && hoveredLinePosition === 'bottom')
+                    (isHoveredTop && draggedTaskId !== task.id) ||
+                    (isHoveredBottom && draggedTaskId !== previousTaskId)
 
                 return (
                     <div
@@ -60,7 +64,9 @@ const BacklogTable = (): ReactNode => {
                 className={'insertion-line'}
                 style={{
                     backgroundColor:
-                        hoveredLineId === sortedBacklogTasks.at(-1)?.id && hoveredLinePosition === 'bottom'
+                        hoveredLineId === sortedBacklogTasks.at(-1)?.id &&
+                        hoveredLinePosition === 'bottom' &&
+                        draggedTaskId !== sortedBacklogTasks.at(-1)?.id
                             ? theme.primary
                             : theme.surface
                 }}
