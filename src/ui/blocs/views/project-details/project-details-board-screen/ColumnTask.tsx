@@ -4,11 +4,11 @@ import { ColumnTaskProps } from '@interfaces/ui/blocs/views/project-details/proj
 import './column-task.css'
 import { createDragImageFromElement } from '@utils/DragUtils'
 
-interface ColumnTaskExtendedProps extends ColumnTaskProps {
-    onHoverPosition: (position: 'top' | 'bottom') => void
-}
-
-const ColumnTask: FC<ColumnTaskExtendedProps> = ({ task, onHoverPosition }): ReactNode => {
+const ColumnTask: FC<ColumnTaskProps> = ({
+    task,
+    onHoverPosition,
+    setDraggedTaskId
+}): ReactNode => {
     const ref = useRef<HTMLDivElement | null>(null)
 
     return (
@@ -18,8 +18,10 @@ const ColumnTask: FC<ColumnTaskExtendedProps> = ({ task, onHoverPosition }): Rea
             draggable
             onDragStart={(e) => {
                 e.dataTransfer.setData('text/plain', task.id)
+                setDraggedTaskId(task.id)
                 if (ref.current) createDragImageFromElement(e, ref.current)
             }}
+
             onDragOver={(e) => {
                 e.preventDefault()
                 const rect = e.currentTarget.getBoundingClientRect()
@@ -27,7 +29,11 @@ const ColumnTask: FC<ColumnTaskExtendedProps> = ({ task, onHoverPosition }): Rea
                 onHoverPosition(isTop ? 'top' : 'bottom')
             }}
         >
-            <Text isSelectable={false}>{task.title}</Text>
+            <Text
+                isSelectable={false}
+            >
+                {task.title}
+            </Text>
         </div>
     )
 }

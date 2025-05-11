@@ -19,6 +19,7 @@ const BoardColumn: FC<BoardColumnProps> = ({ column }): ReactNode => {
     const [isDragOver, setIsDragOver] = useState(false)
     const [hoveredTaskId, setHoveredTaskId] = useState<string | null>(null)
     const [hoveredPosition, setHoveredPosition] = useState<'top' | 'bottom' | null>(null)
+    const [draggedTaskId, setDraggedTaskId] = useState<string | null>(null)
 
     const handleDrop = async (taskId: string): Promise<void> => {
         const task = tasks.find(t => {
@@ -74,15 +75,18 @@ const BoardColumn: FC<BoardColumnProps> = ({ column }): ReactNode => {
                     setIsDragOver(false)
                     setHoveredTaskId(null)
                     setHoveredPosition(null)
+                    setDraggedTaskId(null)
                 }}
                 style={{
                     border: isDragOver ? `2px dashed ${theme.hoverSecondary}` : `2px solid ${theme.tertiary}`
                 }}
             >
                 {columnTasks.map((task, index) => {
+                    const isSelfHover = hoveredTaskId === draggedTaskId
                     const showLine =
-                        (hoveredTaskId === task.id && hoveredPosition === 'top') ||
-                        (hoveredTaskId === columnTasks[index - 1]?.id && hoveredPosition === 'bottom')
+                        !isSelfHover &&
+                        ((hoveredTaskId === task.id && hoveredPosition === 'top') ||
+                            (hoveredTaskId === columnTasks[index - 1]?.id && hoveredPosition === 'bottom'))
 
                     return (
                         <div
@@ -100,6 +104,7 @@ const BoardColumn: FC<BoardColumnProps> = ({ column }): ReactNode => {
                                     setHoveredTaskId(task.id)
                                     setHoveredPosition(position)
                                 }}
+                                setDraggedTaskId={setDraggedTaskId}
                             />
                         </div>
                     )
