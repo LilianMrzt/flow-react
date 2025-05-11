@@ -1,7 +1,7 @@
 import { TaskObject } from '@interfaces/objects/api/task/TaskObject'
 import { RefObject } from 'react'
 
-export interface UseBacklogDnDParams {
+export interface UseBacklogDragAndDropParams {
     task: TaskObject
     sortedBacklogTasks: TaskObject[]
     projectSlug: string

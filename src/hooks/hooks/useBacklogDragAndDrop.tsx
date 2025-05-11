@@ -1,11 +1,11 @@
 import React, { DragEvent, useCallback } from 'react'
 import { updateBacklogTasksOrdersAction } from '@api/TasksApiCalls'
 import { createDragImageFromComponent } from '@utils/DragUtils'
-import { UseBacklogDnDParams } from '@interfaces/hooks/hooks/UseBacklogDnDParams'
-import { UseBacklogDnDResult } from '@interfaces/hooks/hooks/UseBacklogDnDResult'
+import { UseBacklogDragAndDropParams } from '@interfaces/hooks/hooks/UseBacklogDragAndDropParams'
+import { UseBacklogDragAndDropResult } from '@interfaces/hooks/hooks/UseBacklogDragAndDropResult'
 import BacklogTaskDragImage from '@ui/blocs/drag-images/BacklogTaskDragImage'
 
-export const useBacklogDnD = ({
+export const useBacklogDragAndDrop = ({
     task,
     sortedBacklogTasks,
     projectSlug,
@@ -15,7 +15,7 @@ export const useBacklogDnD = ({
     hoveredLinePosition,
     showAlert,
     taskRef
-}: UseBacklogDnDParams): UseBacklogDnDResult => {
+}: UseBacklogDragAndDropParams): UseBacklogDragAndDropResult => {
     /**
      * Débute le drag de la tâche et configure l'image fantôme.
      */

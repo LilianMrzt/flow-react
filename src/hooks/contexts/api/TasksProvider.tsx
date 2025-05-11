@@ -88,10 +88,23 @@ export const TasksProvider: FC<TasksProviderProps> = ({
             })
         }
 
+        const handleBoardTasksReordered = (updatedTasks: TaskObject[]): void => {
+            setTasks(prev => {
+                const updatedIds = new Set(updatedTasks.map(t => {
+                    return t.id
+                }))
+                const others = prev.filter(t => {
+                    return !updatedIds.has(t.id)
+                })
+                return [...others, ...updatedTasks]
+            })
+        }
+
         socket.on(WebSocketEvents.TASK_CREATED, handleTaskCreated)
         socket.on(WebSocketEvents.TASK_DELETED, handleTaskDeleted)
         socket.on(WebSocketEvents.TASK_UPDATED, handleTaskUpdated)
         socket.on(WebSocketEvents.BACKLOG_TASKS_REORDERED, handleBacklogTasksReordered)
+        socket.on(WebSocketEvents.BOARD_TASKS_REORDERED, handleBoardTasksReordered)
 
         return (): void => {
             socket.emit(WebSocketEvents.LEAVE_PROJECT_ROOM, loadedProject.slug)
@@ -99,6 +112,7 @@ export const TasksProvider: FC<TasksProviderProps> = ({
             socket.off(WebSocketEvents.TASK_DELETED, handleTaskDeleted)
             socket.off(WebSocketEvents.TASK_UPDATED, handleTaskUpdated)
             socket.off(WebSocketEvents.BACKLOG_TASKS_REORDERED, handleBacklogTasksReordered)
+            socket.off(WebSocketEvents.BOARD_TASKS_REORDERED, handleBoardTasksReordered)
         }
     }, [socket, loadedProject])
 

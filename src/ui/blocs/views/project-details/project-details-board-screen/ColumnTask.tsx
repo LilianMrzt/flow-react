@@ -21,7 +21,6 @@ const ColumnTask: FC<ColumnTaskProps> = ({
                 setDraggedTaskId(task.id)
                 if (ref.current) createDragImageFromElement(e, ref.current)
             }}
-
             onDragOver={(e) => {
                 e.preventDefault()
                 const rect = e.currentTarget.getBoundingClientRect()

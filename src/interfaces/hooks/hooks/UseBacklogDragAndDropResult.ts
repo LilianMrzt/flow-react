@@ -1,6 +1,6 @@
 import { DragEvent } from 'react'
 
-export interface UseBacklogDnDResult {
+export interface UseBacklogDragAndDropResult {
     handleDragStart: (e: DragEvent<HTMLDivElement>) => void
     handleOnDragEnd: () => void
     handleDrop: (e: DragEvent<HTMLDivElement>) => void

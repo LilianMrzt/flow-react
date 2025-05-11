@@ -3,12 +3,11 @@ import './board-column.css'
 import Text from '@components/text/Text'
 import { BoardColumnProps } from '@interfaces/ui/blocs/views/project-details/project-details-board-screen/BoardColumnProps'
 import { useTasks } from '@hooks/contexts/api/TasksProvider'
-import { TaskObject } from '@interfaces/objects/api/task/TaskObject'
 import ColumnTask from '@ui/blocs/views/project-details/project-details-board-screen/ColumnTask'
-import { updateTaskAction } from '@api/TasksApiCalls'
 import { useAlert } from '@hooks/contexts/AlertContext'
 import { useLoadedProject } from '@hooks/contexts/api/LoadedProjectContext'
 import { useTheme } from '@hooks/contexts/ThemeContext'
+import { useBoardDragAndDrop } from '@hooks/hooks/useBoardDragAndDrop'
 
 const BoardColumn: FC<BoardColumnProps> = ({ column }): ReactNode => {
     const { tasks } = useTasks()
@@ -21,24 +20,24 @@ const BoardColumn: FC<BoardColumnProps> = ({ column }): ReactNode => {
     const [hoveredPosition, setHoveredPosition] = useState<'top' | 'bottom' | null>(null)
     const [draggedTaskId, setDraggedTaskId] = useState<string | null>(null)
 
-    const handleDrop = async (taskId: string): Promise<void> => {
-        const task = tasks.find(t => {
-            return t.id === taskId
-        })
-        if (!loadedProject || column.id === task?.column?.id) return
+    const {
+        handleDrop,
+        getColumnTasks,
+        shouldShowLine
+    } = useBoardDragAndDrop({
+        projectSlug: loadedProject?.slug ?? '',
+        columnId: column.id,
+        tasks,
+        hoveredTaskId,
+        hoveredPosition,
+        setHoveredTaskId,
+        setHoveredPosition,
+        setDraggedTaskId,
+        showAlert,
+        setIsDragOver
+    })
 
-        await updateTaskAction(loadedProject.slug, taskId, { columnId: column.id }).catch((error) => {
-            showAlert(error.message, 'error')
-        })
-    }
-
-    const columnTasks = tasks
-        .filter((task: TaskObject) => {
-            return task.column?.id === column.id
-        })
-        .sort((a, b) => {
-            return (a.orderInColumn ?? 0) - (b.orderInColumn ?? 0)
-        })
+    const columnTasks = getColumnTasks()
 
     return (
         <div
@@ -71,22 +70,15 @@ const BoardColumn: FC<BoardColumnProps> = ({ column }): ReactNode => {
                 }}
                 onDrop={(e) => {
                     const taskId = e.dataTransfer.getData('text/plain')
-                    void handleDrop(taskId)
-                    setIsDragOver(false)
-                    setHoveredTaskId(null)
-                    setHoveredPosition(null)
-                    setDraggedTaskId(null)
+                    handleDrop(taskId)
                 }}
                 style={{
                     border: isDragOver ? `2px dashed ${theme.hoverSecondary}` : `2px solid ${theme.tertiary}`
                 }}
             >
                 {columnTasks.map((task, index) => {
-                    const isSelfHover = hoveredTaskId === draggedTaskId
-                    const showLine =
-                        !isSelfHover &&
-                        ((hoveredTaskId === task.id && hoveredPosition === 'top') ||
-                            (hoveredTaskId === columnTasks[index - 1]?.id && hoveredPosition === 'bottom'))
+                    const previousTask = columnTasks[index - 1]
+                    const showLine = shouldShowLine(task.id, previousTask?.id, draggedTaskId)
 
                     return (
                         <div
@@ -114,7 +106,9 @@ const BoardColumn: FC<BoardColumnProps> = ({ column }): ReactNode => {
                     className={'board-column-insertion-line'}
                     style={{
                         backgroundColor:
-                            hoveredTaskId === columnTasks.at(-1)?.id && hoveredPosition === 'bottom'
+                            hoveredTaskId === columnTasks.at(-1)?.id &&
+                            hoveredPosition === 'bottom' &&
+                            hoveredTaskId !== draggedTaskId
                                 ? theme.primary
                                 : 'transparent'
                     }}

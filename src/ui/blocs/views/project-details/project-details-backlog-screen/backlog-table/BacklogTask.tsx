@@ -18,7 +18,7 @@ import { MoreIcon } from '@resources/Icons'
 import BacklogTaskDropdown from '@ui/blocs/views/project-details/project-details-backlog-screen/BacklogTaskDropdown'
 import MenuWrapper from '@components/dropdowns/menu/MenuWrapper'
 import { BacklogTaskProps } from '@interfaces/ui/blocs/views/project-details/project-details-backlog-screen/backlog-table/BacklogTaskProps'
-import { useBacklogDnD } from '@hooks/hooks/useBacklogDragAndDrop'
+import { useBacklogDragAndDrop } from '@hooks/hooks/useBacklogDragAndDrop'
 
 const BacklogTask: FC<BacklogTaskProps> = ({
     task,
@@ -51,7 +51,7 @@ const BacklogTask: FC<BacklogTaskProps> = ({
         handleDrop,
         handleDragOver,
         handleDragLeave
-    } = useBacklogDnD({
+    } = useBacklogDragAndDrop({
         task,
         sortedBacklogTasks,
         projectSlug: loadedProject?.slug ?? '',

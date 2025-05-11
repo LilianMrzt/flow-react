@@ -147,3 +147,29 @@ export const updateBacklogTasksOrdersAction = async (
         throw new Error(resData.message)
     }
 }
+
+/**
+ * Gestion de la mise à jour de l'ordre et de la colonne des taches dans le tableau
+ * @param projectSlug
+ * @param updates
+ */
+export const updateColumnTasksOrdersAction = async (
+    projectSlug: string,
+    updates: { id: string, columnId: string | null, orderInColumn: number }[]
+): Promise<void> => {
+    const token = localStorage.getItem(StorageConstants.token)
+
+    const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/projects/${projectSlug}/tasks/reorder-column`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({ updates })
+    })
+
+    if (!response.ok) {
+        const resData = await response.json()
+        throw new Error(resData.message)
+    }
+}
