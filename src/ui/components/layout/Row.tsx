@@ -11,6 +11,7 @@ const Row: FC<RowProps> = ({
     height,
     gap
 }) => {
+
     return (
         <div
             className={`row ${className ?? ''}`}
@@ -21,6 +22,11 @@ const Row: FC<RowProps> = ({
                 height: height ?? 'fit-content',
                 width: width ?? '100%'
             }}
+            onDragOver={(e) => {
+                e.preventDefault()
+                e.stopPropagation()
+            }}
+
         >
             {children}
         </div>

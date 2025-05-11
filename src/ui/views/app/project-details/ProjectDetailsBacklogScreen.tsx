@@ -3,9 +3,10 @@ import Screen from '@components/layout/Screen'
 import TaskCreationModalContent from '@ui/blocs/modals/TaskCreationModalContent'
 import Modal from '@components/layout/Modal'
 import { AddIcon } from '@resources/Icons'
-import BacklogTable from '@ui/blocs/views/project-details/project-details-backlog-screen/BacklogTable'
 import NoTaskSection from '@ui/blocs/views/project-details/project-details-backlog-screen/NoTaskSection'
 import { useTasks } from '@hooks/contexts/api/TasksProvider'
+import BacklogTable
+    from '@ui/blocs/views/project-details/project-details-backlog-screen/backlog-table/BacklogTable'
 
 const ProjectDetailsBacklogScreen = (): ReactNode => {
     const [isTaskCreationModalOpen, setIsTaskCreationModalOpen] = useState(false)

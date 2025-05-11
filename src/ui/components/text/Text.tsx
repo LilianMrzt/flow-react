@@ -6,6 +6,7 @@ import { TextProps } from '@interfaces/ui/components/text/TextProps'
 const Text: FC<TextProps> = ({
     children,
     fontSize,
+    fontWeight,
     color,
     wrap,
     textAlign,
@@ -20,6 +21,7 @@ const Text: FC<TextProps> = ({
             className={`text ${wrap ? 'wrap' : ''} ${isSelectable ? 'is-selectable' : ''}`}
             style={{
                 fontSize: fontSize ?? 16,
+                fontWeight: fontWeight ?? 'normal',
                 color: color ?? theme.text,
                 textAlign: textAlign ?? 'start',
                 width: width ?? 'fit-content',

@@ -1,0 +1,11 @@
+.backlog-table-cell {
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: 100%;
+}
+
+.backlog-table-cell.disable-drag-pointer-events {
+    pointer-events: none;
+}
