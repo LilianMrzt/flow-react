@@ -46,11 +46,11 @@ const ProjectsNavigation = (): ReactNode => {
                     path={ProjectsRoutes.projectDetailsSettings.path}
                     element={<ProjectDetailsSettingsScreen />}
                 />
-                <Route
-                    path={'*'}
-                    element={<ProjectNotFoundScreen />}
-                />
             </Route>
+            <Route
+                path={ProjectsRoutes.projectNotFound.path}
+                element={<ProjectNotFoundScreen />}
+            />
         </Route>
     )
 }
