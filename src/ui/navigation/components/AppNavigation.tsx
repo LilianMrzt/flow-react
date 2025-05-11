@@ -8,6 +8,8 @@ import AppLayout from '@ui/navigation/AppLayout'
 import ProjectsNavigation from '@ui/navigation/components/ProjectsNavigation'
 import { AppRoutes } from '@constants/routes/AppRoutes'
 import ProfileScreen from '@ui/views/app/ProfileScreen'
+import { ProjectsRoutes } from '@constants/routes/ProjectsRoutes'
+import ProjectNotFoundScreen from '@ui/views/error-404/ProjectNotFoundScreen'
 
 const AppNavigation = (): ReactNode => {
     return (
@@ -42,6 +44,10 @@ const AppNavigation = (): ReactNode => {
                 <Route
                     path={AppRoutes.profile.path}
                     element={<ProfileScreen />}
+                />
+                <Route
+                    path={ProjectsRoutes.projectNotFound.path}
+                    element={<ProjectNotFoundScreen />}
                 />
             </Route>
         </Route>

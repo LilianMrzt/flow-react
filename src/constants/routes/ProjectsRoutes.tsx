@@ -46,5 +46,9 @@ export const ProjectsRoutes: Record<string, RouteType> = {
             return `/projects/${slug}/backlog`
         },
         icon: <BacklogIcon/>
+    },
+    projectNotFound: {
+        path: '/projects/not-found',
+        label: 'Error 404'
     }
 }

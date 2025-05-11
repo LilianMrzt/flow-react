@@ -10,6 +10,7 @@ import { useProjects } from '@hooks/contexts/api/ProjectsContext'
 import { ProjectDetailsDrawerRoutes } from '@constants/routes/ProjectDetailsDrawerRoutes'
 import Separator from '@components/layout/Separator'
 import DrawerTitle from '@ui/blocs/drawer/DrawerTitle'
+import { ProjectsRoutes } from '@constants/routes/ProjectsRoutes'
 
 const Drawer = (): ReactNode => {
 
@@ -22,6 +23,10 @@ const Drawer = (): ReactNode => {
     } = useProjects()
 
     const [isDrawerOpen, setIsDrawerOpen] = useState(false)
+
+    const isOnProjectPage = location.pathname.startsWith(ProjectsRoutes.projects.path) &&
+        location.pathname !== ProjectsRoutes.projects.path &&
+        location.pathname !== ProjectsRoutes.projectNotFound.path
 
     return (
         <div
@@ -85,7 +90,7 @@ const Drawer = (): ReactNode => {
                     )
                 })}
             </div>
-            {activeProjectSlug && (
+            {activeProjectSlug && isOnProjectPage && (
                 <>
                     <Separator/>
                     <DrawerTitle

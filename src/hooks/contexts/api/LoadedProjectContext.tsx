@@ -5,6 +5,8 @@ import { ProjectObject } from '@interfaces/objects/api/project/ProjectObject'
 import { getProjectBySlugAction } from '@api/ProjectsApiCalls'
 import { useAlert } from '@hooks/contexts/AlertContext'
 import { useProjects } from '@hooks/contexts/api/ProjectsContext'
+import { useNavigate } from 'react-router-dom'
+import { ProjectsRoutes } from '@constants/routes/ProjectsRoutes'
 
 const LoadedProjectContext = createContext<LoadedProjectContextProps | undefined>(undefined)
 
@@ -18,6 +20,8 @@ export const LoadedProjectProvider: FC<LoadedProjectProviderProps> = ({
     const {
         showAlert
     } = useAlert()
+
+    const navigate = useNavigate()
 
     const [loadedProject, setLoadedProject] = useState<ProjectObject | null>(null)
 
@@ -34,6 +38,7 @@ export const LoadedProjectProvider: FC<LoadedProjectProviderProps> = ({
                 })
                 .catch((error) => {
                     showAlert(error.message , 'error')
+                    navigate(ProjectsRoutes.projectNotFound.path)
                 })
         }
 

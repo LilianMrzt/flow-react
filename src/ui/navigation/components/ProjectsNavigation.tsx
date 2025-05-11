@@ -9,6 +9,7 @@ import ProjectDetailsSettingsScreen from '@ui/views/app/project-details/ProjectD
 import ProjectDetailsDashboardScreen from '@ui/views/app/project-details/ProjectDetailsDashboardScreen'
 import ProjectDetailsBacklogScreen from '@ui/views/app/project-details/ProjectDetailsBacklogScreen'
 import ProjectsDetailsApiProviders from '@hooks/ProjectsDetailsApiProviders'
+import ProjectNotFoundScreen from '@ui/views/error-404/ProjectNotFoundScreen'
 
 const ProjectsNavigation = (): ReactNode => {
     return (
@@ -44,6 +45,10 @@ const ProjectsNavigation = (): ReactNode => {
                 <Route
                     path={ProjectsRoutes.projectDetailsSettings.path}
                     element={<ProjectDetailsSettingsScreen />}
+                />
+                <Route
+                    path={'*'}
+                    element={<ProjectNotFoundScreen />}
                 />
             </Route>
         </Route>
