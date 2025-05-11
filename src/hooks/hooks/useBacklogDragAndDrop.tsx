@@ -1,8 +1,9 @@
-import { DragEvent, useCallback } from 'react'
+import React, { DragEvent, useCallback } from 'react'
 import { updateBacklogTasksOrdersAction } from '@api/TasksApiCalls'
-import { createDragImageFromElement } from '@utils/DragUtils'
+import { createDragImageFromComponent } from '@utils/DragUtils'
 import { UseBacklogDnDParams } from '@interfaces/hooks/hooks/UseBacklogDnDParams'
 import { UseBacklogDnDResult } from '@interfaces/hooks/hooks/UseBacklogDnDResult'
+import BacklogTaskDragImage from '@ui/blocs/drag-images/BacklogTaskDragImage'
 
 export const useBacklogDnD = ({
     task,
@@ -21,8 +22,21 @@ export const useBacklogDnD = ({
     const handleDragStart = useCallback((e: DragEvent<HTMLDivElement>): void => {
         e.dataTransfer.setData('text/plain', task.id)
         setDraggedTaskId(task.id)
-        if (taskRef.current) createDragImageFromElement(e, taskRef.current)
-    }, [task.id, setDraggedTaskId, taskRef])
+
+        const previewWidth = 250
+        const previewHeight = 40
+
+        createDragImageFromComponent(
+            e,
+            <BacklogTaskDragImage
+                task={task}
+                width={previewWidth}
+                height={previewHeight}
+            />,
+            previewWidth / 2,
+            previewHeight / 2
+        )
+    }, [task.id, task.title, task.priority, task.type, setDraggedTaskId, taskRef])
 
     /**
      * Termine le drag.

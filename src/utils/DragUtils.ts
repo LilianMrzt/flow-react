@@ -1,4 +1,6 @@
-import { DragEvent } from 'react'
+import { DragEvent, ReactNode } from 'react'
+import ReactDOM from 'react-dom/client'
+import { flushSync } from 'react-dom'
 
 /**
  * Crée une image de drag personnalisée à partir d'un élément div HTML.
@@ -38,4 +40,40 @@ export const createDragImageFromElement = (
     setTimeout(() => {
         document.body.removeChild(clone)
     }, 0)
+}
+
+/**
+ * Crée une image de drag personnalisée à partir d'un composant React.
+ * @param e
+ * @param element
+ * @param offsetX
+ * @param offsetY
+ */
+export const createDragImageFromComponent = (
+    e: DragEvent,
+    element: ReactNode,
+    offsetX = 0,
+    offsetY = 0
+): void => {
+    const dragGhost = document.createElement('div')
+
+    dragGhost.style.position = 'absolute'
+    dragGhost.style.top = '-1000px'
+    dragGhost.style.left = '-1000px'
+    dragGhost.style.zIndex = '9999'
+
+    document.body.appendChild(dragGhost)
+
+    const root = ReactDOM.createRoot(dragGhost)
+
+    flushSync(() => {
+        root.render(element)
+    })
+
+    e.dataTransfer.setDragImage(dragGhost, offsetX, offsetY)
+
+    setTimeout(() => {
+        root.unmount()
+        dragGhost.remove()
+    }, 3000)
 }
