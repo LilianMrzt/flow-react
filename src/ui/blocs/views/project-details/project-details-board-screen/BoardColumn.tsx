@@ -9,7 +9,11 @@ import { useLoadedProject } from '@hooks/contexts/api/LoadedProjectContext'
 import { useTheme } from '@hooks/contexts/ThemeContext'
 import { useBoardDragAndDrop } from '@hooks/hooks/useBoardDragAndDrop'
 
-const BoardColumn: FC<BoardColumnProps> = ({ column }): ReactNode => {
+const BoardColumn: FC<BoardColumnProps> = ({
+    column ,
+    draggedTaskId,
+    setDraggedTaskId
+}): ReactNode => {
     const { tasks } = useTasks()
     const { loadedProject } = useLoadedProject()
     const { showAlert } = useAlert()
@@ -18,7 +22,6 @@ const BoardColumn: FC<BoardColumnProps> = ({ column }): ReactNode => {
     const [isDragOver, setIsDragOver] = useState(false)
     const [hoveredTaskId, setHoveredTaskId] = useState<string | null>(null)
     const [hoveredPosition, setHoveredPosition] = useState<'top' | 'bottom' | null>(null)
-    const [draggedTaskId, setDraggedTaskId] = useState<string | null>(null)
 
     const {
         handleDrop,
@@ -97,6 +100,7 @@ const BoardColumn: FC<BoardColumnProps> = ({ column }): ReactNode => {
                                     setHoveredPosition(position)
                                 }}
                                 setDraggedTaskId={setDraggedTaskId}
+                                draggedTaskId={draggedTaskId}
                             />
                         </div>
                     )

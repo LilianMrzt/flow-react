@@ -7,14 +7,15 @@ import { createDragImageFromElement } from '@utils/DragUtils'
 const ColumnTask: FC<ColumnTaskProps> = ({
     task,
     onHoverPosition,
-    setDraggedTaskId
+    setDraggedTaskId,
+    draggedTaskId
 }): ReactNode => {
     const ref = useRef<HTMLDivElement | null>(null)
 
     return (
         <div
             ref={ref}
-            className={'column-task'}
+            className={'column-task '}
             draggable
             onDragStart={(e) => {
                 e.dataTransfer.setData('text/plain', task.id)
@@ -28,11 +29,16 @@ const ColumnTask: FC<ColumnTaskProps> = ({
                 onHoverPosition(isTop ? 'top' : 'bottom')
             }}
         >
-            <Text
-                isSelectable={false}
+            <div
+                className={`column-task-content ${draggedTaskId !== null && draggedTaskId !== task.id ? 'disable-drag-pointer-events' : ''}`}
             >
-                {task.title}
-            </Text>
+                <Text
+                    isSelectable={false}
+                    maxLines={2}
+                >
+                    {task.title}
+                </Text>
+            </div>
         </div>
     )
 }

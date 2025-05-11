@@ -7,9 +7,9 @@ export interface UseBoardDragAndDropParams {
     tasks: TaskObject[]
     hoveredTaskId: string | null
     hoveredPosition: 'top' | 'bottom' | null
-    setHoveredTaskId: (id: string | null) => void
-    setHoveredPosition: (pos: 'top' | 'bottom' | null) => void
-    setDraggedTaskId: (id: string | null) => void
+    setHoveredTaskId: Dispatch<SetStateAction<string | null>>
+    setHoveredPosition:Dispatch<SetStateAction<'top' | 'bottom' | null>>
+    setDraggedTaskId: Dispatch<SetStateAction<string | null>>
     showAlert: (msg: string, type: 'error' | 'success') => void
     setIsDragOver: Dispatch<SetStateAction<boolean>>
 }

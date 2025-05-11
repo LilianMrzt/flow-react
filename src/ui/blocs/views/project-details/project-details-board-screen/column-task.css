@@ -1,15 +1,26 @@
 .column-task {
-    display: flex;
-    flex-direction: column;
-    padding: 16px;
     background-color: var(--surface);
     border-radius: 8px;
     height: 200px;
     box-shadow: rgba(0, 0, 0, 0.1) 0 1px 3px 0, rgba(0, 0, 0, 0.06) 0 1px 2px 0;
     transition: box-shadow 200ms ease-in-out;
     cursor: pointer;
+    width: 234px;
 }
 
 .column-task:hover {
     box-shadow: rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+}
+
+.column-task-content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 16px;
+    height: 200px;
+    width: 234px;
+}
+
+.column-task-content.disable-drag-pointer-events {
+    pointer-events: none;
 }
