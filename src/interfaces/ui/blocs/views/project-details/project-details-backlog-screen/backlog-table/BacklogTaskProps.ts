@@ -5,4 +5,7 @@ export interface BacklogTaskProps {
     sortedBacklogTasks: TaskObject[]
     draggedTaskId: string | null
     setDraggedTaskId: (id: string | null) => void
+    setHoveredLineId: (id: string | null) => void
+    hoveredLinePosition: 'top' | 'bottom' | null
+    setHoveredLinePosition: (pos: 'top' | 'bottom' | null) => void
 }

@@ -8,15 +8,9 @@
     position: relative;
 }
 
-.backlog-table > * {
-    margin: 0;
+.insertion-line {
+    height: 1px;
+    width: 100%;
+    background-color: transparent;
+    transition: background-color 150ms ease;
 }
-
-.drag-overlay {
-    position: absolute;
-    inset: 0;
-    z-index: 9999;
-    pointer-events: auto;
-}
-
-
