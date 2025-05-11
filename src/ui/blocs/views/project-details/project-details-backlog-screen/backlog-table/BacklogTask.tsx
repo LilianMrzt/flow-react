@@ -9,7 +9,7 @@ import { TASK_CREATION_MODAL_TYPE_SELECT_OPTIONS } from '@constants/select-optio
 import Select from '@components/dropdowns/select/Select'
 import { COLUMN_MODIFICATION_BACKLOG_SELECT_OPTIONS } from '@constants/select-options/ColumnModificationBacklogSelectOptions'
 import { TASK_CREATION_MODAL_COLUMN_SELECT_OPTIONS } from '@constants/select-options/TaskCreationModalColumnSelectOptions'
-import { updateBacklogTasksOrdersAction, updateTaskAction } from '@api/TasksApiCalls'
+import { updateTaskAction } from '@api/TasksApiCalls'
 import { useLoadedProject } from '@hooks/contexts/api/LoadedProjectContext'
 import { useAlert } from '@hooks/contexts/AlertContext'
 import { useTheme } from '@hooks/contexts/ThemeContext'
@@ -17,8 +17,8 @@ import IconButton from '@components/buttons/IconButton'
 import { MoreIcon } from '@resources/Icons'
 import BacklogTaskDropdown from '@ui/blocs/views/project-details/project-details-backlog-screen/BacklogTaskDropdown'
 import MenuWrapper from '@components/dropdowns/menu/MenuWrapper'
-import { createDragImageFromElement } from '@utils/DragUtils'
 import { BacklogTaskProps } from '@interfaces/ui/blocs/views/project-details/project-details-backlog-screen/backlog-table/BacklogTaskProps'
+import { useBacklogDnD } from '@hooks/hooks/useBacklogDragAndDrop'
 
 const BacklogTask: FC<BacklogTaskProps> = ({
     task,
@@ -43,7 +43,25 @@ const BacklogTask: FC<BacklogTaskProps> = ({
 
     const wrapperRef = useRef<HTMLDivElement | null>(null)
     const subMenuRef = useRef<HTMLDivElement | null>(null)
-    const ref = useRef<HTMLDivElement | null>(null)
+    const taskRef = useRef<HTMLDivElement | null>(null)
+
+    const {
+        handleDragStart,
+        handleOnDragEnd,
+        handleDrop,
+        handleDragOver,
+        handleDragLeave
+    } = useBacklogDnD({
+        task,
+        sortedBacklogTasks,
+        projectSlug: loadedProject?.slug ?? '',
+        setDraggedTaskId,
+        setHoveredLineId,
+        setHoveredLinePosition,
+        hoveredLinePosition,
+        showAlert,
+        taskRef
+    })
 
     const [isHovered, setIsHovered] = useState(false)
     const [isActionMenuOpen, setIsActionMenuOpen] = useState(false)
@@ -65,92 +83,6 @@ const BacklogTask: FC<BacklogTaskProps> = ({
             })
     }
 
-    /**
-     * Débute le drag de la tâche et configure l'image fantôme.
-     * @param e
-     */
-    const handleDragStart = (e: React.DragEvent<HTMLDivElement>): void => {
-        e.dataTransfer.setData('text/plain', task.id)
-        setDraggedTaskId(task.id)
-        if (ref.current) createDragImageFromElement(e, ref.current)
-    }
-
-    /**
-     * Débute le drag de la tâche et configure l'image fantôme.
-     */
-    const handleOnDragEnd = (): void => {
-        setDraggedTaskId(null)
-    }
-
-    /**
-     * Gère le drop de la tâche à la nouvelle position dans le backlog.
-     * @param e
-     */
-    const handleDrop = (e: React.DragEvent<HTMLDivElement>): void => {
-        e.preventDefault()
-        const draggedId = e.dataTransfer.getData('text/plain')
-        if (!loadedProject || !draggedId || draggedId === task.id || hoveredLinePosition === null) {
-            setHoveredLineId(null)
-            setHoveredLinePosition(null)
-            return
-        }
-
-        const draggedIndex = sortedBacklogTasks.findIndex(t => {
-            return t.id === draggedId
-        })
-        const targetIndex = sortedBacklogTasks.findIndex(t => {
-            return t.id === task.id
-        })
-        if (draggedIndex === -1 || targetIndex === -1) return
-
-        const reordered = [...sortedBacklogTasks]
-        const [movedTask] = reordered.splice(draggedIndex, 1)
-        const insertIndex =
-            hoveredLinePosition === 'top'
-                ? targetIndex > draggedIndex ? targetIndex - 1 : targetIndex
-                : targetIndex > draggedIndex ? targetIndex : targetIndex + 1
-
-        reordered.splice(insertIndex, 0, movedTask)
-
-        const updates = reordered.map((t, i) => {
-            return {
-                id: t.id,
-                orderInBacklog: i
-            }
-        }).filter((u, i) => {
-            return (
-                sortedBacklogTasks[i].id !== u.id || sortedBacklogTasks[i].orderInBacklog !== i
-            )
-        })
-
-        updateBacklogTasksOrdersAction(loadedProject.slug, updates).catch(err => {
-            showAlert(err.message, 'error')
-        })
-
-        setHoveredLineId(null)
-        setHoveredLinePosition(null)
-    }
-
-    /**
-     * Gère le survol d'une tâche pendant le drag pour déterminer si on est au-dessus ou en dessous.
-     * @param e
-     */
-    const handleDragOver = (e: React.DragEvent<HTMLDivElement>): void => {
-        e.preventDefault()
-        const rect = e.currentTarget.getBoundingClientRect()
-        const isTop = e.clientY <= rect.top + rect.height / 2
-        setHoveredLineId(task.id)
-        setHoveredLinePosition(isTop ? 'top' : 'bottom')
-    }
-
-    /**
-     * Réinitialise les lignes d'insertion quand on sort du survol en drag.
-     */
-    const handleDragLeave = (): void => {
-        setHoveredLineId(null)
-        setHoveredLinePosition(null)
-    }
-
     const moreIconButtonBackgroundColor =
         isActionMenuOpen && isHovered ? theme.hoverSecondary
             : isHovered ? theme.secondary
@@ -158,7 +90,7 @@ const BacklogTask: FC<BacklogTaskProps> = ({
 
     return (
         <div
-            ref={ref}
+            ref={taskRef}
             className={'backlog-task'}
             style={{ backgroundColor: isHovered ? theme.secondary : theme.surface }}
             onMouseEnter={() => {
@@ -200,11 +132,6 @@ const BacklogTask: FC<BacklogTaskProps> = ({
                         {getSelectionFieldIcon(task.type, TASK_CREATION_MODAL_TYPE_SELECT_OPTIONS) as ReactElement}
                     </Icon>
                 )}
-                <Text
-                    maxLines={1}
-                >
-                    {task.orderInBacklog}
-                </Text>
                 <Text
                     maxLines={1}
                 >
