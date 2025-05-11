@@ -28,9 +28,17 @@
 .board-column-content {
     height: calc(100% - 45px);
     width: 250px;
-    padding: 6px;
-    gap: 8px;
+    padding: 2px 6px 6px;
+    gap: 4px;
     display: flex;
     flex-direction: column;
     transition: border 150ms ease-in-out;
+}
+
+.board-column-insertion-line {
+    height: 1px;
+    width: 100%;
+    margin-bottom: 4px;
+    background-color: transparent;
+    transition: background-color 150ms ease;
 }

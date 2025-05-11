@@ -1,9 +1,7 @@
 import React, { FC, ReactNode, useState } from 'react'
 import './board-column.css'
 import Text from '@components/text/Text'
-import {
-    BoardColumnProps
-} from '@interfaces/ui/blocs/views/project-details/project-details-board-screen/BoardColumnProps'
+import { BoardColumnProps } from '@interfaces/ui/blocs/views/project-details/project-details-board-screen/BoardColumnProps'
 import { useTasks } from '@hooks/contexts/api/TasksProvider'
 import { TaskObject } from '@interfaces/objects/api/task/TaskObject'
 import ColumnTask from '@ui/blocs/views/project-details/project-details-board-screen/ColumnTask'
@@ -12,41 +10,25 @@ import { useAlert } from '@hooks/contexts/AlertContext'
 import { useLoadedProject } from '@hooks/contexts/api/LoadedProjectContext'
 import { useTheme } from '@hooks/contexts/ThemeContext'
 
-const BoardColumn: FC<BoardColumnProps> = ({
-    column
-}): ReactNode => {
-    const {
-        tasks
-    } = useTasks()
-
-    const {
-        loadedProject
-    } = useLoadedProject()
-    const {
-        showAlert
-    } = useAlert()
-
-    const {
-        theme
-    } = useTheme()
+const BoardColumn: FC<BoardColumnProps> = ({ column }): ReactNode => {
+    const { tasks } = useTasks()
+    const { loadedProject } = useLoadedProject()
+    const { showAlert } = useAlert()
+    const { theme } = useTheme()
 
     const [isDragOver, setIsDragOver] = useState(false)
+    const [hoveredTaskId, setHoveredTaskId] = useState<string | null>(null)
+    const [hoveredPosition, setHoveredPosition] = useState<'top' | 'bottom' | null>(null)
 
-    /**
-     * Gestion du drop d'une tache en cours de drag sur une colonne
-     * @param taskId
-     */
     const handleDrop = async (taskId: string): Promise<void> => {
         const task = tasks.find(t => {
             return t.id === taskId
         })
-
         if (!loadedProject || column.id === task?.column?.id) return
 
-        await updateTaskAction(loadedProject.slug, taskId, { columnId: column.id })
-            .catch((error) => {
-                showAlert(error.message, 'error')
-            })
+        await updateTaskAction(loadedProject.slug, taskId, { columnId: column.id }).catch((error) => {
+            showAlert(error.message, 'error')
+        })
     }
 
     const columnTasks = tasks
@@ -74,6 +56,7 @@ const BoardColumn: FC<BoardColumnProps> = ({
                     {columnTasks.length.toString()}
                 </Text>
             </div>
+
             <div
                 className={'board-column-content'}
                 onDragOver={(e) => {
@@ -82,24 +65,63 @@ const BoardColumn: FC<BoardColumnProps> = ({
                 }}
                 onDragLeave={() => {
                     setIsDragOver(false)
+                    setHoveredTaskId(null)
+                    setHoveredPosition(null)
                 }}
                 onDrop={(e) => {
                     const taskId = e.dataTransfer.getData('text/plain')
                     void handleDrop(taskId)
                     setIsDragOver(false)
+                    setHoveredTaskId(null)
+                    setHoveredPosition(null)
                 }}
                 style={{
                     border: isDragOver ? `2px dashed ${theme.hoverSecondary}` : `2px solid ${theme.tertiary}`
                 }}
             >
-                {columnTasks.map(task => {
+                {columnTasks.map((task, index) => {
+                    const showLine =
+                        (hoveredTaskId === task.id && hoveredPosition === 'top') ||
+                        (hoveredTaskId === columnTasks[index - 1]?.id && hoveredPosition === 'bottom')
+
                     return (
-                        <ColumnTask
+                        <div
                             key={task.id}
-                            task={task}
-                        />
+                        >
+                            <div
+                                className={'board-column-insertion-line'}
+                                style={{
+                                    backgroundColor: showLine ? theme.primary : 'transparent'
+                                }}
+                            />
+                            <ColumnTask
+                                task={task}
+                                onHoverPosition={(position) => {
+                                    setHoveredTaskId(task.id)
+                                    setHoveredPosition(position)
+                                }}
+                            />
+                        </div>
                     )
                 })}
+
+                <div
+                    className={'board-column-insertion-line'}
+                    style={{
+                        backgroundColor:
+                            hoveredTaskId === columnTasks.at(-1)?.id && hoveredPosition === 'bottom'
+                                ? theme.primary
+                                : 'transparent'
+                    }}
+                    onDragOver={(e) => {
+                        e.preventDefault()
+                        const last = columnTasks.at(-1)
+                        if (last) {
+                            setHoveredTaskId(last.id)
+                            setHoveredPosition('bottom')
+                        }
+                    }}
+                />
             </div>
         </div>
     )

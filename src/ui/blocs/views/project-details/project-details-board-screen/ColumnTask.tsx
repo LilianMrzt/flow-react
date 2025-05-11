@@ -4,29 +4,30 @@ import { ColumnTaskProps } from '@interfaces/ui/blocs/views/project-details/proj
 import './column-task.css'
 import { createDragImageFromElement } from '@utils/DragUtils'
 
-const ColumnTask: FC<ColumnTaskProps> = ({
-    task
-}): ReactNode => {
+interface ColumnTaskExtendedProps extends ColumnTaskProps {
+    onHoverPosition: (position: 'top' | 'bottom') => void
+}
+
+const ColumnTask: FC<ColumnTaskExtendedProps> = ({ task, onHoverPosition }): ReactNode => {
     const ref = useRef<HTMLDivElement | null>(null)
 
-    return(
+    return (
         <div
             ref={ref}
             className={'column-task'}
             draggable
             onDragStart={(e) => {
                 e.dataTransfer.setData('text/plain', task.id)
-
-                if (ref.current) {
-                    createDragImageFromElement(e, ref.current)
-                }
+                if (ref.current) createDragImageFromElement(e, ref.current)
+            }}
+            onDragOver={(e) => {
+                e.preventDefault()
+                const rect = e.currentTarget.getBoundingClientRect()
+                const isTop = e.clientY <= rect.top + rect.height / 2
+                onHoverPosition(isTop ? 'top' : 'bottom')
             }}
         >
-            <Text
-                isSelectable={false}
-            >
-                {task.title}
-            </Text>
+            <Text isSelectable={false}>{task.title}</Text>
         </div>
     )
 }
