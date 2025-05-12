@@ -37,6 +37,7 @@ import { ReactComponent as EvolutionIcon } from '@resources/assets/EvolutionIcon
 import { ReactComponent as BugIcon } from '@resources/assets/BugIcon.svg'
 import { ReactComponent as TrashIcon } from '@resources/assets/TrashIcon.svg'
 import { ReactComponent as MoreIcon } from '@resources/assets/MoreIcon.svg'
+import { ReactComponent as DangerZoneIcon } from '@resources/assets/DangerZoneIcon.svg'
 
 // text-editor
 import { ReactComponent as UnderlineIcon } from '@resources/assets/text-editor/UnderlineIcon.svg'
@@ -87,5 +88,6 @@ export {
     UnderlineIcon,
     ItalicIcon,
     BoldIcon,
-    BaselineIcon
+    BaselineIcon,
+    DangerZoneIcon
 }

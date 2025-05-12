@@ -1,0 +1,12 @@
+.drawer-item-group {
+    width: 100%;
+}
+
+.drawer-sub-items-group {
+    display: flex;
+    flex-direction: column;
+    padding-left: 10px;
+    padding-top: 4px;
+    transition: padding-left 150ms ease-in-out;
+}
+

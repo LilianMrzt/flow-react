@@ -1,0 +1,19 @@
+.drawer-sub-item {
+    height: 30px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    gap: 12px;
+    border-radius: 4px;
+    width: 100%;
+    transition: background-color 150ms ease-in-out;
+}
+
+.drawer-sub-item-icon {
+    width: 40px;
+    min-width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

@@ -11,6 +11,8 @@ import { ProjectDetailsDrawerRoutes } from '@constants/routes/ProjectDetailsDraw
 import Separator from '@components/layout/Separator'
 import DrawerTitle from '@ui/blocs/drawer/DrawerTitle'
 import { ProjectsRoutes } from '@constants/routes/ProjectsRoutes'
+import DrawerItemGroup from '@ui/blocs/drawer/drawer-item-group/DrawerItemGroup'
+import { ProjectDetailsSettingsRoutes } from '@constants/routes/ProjectDetailsSettingsRoutes'
 
 const Drawer = (): ReactNode => {
 
@@ -110,6 +112,12 @@ const Drawer = (): ReactNode => {
                                 />
                             )
                         })}
+                        <DrawerItemGroup
+                            isProjectDetails={true}
+                            parentRoute={ProjectsRoutes.projectDetailsSettings}
+                            childrenRoutes={Object.values(ProjectDetailsSettingsRoutes)}
+                            isDrawerOpen={isDrawerOpen}
+                        />
                     </div>
                 </>
             )}

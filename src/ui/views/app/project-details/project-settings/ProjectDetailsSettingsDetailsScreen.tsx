@@ -3,7 +3,7 @@ import Screen from '@components/layout/Screen'
 import Text from '@components/text/Text'
 import { useLoadedProject } from '@hooks/contexts/api/LoadedProjectContext'
 
-const ProjectDetailsSettingsScreen = (): ReactNode => {
+const ProjectDetailsSettingsDetailsScreen = (): ReactNode => {
     const {
         loadedProject
     } = useLoadedProject()
@@ -12,8 +12,8 @@ const ProjectDetailsSettingsScreen = (): ReactNode => {
 
     return (
         <Screen
-            label={'Project Settings'}
-            description={'Settings'}
+            label={'ProjectDetailsSettingsDetailsScreen'}
+            description={'Details'}
         >
             <Text>
                 {loadedProject.name}
@@ -22,4 +22,4 @@ const ProjectDetailsSettingsScreen = (): ReactNode => {
     )
 }
 
-export default ProjectDetailsSettingsScreen
+export default ProjectDetailsSettingsDetailsScreen

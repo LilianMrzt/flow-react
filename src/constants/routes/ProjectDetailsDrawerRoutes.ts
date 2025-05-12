@@ -4,6 +4,5 @@ import { ProjectsRoutes } from '@constants/routes/ProjectsRoutes'
 export const ProjectDetailsDrawerRoutes: Record<string, RouteType> = {
     projectDetailsDashboard: ProjectsRoutes.projectDetailsDashboard,
     projectDetailsBoard: ProjectsRoutes.projectDetailsBoard,
-    projectDetailsBacklog: ProjectsRoutes.projectDetailsBacklog,
-    projectDetailsSettings: ProjectsRoutes.projectDetailsSettings
+    projectDetailsBacklog: ProjectsRoutes.projectDetailsBacklog
 }
