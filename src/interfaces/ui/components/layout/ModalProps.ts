@@ -8,4 +8,5 @@ export interface ModalProps {
     description?: string
     icon?: ReactElement
     iconColor?: CSSProperties['color']
+    titleColor?: CSSProperties['color']
 }

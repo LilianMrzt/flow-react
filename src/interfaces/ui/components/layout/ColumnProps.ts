@@ -8,4 +8,6 @@ export interface ColumnProps {
     gap?: CSSProperties['gap']
     width?: CSSProperties['width']
     height?: CSSProperties['height']
+    border?: CSSProperties['border']
+    padding?: CSSProperties['padding']
 }

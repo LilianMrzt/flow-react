@@ -11,4 +11,5 @@ export interface ButtonProps {
     borderColor?: CSSProperties['borderColor']
     width?: CSSProperties['width']
     padding?: CSSProperties['padding']
+    fontWeight?: CSSProperties['fontWeight']
 }

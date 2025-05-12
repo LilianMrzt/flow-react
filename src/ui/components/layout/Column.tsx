@@ -9,7 +9,9 @@ const Column: FC<ColumnProps> = ({
     justifyContent,
     alignItems,
     height,
-    width
+    width,
+    border,
+    padding
 }): ReactNode => {
     return (
         <div
@@ -19,7 +21,9 @@ const Column: FC<ColumnProps> = ({
                 justifyContent: justifyContent ?? 'center',
                 alignItems: alignItems ?? 'center',
                 height: height ?? '100%',
-                width: width ?? '100%'
+                width: width ?? '100%',
+                border: border ?? 'none',
+                padding: padding
             }}
         >
             {children}

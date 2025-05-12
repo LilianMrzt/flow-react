@@ -19,7 +19,8 @@ const Modal: FC<ModalProps> = ({
     label,
     description,
     icon,
-    iconColor
+    iconColor,
+    titleColor
 }): ReactNode => {
     const { theme } = useTheme()
 
@@ -56,7 +57,7 @@ const Modal: FC<ModalProps> = ({
                                     >
                                         {icon && (
                                             <Icon
-                                                size={20}
+                                                size={18}
                                                 color={iconColor ?? theme.textSecondary}
                                             >
                                                 {icon}
@@ -64,6 +65,7 @@ const Modal: FC<ModalProps> = ({
                                         )}
                                         <SubTitle
                                             fontSize={18}
+                                            color={titleColor ?? theme.text}
                                         >
                                             {label}
                                         </SubTitle>

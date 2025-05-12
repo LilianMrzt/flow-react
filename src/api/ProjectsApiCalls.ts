@@ -96,3 +96,26 @@ export const getRecentUserProjectsAction = async (): Promise<ProjectObject[]> =>
 
     return data.projects
 }
+
+/**
+ * Supprime un projet par son ID
+ * @param projectId
+ */
+export const deleteProjectAction = async (
+    projectId: string
+): Promise<void> => {
+    const token = localStorage.getItem(StorageConstants.token)
+
+    const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/projects/${projectId}`, {
+        method: 'DELETE',
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    })
+
+    const data = await response.json()
+
+    if (!response.ok) {
+        throw new Error(data.message)
+    }
+}

@@ -11,7 +11,7 @@ export const PROJECT_DETAILS_BREADCRUMBS = (
             path: ProjectsRoutes.projects.path
         },
         {
-            label: loadedProject.name,
+            label: loadedProject.name.charAt(0).toUpperCase() + loadedProject.name.slice(1),
             path: ProjectsRoutes.projectDetails.pathFn!({ slug: loadedProject.slug })
         }
     ]

@@ -15,7 +15,8 @@ const Button: FC<ButtonProps> = ({
     backgroundColor,
     hoverBackgroundColor,
     width,
-    padding
+    padding,
+    fontWeight
 }) => {
     const { theme } = useTheme()
 
@@ -54,7 +55,7 @@ const Button: FC<ButtonProps> = ({
             {icon && (
                 <Icon
                     color={isHovered && hoverColor ? hoverColor : componentColor}
-                    size={18}
+                    size={16}
                 >
                     {icon}
                 </Icon>
@@ -63,6 +64,7 @@ const Button: FC<ButtonProps> = ({
                 color={isHovered && hoverColor ? hoverColor : componentColor}
                 fontSize={14}
                 isSelectable={false}
+                fontWeight={fontWeight}
             >
                 {label}
             </Text>

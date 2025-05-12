@@ -8,6 +8,7 @@ const Card: FC<CardProps> = ({
     width,
     height,
     padding,
+    alignItems,
     gap,
     onClick,
     hoverShadow,
@@ -53,7 +54,8 @@ const Card: FC<CardProps> = ({
                 width: width ?? 400,
                 height: height ?? 'fit-content',
                 padding: padding ?? 24,
-                gap: gap ?? 16
+                gap: gap ?? 16,
+                alignItems: alignItems ?? 'center'
             }}
             onClick={handleClick}
             onMouseEnter={handleMouseEnter}
