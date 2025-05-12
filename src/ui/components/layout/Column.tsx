@@ -22,7 +22,7 @@ const Column: FC<ColumnProps> = ({
                 alignItems: alignItems ?? 'center',
                 height: height ?? '100%',
                 width: width ?? '100%',
-                border: border ?? 'none',
+                border: border,
                 padding: padding
             }}
         >
