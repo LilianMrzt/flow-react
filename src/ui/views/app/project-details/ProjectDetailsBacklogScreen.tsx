@@ -7,6 +7,8 @@ import NoTaskSection from '@ui/blocs/views/project-details/project-details-backl
 import { useTasks } from '@hooks/contexts/api/TasksProvider'
 import BacklogTable
     from '@ui/blocs/views/project-details/project-details-backlog-screen/backlog-table/BacklogTable'
+import { useLoadedProject } from '@hooks/contexts/api/LoadedProjectContext'
+import { PROJECT_DETAILS_BREADCRUMBS } from '@constants/breadcrumbs/ProjectDetailsBreadcrumbs'
 
 const ProjectDetailsBacklogScreen = (): ReactNode => {
     const [isTaskCreationModalOpen, setIsTaskCreationModalOpen] = useState(false)
@@ -14,6 +16,12 @@ const ProjectDetailsBacklogScreen = (): ReactNode => {
     const {
         tasks
     } = useTasks()
+
+    const {
+        loadedProject
+    } = useLoadedProject()
+
+    if (!loadedProject) return null
 
     return (
         <Screen
@@ -26,6 +34,7 @@ const ProjectDetailsBacklogScreen = (): ReactNode => {
                     setIsTaskCreationModalOpen(true)
                 }
             }}
+            breadCrumbsRoutes={PROJECT_DETAILS_BREADCRUMBS(loadedProject)}
         >
             {tasks.length > 0 ? (
                 <BacklogTable/>

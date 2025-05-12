@@ -2,6 +2,7 @@ import React, { ReactNode } from 'react'
 import Screen from '@components/layout/screen/Screen'
 import Text from '@components/text/Text'
 import { useLoadedProject } from '@hooks/contexts/api/LoadedProjectContext'
+import { PROJECT_DETAILS_SETTINGS_BREADCRUMBS } from '@constants/breadcrumbs/ProjectDetailsSettingsBreadcrumbs'
 
 const ProjectDetailsSettingsDangerZoneScreen = (): ReactNode => {
     const {
@@ -14,6 +15,7 @@ const ProjectDetailsSettingsDangerZoneScreen = (): ReactNode => {
         <Screen
             label={'ProjectDetailsSettingsDangerZoneScreen'}
             description={'Danger Zone'}
+            breadCrumbsRoutes={PROJECT_DETAILS_SETTINGS_BREADCRUMBS(loadedProject)}
         >
             <Text>
                 {loadedProject.name}

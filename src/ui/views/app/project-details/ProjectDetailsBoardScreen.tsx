@@ -6,7 +6,7 @@ import BoardColumnsSection from '@ui/blocs/views/project-details/project-details
 import { AddIcon } from '@resources/Icons'
 import Modal from '@components/layout/Modal'
 import TaskCreationModalContent from '@ui/blocs/modals/TaskCreationModalContent'
-import { ProjectsRoutes } from '@constants/routes/ProjectsRoutes'
+import { PROJECT_DETAILS_BREADCRUMBS } from '@constants/breadcrumbs/ProjectDetailsBreadcrumbs'
 
 const ProjectDetailsBoardScreen = (): ReactNode => {
     const {
@@ -29,20 +29,7 @@ const ProjectDetailsBoardScreen = (): ReactNode => {
                     setIsTaskCreationModalOpen(true)
                 }
             }}
-            breadCrumbsRoutes={[
-                {
-                    label: ProjectsRoutes.projects.label,
-                    path: ProjectsRoutes.projects.path
-                },
-                {
-                    label: loadedProject.name,
-                    path: ProjectsRoutes.projectDetails.pathFn!({ slug: loadedProject.slug })
-                },
-                {
-                    label: ProjectsRoutes.projectDetailsBoard.label,
-                    path: ProjectsRoutes.projectDetailsBoard.pathFn!({ slug: loadedProject.slug })
-                }
-            ]}
+            breadCrumbsRoutes={PROJECT_DETAILS_BREADCRUMBS(loadedProject)}
         >
             <BoardColumnsSection/>
             <Modal
