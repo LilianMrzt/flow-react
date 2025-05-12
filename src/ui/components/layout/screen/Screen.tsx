@@ -1,19 +1,21 @@
 import React, { FC, ReactNode } from 'react'
 import Column from '@components/layout/Column'
-import { ScreenProps } from '@interfaces/ui/components/layout/ScreenProps'
+import { ScreenProps } from '@interfaces/ui/components/layout/screen/ScreenProps'
 import './screen.css'
 import SubTitle from '@components/text/SubTitle'
 import Text from '@components/text/Text'
 import Row from '@components/layout/Row'
 import { useTheme } from '@hooks/contexts/ThemeContext'
 import Button from '@components/buttons/Button'
+import Breadcrumbs from '@components/layout/screen/Breadcrumbs'
 
 const Screen: FC<ScreenProps> = ({
     children,
     label,
     description,
     buttonContent,
-    className
+    className,
+    breadCrumbsRoutes
 }): ReactNode => {
     const {
         theme
@@ -32,6 +34,11 @@ const Screen: FC<ScreenProps> = ({
                 gap={0}
                 className={'screen-header'}
             >
+                {breadCrumbsRoutes && (
+                    <Breadcrumbs
+                        breadCrumbsRoutes={breadCrumbsRoutes}
+                    />
+                )}
                 <Row
                     justifyContent={'space-between'}
                     height={40}

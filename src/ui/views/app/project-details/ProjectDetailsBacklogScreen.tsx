@@ -1,5 +1,5 @@
 import React, { ReactNode, useState } from 'react'
-import Screen from '@components/layout/Screen'
+import Screen from '@components/layout/screen/Screen'
 import TaskCreationModalContent from '@ui/blocs/modals/TaskCreationModalContent'
 import Modal from '@components/layout/Modal'
 import { AddIcon } from '@resources/Icons'

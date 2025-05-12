@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react'
-import Screen from '@components/layout/Screen'
+import Screen from '@components/layout/screen/Screen'
 import Text from '@components/text/Text'
 import { useLoadedProject } from '@hooks/contexts/api/LoadedProjectContext'
 

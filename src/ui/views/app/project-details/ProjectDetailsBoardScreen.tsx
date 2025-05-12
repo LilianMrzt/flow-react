@@ -1,11 +1,12 @@
 import React, { ReactNode, useState } from 'react'
-import Screen from '@components/layout/Screen'
+import Screen from '@components/layout/screen/Screen'
 import { useLoadedProject } from '@hooks/contexts/api/LoadedProjectContext'
 import './project-details-screen.css'
 import BoardColumnsSection from '@ui/blocs/views/project-details/project-details-board-screen/BoardColumnsSection'
 import { AddIcon } from '@resources/Icons'
 import Modal from '@components/layout/Modal'
 import TaskCreationModalContent from '@ui/blocs/modals/TaskCreationModalContent'
+import { ProjectsRoutes } from '@constants/routes/ProjectsRoutes'
 
 const ProjectDetailsBoardScreen = (): ReactNode => {
     const {
@@ -28,6 +29,20 @@ const ProjectDetailsBoardScreen = (): ReactNode => {
                     setIsTaskCreationModalOpen(true)
                 }
             }}
+            breadCrumbsRoutes={[
+                {
+                    label: ProjectsRoutes.projects.label,
+                    path: ProjectsRoutes.projects.path
+                },
+                {
+                    label: loadedProject.name,
+                    path: ProjectsRoutes.projectDetails.pathFn!({ slug: loadedProject.slug })
+                },
+                {
+                    label: ProjectsRoutes.projectDetailsBoard.label,
+                    path: ProjectsRoutes.projectDetailsBoard.pathFn!({ slug: loadedProject.slug })
+                }
+            ]}
         >
             <BoardColumnsSection/>
             <Modal

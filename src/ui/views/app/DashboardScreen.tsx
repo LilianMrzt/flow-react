@@ -1,5 +1,5 @@
 import React, { ReactNode, useEffect } from 'react'
-import Screen from '@components/layout/Screen'
+import Screen from '@components/layout/screen/Screen'
 import { useProjects } from '@hooks/contexts/api/ProjectsContext'
 import NoActiveProjectsSection from '@ui/blocs/views/dashboard-screen/NoActiveProjectsSection'
 import SubTitle from '@components/text/SubTitle'
