@@ -156,6 +156,12 @@ const BacklogTask: FC<BacklogTaskProps> = ({
                 )}
                 <Text
                     maxLines={1}
+                    fontSize={14}
+                >
+                    {task.key}
+                </Text>
+                <Text
+                    maxLines={1}
                 >
                     {task.title}
                 </Text>

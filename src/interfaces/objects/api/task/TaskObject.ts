@@ -4,6 +4,7 @@ import { UserObject } from '@interfaces/objects/api/user/UserObject'
 
 export interface TaskObject {
     id: string
+    key: string
     title: string
     description: string
     type: string
