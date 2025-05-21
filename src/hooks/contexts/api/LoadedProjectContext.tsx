@@ -2,7 +2,7 @@ import React, { createContext, useContext, useState, type FC, useEffect } from '
 import { LoadedProjectContextProps } from '@interfaces/hooks/contexts/api/LoadedProjectContextProps'
 import { LoadedProjectProviderProps } from '@interfaces/hooks/contexts/api/LoadedProjectProviderProps'
 import { ProjectObject } from '@interfaces/objects/api/project/ProjectObject'
-import { getProjectBySlugAction } from '@api/ProjectsApiCalls'
+import { getProjectByKeyAction } from '@api/ProjectsApiCalls'
 import { useAlert } from '@hooks/contexts/AlertContext'
 import { useProjects } from '@hooks/contexts/api/ProjectsContext'
 import { useNavigate } from 'react-router-dom'
@@ -32,7 +32,7 @@ export const LoadedProjectProvider: FC<LoadedProjectProviderProps> = ({
         const fetchProject = async (): Promise<void> => {
             if (!activeProjectSlug) return
 
-            await getProjectBySlugAction(activeProjectSlug)
+            await getProjectByKeyAction(activeProjectSlug)
                 .then((res) => {
                     setLoadedProject(res)
                 })

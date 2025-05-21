@@ -43,7 +43,7 @@ const ProjectCard: FC<ProjectCardProps> = ({
         <Card
             className={'project-card'}
             onClick={() => {
-                navigate(ProjectsRoutes.projectDetails.pathFn!({ slug: project.slug }))
+                navigate(ProjectsRoutes.projectDetails.pathFn!({ slug: project.key }))
             }}
             width={'100%'}
             padding={0}

@@ -61,7 +61,7 @@ const TaskCreationModalContent: FC<TaskCreationModalContentProps> = ({
             return
         }
 
-        await createTaskAction(loadedProject?.slug, {
+        await createTaskAction(loadedProject?.key, {
             title: taskTitle,
             description: taskDescription,
             type: taskType,

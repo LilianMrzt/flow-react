@@ -6,7 +6,7 @@ import { StorageConstants } from '@constants/StorageConstants'
  * @param projectData
  */
 export const createProjectAction = async (
-    projectData: { name: string; description?: string }
+    projectData: { name: string; description?: string, key: string }
 ): Promise<ProjectObject> => {
     const token = localStorage.getItem(StorageConstants.token)
 
@@ -30,14 +30,14 @@ export const createProjectAction = async (
 
 /**
  * Récupère un projet par slug
- * @param slug
+ * @param key
  */
-export const getProjectBySlugAction = async (
-    slug: string
+export const getProjectByKeyAction = async (
+    key: string
 ): Promise<ProjectObject> => {
     const token = localStorage.getItem(StorageConstants.token)
 
-    const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/projects/${slug}`, {
+    const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/projects/${key}`, {
         headers: {
             'Authorization': `Bearer ${token}`
         }

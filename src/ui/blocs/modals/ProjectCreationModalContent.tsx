@@ -27,6 +27,7 @@ const ProjectCreationModalContent: FC<ProjectCreationModalContentProps> = ({
 
     const [projectName, setProjectName] = useState('')
     const [projectDescription, setProjectDescription] = useState('')
+    const [projectKey, setProjectKey] = useState('')
 
     /**
      * Gestion de la fermeture du Modal
@@ -39,14 +40,15 @@ const ProjectCreationModalContent: FC<ProjectCreationModalContentProps> = ({
      * Gestion du click sur le bouton de submit
      */
     const handleSubmit = async (): Promise<void> => {
-        if (!projectName || !projectDescription) {
+        if (!projectName || !projectDescription || !projectKey) {
             showAlert('All fields need to be filled to create the project', 'warning')
             return
         }
 
         await createProjectAction({
             name: projectName,
-            description: projectDescription
+            description: projectDescription,
+            key: projectKey
         }).then((res) => {
             showAlert('Project successfully created.' , 'success')
             createProjectStateUpdate(res)
@@ -66,6 +68,12 @@ const ProjectCreationModalContent: FC<ProjectCreationModalContentProps> = ({
                 inputValue={projectName}
                 setInputValue={setProjectName}
                 placeholder={'Project name'}
+            />
+            <TextField
+                label={'Key'}
+                inputValue={projectKey}
+                setInputValue={setProjectKey}
+                placeholder={'Project Key'}
             />
             <TextArea
                 inputValue={projectDescription}

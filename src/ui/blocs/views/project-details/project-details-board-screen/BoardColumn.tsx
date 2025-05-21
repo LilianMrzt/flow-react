@@ -28,7 +28,7 @@ const BoardColumn: FC<BoardColumnProps> = ({
         getColumnTasks,
         shouldShowLine
     } = useBoardDragAndDrop({
-        projectSlug: loadedProject?.slug ?? '',
+        projectSlug: loadedProject?.key ?? '',
         columnId: column.id,
         tasks,
         hoveredTaskId,

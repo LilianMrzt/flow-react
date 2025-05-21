@@ -10,7 +10,7 @@ export const PROJECT_DETAILS_SETTINGS_BREADCRUMBS = (
         ...PROJECT_DETAILS_BREADCRUMBS(loadedProject),
         {
             label: ProjectsRoutes.projectDetailsSettings.label,
-            path: ProjectsRoutes.projectDetailsSettings.pathFn!({ slug: loadedProject.slug })
+            path: ProjectsRoutes.projectDetailsSettings.pathFn!({ slug: loadedProject.key })
         }
     ]
 }

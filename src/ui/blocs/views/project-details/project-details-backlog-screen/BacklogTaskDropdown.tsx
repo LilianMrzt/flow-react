@@ -53,7 +53,7 @@ const BacklogTaskDropdown: FC<BacklogTaskDropdownProps> = ({
     ): void => {
         if (task.priority === newPriority) return
 
-        updateTaskAction(loadedProject.slug, task.id, { priority: newPriority })
+        updateTaskAction(loadedProject.key, task.id, { priority: newPriority })
             .then(() => {
                 setIsHovered(false)
             })
@@ -119,7 +119,7 @@ const BacklogTaskDropdown: FC<BacklogTaskDropdownProps> = ({
                 return sortedBacklogTasks[i].id !== u.id || sortedBacklogTasks[i].orderInBacklog !== i
             })
 
-        await updateBacklogTasksOrdersAction(loadedProject.slug, updates)
+        await updateBacklogTasksOrdersAction(loadedProject.key, updates)
             .catch((err) => {
                 showAlert(err.message, 'error')
             })

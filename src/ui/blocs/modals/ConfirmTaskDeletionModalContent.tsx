@@ -38,7 +38,7 @@ const ConfirmTaskDeletionModalContent: FC<ConfirmTaskDeletionModalContentProps> 
     const handleDeleteTask = async (): Promise<void> => {
         if(!loadedProject) return
 
-        await deleteTaskAction(loadedProject.slug, task.id)
+        await deleteTaskAction(loadedProject.key, task.id)
             .then(() => {
                 showAlert('Task successfully deleted.' , 'success')
             }).catch((error) => {

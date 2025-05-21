@@ -6,7 +6,7 @@ export interface ProjectObject {
     id: string
     name: string
     description?: string
-    slug: string
+    key: string
     columns: BoardColumnObject[]
     tasks: TaskObject[]
     createdAt: string

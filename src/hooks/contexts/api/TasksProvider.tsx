@@ -31,7 +31,7 @@ export const TasksProvider: FC<TasksProviderProps> = ({
         const fetchTasks = async (): Promise<void> => {
             if (!loadedProject) return
 
-            await getTasksByProjectSlugAction(loadedProject.slug)
+            await getTasksByProjectSlugAction(loadedProject.key)
                 .then((data) => {
                     setTasks(data)
                 })
@@ -107,7 +107,7 @@ export const TasksProvider: FC<TasksProviderProps> = ({
         socket.on(WebSocketEvents.BOARD_TASKS_REORDERED, handleBoardTasksReordered)
 
         return (): void => {
-            socket.emit(WebSocketEvents.LEAVE_PROJECT_ROOM, loadedProject.slug)
+            socket.emit(WebSocketEvents.LEAVE_PROJECT_ROOM, loadedProject.key)
             socket.off(WebSocketEvents.TASK_CREATED, handleTaskCreated)
             socket.off(WebSocketEvents.TASK_DELETED, handleTaskDeleted)
             socket.off(WebSocketEvents.TASK_UPDATED, handleTaskUpdated)

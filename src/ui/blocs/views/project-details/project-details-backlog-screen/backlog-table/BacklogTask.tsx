@@ -59,7 +59,7 @@ const BacklogTask: FC<BacklogTaskProps> = ({
     } = useBacklogDragAndDrop({
         task,
         sortedBacklogTasks,
-        projectSlug: loadedProject?.slug ?? '',
+        projectSlug: loadedProject?.key ?? '',
         setDraggedTaskId,
         setHoveredLineId,
         setHoveredLinePosition,
@@ -95,7 +95,7 @@ const BacklogTask: FC<BacklogTaskProps> = ({
             }
         })
 
-        updateColumnTasksOrdersAction(loadedProject.slug, updates)
+        updateColumnTasksOrdersAction(loadedProject.key, updates)
             .then(() => {
                 showAlert('Task successfully moved to column.', 'success')
                 setIsHovered(false)
