@@ -10,11 +10,16 @@ export const COLUMN_MODIFICATION_BACKLOG_SELECT_OPTIONS = (
             value: 'none',
             label: 'None'
         },
-        ...(loadedProject?.columns ?? []).map((col: BoardColumnObject) => {
-            return {
-                value: col.id,
-                label: col.name
-            }
-        })
+        ...(loadedProject?.columns ?? [])
+            .slice()
+            .sort((a, b) => {
+                return a.order - b.order
+            })
+            .map((col: BoardColumnObject) => {
+                return {
+                    value: col.id,
+                    label: col.name
+                }
+            })
     ]
 }

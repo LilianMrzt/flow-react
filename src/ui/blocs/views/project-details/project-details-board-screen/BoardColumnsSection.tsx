@@ -14,16 +14,21 @@ const BoardColumnsSection = (): ReactNode => {
         <div
             className={'board-column-section'}
         >
-            {loadedProject?.columns.map((column) => {
-                return (
-                    <BoardColumn
-                        key={column.id}
-                        column={column}
-                        draggedTaskId={draggedTaskId}
-                        setDraggedTaskId={setDraggedTaskId}
-                    />
-                )
-            })}
+            {loadedProject?.columns
+                .slice()
+                .sort((a, b) => {
+                    return a.order - b.order
+                })
+                .map((column) => {
+                    return (
+                        <BoardColumn
+                            key={column.id}
+                            column={column}
+                            draggedTaskId={draggedTaskId}
+                            setDraggedTaskId={setDraggedTaskId}
+                        />
+                    )
+                })}
         </div>
     )
 }
