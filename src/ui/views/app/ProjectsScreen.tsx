@@ -1,7 +1,7 @@
 import React, { ReactNode, useEffect, useState } from 'react'
 import Screen from '@components/layout/screen/Screen'
 import { AddIcon } from '@resources/Icons'
-import Modal from '@components/layout/Modal'
+import Modal from '@components/layout/modals/Modal'
 import ProjectCreationModalContent from '@ui/blocs/modals/ProjectCreationModalContent'
 import { getUserProjectsPaginatedAction } from '@api/ProjectsApiCalls'
 import { useAlert } from '@hooks/contexts/AlertContext'

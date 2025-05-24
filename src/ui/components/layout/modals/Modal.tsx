@@ -2,7 +2,7 @@ import React, { type FC, Fragment, type ReactNode, useEffect, useState } from 'r
 import './modal.css'
 import { createPortal } from 'react-dom'
 import { CloseIcon } from '@resources/Icons'
-import { ModalProps } from '@interfaces/ui/components/layout/ModalProps'
+import { ModalProps } from '@interfaces/ui/components/layout/modals/ModalProps'
 import { useTheme } from '@hooks/contexts/ThemeContext'
 import Column from '@components/layout/Column'
 import Row from '@components/layout/Row'

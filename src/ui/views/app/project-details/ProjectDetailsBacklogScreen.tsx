@@ -1,7 +1,7 @@
 import React, { ReactNode, useState } from 'react'
 import Screen from '@components/layout/screen/Screen'
 import TaskCreationModalContent from '@ui/blocs/modals/TaskCreationModalContent'
-import Modal from '@components/layout/Modal'
+import Modal from '@components/layout/modals/Modal'
 import { AddIcon } from '@resources/Icons'
 import NoTaskSection from '@ui/blocs/views/project-details/project-details-backlog-screen/NoTaskSection'
 import { useTasks } from '@hooks/contexts/api/TasksProvider'

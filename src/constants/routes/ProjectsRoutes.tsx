@@ -30,6 +30,13 @@ export const ProjectsRoutes: Record<string, RouteType> = {
         },
         icon: <KanbanIcon/>
     },
+    projectTaskModal: {
+        path: '/projects/:key/board?task=:taskId',
+        label: 'Task modal',
+        pathFn: ({ key, taskId }) => {
+            return `/projects/${key}/board?selectedTask=${taskId}`
+        }
+    },
     projectDetailsSettings: {
         path: '/projects/:key/settings',
         label: 'Settings',

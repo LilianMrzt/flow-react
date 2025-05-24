@@ -4,9 +4,11 @@ import { useLoadedProject } from '@hooks/contexts/api/LoadedProjectContext'
 import './project-details-screen.css'
 import BoardColumnsSection from '@ui/blocs/views/project-details/project-details-board-screen/BoardColumnsSection'
 import { AddIcon } from '@resources/Icons'
-import Modal from '@components/layout/Modal'
+import Modal from '@components/layout/modals/Modal'
 import TaskCreationModalContent from '@ui/blocs/modals/TaskCreationModalContent'
 import { PROJECT_DETAILS_BREADCRUMBS } from '@constants/breadcrumbs/ProjectDetailsBreadcrumbs'
+import { useSearchParams } from 'react-router-dom'
+import TaskModal from '@components/layout/modals/TaskModal'
 
 const ProjectDetailsBoardScreen = (): ReactNode => {
     const {
@@ -14,6 +16,15 @@ const ProjectDetailsBoardScreen = (): ReactNode => {
     } = useLoadedProject()
 
     const [isTaskCreationModalOpen, setIsTaskCreationModalOpen] = useState(false)
+
+    const [searchParams, setSearchParams] = useSearchParams()
+
+    const selectedTaskId = searchParams.get('selectedTask')
+
+    const closeTaskModal = (): void => {
+        searchParams.delete('selectedTask')
+        setSearchParams(searchParams, { replace: true })
+    }
 
     if (!loadedProject) return null
 
@@ -44,6 +55,10 @@ const ProjectDetailsBoardScreen = (): ReactNode => {
                     setIsOpen={setIsTaskCreationModalOpen}
                 />
             </Modal>
+            <TaskModal
+                isOpen={!!selectedTaskId}
+                onClose={closeTaskModal}
+            />
         </Screen>
     )
 }

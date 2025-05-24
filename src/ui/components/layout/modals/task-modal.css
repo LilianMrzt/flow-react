@@ -1,0 +1,38 @@
+.task-modal-background {
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    z-index: 999999;
+    transition: opacity 150ms ease-in-out;
+    width: 100vw;
+    height: 100vh;
+}
+
+.task-modal-background.fade-in {
+    opacity: 1;
+}
+
+.task-modal-background.fade-out {
+    opacity: 0;
+}
+
+.task-modal-content {
+    max-width: 1512px;
+    transform: translate(-50%, 0);
+    left: 50%;
+    top: 128px;
+    border-radius: 8px;
+    position: absolute;
+    transform-origin: center center;
+    transition: top 150ms ease-in-out, opacity 150ms ease-in-out;
+    background-color: var(--surface);
+    padding: 16px;
+}
+
+.task-modal-content.show {
+    top: 64px;
+    opacity: 1;
+}

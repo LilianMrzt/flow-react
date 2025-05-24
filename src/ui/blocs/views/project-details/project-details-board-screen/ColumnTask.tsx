@@ -3,6 +3,9 @@ import Text from '@components/text/Text'
 import { ColumnTaskProps } from '@interfaces/ui/blocs/views/project-details/project-details-board-screen/ColumnTaskProps'
 import './column-task.css'
 import { createDragImageFromElement } from '@utils/DragUtils'
+import { useNavigate } from 'react-router-dom'
+import { useLoadedProject } from '@hooks/contexts/api/LoadedProjectContext'
+import { ProjectsRoutes } from '@constants/routes/ProjectsRoutes'
 
 const ColumnTask: FC<ColumnTaskProps> = ({
     task,
@@ -12,11 +15,25 @@ const ColumnTask: FC<ColumnTaskProps> = ({
 }): ReactNode => {
     const ref = useRef<HTMLDivElement | null>(null)
 
+    const {
+        loadedProject
+    } = useLoadedProject()
+
+    const navigate = useNavigate()
+
+    if (!loadedProject) return
+
     return (
         <div
             ref={ref}
             className={'column-task '}
             draggable
+            onClick={() => {
+                navigate(ProjectsRoutes.projectTaskModal.pathFn!({
+                    key: loadedProject?.key,
+                    taskId: task.key
+                }))
+            }}
             onDragStart={(e) => {
                 e.dataTransfer.setData('text/plain', task.id)
                 setDraggedTaskId(task.id)
