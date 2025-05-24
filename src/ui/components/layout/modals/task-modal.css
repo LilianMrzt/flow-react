@@ -20,16 +20,22 @@
 }
 
 .task-modal-content {
+    width: calc(100% - 128px);
+    top: 128px;
     max-width: 1512px;
     transform: translate(-50%, 0);
     left: 50%;
-    top: 128px;
     border-radius: 8px;
     position: absolute;
     transform-origin: center center;
     transition: top 150ms ease-in-out, opacity 150ms ease-in-out;
     background-color: var(--surface);
     padding: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 16px;
+    height: fit-content;
 }
 
 .task-modal-content.show {

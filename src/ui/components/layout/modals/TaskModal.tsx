@@ -3,7 +3,6 @@ import './task-modal.css'
 import { createPortal } from 'react-dom'
 import { CloseIcon } from '@resources/Icons'
 import { useTheme } from '@hooks/contexts/ThemeContext'
-import Column from '@components/layout/Column'
 import { handleFadeEffect } from '@utils/AnimationUtils'
 import IconButton from '@components/buttons/IconButton'
 import { TaskModalProps } from '@interfaces/ui/components/layout/modals/TaskModalProps'
@@ -29,12 +28,8 @@ const TaskModal: FC<TaskModalProps> = ({
                     <div
                         className={`task-modal-background ${isFadingIn ? 'fade-in' : 'fade-out'}`}
                     >
-                        <Column
+                        <div
                             className={`task-modal-content ${isFadingIn && 'show'}`}
-                            height={'fit-content'}
-                            width={'calc(100% - 128px)'}
-                            alignItems={'start'}
-                            gap={16}
                         >
                             <Row
                                 justifyContent={'end'}
@@ -48,7 +43,7 @@ const TaskModal: FC<TaskModalProps> = ({
                                     <CloseIcon/>
                                 </IconButton>
                             </Row>
-                        </Column>
+                        </div>
                     </div>
                 )
                 : null}
