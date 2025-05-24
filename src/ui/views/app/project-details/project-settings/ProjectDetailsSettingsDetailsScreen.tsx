@@ -97,12 +97,14 @@ const ProjectDetailsSettingsDetailsScreen = (): ReactNode => {
                     setInputValue={setNewProjectName}
                     label={'Project name'}
                     placeholder={loadedProject.name}
+                    mandatory
                 />
                 <TextField
                     inputValue={newProjectKey}
                     setInputValue={setNewProjectKey}
                     label={'Project key'}
                     placeholder={loadedProject.key}
+                    mandatory
                 />
                 <TextArea
                     inputValue={newProjectDescription}

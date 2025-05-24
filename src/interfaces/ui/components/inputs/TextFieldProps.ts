@@ -5,6 +5,7 @@ export interface TextFieldProps {
     setInputValue: Dispatch<SetStateAction<string>>
     label: string
     placeholder: string
+    mandatory?: boolean
     type?: HTMLInputTypeAttribute
     icon?: ReactElement
     name?: string

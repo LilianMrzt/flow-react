@@ -4,12 +4,14 @@ import Text from '@components/text/Text'
 import { TextFieldProps } from '@interfaces/ui/components/inputs/TextFieldProps'
 import { useTheme } from '@hooks/contexts/ThemeContext'
 import Icon from '@components/resources/Icon'
+import Row from '@components/layout/Row'
 
 const TextField: FC<TextFieldProps> = ({
     inputValue,
     setInputValue,
     label,
     placeholder,
+    mandatory,
     type,
     icon,
     name
@@ -38,9 +40,21 @@ const TextField: FC<TextFieldProps> = ({
         <div
             className={'text-field-wrapper'}
         >
-            <Text>
-                {label}
-            </Text>
+            <Row
+                width={'fit-content'}
+                gap={4}
+            >
+                <Text>
+                    {label}
+                </Text>
+                {mandatory && (
+                    <Text
+                        color={theme.error}
+                    >
+                        *
+                    </Text>
+                )}
+            </Row>
             <div
                 className={'text-field-container'}
             >
