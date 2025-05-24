@@ -21,7 +21,7 @@ const Drawer = (): ReactNode => {
     } = useTheme()
 
     const {
-        activeProjectSlug
+        activeProjectKey
     } = useProjects()
 
     const [isDrawerOpen, setIsDrawerOpen] = useState(false)
@@ -92,7 +92,7 @@ const Drawer = (): ReactNode => {
                     )
                 })}
             </div>
-            {activeProjectSlug && isOnProjectPage && (
+            {activeProjectKey && isOnProjectPage && (
                 <>
                     <Separator/>
                     <DrawerTitle

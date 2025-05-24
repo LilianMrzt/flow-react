@@ -14,21 +14,34 @@ const BoardColumn: FC<BoardColumnProps> = ({
     draggedTaskId,
     setDraggedTaskId
 }): ReactNode => {
-    const { tasks } = useTasks()
-    const { loadedProject } = useLoadedProject()
-    const { showAlert } = useAlert()
-    const { theme } = useTheme()
+    const {
+        tasks
+    } = useTasks()
+
+    const {
+        loadedProject
+    } = useLoadedProject()
+
+    const {
+        showAlert
+    } = useAlert()
+
+    const {
+        theme
+    } = useTheme()
 
     const [isDragOver, setIsDragOver] = useState(false)
     const [hoveredTaskId, setHoveredTaskId] = useState<string | null>(null)
     const [hoveredPosition, setHoveredPosition] = useState<'top' | 'bottom' | null>(null)
+
+    if (!loadedProject) return null
 
     const {
         handleDrop,
         getColumnTasks,
         shouldShowLine
     } = useBoardDragAndDrop({
-        projectSlug: loadedProject?.key ?? '',
+        projectKey: loadedProject.key,
         columnId: column.id,
         tasks,
         hoveredTaskId,

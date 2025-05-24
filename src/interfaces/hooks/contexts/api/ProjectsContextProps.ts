@@ -11,6 +11,6 @@ export interface ProjectsContextProps {
     setHasFetchedOnceDashboardScreen: Dispatch<SetStateAction<boolean>>
     hasFetchedOnceProjectsScreen: boolean
     setHasFetchedOnceProjectsScreen: Dispatch<SetStateAction<boolean>>
-    activeProjectSlug: string | null
-    setActiveProjectSlug: Dispatch<SetStateAction<string | null>>
+    activeProjectKey: string | null
+    setActiveProjectKey: Dispatch<SetStateAction<string | null>>
 }

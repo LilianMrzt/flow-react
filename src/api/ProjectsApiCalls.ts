@@ -119,3 +119,32 @@ export const deleteProjectAction = async (
         throw new Error(data.message)
     }
 }
+
+/**
+ * Met à jour un projet existant
+ * @param projectId
+ * @param updateData
+ */
+export const updateProjectAction = async (
+    projectId: string,
+    updateData: { name?: string, description?: string, key?: string }
+): Promise<ProjectObject> => {
+    const token = localStorage.getItem(StorageConstants.token)
+
+    const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/projects/${projectId}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify(updateData)
+    })
+
+    const data = await response.json()
+
+    if (!response.ok) {
+        throw new Error(data.message)
+    }
+
+    return data.project
+}

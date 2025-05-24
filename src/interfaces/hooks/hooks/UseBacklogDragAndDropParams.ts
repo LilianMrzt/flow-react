@@ -4,7 +4,7 @@ import { RefObject } from 'react'
 export interface UseBacklogDragAndDropParams {
     task: TaskObject
     sortedBacklogTasks: TaskObject[]
-    projectSlug: string
+    projectKey: string
     setDraggedTaskId: (id: string | null) => void
     setHoveredLineId: (id: string | null) => void
     setHoveredLinePosition: (pos: 'top' | 'bottom' | null) => void

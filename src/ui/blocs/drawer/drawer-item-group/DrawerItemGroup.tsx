@@ -24,19 +24,19 @@ const DrawerItemGroup: FC<DrawerItemGroupProps> = ({
     } = useTheme()
 
     const {
-        activeProjectSlug
+        activeProjectKey
     } = useProjects()
 
     const [isHovered, setIsHovered] = useState(false)
     const [isExpanded, setIsExpanded] = useState(() => {
         return childrenRoutes.some(route => {
-            const path = isProjectDetails && activeProjectSlug ? route.pathFn!({ slug: activeProjectSlug }) : route.path
+            const path = isProjectDetails && activeProjectKey ? route.pathFn!({ key: activeProjectKey }) : route.path
             return location.pathname === path
         })
     })
 
-    const resolvedParentPath = isProjectDetails && activeProjectSlug
-        ? parentRoute.pathFn!({ slug: activeProjectSlug })
+    const resolvedParentPath = isProjectDetails && activeProjectKey
+        ? parentRoute.pathFn!({ key: activeProjectKey })
         : parentRoute.path
 
     const isSelected = location.pathname.startsWith(resolvedParentPath)
@@ -70,8 +70,8 @@ const DrawerItemGroup: FC<DrawerItemGroupProps> = ({
                 onClick={() => {
                     setIsExpanded(true)
                     navigate(
-                        isProjectDetails && activeProjectSlug
-                            ? childrenRoutes[0].pathFn!({ slug: activeProjectSlug })
+                        isProjectDetails && activeProjectKey
+                            ? childrenRoutes[0].pathFn!({ key: activeProjectKey })
                             : childrenRoutes[0].path
                     )
 

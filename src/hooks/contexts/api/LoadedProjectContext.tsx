@@ -14,7 +14,7 @@ export const LoadedProjectProvider: FC<LoadedProjectProviderProps> = ({
     children
 }) => {
     const {
-        activeProjectSlug
+        activeProjectKey
     } = useProjects()
 
     const {
@@ -26,29 +26,30 @@ export const LoadedProjectProvider: FC<LoadedProjectProviderProps> = ({
     const [loadedProject, setLoadedProject] = useState<ProjectObject | null>(null)
 
     /**
-     * Récupération du projet actuel via son slug
+     * Récupération du projet actuel via sa key
      */
+    const fetchProject = async (): Promise<void> => {
+        if (!activeProjectKey) return
+
+        await getProjectByKeyAction(activeProjectKey)
+            .then((res) => {
+                setLoadedProject(res)
+            })
+            .catch((error) => {
+                showAlert(error.message , 'error')
+                navigate(ProjectsRoutes.projectNotFound.path)
+            })
+    }
+
     useEffect(() => {
-        const fetchProject = async (): Promise<void> => {
-            if (!activeProjectSlug) return
-
-            await getProjectByKeyAction(activeProjectSlug)
-                .then((res) => {
-                    setLoadedProject(res)
-                })
-                .catch((error) => {
-                    showAlert(error.message , 'error')
-                    navigate(ProjectsRoutes.projectNotFound.path)
-                })
-        }
-
         void fetchProject()
-    }, [activeProjectSlug])
+    }, [activeProjectKey])
 
     return (
         <LoadedProjectContext.Provider
             value={{
-                loadedProject
+                loadedProject,
+                fetchProject
             }}
         >
             {children}

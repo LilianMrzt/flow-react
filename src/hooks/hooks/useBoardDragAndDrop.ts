@@ -4,7 +4,7 @@ import { UseBoardDragAndDropParams } from '@interfaces/hooks/hooks/UseBoardDragA
 import { UseBoardDragAndDropResult } from '@interfaces/hooks/hooks/UseBoardDragAndDropResult'
 
 export const useBoardDragAndDrop = ({
-    projectSlug,
+    projectKey,
     columnId,
     tasks,
     hoveredTaskId,
@@ -38,7 +38,7 @@ export const useBoardDragAndDrop = ({
         const draggedTask = tasks.find(t => {
             return t.id === taskId
         })
-        if (!draggedTask || !projectSlug) return
+        if (!draggedTask || !projectKey) return
 
         const columnTasks = getColumnTasks().filter(t => {
             return t.id !== taskId
@@ -66,7 +66,7 @@ export const useBoardDragAndDrop = ({
             }
         })
 
-        updateColumnTasksOrdersAction(projectSlug, updates).catch(err => {
+        updateColumnTasksOrdersAction(projectKey, updates).catch(err => {
             showAlert(err.message, 'error')
         })
 
@@ -74,7 +74,7 @@ export const useBoardDragAndDrop = ({
         setHoveredPosition(null)
         setDraggedTaskId(null)
         setIsDragOver(false)
-    }, [columnId, getColumnTasks, hoveredTaskId, hoveredPosition, projectSlug, setHoveredTaskId, setHoveredPosition, setDraggedTaskId, showAlert, tasks])
+    }, [columnId, getColumnTasks, hoveredTaskId, hoveredPosition, projectKey, setHoveredTaskId, setHoveredPosition, setDraggedTaskId, showAlert, tasks])
 
     /**
      * Détermine si une ligne d'insertion doit être affichée avant ou après une tâche.

@@ -20,12 +20,12 @@ const DrawerSubItem: FC<DrawerSubItemProps> = ({
     } = useTheme()
 
     const {
-        activeProjectSlug
+        activeProjectKey
     } = useProjects()
 
     const [isHovered, setIsHovered] = useState(false)
 
-    const path = isProjectDetails && activeProjectSlug ? route.pathFn!({ slug: activeProjectSlug }) : route.path
+    const path = isProjectDetails && activeProjectKey ? route.pathFn!({ key: activeProjectKey }) : route.path
 
     const isSelected = location.pathname === path
     const textColor = isSelected ? theme.primary : theme.text

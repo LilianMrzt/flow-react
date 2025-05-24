@@ -10,7 +10,7 @@ export const ProjectsProvider: FC<ProjectsProviderProps> = ({
 }) => {
     const [projects, setProjects] = useState<ProjectObject[]>([])
     const [recentProjects, setRecentProjects] = useState<ProjectObject[]>([])
-    const [activeProjectSlug, setActiveProjectSlug] = useState<string | null>(null)
+    const [activeProjectKey, setActiveProjectKey] = useState<string | null>(null)
 
     const [hasFetchedOnceDashboardScreen, setHasFetchedOnceDashboardScreen] = useState(false)
     const [hasFetchedOnceProjectsScreen, setHasFetchedOnceProjectsScreen] = useState(false)
@@ -47,14 +47,14 @@ export const ProjectsProvider: FC<ProjectsProviderProps> = ({
     }
 
     /**
-     * Récupération du slug des projets en fonction de la localisation
+     * Récupération de la key des projets en fonction de la localisation
      */
     useEffect(() => {
         const match = location.pathname.match(/^\/projects\/([^/]+)/)
         if (match) {
-            setActiveProjectSlug(match[1])
+            setActiveProjectKey(match[1])
         } else {
-            setActiveProjectSlug(null)
+            setActiveProjectKey(null)
         }
     }, [location.pathname])
 
@@ -70,8 +70,8 @@ export const ProjectsProvider: FC<ProjectsProviderProps> = ({
                 setHasFetchedOnceDashboardScreen,
                 hasFetchedOnceProjectsScreen,
                 setHasFetchedOnceProjectsScreen,
-                activeProjectSlug,
-                setActiveProjectSlug
+                activeProjectKey,
+                setActiveProjectKey
             }}
         >
             {children}

@@ -1,9 +1,8 @@
 import React, { FC, ReactNode } from 'react'
-import Text from '@components/text/Text'
 import { useNavigate } from 'react-router-dom'
 import { useTheme } from '@hooks/contexts/ThemeContext'
 import Icon from '@components/resources/Icon'
-import { ArrowRightIcon } from '@resources/Icons'
+import { ArrowRightIcon, ChevronRightThinIcon } from '@resources/Icons'
 import Row from '@components/layout/Row'
 import Button from '@components/buttons/Button'
 import { BreadCrumbsProps } from '@interfaces/ui/components/layout/screen/BreadCrumbsProps'
@@ -49,11 +48,11 @@ const Breadcrumbs: FC<BreadCrumbsProps> = ({
                             padding={'6px 12px'}
                         />
                         {index < breadCrumbsRoutes.length - 1 && (
-                            <Text
-                                isSelectable={false}
+                            <Icon
+                                size={20}
                             >
-                                /
-                            </Text>
+                                <ChevronRightThinIcon/>
+                            </Icon>
                         )}
                     </Row>
                 )

@@ -16,41 +16,41 @@ export const ProjectsRoutes: Record<string, RouteType> = {
         icon: <ProjectsIcon/>
     },
     projectDetails: {
-        path: '/projects/:slug',
+        path: '/projects/:key',
         label: 'Project',
-        pathFn: ({ slug }) => {
-            return `/projects/${slug}`
+        pathFn: ({ key }) => {
+            return `/projects/${key}`
         }
     },
     projectDetailsBoard: {
-        path: '/projects/:slug/board',
+        path: '/projects/:key/board',
         label: 'Board',
-        pathFn: ({ slug }) => {
-            return `/projects/${slug}/board`
+        pathFn: ({ key }) => {
+            return `/projects/${key}/board`
         },
         icon: <KanbanIcon/>
     },
     projectDetailsSettings: {
-        path: '/projects/:slug/settings',
+        path: '/projects/:key/settings',
         label: 'Settings',
-        pathFn: ({ slug }) => {
-            return `/projects/${slug}/settings`
+        pathFn: ({ key }) => {
+            return `/projects/${key}/settings`
         },
         icon: <ProjectSettingsIcon/>
     },
     projectDetailsDashboard: {
-        path: '/projects/:slug/dashboard',
+        path: '/projects/:key/dashboard',
         label: 'Dashboard',
-        pathFn: ({ slug }) => {
-            return `/projects/${slug}/dashboard`
+        pathFn: ({ key }) => {
+            return `/projects/${key}/dashboard`
         },
         icon: <ProjectDashboardIcon/>
     },
     projectDetailsBacklog: {
-        path: '/projects/:slug/backlog',
+        path: '/projects/:key/backlog',
         label: 'Backlog',
-        pathFn: ({ slug }) => {
-            return `/projects/${slug}/backlog`
+        pathFn: ({ key }) => {
+            return `/projects/${key}/backlog`
         },
         icon: <BacklogIcon/>
     },
@@ -59,42 +59,42 @@ export const ProjectsRoutes: Record<string, RouteType> = {
         label: 'Error 404'
     },
     projectDetailsSettingsDetails: {
-        path: '/projects/:slug/settings/details',
+        path: '/projects/:key/settings/details',
         label: 'Details',
-        pathFn: ({ slug }) => {
-            return `/projects/${slug}/settings/details`
+        pathFn: ({ key }) => {
+            return `/projects/${key}/settings/details`
         },
         icon: <FileTextIcon/>
     },
     projectDetailsSettingsAccess: {
-        path: '/projects/:slug/settings/access',
+        path: '/projects/:key/settings/access',
         label: 'Access',
-        pathFn: ({ slug }) => {
-            return `/projects/${slug}/settings/access`
+        pathFn: ({ key }) => {
+            return `/projects/${key}/settings/access`
         },
         icon: <GroupIcon/>
     },
     projectDetailsSettingsBoard: {
-        path: '/projects/:slug/settings/board',
+        path: '/projects/:key/settings/board',
         label: 'Board',
-        pathFn: ({ slug }) => {
-            return `/projects/${slug}/settings/board`
+        pathFn: ({ key }) => {
+            return `/projects/${key}/settings/board`
         },
         icon: <ProjectDashboardIcon/>
     },
     projectDetailsSettingsWorkflow: {
-        path: '/projects/:slug/settings/workflow',
+        path: '/projects/:key/settings/workflow',
         label: 'Workflow',
-        pathFn: ({ slug }) => {
-            return `/projects/${slug}/settings/workflow`
+        pathFn: ({ key }) => {
+            return `/projects/${key}/settings/workflow`
         },
         icon: <EvolutionIcon/>
     },
     projectDetailsSettingsDangerZone: {
-        path: '/projects/:slug/settings/danger-zone',
+        path: '/projects/:key/settings/danger-zone',
         label: 'Danger Zone',
-        pathFn: ({ slug }) => {
-            return `/projects/${slug}/settings/danger-zone`
+        pathFn: ({ key }) => {
+            return `/projects/${key}/settings/danger-zone`
         },
         icon: <DangerZoneIcon/>
     }

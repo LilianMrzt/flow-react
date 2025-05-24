@@ -5,14 +5,14 @@ import { useProjects } from '@hooks/contexts/api/ProjectsContext'
 
 const ProjectDetailsScreen = (): ReactNode => {
     const {
-        activeProjectSlug
+        activeProjectKey
     } = useProjects()
 
-    if (!activeProjectSlug) return null
+    if (!activeProjectKey) return null
 
     return (
         <Navigate
-            to={ProjectsRoutes.projectDetailsDashboard.pathFn!({ slug: activeProjectSlug })}
+            to={ProjectsRoutes.projectDetailsDashboard.pathFn!({ key: activeProjectKey })}
             replace
         />
     )

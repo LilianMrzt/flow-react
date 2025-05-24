@@ -10,15 +10,23 @@ import { useTheme } from '@hooks/contexts/ThemeContext'
 import Column from '@components/layout/Column'
 import Button from '@components/buttons/Button'
 import { SaveIcon } from '@resources/Icons'
+import { useAlert } from '@hooks/contexts/AlertContext'
+import { updateProjectAction } from '@api/ProjectsApiCalls'
+import { ProjectsRoutes } from '@constants/routes/ProjectsRoutes'
 
 const ProjectDetailsSettingsDetailsScreen = (): ReactNode => {
     const {
-        loadedProject
+        loadedProject,
+        fetchProject
     } = useLoadedProject()
 
     const {
         theme
     } = useTheme()
+
+    const {
+        showAlert
+    } = useAlert()
 
     if (!loadedProject) return null
 
@@ -26,8 +34,34 @@ const ProjectDetailsSettingsDetailsScreen = (): ReactNode => {
     const [newProjectKey, setNewProjectKey] = useState(loadedProject.key)
     const [newProjectDescription, setNewProjectDescription] = useState(loadedProject.description ?? '')
 
-    const handleSubmit = (): void => {
+    /**
+     * Gestion de la modification des champs des details du projet
+     */
+    const handleSubmit = async (): Promise<void> => {
+        if (!loadedProject) return
 
+        const updateData: {
+            name?: string,
+            key?: string,
+            description?: string
+        } = {}
+
+        if (newProjectName !== loadedProject.name) updateData.name = newProjectName
+        if (newProjectKey !== loadedProject.key) updateData.key = newProjectKey
+        if (newProjectDescription !== loadedProject.description) updateData.description = newProjectDescription
+
+        updateProjectAction(loadedProject.id, updateData)
+            .then(async (updatedProject) => {
+                showAlert('Project successfully updated.', 'success')
+                if (newProjectKey !== loadedProject.key) {
+                    window.location.href = ProjectsRoutes.projectDetailsDashboard.pathFn!({ key: updatedProject.key })
+                    return
+                }
+                await fetchProject()
+            })
+            .catch((error) => {
+                showAlert(error.message, 'error')
+            })
     }
 
     const isButtonDisabled = newProjectName === loadedProject.name && newProjectKey === loadedProject.key && newProjectDescription === loadedProject.description
@@ -62,19 +96,19 @@ const ProjectDetailsSettingsDetailsScreen = (): ReactNode => {
                     inputValue={newProjectName}
                     setInputValue={setNewProjectName}
                     label={'Project name'}
-                    placeholder={'Project name'}
+                    placeholder={loadedProject.name}
                 />
                 <TextField
                     inputValue={newProjectKey}
                     setInputValue={setNewProjectKey}
                     label={'Project key'}
-                    placeholder={'Project key'}
+                    placeholder={loadedProject.key}
                 />
                 <TextArea
                     inputValue={newProjectDescription}
                     setInputValue={setNewProjectDescription}
                     label={'Project description'}
-                    placeholder={'Project description'}
+                    placeholder={loadedProject.description ?? ''}
                 />
                 <Button
                     label={'Save changes'}

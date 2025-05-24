@@ -1,5 +1,6 @@
 import { ReactComponent as ChevronLeftIcon } from '@resources/assets/ChevronLeftIcon.svg'
 import { ReactComponent as ChevronRightIcon } from '@resources/assets/ChevronRightIcon.svg'
+import { ReactComponent as ChevronRightThinIcon } from '@resources/assets/ChevronRightThinIcon.svg'
 import { ReactComponent as WavesIcon } from '@resources/assets/WavesIcon.svg'
 import { ReactComponent as ProjectsIcon } from '@resources/assets/ProjectsIcon.svg'
 import { ReactComponent as DashboardIcon } from '@resources/assets/DashboardIcon.svg'
@@ -50,6 +51,7 @@ import { ReactComponent as BaselineIcon } from '@resources/assets/text-editor/Ba
 export {
     ChevronLeftIcon,
     ChevronRightIcon,
+    ChevronRightThinIcon,
     WavesIcon,
     ProjectsIcon,
     DashboardIcon,

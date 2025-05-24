@@ -8,7 +8,7 @@ import BacklogTaskDragImage from '@ui/blocs/drag-images/BacklogTaskDragImage'
 export const useBacklogDragAndDrop = ({
     task,
     sortedBacklogTasks,
-    projectSlug,
+    projectKey,
     setDraggedTaskId,
     setHoveredLineId,
     setHoveredLinePosition,
@@ -85,13 +85,13 @@ export const useBacklogDragAndDrop = ({
             )
         })
 
-        updateBacklogTasksOrdersAction(projectSlug, updates).catch(err => {
+        updateBacklogTasksOrdersAction(projectKey, updates).catch(err => {
             showAlert(err.message, 'error')
         })
 
         setHoveredLineId(null)
         setHoveredLinePosition(null)
-    }, [task.id, hoveredLinePosition, sortedBacklogTasks, projectSlug, setHoveredLineId, setHoveredLinePosition, showAlert])
+    }, [task.id, hoveredLinePosition, sortedBacklogTasks, projectKey, setHoveredLineId, setHoveredLinePosition, showAlert])
 
     /**
      * Gère le survol d'une tâche pendant le drag pour déterminer si on est au-dessus ou en dessous.

@@ -2,7 +2,7 @@ import { TaskObject } from '@interfaces/objects/api/task/TaskObject'
 import { Dispatch, SetStateAction } from 'react'
 
 export interface UseBoardDragAndDropParams {
-    projectSlug: string
+    projectKey: string
     columnId: string
     tasks: TaskObject[]
     hoveredTaskId: string | null

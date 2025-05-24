@@ -16,6 +16,7 @@
     resize: none;
     font-family: inherit;
     min-height: calc(2em * 4 + 16px);
+    transition: border 150ms ease-in-out;
 }
 
 .text-area::placeholder {

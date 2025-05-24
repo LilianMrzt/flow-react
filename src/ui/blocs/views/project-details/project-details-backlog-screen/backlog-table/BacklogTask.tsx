@@ -50,6 +50,8 @@ const BacklogTask: FC<BacklogTaskProps> = ({
     const subMenuRef = useRef<HTMLDivElement | null>(null)
     const taskRef = useRef<HTMLDivElement | null>(null)
 
+    if (!loadedProject) return null
+
     const {
         handleDragStart,
         handleOnDragEnd,
@@ -59,7 +61,7 @@ const BacklogTask: FC<BacklogTaskProps> = ({
     } = useBacklogDragAndDrop({
         task,
         sortedBacklogTasks,
-        projectSlug: loadedProject?.key ?? '',
+        projectKey: loadedProject.key,
         setDraggedTaskId,
         setHoveredLineId,
         setHoveredLinePosition,
