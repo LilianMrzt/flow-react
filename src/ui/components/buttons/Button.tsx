@@ -9,6 +9,7 @@ const Button: FC<ButtonProps> = ({
     onClick,
     label,
     icon,
+    disabled,
     color,
     hoverColor,
     borderColor,
@@ -41,27 +42,33 @@ const Button: FC<ButtonProps> = ({
 
     return (
         <button
-            onClick={onClick}
+            onClick={() => {
+                if (!disabled) {
+                    onClick()
+                }
+            }}
             className={'button'}
             style={{
-                backgroundColor: isHovered ? hoverBackgroundColor ?? theme.hoverPrimary : componentBackgroundColor,
-                borderColor: borderColor ?? theme.primary,
+                backgroundColor: disabled ? theme.hoverSecondary : isHovered ? hoverBackgroundColor ?? theme.hoverPrimary : componentBackgroundColor,
+                borderColor: disabled ? theme.hoverSecondary : borderColor ?? theme.primary,
                 width: width ?? 'fit-content',
-                padding: padding ?? '8px 16px'
+                padding: padding ?? '8px 16px',
+                cursor: disabled ? 'default' : 'pointer'
             }}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
+            disabled={disabled}
         >
             {icon && (
                 <Icon
-                    color={isHovered && hoverColor ? hoverColor : componentColor}
+                    color={isHovered && !disabled && hoverColor ? hoverColor : componentColor}
                     size={16}
                 >
                     {icon}
                 </Icon>
             )}
             <Text
-                color={isHovered && hoverColor ? hoverColor : componentColor}
+                color={isHovered && !disabled && hoverColor ? hoverColor : componentColor}
                 fontSize={14}
                 isSelectable={false}
                 fontWeight={fontWeight}

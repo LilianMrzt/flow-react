@@ -26,6 +26,12 @@ const ProjectDetailsSettingsDetailsScreen = (): ReactNode => {
     const [newProjectKey, setNewProjectKey] = useState(loadedProject.key)
     const [newProjectDescription, setNewProjectDescription] = useState(loadedProject.description ?? '')
 
+    const handleSubmit = (): void => {
+
+    }
+
+    const isButtonDisabled = newProjectName === loadedProject.name && newProjectKey === loadedProject.key && newProjectDescription === loadedProject.description
+
     return (
         <Screen
             label={'Project settings - Details'}
@@ -73,7 +79,8 @@ const ProjectDetailsSettingsDetailsScreen = (): ReactNode => {
                 <Button
                     label={'Save changes'}
                     icon={<SaveIcon/>}
-                    onClick={() => {}}
+                    onClick={handleSubmit}
+                    disabled={isButtonDisabled}
                 />
             </Card>
 

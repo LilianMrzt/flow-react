@@ -4,6 +4,7 @@ export interface ButtonProps {
     onClick: () => void
     label: string
     icon?: ReactElement
+    disabled?: boolean
     color?: CSSProperties['color']
     hoverColor?: CSSProperties['color']
     backgroundColor?: CSSProperties['backgroundColor']

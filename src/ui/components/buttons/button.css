@@ -1,11 +1,10 @@
 .button {
     border: 1px solid;
-    cursor: pointer;
     border-radius: 8px;
     min-height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
-    transition: background-color 150ms ease-in-out;
+    transition: background-color 150ms ease-in-out, border-color 150ms ease-in-out;
 }
