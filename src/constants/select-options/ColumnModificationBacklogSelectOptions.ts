@@ -1,9 +1,9 @@
 import { SelectOption } from '@interfaces/objects/front/SelectOption'
 import { BoardColumnObject } from '@interfaces/objects/api/board-column/BoardColumnObject'
-import { ProjectObject } from '@interfaces/objects/api/project/ProjectObject'
+import { ProjectDetailsObject } from '@interfaces/objects/api/project/ProjectDetailsObject'
 
 export const COLUMN_MODIFICATION_BACKLOG_SELECT_OPTIONS = (
-    loadedProject: ProjectObject | null
+    loadedProject: ProjectDetailsObject | null
 ): SelectOption[] => {
     return [
         {
