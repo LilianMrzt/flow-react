@@ -29,7 +29,7 @@ const ColumnTask: FC<ColumnTaskProps> = ({
             className={'column-task '}
             draggable
             onClick={() => {
-                navigate(ProjectsRoutes.projectTaskModal.pathFn!({
+                navigate(ProjectsRoutes.projectDetailsBoardTaskModal.pathFn!({
                     key: loadedProject?.key,
                     taskId: task.key
                 }))

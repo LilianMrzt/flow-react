@@ -11,6 +11,8 @@ import { useLoadedProject } from '@hooks/contexts/api/LoadedProjectContext'
 import { PROJECT_DETAILS_BREADCRUMBS } from '@constants/breadcrumbs/ProjectDetailsBreadcrumbs'
 import { useBoardColumns } from '@hooks/contexts/api/BoardColumnsProvider'
 import Skeleton from '@components/layout/Skeleton'
+import TaskModal from '@ui/blocs/views/project-details/task-modal/TaskModal'
+import { useSelectedTaskFromUrl } from '@hooks/hooks/useSelectedTaskFromUrl'
 
 const ProjectDetailsBacklogScreen = (): ReactNode => {
     const [isTaskCreationModalOpen, setIsTaskCreationModalOpen] = useState(false)
@@ -39,6 +41,12 @@ const ProjectDetailsBacklogScreen = (): ReactNode => {
             void fetchTasks()
         }
     }, [loadedProject])
+
+    const { selectedTaskKey, setSelectedTaskKey } = useSelectedTaskFromUrl()
+
+    const closeTaskModal = (): void => {
+        setSelectedTaskKey(null)
+    }
 
     if (!loadedProject) return null
 
@@ -83,6 +91,12 @@ const ProjectDetailsBacklogScreen = (): ReactNode => {
                     setIsOpen={setIsTaskCreationModalOpen}
                 />
             </Modal>
+            {hasFetchedOnceColumns && hasFetchedOnceTasks && (
+                <TaskModal
+                    isOpen={!!selectedTaskKey}
+                    onClose={closeTaskModal}
+                />
+            )}
         </Screen>
     )
 }

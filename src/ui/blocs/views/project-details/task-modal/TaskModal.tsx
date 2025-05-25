@@ -12,12 +12,12 @@ import { useFadeVisibility } from '@hooks/hooks/useFadeVisibility'
 import { useLoadedProject } from '@hooks/contexts/api/LoadedProjectContext'
 import { useAlert } from '@hooks/contexts/AlertContext'
 import { getTaskByKeyAction, updateTaskAction } from '@api/TasksApiCalls'
-import { useSearchParams } from 'react-router-dom'
 import { TaskObject } from '@interfaces/objects/api/task/TaskObject'
 import Text from '@components/text/Text'
 import RichTextEditor from '@components/inputs/rich-text-editor/RichTextEditor'
 import { TaskModalEditFieldButtonRow } from '@ui/blocs/views/project-details/task-modal/TaskModalEditFieldButtonRow'
 import Skeleton from '@components/layout/Skeleton'
+import { useSelectedTaskFromUrl } from '@hooks/hooks/useSelectedTaskFromUrl'
 
 const TaskModal: FC<TaskModalProps> = ({
     isOpen,
@@ -40,8 +40,7 @@ const TaskModal: FC<TaskModalProps> = ({
         isFadingIn
     } = useFadeVisibility(isOpen)
 
-    const [searchParams] = useSearchParams()
-    const selectedTaskKey = searchParams.get('selectedTask')
+    const { selectedTaskKey } = useSelectedTaskFromUrl()
 
     const [selectedTask, setSelectedTask] = useState<TaskObject | null>(null)
     const [hasFetchedOnceSelectedTask, setHasFetchedOnceSelectedTask] = useState(false)

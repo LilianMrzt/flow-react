@@ -30,9 +30,9 @@ export const ProjectsRoutes: Record<string, RouteType> = {
         },
         icon: <KanbanIcon/>
     },
-    projectTaskModal: {
-        path: '/projects/:key/board?task=:taskId',
-        label: 'Task modal',
+    projectDetailsBoardTaskModal: {
+        path: '/projects/:key/board?selectedTask=:taskId',
+        label: 'Board task modal',
         pathFn: ({ key, taskId }) => {
             return `/projects/${key}/board?selectedTask=${taskId}`
         }
@@ -60,6 +60,13 @@ export const ProjectsRoutes: Record<string, RouteType> = {
             return `/projects/${key}/backlog`
         },
         icon: <BacklogIcon/>
+    },
+    projectDetailsBacklogTaskModal: {
+        path: '/projects/:key/backlog?selectedTask=:taskId',
+        label: 'Backlog task modal',
+        pathFn: ({ key, taskId }) => {
+            return `/projects/${key}/backlog?selectedTask=${taskId}`
+        }
     },
     projectNotFound: {
         path: '/projects/not-found',

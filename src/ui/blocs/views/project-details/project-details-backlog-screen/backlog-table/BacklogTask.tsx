@@ -21,6 +21,8 @@ import { BacklogTaskProps } from '@interfaces/ui/blocs/views/project-details/pro
 import { useBacklogDragAndDrop } from '@hooks/hooks/useBacklogDragAndDrop'
 import { useTasks } from '@hooks/contexts/api/TasksProvider'
 import { useBoardColumns } from '@hooks/contexts/api/BoardColumnsProvider'
+import { ProjectsRoutes } from '@constants/routes/ProjectsRoutes'
+import { useNavigate } from 'react-router-dom'
 
 const BacklogTask: FC<BacklogTaskProps> = ({
     task,
@@ -54,6 +56,8 @@ const BacklogTask: FC<BacklogTaskProps> = ({
     const wrapperRef = useRef<HTMLDivElement | null>(null)
     const subMenuRef = useRef<HTMLDivElement | null>(null)
     const taskRef = useRef<HTMLDivElement | null>(null)
+
+    const navigate = useNavigate()
 
     if (!loadedProject) return null
 
@@ -121,6 +125,12 @@ const BacklogTask: FC<BacklogTaskProps> = ({
             ref={taskRef}
             className={'backlog-task'}
             style={{ backgroundColor: isHovered ? theme.secondary : theme.surface }}
+            onClick={() => {
+                navigate(ProjectsRoutes.projectDetailsBacklogTaskModal.pathFn!({
+                    key: loadedProject?.key,
+                    taskId: task.key
+                }))
+            }}
             onMouseEnter={() => {
                 setIsHovered(true)
             }}

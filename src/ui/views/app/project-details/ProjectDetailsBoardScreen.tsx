@@ -7,10 +7,10 @@ import { AddIcon } from '@resources/Icons'
 import Modal from '@components/layout/Modal'
 import TaskCreationModalContent from '@ui/blocs/modals/TaskCreationModalContent'
 import { PROJECT_DETAILS_BREADCRUMBS } from '@constants/breadcrumbs/ProjectDetailsBreadcrumbs'
-import { useSearchParams } from 'react-router-dom'
 import TaskModal from '@ui/blocs/views/project-details/task-modal/TaskModal'
 import { useBoardColumns } from '@hooks/contexts/api/BoardColumnsProvider'
 import { useTasks } from '@hooks/contexts/api/TasksProvider'
+import { useSelectedTaskFromUrl } from '@hooks/hooks/useSelectedTaskFromUrl'
 
 const ProjectDetailsBoardScreen = (): ReactNode => {
     const {
@@ -36,13 +36,10 @@ const ProjectDetailsBoardScreen = (): ReactNode => {
 
     const [isTaskCreationModalOpen, setIsTaskCreationModalOpen] = useState(false)
 
-    const [searchParams, setSearchParams] = useSearchParams()
-
-    const selectedTaskKey = searchParams.get('selectedTask')
+    const { selectedTaskKey, setSelectedTaskKey } = useSelectedTaskFromUrl()
 
     const closeTaskModal = (): void => {
-        searchParams.delete('selectedTask')
-        setSearchParams(searchParams, { replace: true })
+        setSelectedTaskKey(null)
     }
 
     if (!loadedProject) return null
