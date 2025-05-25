@@ -1,4 +1,4 @@
-import React, { type FC, Fragment, type ReactNode, useState } from 'react'
+import React, { type FC, Fragment, type ReactNode, useEffect, useState } from 'react'
 import './task-modal.css'
 import { createPortal } from 'react-dom'
 import { CloseIcon } from '@resources/Icons'
@@ -9,6 +9,13 @@ import Row from '@components/layout/Row'
 import Column from '@components/layout/Column'
 import TextField from '@components/inputs/TextField'
 import { useFadeVisibility } from '@hooks/hooks/useFadeVisibility'
+import { useLoadedProject } from '@hooks/contexts/api/LoadedProjectContext'
+import { useAlert } from '@hooks/contexts/AlertContext'
+import { getTaskByKeyAction } from '@api/TasksApiCalls'
+import { useSearchParams } from 'react-router-dom'
+import { TaskObject } from '@interfaces/objects/api/task/TaskObject'
+import Text from '@components/text/Text'
+import RichTextEditor from '@components/inputs/rich-text-editor/RichTextEditor'
 
 const TaskModal: FC<TaskModalProps> = ({
     isOpen,
@@ -19,11 +26,39 @@ const TaskModal: FC<TaskModalProps> = ({
     } = useTheme()
 
     const {
+        loadedProject
+    } = useLoadedProject()
+
+    const {
+        showAlert
+    } = useAlert()
+
+    const {
         isVisible,
         isFadingIn
     } = useFadeVisibility(isOpen)
 
-    const [taskName, setTaskName] = useState('TESTTEST')
+    const [searchParams] = useSearchParams()
+    const selectedTaskKey = searchParams.get('selectedTask')
+
+    const [selectedTask, setSelectedTask] = useState<TaskObject | null>(null)
+    const [selectedTaskTitle, setSelectedTaskTitle] = useState('')
+    const [selectedTaskDescription, setSelectedTaskDescription] = useState('')
+
+    useEffect(() => {
+        if (!loadedProject) return
+        if (!selectedTaskKey) return
+
+        getTaskByKeyAction(loadedProject.key, selectedTaskKey)
+            .then((res) => {
+                setSelectedTask(res)
+                setSelectedTaskTitle(res.title)
+                setSelectedTaskDescription(res.description)
+            })
+            .catch((error) => {
+                showAlert(error.message, 'error')
+            })
+    }, [loadedProject, selectedTaskKey])
 
     return createPortal(
         <Fragment>
@@ -36,23 +71,43 @@ const TaskModal: FC<TaskModalProps> = ({
                             className={`task-modal-content ${isFadingIn && 'show'}`}
                         >
                             <Row
-                                justifyContent={'end'}
+                                justifyContent={'space-between'}
                             >
-                                <IconButton
-                                    onClick={onClose}
-                                    backgroundColor={theme.surface}
-                                    hoverBackgroundColor={theme.secondary}
-                                    hoverColor={theme.primary}
+                                <Text>
+                                    {selectedTask?.key ?? ''}
+                                </Text>
+                                <Row
+                                    justifyContent={'end'}
+                                    width={'fit-content'}
                                 >
-                                    <CloseIcon/>
-                                </IconButton>
+                                    <IconButton
+                                        onClick={() => {
+                                            onClose()
+                                            setTimeout(() => {
+                                                setSelectedTask(null)
+                                                setSelectedTaskTitle('')
+                                                setSelectedTaskDescription('')
+                                            }, 150)
+                                        }}
+                                        backgroundColor={theme.surface}
+                                        hoverBackgroundColor={theme.secondary}
+                                        hoverColor={theme.primary}
+                                    >
+                                        <CloseIcon/>
+                                    </IconButton>
+                                </Row>
                             </Row>
                             <Row>
                                 <Column>
                                     <TextField
-                                        inputValue={taskName}
-                                        setInputValue={setTaskName}
-                                        placeholder={'TESTTEST'}
+                                        inputValue={selectedTaskTitle}
+                                        setInputValue={setSelectedTaskTitle}
+                                        placeholder={selectedTask?.title ?? ''}
+                                    />
+                                    <RichTextEditor
+                                        label={'Description'}
+                                        inputValue={selectedTaskDescription}
+                                        setInputValue={setSelectedTaskDescription}
                                     />
                                 </Column>
                             </Row>

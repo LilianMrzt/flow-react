@@ -19,7 +19,7 @@ const ProjectDetailsBoardScreen = (): ReactNode => {
 
     const [searchParams, setSearchParams] = useSearchParams()
 
-    const selectedTaskId = searchParams.get('selectedTask')
+    const selectedTaskKey = searchParams.get('selectedTask')
 
     const closeTaskModal = (): void => {
         searchParams.delete('selectedTask')
@@ -56,7 +56,7 @@ const ProjectDetailsBoardScreen = (): ReactNode => {
                 />
             </Modal>
             <TaskModal
-                isOpen={!!selectedTaskId}
+                isOpen={!!selectedTaskKey}
                 onClose={closeTaskModal}
             />
         </Screen>

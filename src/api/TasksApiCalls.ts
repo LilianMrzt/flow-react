@@ -173,3 +173,30 @@ export const updateColumnTasksOrdersAction = async (
         throw new Error(resData.message)
     }
 }
+
+/**
+ * Récupère une tâche par sa clé (key) dans un projet
+ * @param projectSlug
+ * @param taskKey
+ */
+export const getTaskByKeyAction = async (
+    projectSlug: string,
+    taskKey: string
+): Promise<TaskObject> => {
+    const token = localStorage.getItem(StorageConstants.token)
+
+    const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/projects/${projectSlug}/tasks/${taskKey}`, {
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    })
+
+    const data = await response.json()
+
+    if (!response.ok) {
+        throw new Error(data.message)
+    }
+
+    return data.task
+}

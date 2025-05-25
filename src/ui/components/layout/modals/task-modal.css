@@ -23,6 +23,7 @@
     width: calc(100% - 128px);
     top: 128px;
     max-width: 1512px;
+    max-height: calc(100% - 128px);
     transform: translate(-50%, 0);
     left: 50%;
     border-radius: 8px;
