@@ -20,6 +20,7 @@ import MenuWrapper from '@components/dropdowns/menu/MenuWrapper'
 import { BacklogTaskProps } from '@interfaces/ui/blocs/views/project-details/project-details-backlog-screen/backlog-table/BacklogTaskProps'
 import { useBacklogDragAndDrop } from '@hooks/hooks/useBacklogDragAndDrop'
 import { useTasks } from '@hooks/contexts/api/TasksProvider'
+import { useBoardColumns } from '@hooks/contexts/api/BoardColumnsProvider'
 
 const BacklogTask: FC<BacklogTaskProps> = ({
     task,
@@ -33,6 +34,10 @@ const BacklogTask: FC<BacklogTaskProps> = ({
     const {
         loadedProject
     } = useLoadedProject()
+
+    const {
+        columns
+    } = useBoardColumns()
 
     const {
         showAlert
@@ -79,7 +84,7 @@ const BacklogTask: FC<BacklogTaskProps> = ({
      */
     const handleColumnChange = (value: string): void => {
         if (!loadedProject) return
-        const columnId = value === TASK_CREATION_MODAL_COLUMN_SELECT_OPTIONS(loadedProject)[0].value ? null : value
+        const columnId = value === TASK_CREATION_MODAL_COLUMN_SELECT_OPTIONS(columns)[0].value ? null : value
 
         const columnTasks = tasks
             .filter(t => {
@@ -173,9 +178,9 @@ const BacklogTask: FC<BacklogTaskProps> = ({
                 draggedTaskId={draggedTaskId}
             >
                 <Select
-                    value={task.column?.id ?? COLUMN_MODIFICATION_BACKLOG_SELECT_OPTIONS(loadedProject)[0].value}
+                    value={task.column?.id ?? COLUMN_MODIFICATION_BACKLOG_SELECT_OPTIONS(columns)[0].value}
                     onChange={handleColumnChange}
-                    options={COLUMN_MODIFICATION_BACKLOG_SELECT_OPTIONS(loadedProject)}
+                    options={COLUMN_MODIFICATION_BACKLOG_SELECT_OPTIONS(columns)}
                     backgroundColor={isHovered ? theme.secondary : theme.surface}
                     borderColor={isHovered ? theme.hoverSecondary : theme.outline}
                 />

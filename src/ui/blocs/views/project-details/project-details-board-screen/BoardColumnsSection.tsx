@@ -1,12 +1,12 @@
 import React, { ReactNode, useState } from 'react'
 import './board-column-section.css'
 import BoardColumn from '@ui/blocs/views/project-details/project-details-board-screen/BoardColumn'
-import { useLoadedProject } from '@hooks/contexts/api/LoadedProjectContext'
+import { useBoardColumns } from '@hooks/contexts/api/BoardColumnsProvider'
 
 const BoardColumnsSection = (): ReactNode => {
     const {
-        loadedProject
-    } = useLoadedProject()
+        columns
+    } = useBoardColumns()
 
     const [draggedTaskId, setDraggedTaskId] = useState<string | null>(null)
 
@@ -14,7 +14,7 @@ const BoardColumnsSection = (): ReactNode => {
         <div
             className={'board-column-section'}
         >
-            {loadedProject?.columns
+            {columns
                 .slice()
                 .sort((a, b) => {
                     return a.order - b.order

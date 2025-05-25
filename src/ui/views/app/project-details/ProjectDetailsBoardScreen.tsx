@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from 'react'
+import React, { ReactNode, useEffect, useState } from 'react'
 import Screen from '@components/layout/screen/Screen'
 import { useLoadedProject } from '@hooks/contexts/api/LoadedProjectContext'
 import './project-details-screen.css'
@@ -9,11 +9,22 @@ import TaskCreationModalContent from '@ui/blocs/modals/TaskCreationModalContent'
 import { PROJECT_DETAILS_BREADCRUMBS } from '@constants/breadcrumbs/ProjectDetailsBreadcrumbs'
 import { useSearchParams } from 'react-router-dom'
 import TaskModal from '@components/layout/modals/TaskModal'
+import { useBoardColumns } from '@hooks/contexts/api/BoardColumnsProvider'
 
 const ProjectDetailsBoardScreen = (): ReactNode => {
     const {
         loadedProject
     } = useLoadedProject()
+
+    const {
+        fetchColumns
+    } = useBoardColumns()
+
+    useEffect(() => {
+        if (loadedProject) {
+            void fetchColumns()
+        }
+    }, [loadedProject])
 
     const [isTaskCreationModalOpen, setIsTaskCreationModalOpen] = useState(false)
 

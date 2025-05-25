@@ -20,6 +20,7 @@ import {
     TASK_CREATION_MODAL_ASSIGNEE_SELECT_OPTIONS
 } from '@constants/select-options/TaskCreationModalAssignedUserSelectOptions'
 import RichTextEditor from '@components/inputs/rich-text-editor/RichTextEditor'
+import { useBoardColumns } from '@hooks/contexts/api/BoardColumnsProvider'
 
 const TaskCreationModalContent: FC<TaskCreationModalContentProps> = ({
     setIsOpen
@@ -33,6 +34,10 @@ const TaskCreationModalContent: FC<TaskCreationModalContentProps> = ({
     } = useAlert()
 
     const {
+        columns
+    } = useBoardColumns()
+
+    const {
         loadedProject
     } = useLoadedProject()
 
@@ -40,7 +45,7 @@ const TaskCreationModalContent: FC<TaskCreationModalContentProps> = ({
     const [taskDescription, setTaskDescription] = useState('')
     const [taskPriority, setTaskPriority] = useState(TASK_CREATION_MODAL_PRIORITY_SELECT_OPTIONS[2].value)
     const [taskType, setTaskType] = useState(TASK_CREATION_MODAL_TYPE_SELECT_OPTIONS[0].value)
-    const [taskColumnId, setTaskColumnId] = useState(TASK_CREATION_MODAL_COLUMN_SELECT_OPTIONS(loadedProject)[0].value)
+    const [taskColumnId, setTaskColumnId] = useState(TASK_CREATION_MODAL_COLUMN_SELECT_OPTIONS(columns)[0].value)
     const [taskAssignedUser, setTaskAssignedUser] = useState(TASK_CREATION_MODAL_ASSIGNEE_SELECT_OPTIONS(loadedProject)[0].value)
 
     /**
@@ -114,7 +119,7 @@ const TaskCreationModalContent: FC<TaskCreationModalContentProps> = ({
                     label={'Status'}
                     value={taskColumnId}
                     onChange={setTaskColumnId}
-                    options={TASK_CREATION_MODAL_COLUMN_SELECT_OPTIONS(loadedProject)}
+                    options={TASK_CREATION_MODAL_COLUMN_SELECT_OPTIONS(columns)}
                 />
                 <Select
                     label={'Assigned to'}

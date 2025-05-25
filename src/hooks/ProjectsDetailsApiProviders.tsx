@@ -3,6 +3,7 @@ import { LoadedProjectProvider } from '@hooks/contexts/api/LoadedProjectContext'
 import { ProjectsDetailsApiProvidersProps } from '@interfaces/hooks/ProjectsDetailsApiProvidersProps'
 import { WebSocketProvider } from '@hooks/contexts/api/WebSocketContext'
 import { TasksProvider } from '@hooks/contexts/api/TasksProvider'
+import { BoardColumnsProvider } from '@hooks/contexts/api/BoardColumnsProvider'
 
 const ProjectsDetailsApiProviders: FC<ProjectsDetailsApiProvidersProps> = ({
     children
@@ -11,7 +12,9 @@ const ProjectsDetailsApiProviders: FC<ProjectsDetailsApiProvidersProps> = ({
         <WebSocketProvider>
             <LoadedProjectProvider>
                 <TasksProvider>
-                    {children}
+                    <BoardColumnsProvider>
+                        {children}
+                    </BoardColumnsProvider>
                 </TasksProvider>
             </LoadedProjectProvider>
         </WebSocketProvider>

@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from 'react'
+import React, { ReactNode, useEffect, useState } from 'react'
 import Screen from '@components/layout/screen/Screen'
 import TaskCreationModalContent from '@ui/blocs/modals/TaskCreationModalContent'
 import Modal from '@components/layout/modals/Modal'
@@ -9,6 +9,7 @@ import BacklogTable
     from '@ui/blocs/views/project-details/project-details-backlog-screen/backlog-table/BacklogTable'
 import { useLoadedProject } from '@hooks/contexts/api/LoadedProjectContext'
 import { PROJECT_DETAILS_BREADCRUMBS } from '@constants/breadcrumbs/ProjectDetailsBreadcrumbs'
+import { useBoardColumns } from '@hooks/contexts/api/BoardColumnsProvider'
 
 const ProjectDetailsBacklogScreen = (): ReactNode => {
     const [isTaskCreationModalOpen, setIsTaskCreationModalOpen] = useState(false)
@@ -18,8 +19,18 @@ const ProjectDetailsBacklogScreen = (): ReactNode => {
     } = useTasks()
 
     const {
+        fetchColumns
+    } = useBoardColumns()
+
+    const {
         loadedProject
     } = useLoadedProject()
+
+    useEffect(() => {
+        if (loadedProject) {
+            void fetchColumns()
+        }
+    }, [loadedProject])
 
     if (!loadedProject) return null
 
