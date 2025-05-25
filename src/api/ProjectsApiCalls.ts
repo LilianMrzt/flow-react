@@ -30,7 +30,7 @@ export const createProjectAction = async (
 }
 
 /**
- * Récupère un projet par slug
+ * Récupère un projet par key
  * @param key
  */
 export const getProjectByKeyAction = async (

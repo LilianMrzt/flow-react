@@ -3,11 +3,11 @@ import { StorageConstants } from '@constants/StorageConstants'
 
 /**
  * Crée une nouvelle tâche dans un projet
- * @param projectSlug
+ * @param projectKey
  * @param taskData
  */
 export const createTaskAction = async (
-    projectSlug: string,
+    projectKey: string,
     taskData: {
         title: string
         description: string
@@ -19,7 +19,7 @@ export const createTaskAction = async (
 ): Promise<TaskObject> => {
     const token = localStorage.getItem(StorageConstants.token)
 
-    const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/projects/${projectSlug}/tasks`, {
+    const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/projects/${projectKey}/tasks`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -39,16 +39,16 @@ export const createTaskAction = async (
 
 /**
  * Supprime une tâche d’un projet
- * @param projectSlug
+ * @param projectKey
  * @param taskId
  */
 export const deleteTaskAction = async (
-    projectSlug: string,
+    projectKey: string,
     taskId: string
 ): Promise<void> => {
     const token = localStorage.getItem(StorageConstants.token)
 
-    const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/projects/${projectSlug}/tasks/${taskId}`, {
+    const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/projects/${projectKey}/tasks/${taskId}`, {
         method: 'DELETE',
         headers: {
             'Authorization': `Bearer ${token}`
@@ -63,14 +63,14 @@ export const deleteTaskAction = async (
 
 /**
  * Récupère toutes les tâches d’un projet
- * @param projectSlug
+ * @param projectKey
  */
-export const getTasksByProjectSlugAction = async (
-    projectSlug: string
+export const getTasksByProjectKeyAction = async (
+    projectKey: string
 ): Promise<TaskObject[]> => {
     const token = localStorage.getItem(StorageConstants.token)
 
-    const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/projects/${projectSlug}/tasks`, {
+    const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/projects/${projectKey}/tasks`, {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${token}`
@@ -88,12 +88,12 @@ export const getTasksByProjectSlugAction = async (
 
 /**
  * Met à jour une tâche d’un projet
- * @param projectSlug
+ * @param projectKey
  * @param taskId
  * @param data
  */
 export const updateTaskAction = async (
-    projectSlug: string,
+    projectKey: string,
     taskId: string,
     data: {
         columnId?: string | null
@@ -105,7 +105,7 @@ export const updateTaskAction = async (
 ): Promise<TaskObject> => {
     const token = localStorage.getItem(StorageConstants.token)
 
-    const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/projects/${projectSlug}/tasks/${taskId}`, {
+    const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/projects/${projectKey}/tasks/${taskId}`, {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json',
@@ -124,16 +124,16 @@ export const updateTaskAction = async (
 
 /**
  * Gestion de la mise à jour de l'ordre des taches dans le backlog
- * @param projectSlug
+ * @param projectKey
  * @param updates
  */
 export const updateBacklogTasksOrdersAction = async (
-    projectSlug: string,
+    projectKey: string,
     updates: { id: string, orderInBacklog: number }[]
 ): Promise<void> => {
     const token = localStorage.getItem(StorageConstants.token)
 
-    const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/projects/${projectSlug}/tasks/reorder-backlog`, {
+    const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/projects/${projectKey}/tasks/reorder-backlog`, {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json',
@@ -150,16 +150,16 @@ export const updateBacklogTasksOrdersAction = async (
 
 /**
  * Gestion de la mise à jour de l'ordre et de la colonne des taches dans le tableau
- * @param projectSlug
+ * @param projectKey
  * @param updates
  */
 export const updateColumnTasksOrdersAction = async (
-    projectSlug: string,
+    projectKey: string,
     updates: { id: string, columnId: string | null, orderInColumn: number }[]
 ): Promise<void> => {
     const token = localStorage.getItem(StorageConstants.token)
 
-    const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/projects/${projectSlug}/tasks/reorder-column`, {
+    const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/projects/${projectKey}/tasks/reorder-column`, {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json',
@@ -176,16 +176,16 @@ export const updateColumnTasksOrdersAction = async (
 
 /**
  * Récupère une tâche par sa clé (key) dans un projet
- * @param projectSlug
+ * @param projectKey
  * @param taskKey
  */
 export const getTaskByKeyAction = async (
-    projectSlug: string,
+    projectKey: string,
     taskKey: string
 ): Promise<TaskObject> => {
     const token = localStorage.getItem(StorageConstants.token)
 
-    const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/projects/${projectSlug}/tasks/${taskKey}`, {
+    const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/projects/${projectKey}/tasks/${taskKey}`, {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${token}`

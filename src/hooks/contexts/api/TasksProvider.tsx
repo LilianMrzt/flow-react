@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState, type FC } from 'react'
 import { TaskObject } from '@interfaces/objects/api/task/TaskObject'
-import { getTasksByProjectSlugAction } from '@api/TasksApiCalls'
+import { getTasksByProjectKeyAction } from '@api/TasksApiCalls'
 import { useWebSocket } from '@hooks/contexts/api/WebSocketContext'
 import { WebSocketEvents } from '@constants/WebSocketEvents'
 import { useAlert } from '@hooks/contexts/AlertContext'
@@ -31,7 +31,7 @@ export const TasksProvider: FC<TasksProviderProps> = ({
         const fetchTasks = async (): Promise<void> => {
             if (!loadedProject) return
 
-            await getTasksByProjectSlugAction(loadedProject.key)
+            await getTasksByProjectKeyAction(loadedProject.key)
                 .then((data) => {
                     setTasks(data)
                 })
