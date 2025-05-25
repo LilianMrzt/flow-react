@@ -1,9 +1,9 @@
 import { Dispatch, SetStateAction } from 'react'
-import { ProjectSummaryObject } from '@interfaces/objects/api/project/ProjectSummaryObject'
+import { ProjectObject } from '@interfaces/objects/api/project/ProjectObject'
 
 export interface ProjectsContextProps {
-    projects: ProjectSummaryObject[]
-    recentProjects: ProjectSummaryObject[]
+    projects: ProjectObject[]
+    recentProjects: ProjectObject[]
     activeProjectKey: string | null
     setActiveProjectKey: Dispatch<SetStateAction<string | null>>
     fetchUserProjects: (limit?: number, offset?: number) => Promise<void>

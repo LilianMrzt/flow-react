@@ -1,7 +1,7 @@
-import { TaskLightObject } from '@interfaces/objects/api/task/TaskLightObject'
+import { TaskObject } from '@interfaces/objects/api/task/TaskObject'
 
 export interface UseBoardDragAndDropResult {
     handleDrop: (taskId: string) => void
-    getColumnTasks: () => TaskLightObject[]
+    getColumnTasks: () => TaskObject[]
     shouldShowLine: (taskId: string, previousTaskId: string | undefined, draggedTaskId: string | null) => boolean
 }

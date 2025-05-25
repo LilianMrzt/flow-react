@@ -1,6 +1,6 @@
-import { TaskLightObject } from '@interfaces/objects/api/task/TaskLightObject'
+import { TaskObject } from '@interfaces/objects/api/task/TaskObject'
 
 export interface TasksContextProps {
-    tasks: TaskLightObject[]
+    tasks: TaskObject[]
     fetchTasks: () => Promise<void>
 }

@@ -6,7 +6,7 @@ import { useAlert } from '@hooks/contexts/AlertContext'
 import { useProjects } from '@hooks/contexts/api/ProjectsContext'
 import { useNavigate } from 'react-router-dom'
 import { ProjectsRoutes } from '@constants/routes/ProjectsRoutes'
-import { ProjectDetailsObject } from '@interfaces/objects/api/project/ProjectDetailsObject'
+import { ProjectObject } from '@interfaces/objects/api/project/ProjectObject'
 
 const LoadedProjectContext = createContext<LoadedProjectContextProps | undefined>(undefined)
 
@@ -23,7 +23,7 @@ export const LoadedProjectProvider: FC<LoadedProjectProviderProps> = ({
 
     const navigate = useNavigate()
 
-    const [loadedProject, setLoadedProject] = useState<ProjectDetailsObject | null>(null)
+    const [loadedProject, setLoadedProject] = useState<ProjectObject | null>(null)
 
     /**
      * Récupération du projet actuel via sa key

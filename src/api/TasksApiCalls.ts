@@ -1,6 +1,5 @@
 import { TaskObject } from '@interfaces/objects/api/task/TaskObject'
 import { StorageConstants } from '@constants/StorageConstants'
-import { TaskLightObject } from '@interfaces/objects/api/task/TaskLightObject'
 
 /**
  * Crée une nouvelle tâche dans un projet
@@ -68,7 +67,7 @@ export const deleteTaskAction = async (
  */
 export const getTasksByProjectKeyAction = async (
     projectKey: string
-): Promise<TaskLightObject[]> => {
+): Promise<TaskObject[]> => {
     const token = localStorage.getItem(StorageConstants.token)
 
     const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/projects/${projectKey}/tasks`, {

@@ -1,9 +1,9 @@
-import { TaskLightObject } from '@interfaces/objects/api/task/TaskLightObject'
+import { TaskObject } from '@interfaces/objects/api/task/TaskObject'
 import { RefObject } from 'react'
 
 export interface UseBacklogDragAndDropParams {
-    task: TaskLightObject
-    sortedBacklogTasks: TaskLightObject[]
+    task: TaskObject
+    sortedBacklogTasks: TaskObject[]
     projectKey: string
     setDraggedTaskId: (id: string | null) => void
     setHoveredLineId: (id: string | null) => void

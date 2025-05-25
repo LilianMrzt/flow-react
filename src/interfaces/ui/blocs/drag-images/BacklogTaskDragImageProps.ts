@@ -1,7 +1,7 @@
-import { TaskLightObject } from '@interfaces/objects/api/task/TaskLightObject'
+import { TaskObject } from '@interfaces/objects/api/task/TaskObject'
 
 export interface BacklogTaskDragImageProps {
-    task: TaskLightObject
+    task: TaskObject
     width: number
     height: number
 }

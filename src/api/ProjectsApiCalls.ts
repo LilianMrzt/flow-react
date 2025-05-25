@@ -1,7 +1,5 @@
 import { ProjectObject } from '@interfaces/objects/api/project/ProjectObject'
 import { StorageConstants } from '@constants/StorageConstants'
-import { ProjectSummaryObject } from '@interfaces/objects/api/project/ProjectSummaryObject'
-import { ProjectDetailsObject } from '@interfaces/objects/api/project/ProjectDetailsObject'
 
 /**
  * Crée un nouveau projet
@@ -9,7 +7,7 @@ import { ProjectDetailsObject } from '@interfaces/objects/api/project/ProjectDet
  */
 export const createProjectAction = async (
     projectData: { name: string; description?: string, key: string }
-): Promise<ProjectSummaryObject> => {
+): Promise<ProjectObject> => {
     const token = localStorage.getItem(StorageConstants.token)
 
     const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/projects`, {
@@ -36,7 +34,7 @@ export const createProjectAction = async (
  */
 export const getProjectByKeyAction = async (
     key: string
-): Promise<ProjectDetailsObject> => {
+): Promise<ProjectObject> => {
     const token = localStorage.getItem(StorageConstants.token)
 
     const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/projects/${key}`, {
@@ -60,7 +58,7 @@ export const getProjectByKeyAction = async (
 export const getUserProjectsPaginatedAction = async (
     limit = 10,
     offset = 0
-): Promise<ProjectSummaryObject[]> => {
+): Promise<ProjectObject[]> => {
     const token = localStorage.getItem(StorageConstants.token)
 
     const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/projects?limit=${limit}&offset=${offset}`, {
@@ -81,7 +79,7 @@ export const getUserProjectsPaginatedAction = async (
 /**
  * Récupère les 4 projets les plus récents de l'utilisateur
  */
-export const getRecentUserProjectsAction = async (): Promise<ProjectSummaryObject[]> => {
+export const getRecentUserProjectsAction = async (): Promise<ProjectObject[]> => {
     const token = localStorage.getItem(StorageConstants.token)
 
     const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/projects/recent`, {

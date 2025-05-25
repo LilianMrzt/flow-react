@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, type FC, useEffect } from 'react'
 import { ProjectsContextProps } from '@interfaces/hooks/contexts/api/ProjectsContextProps'
 import { ProjectsProviderProps } from '@interfaces/hooks/contexts/api/ProjectsProviderProps'
-import { ProjectSummaryObject } from '@interfaces/objects/api/project/ProjectSummaryObject'
+import { ProjectObject } from '@interfaces/objects/api/project/ProjectObject'
 import { createProjectAction, getRecentUserProjectsAction, getUserProjectsPaginatedAction } from '@api/ProjectsApiCalls'
 import { useAlert } from '@hooks/contexts/AlertContext'
 
@@ -14,8 +14,8 @@ export const ProjectsProvider: FC<ProjectsProviderProps> = ({
         showAlert
     } = useAlert()
 
-    const [projects, setProjects] = useState<ProjectSummaryObject[]>([])
-    const [recentProjects, setRecentProjects] = useState<ProjectSummaryObject[]>([])
+    const [projects, setProjects] = useState<ProjectObject[]>([])
+    const [recentProjects, setRecentProjects] = useState<ProjectObject[]>([])
     const [activeProjectKey, setActiveProjectKey] = useState<string | null>(null)
 
     const [hasFetchedOnceDashboardScreen, setHasFetchedOnceDashboardScreen] = useState(false)

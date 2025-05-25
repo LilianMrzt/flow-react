@@ -1,7 +1,7 @@
-import { TaskLightObject } from '@interfaces/objects/api/task/TaskLightObject'
+import { TaskObject } from '@interfaces/objects/api/task/TaskObject'
 import { Dispatch, SetStateAction } from 'react'
 
 export interface UseTaskWebSocketParams {
-    tasks: TaskLightObject[]
-    setTasks: Dispatch<SetStateAction<TaskLightObject[]>>
+    tasks: TaskObject[]
+    setTasks: Dispatch<SetStateAction<TaskObject[]>>
 }

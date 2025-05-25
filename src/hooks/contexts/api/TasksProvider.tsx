@@ -5,7 +5,7 @@ import { TasksProviderProps } from '@interfaces/hooks/contexts/api/TasksProvider
 import { TasksContextProps } from '@interfaces/hooks/contexts/api/TasksContextProps'
 import { useLoadedProject } from '@hooks/contexts/api/LoadedProjectContext'
 import { useTaskWebSocket } from '@hooks/hooks/useTaskWebSocket'
-import { TaskLightObject } from '@interfaces/objects/api/task/TaskLightObject'
+import { TaskObject } from '@interfaces/objects/api/task/TaskObject'
 
 const TasksContext = createContext<TasksContextProps | undefined>(undefined)
 
@@ -20,7 +20,7 @@ export const TasksProvider: FC<TasksProviderProps> = ({
         showAlert
     } = useAlert()
 
-    const [tasks, setTasks] = useState<TaskLightObject[]>([])
+    const [tasks, setTasks] = useState<TaskObject[]>([])
 
     /**
      * Récupération des tâches du projet
