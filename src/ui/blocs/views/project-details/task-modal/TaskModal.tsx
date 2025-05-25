@@ -54,6 +54,11 @@ const TaskModal: FC<TaskModalProps> = ({
     ): void => {
         if (!loadedProject || !selectedTask) return
 
+        if (fieldsToUpdate.title !== undefined && fieldsToUpdate.title.trim() === '') {
+            showAlert('Title cannot be empty.', 'warning')
+            return
+        }
+
         updateTaskAction(loadedProject.key, selectedTask.id, fieldsToUpdate)
             .then((updated) => {
                 setSelectedTask(updated)
