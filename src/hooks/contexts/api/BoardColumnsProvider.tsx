@@ -46,6 +46,7 @@ export const BoardColumnsProvider: FC<BoardColumnsProviderProps> = ({
         <BoardColumnsContext.Provider
             value={{
                 columns,
+                hasFetchedOnceColumns,
                 fetchColumns
             }}
         >

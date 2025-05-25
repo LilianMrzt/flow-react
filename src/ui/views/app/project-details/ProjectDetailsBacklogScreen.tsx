@@ -10,6 +10,7 @@ import BacklogTable
 import { useLoadedProject } from '@hooks/contexts/api/LoadedProjectContext'
 import { PROJECT_DETAILS_BREADCRUMBS } from '@constants/breadcrumbs/ProjectDetailsBreadcrumbs'
 import { useBoardColumns } from '@hooks/contexts/api/BoardColumnsProvider'
+import Skeleton from '@components/layout/Skeleton'
 
 const ProjectDetailsBacklogScreen = (): ReactNode => {
     const [isTaskCreationModalOpen, setIsTaskCreationModalOpen] = useState(false)
@@ -19,11 +20,13 @@ const ProjectDetailsBacklogScreen = (): ReactNode => {
     } = useTasks()
 
     const {
-        fetchColumns
+        fetchColumns,
+        hasFetchedOnceColumns
     } = useBoardColumns()
 
     const {
-        fetchTasks
+        fetchTasks,
+        hasFetchedOnceTasks
     } = useTasks()
 
     const {
@@ -52,11 +55,20 @@ const ProjectDetailsBacklogScreen = (): ReactNode => {
             }}
             breadCrumbsRoutes={PROJECT_DETAILS_BREADCRUMBS(loadedProject)}
         >
-            {tasks.length > 0 ? (
-                <BacklogTable/>
+            {hasFetchedOnceColumns && hasFetchedOnceTasks ? (
+                <>
+                    {tasks.length > 0 ? (
+                        <BacklogTable/>
+                    ) : (
+                        <NoTaskSection
+                            setIsTaskCreationModalOpen={setIsTaskCreationModalOpen}
+                        />
+                    )}
+                </>
             ) : (
-                <NoTaskSection
-                    setIsTaskCreationModalOpen={setIsTaskCreationModalOpen}
+                <Skeleton
+                    width={'100%'}
+                    height={'70%'}
                 />
             )}
             <Modal

@@ -17,6 +17,7 @@ import { TaskObject } from '@interfaces/objects/api/task/TaskObject'
 import Text from '@components/text/Text'
 import RichTextEditor from '@components/inputs/rich-text-editor/RichTextEditor'
 import { TaskModalEditFieldButtonRow } from '@ui/blocs/views/project-details/task-modal/TaskModalEditFieldButtonRow'
+import Skeleton from '@components/layout/Skeleton'
 
 const TaskModal: FC<TaskModalProps> = ({
     isOpen,
@@ -43,6 +44,8 @@ const TaskModal: FC<TaskModalProps> = ({
     const selectedTaskKey = searchParams.get('selectedTask')
 
     const [selectedTask, setSelectedTask] = useState<TaskObject | null>(null)
+    const [hasFetchedOnceSelectedTask, setHasFetchedOnceSelectedTask] = useState(false)
+
     const [selectedTaskTitle, setSelectedTaskTitle] = useState('')
     const [selectedTaskDescription, setSelectedTaskDescription] = useState('')
 
@@ -87,6 +90,11 @@ const TaskModal: FC<TaskModalProps> = ({
             .catch((error) => {
                 showAlert(error.message, 'error')
             })
+            .finally(() => {
+                setTimeout(() => {
+                    setHasFetchedOnceSelectedTask(true)
+                }, 800) // TODO: retirer le delay
+            })
     }, [loadedProject, selectedTaskKey])
 
     return createPortal(
@@ -103,7 +111,7 @@ const TaskModal: FC<TaskModalProps> = ({
                                 justifyContent={'space-between'}
                             >
                                 <Text>
-                                    {selectedTask?.key ?? ''}
+                                    {selectedTaskKey}
                                 </Text>
                                 <Row
                                     justifyContent={'end'}
@@ -116,6 +124,7 @@ const TaskModal: FC<TaskModalProps> = ({
                                                 setSelectedTask(null)
                                                 setSelectedTaskTitle('')
                                                 setSelectedTaskDescription('')
+                                                setHasFetchedOnceSelectedTask(false)
                                             }, 150)
                                         }}
                                         backgroundColor={theme.surface}
@@ -128,35 +137,53 @@ const TaskModal: FC<TaskModalProps> = ({
                             </Row>
                             <Row>
                                 <Column>
-                                    <TextField
-                                        inputValue={selectedTaskTitle}
-                                        setInputValue={setSelectedTaskTitle}
-                                        placeholder={selectedTask?.title ?? ''}
-                                    />
-                                    {selectedTask?.title !== selectedTaskTitle && (
-                                        <TaskModalEditFieldButtonRow
-                                            onSaveButtonClick={() => {
-                                                void handleTaskUpdate({ title: selectedTaskTitle })
-                                            }}
-                                            onCancelButtonClick={() => {
-                                                setSelectedTaskTitle(selectedTask?.title ?? '')
-                                            }}
+                                    {hasFetchedOnceSelectedTask ? (
+                                        <>
+                                            <TextField
+                                                inputValue={selectedTaskTitle}
+                                                setInputValue={setSelectedTaskTitle}
+                                                placeholder={selectedTask?.title ?? ''}
+                                            />
+                                            {selectedTask?.title !== selectedTaskTitle && (
+                                                <TaskModalEditFieldButtonRow
+                                                    onSaveButtonClick={() => {
+                                                        void handleTaskUpdate({ title: selectedTaskTitle })
+                                                    }}
+                                                    onCancelButtonClick={() => {
+                                                        setSelectedTaskTitle(selectedTask?.title ?? '')
+                                                    }}
+                                                />
+                                            )}
+                                        </>
+                                    ) : (
+                                        <Skeleton
+                                            width={'100%'}
+                                            height={40}
                                         />
                                     )}
 
-                                    <RichTextEditor
-                                        label={'Description'}
-                                        inputValue={selectedTaskDescription}
-                                        setInputValue={setSelectedTaskDescription}
-                                    />
-                                    {selectedTask?.description !== selectedTaskDescription && (
-                                        <TaskModalEditFieldButtonRow
-                                            onSaveButtonClick={() => {
-                                                void handleTaskUpdate({ description: selectedTaskDescription })
-                                            }}
-                                            onCancelButtonClick={() => {
-                                                setSelectedTaskDescription(selectedTask?.description ?? '')
-                                            }}
+                                    {hasFetchedOnceSelectedTask ? (
+                                        <>
+                                            <RichTextEditor
+                                                label={'Description'}
+                                                inputValue={selectedTaskDescription}
+                                                setInputValue={setSelectedTaskDescription}
+                                            />
+                                            {selectedTask?.description !== selectedTaskDescription && (
+                                                <TaskModalEditFieldButtonRow
+                                                    onSaveButtonClick={() => {
+                                                        void handleTaskUpdate({ description: selectedTaskDescription })
+                                                    }}
+                                                    onCancelButtonClick={() => {
+                                                        setSelectedTaskDescription(selectedTask?.description ?? '')
+                                                    }}
+                                                />
+                                            )}
+                                        </>
+                                    ) : (
+                                        <Skeleton
+                                            width={'100%'}
+                                            height={220}
                                         />
                                     )}
 

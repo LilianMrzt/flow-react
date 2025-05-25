@@ -18,11 +18,13 @@ const ProjectDetailsBoardScreen = (): ReactNode => {
     } = useLoadedProject()
 
     const {
-        fetchColumns
+        fetchColumns,
+        hasFetchedOnceColumns
     } = useBoardColumns()
 
     const {
-        fetchTasks
+        fetchTasks,
+        hasFetchedOnceTasks
     } = useTasks()
 
     useEffect(() => {
@@ -72,10 +74,12 @@ const ProjectDetailsBoardScreen = (): ReactNode => {
                     setIsOpen={setIsTaskCreationModalOpen}
                 />
             </Modal>
-            <TaskModal
-                isOpen={!!selectedTaskKey}
-                onClose={closeTaskModal}
-            />
+            {hasFetchedOnceColumns && hasFetchedOnceTasks && (
+                <TaskModal
+                    isOpen={!!selectedTaskKey}
+                    onClose={closeTaskModal}
+                />
+            )}
         </Screen>
     )
 }

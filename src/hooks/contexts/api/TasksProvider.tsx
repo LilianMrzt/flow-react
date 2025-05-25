@@ -21,12 +21,13 @@ export const TasksProvider: FC<TasksProviderProps> = ({
     } = useAlert()
 
     const [tasks, setTasks] = useState<TaskObject[]>([])
+    const [hasFetchedOnceTasks, setHasFetchedOnceTasks] = useState(false)
 
     /**
      * Récupération des tâches du projet
      */
     const fetchTasks = async (): Promise<void> => {
-        if (!loadedProject) return
+        if (!loadedProject || hasFetchedOnceTasks) return
 
         await getTasksByProjectKeyAction(loadedProject.key)
             .then((data) => {
@@ -34,6 +35,11 @@ export const TasksProvider: FC<TasksProviderProps> = ({
             })
             .catch((error) => {
                 showAlert(error.message, 'error')
+            })
+            .finally(() => {
+                setTimeout(() => {
+                    setHasFetchedOnceTasks(true)
+                }, 800) // TODO: retirer le delay
             })
     }
 
@@ -46,6 +52,7 @@ export const TasksProvider: FC<TasksProviderProps> = ({
         <TasksContext.Provider
             value={{
                 tasks,
+                hasFetchedOnceTasks,
                 fetchTasks
             }}
         >

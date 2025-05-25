@@ -40,21 +40,23 @@ const TextField: FC<TextFieldProps> = ({
         <div
             className={'text-field-wrapper'}
         >
-            <Row
-                width={'fit-content'}
-                gap={4}
-            >
-                <Text>
-                    {label}
-                </Text>
-                {mandatory && (
-                    <Text
-                        color={theme.error}
-                    >
-                        *
+            {label && (
+                <Row
+                    width={'fit-content'}
+                    gap={4}
+                >
+                    <Text>
+                        {label}
                     </Text>
-                )}
-            </Row>
+                    {mandatory && (
+                        <Text
+                            color={theme.error}
+                        >
+                            *
+                        </Text>
+                    )}
+                </Row>
+            )}
             <div
                 className={'text-field-container'}
             >

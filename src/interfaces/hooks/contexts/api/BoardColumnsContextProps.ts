@@ -2,5 +2,6 @@ import { BoardColumnObject } from '@interfaces/objects/api/board-column/BoardCol
 
 export interface BoardColumnsContextProps {
     columns: BoardColumnObject[]
+    hasFetchedOnceColumns: boolean
     fetchColumns: () => Promise<void>
 }
