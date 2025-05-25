@@ -1,12 +1,12 @@
-import React, { useEffect, useState, type FC, type ReactNode, Fragment, useLayoutEffect, useRef } from 'react'
+import React, { type FC, type ReactNode, Fragment, useLayoutEffect, useRef } from 'react'
 import { createPortal } from 'react-dom'
-import { handleFadeEffect } from '@utils/AnimationUtils'
 import './alert.css'
 import { getAlertBackgroundColor, getAlertColor, getAlertIcon } from '@utils/AlertUtils'
 import { AlertProps } from '@interfaces/ui/components/dialogs/AlertProps'
 import Row from '@components/layout/Row'
 import Icon from '@components/resources/Icon'
 import Text from '@components/text/Text'
+import { useFadeVisibility } from '@hooks/hooks/useFadeVisibility'
 
 const Alert: FC<AlertProps> = ({
     open,
@@ -18,12 +18,10 @@ const Alert: FC<AlertProps> = ({
     const ref = useRef<HTMLDivElement | null>(null)
     const hasSentHeight = useRef<number | null>(null)
 
-    const [isVisible, setIsVisible] = useState(false)
-    const [isFadingIn, setIsFadingIn] = useState(false)
-
-    useEffect(() => {
-        handleFadeEffect(open, setIsVisible, setIsFadingIn)
-    }, [open])
+    const {
+        isVisible,
+        isFadingIn
+    } = useFadeVisibility(open)
 
     /**
      * Récupère la hauteur du composant

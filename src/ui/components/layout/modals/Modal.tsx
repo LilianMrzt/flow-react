@@ -1,4 +1,4 @@
-import React, { type FC, Fragment, type ReactNode, useEffect, useState } from 'react'
+import React, { type FC, Fragment, type ReactNode } from 'react'
 import './modal.css'
 import { createPortal } from 'react-dom'
 import { CloseIcon } from '@resources/Icons'
@@ -7,10 +7,10 @@ import { useTheme } from '@hooks/contexts/ThemeContext'
 import Column from '@components/layout/Column'
 import Row from '@components/layout/Row'
 import SubTitle from '@components/text/SubTitle'
-import { handleFadeEffect } from '@utils/AnimationUtils'
 import IconButton from '@components/buttons/IconButton'
 import Text from '@components/text/Text'
 import Icon from '@components/resources/Icon'
+import { useFadeVisibility } from '@hooks/hooks/useFadeVisibility'
 
 const Modal: FC<ModalProps> = ({
     isOpen,
@@ -22,14 +22,14 @@ const Modal: FC<ModalProps> = ({
     iconColor,
     titleColor
 }): ReactNode => {
-    const { theme } = useTheme()
+    const {
+        theme
+    } = useTheme()
 
-    const [isVisible, setIsVisible] = useState(false)
-    const [isFadingIn, setIsFadingIn] = useState(false)
-
-    useEffect(() => {
-        handleFadeEffect(isOpen, setIsVisible, setIsFadingIn)
-    }, [isOpen])
+    const {
+        isVisible,
+        isFadingIn
+    } = useFadeVisibility(isOpen)
 
     return createPortal(
         <Fragment>

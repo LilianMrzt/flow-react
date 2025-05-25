@@ -1,8 +1,8 @@
 import React, { type FC, useEffect, useState } from 'react'
 import { MenuDropdownProps } from '@interfaces/ui/components/dropdowns/menu/MenuDropdownProps'
 import './menu-dropdown.css'
-import { handleFadeEffect } from '@utils/AnimationUtils'
 import { createPortal } from 'react-dom'
+import { useFadeVisibility } from '@hooks/hooks/useFadeVisibility'
 
 const MenuDropdown: FC<MenuDropdownProps> = ({
     children,
@@ -12,8 +12,11 @@ const MenuDropdown: FC<MenuDropdownProps> = ({
     buttonRef,
     isSubMenu = false
 }) => {
-    const [isVisible, setIsVisible] = useState(false)
-    const [isFadingIn, setIsFadingIn] = useState(false)
+    const {
+        isVisible,
+        isFadingIn
+    } = useFadeVisibility(isOpen)
+
     const [coords, setCoords] = useState({ top: 0, left: 0, xOffset: 0 })
 
     /**
@@ -50,10 +53,6 @@ const MenuDropdown: FC<MenuDropdownProps> = ({
             setCoords({ top, left, xOffset })
         }
     }, [isOpen, anchorRef, buttonRef, position, isSubMenu])
-
-    useEffect(() => {
-        handleFadeEffect(isOpen, setIsVisible, setIsFadingIn)
-    }, [isOpen])
 
     if (!isVisible) {
         return null

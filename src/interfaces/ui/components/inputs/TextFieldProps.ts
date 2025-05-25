@@ -3,7 +3,7 @@ import { Dispatch, HTMLInputTypeAttribute, ReactElement, SetStateAction } from '
 export interface TextFieldProps {
     inputValue: string
     setInputValue: Dispatch<SetStateAction<string>>
-    label: string
+    label?: string
     placeholder: string
     mandatory?: boolean
     type?: HTMLInputTypeAttribute

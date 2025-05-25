@@ -7,9 +7,9 @@ import { useClickOutside } from '@hooks/hooks/useClickOutside'
 import Icon from '@components/resources/Icon'
 import { ChevronDownIcon } from '@resources/Icons'
 import SelectItem from '@components/dropdowns/select/SelectItem'
-import { handleFadeEffect } from '@utils/AnimationUtils'
 import Row from '@components/layout/Row'
 import { createPortal } from 'react-dom'
+import { useFadeVisibility } from '@hooks/hooks/useFadeVisibility'
 
 const Select: FC<SelectProps> = ({
     label,
@@ -26,9 +26,12 @@ const Select: FC<SelectProps> = ({
     const inputRef = useRef<HTMLDivElement | null>(null)
 
     const [isOpen, setIsOpen] = useState(false)
-    const [isVisible, setIsVisible] = useState(false)
-    const [isFadingIn, setIsFadingIn] = useState(false)
     const [coords, setCoords] = useState({ top: 0, left: 0, width: 0 })
+
+    const {
+        isVisible,
+        isFadingIn
+    } = useFadeVisibility(isOpen)
 
     const selected = options.find(o => {
         return o.value === value
@@ -37,10 +40,6 @@ const Select: FC<SelectProps> = ({
     useClickOutside([inputRef], () => {
         setIsOpen(false)
     })
-
-    useEffect(() => {
-        handleFadeEffect(isOpen, setIsVisible, setIsFadingIn)
-    }, [isOpen])
 
     /**
      * Gestion des coordonnées et de la largeur du Dropdown
