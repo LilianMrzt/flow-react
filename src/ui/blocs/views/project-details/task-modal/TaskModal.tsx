@@ -88,6 +88,7 @@ const TaskModal: FC<TaskModalProps> = ({
             })
             .catch((error) => {
                 showAlert(error.message, 'error')
+                onClose()
             })
             .finally(() => {
                 setTimeout(() => {

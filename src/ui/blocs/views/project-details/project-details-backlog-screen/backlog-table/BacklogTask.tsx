@@ -14,7 +14,7 @@ import { useLoadedProject } from '@hooks/contexts/api/LoadedProjectContext'
 import { useAlert } from '@hooks/contexts/AlertContext'
 import { useTheme } from '@hooks/contexts/ThemeContext'
 import IconButton from '@components/buttons/IconButton'
-import { MoreIcon } from '@resources/Icons'
+import { EyeIcon, MoreIcon } from '@resources/Icons'
 import BacklogTaskDropdown from '@ui/blocs/views/project-details/project-details-backlog-screen/BacklogTaskDropdown'
 import MenuWrapper from '@components/dropdowns/menu/MenuWrapper'
 import { BacklogTaskProps } from '@interfaces/ui/blocs/views/project-details/project-details-backlog-screen/backlog-table/BacklogTaskProps'
@@ -125,12 +125,6 @@ const BacklogTask: FC<BacklogTaskProps> = ({
             ref={taskRef}
             className={'backlog-task'}
             style={{ backgroundColor: isHovered ? theme.secondary : theme.surface }}
-            onClick={() => {
-                navigate(ProjectsRoutes.projectDetailsBacklogTaskModal.pathFn!({
-                    key: loadedProject?.key,
-                    taskId: task.key
-                }))
-            }}
             onMouseEnter={() => {
                 setIsHovered(true)
             }}
@@ -199,6 +193,19 @@ const BacklogTask: FC<BacklogTaskProps> = ({
                 justifyContent={'center'}
                 draggedTaskId={draggedTaskId}
             >
+                <IconButton
+                    onClick={() => {
+                        navigate(ProjectsRoutes.projectDetailsBacklogTaskModal.pathFn!({
+                            key: loadedProject?.key,
+                            taskId: task.key
+                        }))
+                    }}
+                    iconSize={18}
+                    backgroundColor={isHovered ? theme.secondary : theme.surface}
+                    hoverBackgroundColor={theme.hoverSecondary}
+                >
+                    <EyeIcon/>
+                </IconButton>
                 <MenuWrapper
                     onClose={() => {
                         setHoveredLineId(null)
