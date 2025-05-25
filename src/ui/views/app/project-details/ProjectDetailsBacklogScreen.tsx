@@ -23,12 +23,17 @@ const ProjectDetailsBacklogScreen = (): ReactNode => {
     } = useBoardColumns()
 
     const {
+        fetchTasks
+    } = useTasks()
+
+    const {
         loadedProject
     } = useLoadedProject()
 
     useEffect(() => {
         if (loadedProject) {
             void fetchColumns()
+            void fetchTasks()
         }
     }, [loadedProject])
 

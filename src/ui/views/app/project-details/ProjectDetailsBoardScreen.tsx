@@ -10,6 +10,7 @@ import { PROJECT_DETAILS_BREADCRUMBS } from '@constants/breadcrumbs/ProjectDetai
 import { useSearchParams } from 'react-router-dom'
 import TaskModal from '@components/layout/modals/TaskModal'
 import { useBoardColumns } from '@hooks/contexts/api/BoardColumnsProvider'
+import { useTasks } from '@hooks/contexts/api/TasksProvider'
 
 const ProjectDetailsBoardScreen = (): ReactNode => {
     const {
@@ -20,9 +21,14 @@ const ProjectDetailsBoardScreen = (): ReactNode => {
         fetchColumns
     } = useBoardColumns()
 
+    const {
+        fetchTasks
+    } = useTasks()
+
     useEffect(() => {
         if (loadedProject) {
             void fetchColumns()
+            void fetchTasks()
         }
     }, [loadedProject])
 
