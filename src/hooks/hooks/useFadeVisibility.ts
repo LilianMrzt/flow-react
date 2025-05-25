@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react'
 
 /**
  * Hook pour gérer une visibilité avec fade in/out
- * @param isOpen Indique si le composant est censé être visible
- * @param duration Durée en ms de l’animation
+ * @param isOpen
+ * @param duration
  */
 export const useFadeVisibility = (
     isOpen: boolean,
@@ -19,7 +19,7 @@ export const useFadeVisibility = (
                 setIsFadingIn(true)
             }, 10)
             return (): void => {
-                return clearTimeout(timeout)
+                clearTimeout(timeout)
             }
         } else {
             setIsFadingIn(false)
@@ -27,10 +27,13 @@ export const useFadeVisibility = (
                 setIsVisible(false)
             }, duration)
             return (): void => {
-                return clearTimeout(timeout)
+                clearTimeout(timeout)
             }
         }
     }, [isOpen, duration])
 
-    return { isVisible, isFadingIn }
+    return {
+        isVisible,
+        isFadingIn
+    }
 }
