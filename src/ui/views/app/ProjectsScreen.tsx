@@ -3,8 +3,6 @@ import Screen from '@components/layout/screen/Screen'
 import { AddIcon } from '@resources/Icons'
 import Modal from '@components/layout/modals/Modal'
 import ProjectCreationModalContent from '@ui/blocs/modals/ProjectCreationModalContent'
-import { getUserProjectsPaginatedAction } from '@api/ProjectsApiCalls'
-import { useAlert } from '@hooks/contexts/AlertContext'
 import { useProjects } from '@hooks/contexts/api/ProjectsContext'
 import ProjectCard from '@ui/blocs/views/projects-screen/ProjectCard'
 import './projects-screen.css'
@@ -17,31 +15,13 @@ const ProjectsScreen = (): ReactNode => {
     const [offset] = useState(0)
 
     const {
-        showAlert
-    } = useAlert()
-
-    const {
         projects,
-        getProjectsStateUpdate,
         hasFetchedOnceProjectsScreen,
-        setHasFetchedOnceProjectsScreen
+        fetchUserProjects
     } = useProjects()
 
     useEffect(() => {
-        const fetchProjects = async (): Promise<void> => {
-            await getUserProjectsPaginatedAction(limit, offset)
-                .then((res) => {
-                    getProjectsStateUpdate(res)
-                }).catch((error) => {
-                    showAlert(error.message , 'error')
-                }).finally(() => {
-                    setTimeout(() => {
-                        setHasFetchedOnceProjectsScreen(true)
-                    }, 800)
-                })
-        }
-
-        void fetchProjects()
+        void fetchUserProjects(limit, offset)
     }, [])
 
     return (

@@ -14,43 +14,22 @@ import { useNavigate } from 'react-router-dom'
 import { ProjectsRoutes } from '@constants/routes/ProjectsRoutes'
 import { useTheme } from '@hooks/contexts/ThemeContext'
 import ActiveProjectsSection from '@ui/blocs/views/dashboard-screen/ActiveProjectsSection'
-import { getRecentUserProjectsAction } from '@api/ProjectsApiCalls'
-import { useAlert } from '@hooks/contexts/AlertContext'
 import Skeleton from '@components/layout/Skeleton'
 
 const DashboardScreen = (): ReactNode => {
     const {
         recentProjects,
-        projects,
-        getRecentProjectsStateUpdate,
-        setHasFetchedOnceDashboardScreen,
-        hasFetchedOnceDashboardScreen
+        hasFetchedOnceDashboardScreen,
+        fetchRecentUserProjects
     } = useProjects()
 
     const {
         theme
     } = useTheme()
 
-    const {
-        showAlert
-    } = useAlert()
-
     useEffect(() => {
-        const fetchProjects = async (): Promise<void> => {
-            await getRecentUserProjectsAction()
-                .then((res) => {
-                    getRecentProjectsStateUpdate(res)
-                }).catch((error) => {
-                    showAlert(error.message , 'error')
-                }).finally(() => {
-                    setTimeout(() => {
-                        setHasFetchedOnceDashboardScreen(true)
-                    }, 800)
-                })
-        }
-
-        void fetchProjects()
-    }, [projects])
+        void fetchRecentUserProjects()
+    }, [])
 
     const navigate = useNavigate()
 

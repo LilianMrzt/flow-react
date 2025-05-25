@@ -7,7 +7,6 @@ import Button from '@components/buttons/Button'
 import { useTheme } from '@hooks/contexts/ThemeContext'
 import { ProjectCreationModalContentProps } from '@interfaces/ui/blocs/modals/ProjectCreationModalContentProps'
 import { useAlert } from '@hooks/contexts/AlertContext'
-import { createProjectAction } from '@api/ProjectsApiCalls'
 import { useProjects } from '@hooks/contexts/api/ProjectsContext'
 
 const ProjectCreationModalContent: FC<ProjectCreationModalContentProps> = ({
@@ -22,7 +21,7 @@ const ProjectCreationModalContent: FC<ProjectCreationModalContentProps> = ({
     } = useAlert()
 
     const {
-        createProjectStateUpdate
+        createProject
     } = useProjects()
 
     const [projectName, setProjectName] = useState('')
@@ -40,22 +39,16 @@ const ProjectCreationModalContent: FC<ProjectCreationModalContentProps> = ({
      * Gestion du click sur le bouton de submit
      */
     const handleSubmit = async (): Promise<void> => {
-        if (!projectName || !projectDescription || !projectKey) {
-            showAlert('All fields need to be filled to create the project', 'warning')
+        if (!projectName || !projectKey) {
+            showAlert('All mandatory fields need to be filled to create the project', 'warning')
             return
         }
 
-        await createProjectAction({
+        await createProject({
             name: projectName,
             description: projectDescription,
             key: projectKey
-        }).then((res) => {
-            showAlert('Project successfully created.' , 'success')
-            createProjectStateUpdate(res)
-            handleClose()
-        }).catch((error) => {
-            showAlert(error.message , 'error')
-        })
+        }, handleClose)
     }
 
     return (
@@ -68,12 +61,14 @@ const ProjectCreationModalContent: FC<ProjectCreationModalContentProps> = ({
                 inputValue={projectName}
                 setInputValue={setProjectName}
                 placeholder={'Project name'}
+                mandatory
             />
             <TextField
                 label={'Key'}
                 inputValue={projectKey}
                 setInputValue={setProjectKey}
                 placeholder={'Project Key'}
+                mandatory
             />
             <TextArea
                 inputValue={projectDescription}

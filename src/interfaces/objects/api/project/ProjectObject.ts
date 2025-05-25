@@ -9,7 +9,7 @@ export interface ProjectObject {
     key: string
     columns: BoardColumnObject[]
     tasks: TaskObject[]
+    members: ProjectMemberObject[]
     createdAt: string
     updatedAt: string
-    members: ProjectMemberObject[]
 }

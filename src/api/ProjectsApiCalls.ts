@@ -1,5 +1,6 @@
 import { ProjectObject } from '@interfaces/objects/api/project/ProjectObject'
 import { StorageConstants } from '@constants/StorageConstants'
+import { ProjectSummaryObject } from '@interfaces/objects/api/project/ProjectSummaryObject'
 
 /**
  * Crée un nouveau projet
@@ -7,7 +8,7 @@ import { StorageConstants } from '@constants/StorageConstants'
  */
 export const createProjectAction = async (
     projectData: { name: string; description?: string, key: string }
-): Promise<ProjectObject> => {
+): Promise<ProjectSummaryObject> => {
     const token = localStorage.getItem(StorageConstants.token)
 
     const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/projects`, {
@@ -58,7 +59,7 @@ export const getProjectByKeyAction = async (
 export const getUserProjectsPaginatedAction = async (
     limit = 10,
     offset = 0
-): Promise<ProjectObject[]> => {
+): Promise<ProjectSummaryObject[]> => {
     const token = localStorage.getItem(StorageConstants.token)
 
     const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/projects?limit=${limit}&offset=${offset}`, {
@@ -79,7 +80,7 @@ export const getUserProjectsPaginatedAction = async (
 /**
  * Récupère les 4 projets les plus récents de l'utilisateur
  */
-export const getRecentUserProjectsAction = async (): Promise<ProjectObject[]> => {
+export const getRecentUserProjectsAction = async (): Promise<ProjectSummaryObject[]> => {
     const token = localStorage.getItem(StorageConstants.token)
 
     const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/projects/recent`, {

@@ -1,5 +1,5 @@
-import { ProjectObject } from '@interfaces/objects/api/project/ProjectObject'
+import { ProjectSummaryObject } from '@interfaces/objects/api/project/ProjectSummaryObject'
 
 export type ProjectCardProps = {
-    project: ProjectObject
+    project: ProjectSummaryObject
 }
