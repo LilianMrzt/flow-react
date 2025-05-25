@@ -104,7 +104,6 @@ const BacklogTask: FC<BacklogTaskProps> = ({
 
         updateColumnTasksOrdersAction(loadedProject.key, updates)
             .then(() => {
-                showAlert('Task successfully moved to column.', 'success')
                 setIsHovered(false)
             })
             .catch((error) => {
