@@ -1,9 +1,9 @@
 import { ProjectsRoutes } from '@constants/routes/ProjectsRoutes'
 import { BreadCrumbItemObject } from '@interfaces/objects/front/BreadCrumbItemObject'
-import { ProjectObject } from '@interfaces/objects/api/project/ProjectObject'
+import { ProjectDetailsObject } from '@interfaces/objects/api/project/ProjectDetailsObject'
 
 export const PROJECT_DETAILS_BREADCRUMBS = (
-    loadedProject: ProjectObject
+    loadedProject: ProjectDetailsObject
 ): BreadCrumbItemObject[] => {
     return [
         {

@@ -7,6 +7,7 @@ export interface ProjectObject {
     name: string
     description?: string
     key: string
+    totalTasksNumber: number
     columns: BoardColumnObject[]
     tasks: TaskObject[]
     members: ProjectMemberObject[]

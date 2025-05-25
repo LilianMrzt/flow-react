@@ -1,6 +1,7 @@
 import { ProjectObject } from '@interfaces/objects/api/project/ProjectObject'
 import { StorageConstants } from '@constants/StorageConstants'
 import { ProjectSummaryObject } from '@interfaces/objects/api/project/ProjectSummaryObject'
+import { ProjectDetailsObject } from '@interfaces/objects/api/project/ProjectDetailsObject'
 
 /**
  * Crée un nouveau projet
@@ -35,7 +36,7 @@ export const createProjectAction = async (
  */
 export const getProjectByKeyAction = async (
     key: string
-): Promise<ProjectObject> => {
+): Promise<ProjectDetailsObject> => {
     const token = localStorage.getItem(StorageConstants.token)
 
     const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/projects/${key}`, {

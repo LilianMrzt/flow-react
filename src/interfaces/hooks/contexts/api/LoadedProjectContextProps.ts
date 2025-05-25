@@ -1,6 +1,6 @@
-import { ProjectObject } from '@interfaces/objects/api/project/ProjectObject'
+import { ProjectDetailsObject } from '@interfaces/objects/api/project/ProjectDetailsObject'
 
 export interface LoadedProjectContextProps {
-    loadedProject: ProjectObject | null
+    loadedProject: ProjectDetailsObject | null
     fetchProject: () => Promise<void>
 }
