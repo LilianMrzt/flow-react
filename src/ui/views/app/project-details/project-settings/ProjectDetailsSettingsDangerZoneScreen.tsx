@@ -11,7 +11,7 @@ import { TrashIcon, WarningIcon } from '@resources/Icons'
 import Row from '@components/layout/Row'
 import Icon from '@components/resources/Icon'
 import SubTitle from '@components/text/SubTitle'
-import Modal from '@components/layout/modals/Modal'
+import Modal from '@components/layout/Modal'
 import ConfirmProjectDeletionModalContent from '@ui/blocs/modals/ConfirmProjectDeletionModalContent'
 
 const ProjectDetailsSettingsDangerZoneScreen = (): ReactNode => {

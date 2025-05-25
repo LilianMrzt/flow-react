@@ -16,6 +16,7 @@ const Button: FC<ButtonProps> = ({
     backgroundColor,
     hoverBackgroundColor,
     width,
+    minHeight,
     padding,
     fontWeight
 }) => {
@@ -53,7 +54,8 @@ const Button: FC<ButtonProps> = ({
                 borderColor: disabled ? theme.hoverSecondary : borderColor ?? theme.primary,
                 width: width ?? 'fit-content',
                 padding: padding ?? '8px 16px',
-                cursor: disabled ? 'default' : 'pointer'
+                cursor: disabled ? 'default' : 'pointer',
+                minHeight: minHeight ?? 40
             }}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}

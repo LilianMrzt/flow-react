@@ -4,18 +4,19 @@ import { createPortal } from 'react-dom'
 import { CloseIcon } from '@resources/Icons'
 import { useTheme } from '@hooks/contexts/ThemeContext'
 import IconButton from '@components/buttons/IconButton'
-import { TaskModalProps } from '@interfaces/ui/components/layout/modals/TaskModalProps'
+import { TaskModalProps } from '@interfaces/ui/blocs/views/project-details/task-modal/TaskModalProps'
 import Row from '@components/layout/Row'
 import Column from '@components/layout/Column'
 import TextField from '@components/inputs/TextField'
 import { useFadeVisibility } from '@hooks/hooks/useFadeVisibility'
 import { useLoadedProject } from '@hooks/contexts/api/LoadedProjectContext'
 import { useAlert } from '@hooks/contexts/AlertContext'
-import { getTaskByKeyAction } from '@api/TasksApiCalls'
+import { getTaskByKeyAction, updateTaskAction } from '@api/TasksApiCalls'
 import { useSearchParams } from 'react-router-dom'
 import { TaskObject } from '@interfaces/objects/api/task/TaskObject'
 import Text from '@components/text/Text'
 import RichTextEditor from '@components/inputs/rich-text-editor/RichTextEditor'
+import { TaskModalEditFieldButtonRow } from '@ui/blocs/views/project-details/task-modal/TaskModalEditFieldButtonRow'
 
 const TaskModal: FC<TaskModalProps> = ({
     isOpen,
@@ -44,6 +45,29 @@ const TaskModal: FC<TaskModalProps> = ({
     const [selectedTask, setSelectedTask] = useState<TaskObject | null>(null)
     const [selectedTaskTitle, setSelectedTaskTitle] = useState('')
     const [selectedTaskDescription, setSelectedTaskDescription] = useState('')
+
+    const handleTaskUpdate = (
+        fieldsToUpdate: {
+            title?: string
+            description?: string
+        }
+    ): void => {
+        if (!loadedProject || !selectedTask) return
+
+        updateTaskAction(loadedProject.key, selectedTask.id, fieldsToUpdate)
+            .then((updated) => {
+                setSelectedTask(updated)
+                if (fieldsToUpdate.title !== undefined) {
+                    setSelectedTaskTitle(updated.title)
+                }
+                if (fieldsToUpdate.description !== undefined) {
+                    setSelectedTaskDescription(updated.description)
+                }
+            })
+            .catch((error) => {
+                showAlert(error.message, 'error')
+            })
+    }
 
     useEffect(() => {
         if (!loadedProject) return
@@ -104,11 +128,33 @@ const TaskModal: FC<TaskModalProps> = ({
                                         setInputValue={setSelectedTaskTitle}
                                         placeholder={selectedTask?.title ?? ''}
                                     />
+                                    {selectedTask?.title !== selectedTaskTitle && (
+                                        <TaskModalEditFieldButtonRow
+                                            onSaveButtonClick={() => {
+                                                void handleTaskUpdate({ title: selectedTaskTitle })
+                                            }}
+                                            onCancelButtonClick={() => {
+                                                setSelectedTaskTitle(selectedTask?.title ?? '')
+                                            }}
+                                        />
+                                    )}
+
                                     <RichTextEditor
                                         label={'Description'}
                                         inputValue={selectedTaskDescription}
                                         setInputValue={setSelectedTaskDescription}
                                     />
+                                    {selectedTask?.description !== selectedTaskDescription && (
+                                        <TaskModalEditFieldButtonRow
+                                            onSaveButtonClick={() => {
+                                                void handleTaskUpdate({ description: selectedTaskDescription })
+                                            }}
+                                            onCancelButtonClick={() => {
+                                                setSelectedTaskDescription(selectedTask?.description ?? '')
+                                            }}
+                                        />
+                                    )}
+
                                 </Column>
                             </Row>
                         </div>
