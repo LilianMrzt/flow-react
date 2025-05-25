@@ -1,10 +1,10 @@
-import { TaskObject } from '@interfaces/objects/api/task/TaskObject'
 import { Dispatch, SetStateAction } from 'react'
+import { TaskLightObject } from '@interfaces/objects/api/task/TaskLightObject'
 
 export interface UseBoardDragAndDropParams {
     projectKey: string
     columnId: string
-    tasks: TaskObject[]
+    tasks: TaskLightObject[]
     hoveredTaskId: string | null
     hoveredPosition: 'top' | 'bottom' | null
     setHoveredTaskId: Dispatch<SetStateAction<string | null>>

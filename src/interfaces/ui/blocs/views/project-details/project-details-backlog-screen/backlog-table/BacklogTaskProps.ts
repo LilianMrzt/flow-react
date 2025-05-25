@@ -1,8 +1,8 @@
-import { TaskObject } from '@interfaces/objects/api/task/TaskObject'
+import { TaskLightObject } from '@interfaces/objects/api/task/TaskLightObject'
 
 export interface BacklogTaskProps {
-    task: TaskObject
-    sortedBacklogTasks: TaskObject[]
+    task: TaskLightObject
+    sortedBacklogTasks: TaskLightObject[]
     draggedTaskId: string | null
     setDraggedTaskId: (id: string | null) => void
     setHoveredLineId: (id: string | null) => void

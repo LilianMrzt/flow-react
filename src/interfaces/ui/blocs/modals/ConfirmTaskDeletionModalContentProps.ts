@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from 'react'
-import { TaskObject } from '@interfaces/objects/api/task/TaskObject'
+import { TaskLightObject } from '@interfaces/objects/api/task/TaskLightObject'
 
 export interface ConfirmTaskDeletionModalContentProps {
     setIsOpen: Dispatch<SetStateAction<boolean>>
-    task: TaskObject
+    task: TaskLightObject
 }
