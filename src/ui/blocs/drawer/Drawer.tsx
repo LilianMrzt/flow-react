@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from 'react'
+import React, { ReactNode, useEffect, useState } from 'react'
 import './drawer.css'
 import IconButton from '@components/buttons/IconButton'
 import { ChevronLeftIcon, ChevronRightIcon, FolderIcon, LayersIcon, WavesIcon } from '@resources/Icons'
@@ -13,18 +13,33 @@ import DrawerTitle from '@ui/blocs/drawer/DrawerTitle'
 import { ProjectsRoutes } from '@constants/routes/ProjectsRoutes'
 import DrawerItemGroup from '@ui/blocs/drawer/drawer-item-group/DrawerItemGroup'
 import { ProjectDetailsSettingsRoutes } from '@constants/routes/ProjectDetailsSettingsRoutes'
-import { useLocation } from 'react-router'
+import { matchPath, useLocation } from 'react-router'
+import { StorageConstants } from '@constants/StorageConstants'
 
 const Drawer = (): ReactNode => {
     const location = useLocation()
     const { theme } = useTheme()
     const { activeProjectKey } = useProjects()
 
-    const [isDrawerOpen, setIsDrawerOpen] = useState(false)
+    /**
+     * Récupère l'état initial du drawer depuis le localStorage.
+     * Retourne false uniquement si la valeur enregistrée est 'false', sinon true par défaut.
+     */
+    const getInitialDrawerState = (): boolean => {
+        const value = localStorage.getItem(StorageConstants.isDrawerOpen)
+        return value !== 'false'
+    }
 
-    const isOnProjectPage = location.pathname.startsWith(ProjectsRoutes.projects.path) &&
-        location.pathname !== ProjectsRoutes.projects.path &&
-        location.pathname !== ProjectsRoutes.projectNotFound.path
+    const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(getInitialDrawerState)
+
+    const isOnProjectPage = !!matchPath('/projects/:key/*', location.pathname)
+
+    /**
+     * Met à jour le localStorage à chaque fois que l'état du drawer change.
+     */
+    useEffect(() => {
+        localStorage.setItem(StorageConstants.isDrawerOpen, String(isDrawerOpen))
+    }, [isDrawerOpen])
 
     return (
         <div

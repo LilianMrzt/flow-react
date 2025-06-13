@@ -7,7 +7,6 @@
     flex-direction: column;
     justify-content: center;
     transition: box-shadow 200ms ease-in-out;
-    flex: 1;
 }
 
 .card-hover-shadow:hover {
