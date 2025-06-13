@@ -13,15 +13,14 @@ import Icon from '@components/resources/Icon'
 import { TaskIcon } from '@resources/Icons'
 import Row from '@components/layout/Row'
 import { getUpdatedLabel } from '@utils/dateUtils.ts'
+import { useProjects } from '@hooks/contexts/api/ProjectsContext'
 
 const ProjectCard: FC<ProjectCardProps> = ({
     project
 }): ReactNode => {
     const navigate = useNavigate()
-
-    const {
-        theme
-    } = useTheme()
+    const { theme } = useTheme()
+    const { setActiveProjectKey } = useProjects()
 
     const [isHovered, setIsHovered] = useState(false)
 
@@ -44,6 +43,7 @@ const ProjectCard: FC<ProjectCardProps> = ({
             className={'project-card'}
             onClick={() => {
                 navigate(ProjectsRoutes.projectDetails.pathFn!({ key: project.key }))
+                setActiveProjectKey(project.key)
             }}
             width={'100%'}
             padding={0}

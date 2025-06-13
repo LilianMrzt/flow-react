@@ -13,16 +13,12 @@ import DrawerTitle from '@ui/blocs/drawer/DrawerTitle'
 import { ProjectsRoutes } from '@constants/routes/ProjectsRoutes'
 import DrawerItemGroup from '@ui/blocs/drawer/drawer-item-group/DrawerItemGroup'
 import { ProjectDetailsSettingsRoutes } from '@constants/routes/ProjectDetailsSettingsRoutes'
+import { useLocation } from 'react-router'
 
 const Drawer = (): ReactNode => {
-
-    const {
-        theme
-    } = useTheme()
-
-    const {
-        activeProjectKey
-    } = useProjects()
+    const location = useLocation()
+    const { theme } = useTheme()
+    const { activeProjectKey } = useProjects()
 
     const [isDrawerOpen, setIsDrawerOpen] = useState(false)
 

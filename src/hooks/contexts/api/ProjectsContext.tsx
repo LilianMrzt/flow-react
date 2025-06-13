@@ -4,15 +4,15 @@ import { ProjectsProviderProps } from '@interfaces/hooks/contexts/api/ProjectsPr
 import { ProjectObject } from '@interfaces/objects/api/project/ProjectObject'
 import { createProjectAction, getRecentUserProjectsAction, getUserProjectsPaginatedAction } from '@api/ProjectsApiCalls'
 import { useAlert } from '@hooks/contexts/AlertContext'
+import { useLocation } from 'react-router'
 
 const ProjectsContext = createContext<ProjectsContextProps | undefined>(undefined)
 
 export const ProjectsProvider: FC<ProjectsProviderProps> = ({
     children
 }) => {
-    const {
-        showAlert
-    } = useAlert()
+    const { showAlert } = useAlert()
+    const location = useLocation()
 
     const [projects, setProjects] = useState<ProjectObject[]>([])
     const [recentProjects, setRecentProjects] = useState<ProjectObject[]>([])
