@@ -1,25 +1,25 @@
 import React, { ReactNode } from 'react'
-import { Navigate, Route, Routes } from 'react-router'
+import { Navigate, Route } from 'react-router'
 import { AuthRoutes } from '@constants/routes/AuthRoutes'
 import LoginScreen from '@ui/views/login/LoginScreen'
 import RegisterScreen from '@ui/views/login/RegisterScreen'
 import LoggedRoute from '@ui/navigation/LoggedRoute'
 
-const LoginNavigation = (): ReactNode => {
+const AuthNavigation = (): ReactNode => {
     return (
-        <Routes>
+        <>
+            <Route
+                path={'/'}
+                element={
+                    <Navigate
+                        to={AuthRoutes.signIn.path}
+                        replace
+                    />
+                }
+            />
             <Route
                 element={<LoggedRoute/>}
             >
-                <Route
-                    path={'/'}
-                    element={
-                        <Navigate
-                            to={AuthRoutes.signIn.path}
-                            replace
-                        />
-                    }
-                />
                 <Route
                     path={AuthRoutes.signIn.path}
                     element={<LoginScreen />}
@@ -29,8 +29,8 @@ const LoginNavigation = (): ReactNode => {
                     element={<RegisterScreen />}
                 />
             </Route>
-        </Routes>
+        </>
     )
 }
 
-export default LoginNavigation
+export default AuthNavigation

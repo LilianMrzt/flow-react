@@ -38,13 +38,13 @@ const AvatarDropdown: FC<AvatarDropdownProps> = ({
                 padding={12}
             >
                 <Text>
-                    {`${user.firstName} ${user.lastName}`}
+                    {`${user?.firstName} ${user?.lastName}`}
                 </Text>
                 <Text
                     fontSize={14}
                     color={theme.textSecondary}
                 >
-                    {user.email}
+                    {user?.email}
                 </Text>
             </MenuGroup>
             <Separator/>

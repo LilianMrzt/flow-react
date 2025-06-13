@@ -14,17 +14,14 @@ import Row from '@components/layout/Row'
 import Text from '@components/text/Text'
 import { useTheme } from '@hooks/contexts/ThemeContext'
 import { AppRoutes } from '@constants/routes/AppRoutes'
+import { useUser } from '@hooks/contexts/api/UserContext'
 
 const LoginScreen = (): ReactNode => {
+    const { showAlert } = useAlert()
+    const { theme } = useTheme()
+    const { setUser } = useUser()
+
     const navigate = useNavigate()
-
-    const {
-        showAlert
-    } = useAlert()
-
-    const {
-        theme
-    } = useTheme()
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -44,6 +41,9 @@ const LoginScreen = (): ReactNode => {
         }).then((response) => {
             localStorage.setItem(StorageConstants.token, response.token || '')
             navigate(AppRoutes.dashboard.path)
+            showAlert(response.message , 'success')
+            setUser(response.user)
+            console.log(response)
         }).catch((error) => {
             showAlert(error.message , 'error')
         })

@@ -1,6 +1,7 @@
 import { UserObject } from '@interfaces/objects/api/user/UserObject'
 import { UserLoginObject } from '@interfaces/objects/api/user/UserLoginObject'
 import { UserRegisterObject } from '@interfaces/objects/api/user/UserRegisterObject'
+import { UserLoginResponseObject } from '@interfaces/objects/api/user/UserLoginResponseObject'
 
 /**
  * Fonction pour se connecter via l'interface
@@ -8,7 +9,7 @@ import { UserRegisterObject } from '@interfaces/objects/api/user/UserRegisterObj
  */
 export const loginUserAction = async (
     userData: UserLoginObject
-): Promise<{ token: string }> => {
+): Promise<UserLoginResponseObject> => {
     const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/auth/login`, {
         method: 'POST',
         headers: {
@@ -24,7 +25,9 @@ export const loginUserAction = async (
     }
 
     return {
-        token: data.token
+        token: data.token,
+        message: data.message,
+        user: data.user
     }
 }
 

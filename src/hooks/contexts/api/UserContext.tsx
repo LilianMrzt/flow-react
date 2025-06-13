@@ -3,38 +3,48 @@ import React, {
     useContext,
     useState,
     useEffect,
-    type FC
+    type FC, useRef
 } from 'react'
 import { UserObject } from '@interfaces/objects/api/user/UserObject'
 import { getUserFromTokenAction } from '@api/AuthApiCalls'
 import { StorageConstants } from '@constants/StorageConstants'
 import { UserContextProps } from '@interfaces/hooks/contexts/api/UserContextProps'
 import { UserProviderProps } from '@interfaces/hooks/contexts/api/UserProviderProps'
+import { useAlert } from '@hooks/contexts/AlertContext'
 
 const UserContext = createContext<UserContextProps | undefined>(undefined)
 
 export const UserProvider: FC<UserProviderProps> = ({
     children
 }) => {
-    const [user, setUser] = useState<UserObject | null>(null)
-    const [loading, setLoading] = useState(true)
+    const { showAlert } = useAlert()
 
-    useEffect(() => {
+    const hasFetched = useRef(false)
+
+    const [user, setUser] = useState<UserObject | null>(null)
+
+    /**
+     * Récupération de l'utilisateur connecté
+     */
+    const handleFetchUser = (): void => {
         const token = localStorage.getItem(StorageConstants.token)
-        if (token) {
-            void getUserFromTokenAction(token)
+
+        if (hasFetched.current) return
+        hasFetched.current = true
+
+        if(token && !user) {
+            getUserFromTokenAction(token)
                 .then((res) => {
                     setUser(res)
                 })
                 .catch((error) => {
-                    console.error(error.message)
+                    showAlert(error.message, 'error')
                 })
-                .finally(() => {
-                    setLoading(false)
-                })
-        } else {
-            setLoading(false)
         }
+    }
+
+    useEffect(() => {
+        handleFetchUser()
     }, [])
 
     /**
@@ -43,19 +53,15 @@ export const UserProvider: FC<UserProviderProps> = ({
     const logout = (): void => {
         localStorage.removeItem(StorageConstants.token)
         setUser(null)
-    }
-
-    if (loading || !user) {
-        return (
-            <div/>
-        )
+        window.location.reload()
     }
 
     return (
         <UserContext.Provider
             value={{
                 user,
-                logout
+                logout,
+                setUser
             }}
         >
             {children}
