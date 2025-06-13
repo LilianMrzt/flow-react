@@ -11,6 +11,8 @@ import { StorageConstants } from '@constants/StorageConstants'
 import { UserContextProps } from '@interfaces/hooks/contexts/api/UserContextProps'
 import { UserProviderProps } from '@interfaces/hooks/contexts/api/UserProviderProps'
 import { useAlert } from '@hooks/contexts/AlertContext'
+import { AuthRoutes } from '@constants/routes/AuthRoutes'
+import { useNavigate } from 'react-router-dom'
 
 const UserContext = createContext<UserContextProps | undefined>(undefined)
 
@@ -18,6 +20,7 @@ export const UserProvider: FC<UserProviderProps> = ({
     children
 }) => {
     const { showAlert } = useAlert()
+    const navigate = useNavigate()
 
     const hasFetched = useRef(false)
 
@@ -53,7 +56,7 @@ export const UserProvider: FC<UserProviderProps> = ({
     const logout = (): void => {
         localStorage.removeItem(StorageConstants.token)
         setUser(null)
-        window.location.reload()
+        navigate(AuthRoutes.signIn.path)
     }
 
     return (

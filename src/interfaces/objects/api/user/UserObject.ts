@@ -1,10 +1,10 @@
-import { MembershipObject } from '@interfaces/objects/api/team/MembershipObject '
+import { TeamMemberObject } from '@interfaces/objects/api/team/TeamMemberObject'
 
 export interface UserObject {
     id: string
     email: string
     firstName?: string
     lastName?: string
-    memberships: MembershipObject[]
+    memberships: TeamMemberObject[]
     color: string
 }

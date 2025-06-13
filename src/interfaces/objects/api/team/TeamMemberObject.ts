@@ -1,7 +1,7 @@
 import { TeamObject } from '@interfaces/objects/api/team/TeamObject'
 
-export interface MembershipObject {
+export interface TeamMemberObject {
     id: string
-    role: string
     team: TeamObject
+    role: 'admin' | 'member'
 }

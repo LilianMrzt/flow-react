@@ -8,7 +8,6 @@ import { useTheme } from '@hooks/contexts/ThemeContext'
 import { LogoutIcon, SettingsIcon, UserIcon } from '@resources/Icons'
 import { AvatarDropdownProps } from '@interfaces/ui/blocs/header/components/AvatarDropdownProps'
 import { useUser } from '@hooks/contexts/api/UserContext'
-import { AuthRoutes } from '@constants/routes/AuthRoutes'
 import { useNavigate } from 'react-router-dom'
 import { AppRoutes } from '@constants/routes/AppRoutes'
 
@@ -67,10 +66,7 @@ const AvatarDropdown: FC<AvatarDropdownProps> = ({
                 <MenuItem
                     label={'Log out'}
                     icon={<LogoutIcon/>}
-                    onClick={() => {
-                        logout()
-                        navigate(AuthRoutes.signIn.path)
-                    }}
+                    onClick={logout}
                     color={theme.error}
                     iconColor={theme.error}
                     onClose={onClose}

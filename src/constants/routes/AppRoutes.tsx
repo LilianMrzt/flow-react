@@ -20,5 +20,17 @@ export const AppRoutes: Record<string, RouteType> = {
         path: '/teams',
         label: 'Teams',
         icon: <GroupIcon/>
+    },
+    noTeamFound: {
+        path: '/no-team-found',
+        label: 'No team found'
+    },
+    createNewTeam: {
+        path: '/create-team',
+        label: 'Create team'
+    },
+    joinExistingTeam: {
+        path: '/join-team',
+        label: 'Join team'
     }
 }
