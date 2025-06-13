@@ -43,7 +43,6 @@ const LoginScreen = (): ReactNode => {
             navigate(AppRoutes.dashboard.path)
             showAlert(response.message , 'success')
             setUser(response.user)
-            console.log(response)
         }).catch((error) => {
             showAlert(error.message , 'error')
         })

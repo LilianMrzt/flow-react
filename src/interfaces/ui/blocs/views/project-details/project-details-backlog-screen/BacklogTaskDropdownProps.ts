@@ -6,6 +6,7 @@ export interface BacklogTaskDropdownProps {
     onClose: () => void
     task: TaskObject
     anchorRef: RefObject<HTMLDivElement | null>
+    dropdownRef: RefObject<HTMLDivElement | null>
     subMenuRef: RefObject<HTMLDivElement | null>
     setIsHovered: Dispatch<SetStateAction<boolean>>
     sortedBacklogTasks: TaskObject[]

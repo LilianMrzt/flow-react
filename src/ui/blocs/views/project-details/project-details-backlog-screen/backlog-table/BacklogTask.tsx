@@ -33,27 +33,14 @@ const BacklogTask: FC<BacklogTaskProps> = ({
     setHoveredLinePosition,
     hoveredLinePosition
 }): ReactNode => {
-    const {
-        loadedProject
-    } = useLoadedProject()
+    const { loadedProject } = useLoadedProject()
+    const { columns } = useBoardColumns()
+    const { showAlert } = useAlert()
+    const { theme } = useTheme()
+    const { tasks } = useTasks()
 
-    const {
-        columns
-    } = useBoardColumns()
-
-    const {
-        showAlert
-    } = useAlert()
-
-    const {
-        theme
-    } = useTheme()
-
-    const {
-        tasks
-    } = useTasks()
-
-    const wrapperRef = useRef<HTMLDivElement | null>(null)
+    const anchorRef = useRef<HTMLDivElement | null>(null)
+    const dropdownRef = useRef<HTMLDivElement | null>(null)
     const subMenuRef = useRef<HTMLDivElement | null>(null)
     const taskRef = useRef<HTMLDivElement | null>(null)
 
@@ -213,20 +200,25 @@ const BacklogTask: FC<BacklogTaskProps> = ({
                         setIsActionMenuOpen(false)
                         setIsHovered(false)
                     }}
-                    anchorRef={wrapperRef}
+                    anchorRef={anchorRef}
+                    dropdownRef={dropdownRef}
                     isMenuOpen={isActionMenuOpen}
                     subMenuRef={subMenuRef}
                 >
-                    <IconButton
-                        onClick={() => {
-                            setIsActionMenuOpen(true)
-                        }}
-                        iconSize={18}
-                        backgroundColor={moreIconButtonBackgroundColor}
-                        hoverBackgroundColor={theme.hoverSecondary}
+                    <div
+                        ref={anchorRef}
                     >
-                        <MoreIcon/>
-                    </IconButton>
+                        <IconButton
+                            onClick={() => {
+                                setIsActionMenuOpen(!isActionMenuOpen)
+                            }}
+                            iconSize={18}
+                            backgroundColor={moreIconButtonBackgroundColor}
+                            hoverBackgroundColor={theme.hoverSecondary}
+                        >
+                            <MoreIcon/>
+                        </IconButton>
+                    </div>
                     <BacklogTaskDropdown
                         isOpen={isActionMenuOpen}
                         onClose={() => {
@@ -236,7 +228,8 @@ const BacklogTask: FC<BacklogTaskProps> = ({
                             setIsHovered(false)
                         }}
                         task={task}
-                        anchorRef={wrapperRef}
+                        anchorRef={anchorRef}
+                        dropdownRef={dropdownRef}
                         subMenuRef={subMenuRef}
                         setIsHovered={setIsHovered}
                         sortedBacklogTasks={sortedBacklogTasks}

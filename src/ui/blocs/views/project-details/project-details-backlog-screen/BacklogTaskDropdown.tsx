@@ -25,21 +25,14 @@ const BacklogTaskDropdown: FC<BacklogTaskDropdownProps> = ({
     onClose,
     task,
     anchorRef,
+    dropdownRef,
     subMenuRef,
     setIsHovered,
     sortedBacklogTasks
 }): ReactNode => {
-    const {
-        theme
-    } = useTheme()
-
-    const {
-        loadedProject
-    } = useLoadedProject()
-
-    const {
-        showAlert
-    } = useAlert()
+    const { theme } = useTheme()
+    const { loadedProject } = useLoadedProject()
+    const { showAlert } = useAlert()
 
     if (!loadedProject) return null
 
@@ -148,17 +141,20 @@ const BacklogTaskDropdown: FC<BacklogTaskDropdownProps> = ({
             <MenuDropdown
                 isOpen={isOpen}
                 anchorRef={anchorRef}
+                dropdownRef={dropdownRef}
             >
                 <MenuGroup>
                     <HoverMenuItem
                         label={'Move task'}
                         subMenuItems={MoveTaskSubMenuItems}
                         submenuRef={subMenuRef}
+                        dropdownRef={subMenuRef}
                     />
                     <HoverMenuItem
                         label={'Priority'}
                         subMenuItems={PrioritySubMenuItems}
                         submenuRef={subMenuRef}
+                        dropdownRef={subMenuRef}
                     />
                 </MenuGroup>
                 <Separator/>

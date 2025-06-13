@@ -15,9 +15,7 @@ const HoverMenuItem: FC<HoverMenuItemProps> = ({
     subMenuItems,
     submenuRef
 }): ReactNode => {
-    const {
-        theme
-    } = useTheme()
+    const { theme } = useTheme()
 
     const buttonRef = useRef<HTMLDivElement | null>(null)
 
@@ -68,6 +66,7 @@ const HoverMenuItem: FC<HoverMenuItemProps> = ({
                 <MenuDropdown
                     isOpen={isHovered}
                     anchorRef={submenuRef}
+                    dropdownRef={submenuRef}
                     buttonRef={buttonRef}
                     isSubMenu
                 >

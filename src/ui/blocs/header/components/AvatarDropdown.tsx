@@ -15,16 +15,11 @@ import { AppRoutes } from '@constants/routes/AppRoutes'
 const AvatarDropdown: FC<AvatarDropdownProps> = ({
     isOpen,
     onClose,
-    anchorRef
+    anchorRef,
+    dropdownRef
 }): ReactNode => {
-    const {
-        theme
-    } = useTheme()
-
-    const {
-        user,
-        logout
-    } = useUser()
+    const { theme } = useTheme()
+    const { user, logout } = useUser()
 
     const navigate = useNavigate()
 
@@ -32,6 +27,7 @@ const AvatarDropdown: FC<AvatarDropdownProps> = ({
         <MenuDropdown
             isOpen={isOpen}
             anchorRef={anchorRef}
+            dropdownRef={dropdownRef}
         >
             <MenuGroup
                 gap={4}

@@ -7,10 +7,11 @@ const MenuWrapper: FC<MenuWrapperProps> = ({
     children,
     onClose,
     anchorRef,
+    dropdownRef,
     subMenuRef,
     isMenuOpen
 }) => {
-    const refs = [anchorRef]
+    const refs = [anchorRef, dropdownRef]
     if (subMenuRef) {
         refs.push(subMenuRef)
     }
@@ -22,7 +23,6 @@ const MenuWrapper: FC<MenuWrapperProps> = ({
 
     return (
         <div
-            ref={anchorRef}
             className={'menu-wrapper'}
         >
             {children}

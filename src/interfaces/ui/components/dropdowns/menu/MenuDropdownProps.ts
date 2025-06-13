@@ -5,6 +5,7 @@ export interface MenuDropdownProps {
     isOpen: boolean
     position?: 'left' | 'right'
     anchorRef: RefObject<HTMLDivElement | null>
+    dropdownRef: RefObject<HTMLDivElement | null>
     buttonRef?: RefObject<HTMLDivElement | null>
     isSubMenu?: boolean
     onMouseEnter?: () => void

@@ -9,6 +9,7 @@ const MenuDropdown: FC<MenuDropdownProps> = ({
     isOpen,
     position = 'right',
     anchorRef,
+    dropdownRef,
     buttonRef,
     isSubMenu = false
 }) => {
@@ -62,7 +63,7 @@ const MenuDropdown: FC<MenuDropdownProps> = ({
         <>
             {isSubMenu && (
                 <div
-                    ref={anchorRef}
+                    ref={dropdownRef}
                     className={'submenu-mouse-bridge'}
                     style={{
                         top: coords.top,
@@ -71,7 +72,7 @@ const MenuDropdown: FC<MenuDropdownProps> = ({
                 />
             )}
             <div
-                ref={anchorRef}
+                ref={dropdownRef}
                 className={`menu-dropdown ${isFadingIn ? 'fade-in' : 'fade-out'} ${isSubMenu ? 'submenu' : ''}`}
                 style={{
                     top: coords.top,

@@ -9,13 +9,16 @@ import { RICH_TEXT_EDITOR_COLORS } from '@constants/themes/RichTextEditorColors'
 
 const RichTextEditorToolbarColorSelectionDropdown: FC<RichTextEditorToolbarColorSelectionDropdownProps> = ({
     anchorRef,
+    dropdownRef,
     isColorSelectionDropdownOpen,
+    setIsColorSelectionDropdownOpen,
     editor
 }): ReactNode => {
 
     return(
         <MenuDropdown
             anchorRef={anchorRef}
+            dropdownRef={dropdownRef}
             isOpen={isColorSelectionDropdownOpen}
         >
             <MenuGroup
@@ -31,7 +34,8 @@ const RichTextEditorToolbarColorSelectionDropdown: FC<RichTextEditorToolbarColor
                                 className={'rich-text-editor-toolbar-color-selection-dropdown-swatch'}
                                 style={{ backgroundColor: color }}
                                 onClick={() => {
-                                    return editor.chain().focus().setColor(color).run()
+                                    setIsColorSelectionDropdownOpen(false)
+                                    editor.chain().focus().setColor(color).run()
                                 }}
                                 title={color}
                             />

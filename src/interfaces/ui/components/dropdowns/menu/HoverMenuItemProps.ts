@@ -6,4 +6,5 @@ export interface HoverMenuItemProps {
     color?: CSSProperties['color']
     subMenuItems: () => MenuItemProps[]
     submenuRef: RefObject<HTMLDivElement | null>
+    dropdownRef: RefObject<HTMLDivElement | null>
 }

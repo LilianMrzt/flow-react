@@ -14,11 +14,10 @@ const RichTextEditorToolbar: FC<RichTextEditorToolbarProps> = ({
 }) => {
     if (!editor) return null
 
-    const {
-        theme
-    } = useTheme()
+    const { theme } = useTheme()
 
-    const wrapperRef = useRef<HTMLDivElement | null>(null)
+    const anchorRef = useRef<HTMLDivElement | null>(null)
+    const dropdownRef = useRef<HTMLDivElement | null>(null)
 
     const [isColorSelectionDropdownOpen, setIsColorSelectionDropdownOpen] = useState(false)
 
@@ -51,24 +50,31 @@ const RichTextEditorToolbar: FC<RichTextEditorToolbarProps> = ({
                 onClose={() => {
                     setIsColorSelectionDropdownOpen(false)
                 }}
-                anchorRef={wrapperRef}
+                anchorRef={anchorRef}
+                dropdownRef={dropdownRef}
                 isMenuOpen={isColorSelectionDropdownOpen}
             >
-                <IconButton
-                    iconSize={20}
-                    onClick={() => {
-                        setIsColorSelectionDropdownOpen(!isColorSelectionDropdownOpen)
-                    }}
-                    backgroundColor={isColorSelectionDropdownOpen ? theme.secondary : theme.surface}
-                    hoverBackgroundColor={isColorSelectionDropdownOpen ? theme.hoverSecondary : theme.tertiary}
-                    color={isColorSelectionDropdownOpen ? theme.primary : theme.text}
+                <div
+                    ref={anchorRef}
                 >
-                    <BaselineIcon/>
-                </IconButton>
+                    <IconButton
+                        iconSize={20}
+                        onClick={() => {
+                            setIsColorSelectionDropdownOpen(!isColorSelectionDropdownOpen)
+                        }}
+                        backgroundColor={isColorSelectionDropdownOpen ? theme.secondary : theme.surface}
+                        hoverBackgroundColor={isColorSelectionDropdownOpen ? theme.hoverSecondary : theme.tertiary}
+                        color={isColorSelectionDropdownOpen ? theme.primary : theme.text}
+                    >
+                        <BaselineIcon/>
+                    </IconButton>
+                </div>
                 <RichTextEditorToolbarColorSelectionDropdown
                     isColorSelectionDropdownOpen={isColorSelectionDropdownOpen}
-                    anchorRef={wrapperRef}
+                    setIsColorSelectionDropdownOpen={setIsColorSelectionDropdownOpen}
+                    anchorRef={anchorRef}
                     editor={editor}
+                    dropdownRef={dropdownRef}
                 />
             </MenuWrapper>
         </div>

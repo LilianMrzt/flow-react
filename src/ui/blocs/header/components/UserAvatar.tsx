@@ -7,15 +7,11 @@ import MenuWrapper from '@components/dropdowns/menu/MenuWrapper'
 import AvatarDropdown from '@ui/blocs/header/components/AvatarDropdown'
 
 const UserAvatar = (): ReactNode => {
-    const {
-        user
-    } = useUser()
+    const { user } = useUser()
+    const { theme } = useTheme()
 
-    const {
-        theme
-    } = useTheme()
-
-    const wrapperRef = useRef<HTMLDivElement | null>(null)
+    const anchorRef = useRef<HTMLDivElement | null>(null)
+    const dropdownRef = useRef<HTMLDivElement | null>(null)
 
     const [isDropdownOpen, setIsDropdownOpen] = useState(false)
 
@@ -32,10 +28,12 @@ const UserAvatar = (): ReactNode => {
             onClose={() => {
                 setIsDropdownOpen(false)
             }}
-            anchorRef={wrapperRef}
+            anchorRef={anchorRef}
+            dropdownRef={dropdownRef}
             isMenuOpen={isDropdownOpen}
         >
             <div
+                ref={anchorRef}
                 className={'user-avatar'}
                 style={{
                     backgroundColor: user.color
@@ -57,7 +55,8 @@ const UserAvatar = (): ReactNode => {
                 onClose={() => {
                     setIsDropdownOpen(false)
                 }}
-                anchorRef={wrapperRef}
+                anchorRef={anchorRef}
+                dropdownRef={dropdownRef}
             />
         </MenuWrapper>
     )
