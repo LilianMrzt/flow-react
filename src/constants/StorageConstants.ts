@@ -1,3 +1,3 @@
 export const StorageConstants = {
-    token: 'token'
+    token: 'flow-app-token'
 }
