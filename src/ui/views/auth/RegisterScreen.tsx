@@ -5,7 +5,7 @@ import TextField from '@components/inputs/TextField'
 import { registerUserAction } from '@api/AuthApiCalls'
 import { useAlert } from '@hooks/contexts/AlertContext'
 import { AuthRoutes } from '@constants/routes/AuthRoutes'
-import './login-screen.css'
+import './auth-screens.css'
 import Card from '@components/layout/Card'
 import Text from '@components/text/Text'
 import Row from '@components/layout/Row'
@@ -62,7 +62,10 @@ const RegisterScreen = (): ReactNode => {
         <div
             className={'register-screen'}
         >
-            <Card>
+            <Card
+                maxWidth={400}
+                padding={24}
+            >
                 <SubTitle>
                     Create an account
                 </SubTitle>
@@ -112,11 +115,13 @@ const RegisterScreen = (): ReactNode => {
                 />
                 <Row>
                     <Text
+                        fontSize={14}
                         color={theme.textSecondary}
                     >
                         Already have an account?
                     </Text>
                     <Button
+                        fontSize={14}
                         onClick={() => {
                             navigate(AuthRoutes.signIn.path)
                         }}

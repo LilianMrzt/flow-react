@@ -13,7 +13,8 @@ const Card: FC<CardProps> = ({
     onClick,
     hoverShadow,
     onMouseEnter,
-    onMouseLeave
+    onMouseLeave,
+    maxWidth
 }): ReactNode => {
 
     const [isHovered, setIsHovered] = useState(false)
@@ -51,11 +52,12 @@ const Card: FC<CardProps> = ({
         <div
             className={`card ${isHovered && hoverShadow ? 'card-hover-shadow' : ''} ${className}`}
             style={{
-                width: width ?? 400,
+                maxWidth: maxWidth,
                 height: height ?? 'fit-content',
-                padding: padding ?? 24,
+                padding: padding ?? 16,
                 gap: gap ?? 16,
-                alignItems: alignItems ?? 'center'
+                alignItems: alignItems ?? 'center',
+                width
             }}
             onClick={handleClick}
             onMouseEnter={handleMouseEnter}

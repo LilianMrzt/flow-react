@@ -18,7 +18,8 @@ const Button: FC<ButtonProps> = ({
     width,
     minHeight,
     padding,
-    fontWeight
+    fontWeight,
+    fontSize
 }) => {
     const { theme } = useTheme()
 
@@ -71,7 +72,7 @@ const Button: FC<ButtonProps> = ({
             )}
             <Text
                 color={isHovered && !disabled && hoverColor ? hoverColor : componentColor}
-                fontSize={14}
+                fontSize={fontSize ?? 16}
                 isSelectable={false}
                 fontWeight={fontWeight}
             >

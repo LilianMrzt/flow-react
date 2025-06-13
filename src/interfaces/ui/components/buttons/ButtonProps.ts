@@ -14,4 +14,5 @@ export interface ButtonProps {
     minHeight?: CSSProperties['minHeight']
     padding?: CSSProperties['padding']
     fontWeight?: CSSProperties['fontWeight']
+    fontSize?: CSSProperties['fontSize']
 }

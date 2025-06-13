@@ -12,4 +12,5 @@ export interface CardProps {
     hoverShadow?: boolean
     onMouseEnter?: () => void
     onMouseLeave?: () => void
+    maxWidth?: CSSProperties['maxWidth']
 }

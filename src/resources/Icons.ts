@@ -42,6 +42,7 @@ import { ReactComponent as DangerZoneIcon } from '@resources/assets/DangerZoneIc
 import { ReactComponent as ArrowRightIcon } from '@resources/assets/ArrowRightIcon.svg'
 import { ReactComponent as SaveIcon } from '@resources/assets/SaveIcon.svg'
 import { ReactComponent as EyeIcon } from '@resources/assets/EyeIcon.svg'
+import { ReactComponent as SendEmailIcon } from '@resources/assets/SendEmailIcon.svg'
 
 // text-editor
 import { ReactComponent as UnderlineIcon } from '@resources/assets/text-editor/UnderlineIcon.svg'
@@ -97,5 +98,6 @@ export {
     DangerZoneIcon,
     ArrowRightIcon,
     SaveIcon,
-    EyeIcon
+    EyeIcon,
+    SendEmailIcon
 }

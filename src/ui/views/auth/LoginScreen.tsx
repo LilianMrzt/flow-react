@@ -6,7 +6,7 @@ import { loginUserAction } from '@api/AuthApiCalls'
 import { StorageConstants } from '@constants/StorageConstants'
 import { useAlert } from '@hooks/contexts/AlertContext'
 import { AuthRoutes } from '@constants/routes/AuthRoutes'
-import './login-screen.css'
+import './auth-screens.css'
 import Card from '@components/layout/Card'
 import SubTitle from '@components/text/SubTitle'
 import { LoginIcon } from '@resources/Icons'
@@ -15,6 +15,7 @@ import Text from '@components/text/Text'
 import { useTheme } from '@hooks/contexts/ThemeContext'
 import { AppRoutes } from '@constants/routes/AppRoutes'
 import { useUser } from '@hooks/contexts/api/UserContext'
+import Column from '@components/layout/Column'
 
 const LoginScreen = (): ReactNode => {
     const { showAlert } = useAlert()
@@ -52,7 +53,10 @@ const LoginScreen = (): ReactNode => {
         <div
             className={'login-screen'}
         >
-            <Card>
+            <Card
+                maxWidth={400}
+                padding={24}
+            >
                 <SubTitle>
                     Welcome to Flow
                 </SubTitle>
@@ -79,23 +83,48 @@ const LoginScreen = (): ReactNode => {
                     icon={<LoginIcon/>}
                     width={'100%'}
                 />
-                <Row>
-                    <Text
-                        color={theme.textSecondary}
-                    >
-                        {'Don\'t have an account?'}
-                    </Text>
-                    <Button
-                        onClick={() => {
-                            navigate(AuthRoutes.register.path)
-                        }}
-                        label={'Register'}
-                        backgroundColor={theme.surface}
-                        color={theme.primary}
-                        hoverBackgroundColor={theme.secondary}
-                        borderColor={theme.surface}
-                    />
-                </Row>
+                <Column
+                    gap={0}
+                >
+                    <Row>
+                        <Text
+                            fontSize={14}
+                            color={theme.textSecondary}
+                        >
+                            {'Don\'t have an account?'}
+                        </Text>
+                        <Button
+                            fontSize={14}
+                            onClick={() => {
+                                navigate(AuthRoutes.register.path)
+                            }}
+                            label={'Register'}
+                            backgroundColor={theme.surface}
+                            color={theme.primary}
+                            hoverBackgroundColor={theme.secondary}
+                            borderColor={theme.surface}
+                        />
+                    </Row>
+                    <Row>
+                        <Text
+                            fontSize={14}
+                            color={theme.textSecondary}
+                        >
+                            Forgot your password?
+                        </Text>
+                        <Button
+                            fontSize={14}
+                            onClick={() => {
+                                navigate(AuthRoutes.forgotPassword.path)
+                            }}
+                            label={'Recover password'}
+                            backgroundColor={theme.surface}
+                            color={theme.primary}
+                            hoverBackgroundColor={theme.secondary}
+                            borderColor={theme.surface}
+                        />
+                    </Row>
+                </Column>
             </Card>
         </div>
     )

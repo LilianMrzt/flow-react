@@ -1,5 +1,6 @@
 .login-screen,
-.register-screen {
+.register-screen,
+.forgot-password-screen {
     width: 100vw;
     height: 100vh;
     display: flex;

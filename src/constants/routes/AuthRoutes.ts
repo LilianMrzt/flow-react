@@ -8,5 +8,13 @@ export const AuthRoutes: Record<string, RouteType> = {
     register: {
         label: 'Register',
         path: '/register'
+    },
+    forgotPassword: {
+        label: 'Forgot password',
+        path: '/auth/forgot-password'
+    },
+    resetPassword: {
+        label: 'Reset password',
+        path: '/auth/reset-password'
     }
 }
