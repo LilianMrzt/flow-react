@@ -47,6 +47,7 @@ const RegisterScreen = (): ReactNode => {
         await registerUserAction({
             email: email,
             password: password,
+            confirmPassword: confirmPassword,
             lastName: lastName,
             firstName: firstName
         }).then(() => {
