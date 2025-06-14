@@ -37,7 +37,7 @@ const NoUserTeamFoundScreen = (): ReactNode => {
                                 color={theme.primary}
                                 fontWeight={500}
                             >
-                                To get started, you need to join a team.
+                                To get started with Flow, you need to be in a team.
                             </Text>
                             <Text>
                                 Teams help you collaborate and manage your projects effectively.
