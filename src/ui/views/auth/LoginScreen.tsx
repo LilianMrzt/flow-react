@@ -17,6 +17,7 @@ import { useUser } from '@hooks/contexts/api/UserContext'
 import Column from '@components/layout/Column'
 import Icon from '@components/resources/Icon'
 import { LoginImage } from '@resources/Images'
+import BackgroundPlaceholderScreen from '@components/layout/background-placeholder-screen/BackgroundPlaceholderScreen'
 
 const LoginScreen = (): ReactNode => {
     const { showAlert } = useAlert()
@@ -51,7 +52,7 @@ const LoginScreen = (): ReactNode => {
     }
 
     return (
-        <Column>
+        <BackgroundPlaceholderScreen>
             <Card
                 maxWidth={800}
                 padding={24}
@@ -142,7 +143,7 @@ const LoginScreen = (): ReactNode => {
                     </Icon>
                 </Row>
             </Card>
-        </Column>
+        </BackgroundPlaceholderScreen>
     )
 }
 

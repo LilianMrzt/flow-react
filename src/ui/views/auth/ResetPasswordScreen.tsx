@@ -13,6 +13,7 @@ import { useTheme } from '@hooks/contexts/ThemeContext'
 import Column from '@components/layout/Column'
 import Icon from '@components/resources/Icon'
 import { ResetPasswordImage } from '@resources/Images'
+import BackgroundPlaceholderScreen from '@components/layout/background-placeholder-screen/BackgroundPlaceholderScreen'
 
 const ResetPasswordScreen = (): ReactNode => {
     const navigate = useNavigate()
@@ -80,7 +81,7 @@ const ResetPasswordScreen = (): ReactNode => {
     }, [token])
 
     return (
-        <Column>
+        <BackgroundPlaceholderScreen>
             <Card
                 maxWidth={800}
                 padding={24}
@@ -142,7 +143,7 @@ const ResetPasswordScreen = (): ReactNode => {
                     </Icon>
                 </Row>
             </Card>
-        </Column>
+        </BackgroundPlaceholderScreen>
     )
 }
 

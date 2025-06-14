@@ -14,6 +14,7 @@ import SubTitle from '@components/text/SubTitle'
 import Column from '@components/layout/Column'
 import Icon from '@components/resources/Icon'
 import { RegisterImage } from '@resources/Images'
+import BackgroundPlaceholderScreen from '@components/layout/background-placeholder-screen/BackgroundPlaceholderScreen'
 
 const RegisterScreen = (): ReactNode => {
     const navigate = useNavigate()
@@ -61,7 +62,7 @@ const RegisterScreen = (): ReactNode => {
     }
 
     return (
-        <Column>
+        <BackgroundPlaceholderScreen>
             <Card
                 maxWidth={800}
                 padding={24}
@@ -146,7 +147,7 @@ const RegisterScreen = (): ReactNode => {
                     </Icon>
                 </Row>
             </Card>
-        </Column>
+        </BackgroundPlaceholderScreen>
     )
 }
 

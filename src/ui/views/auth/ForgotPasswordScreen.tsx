@@ -14,6 +14,7 @@ import Row from '@components/layout/Row'
 import Column from '@components/layout/Column'
 import Icon from '@components/resources/Icon'
 import { ForgotPasswordImage } from '@resources/Images'
+import BackgroundPlaceholderScreen from '@components/layout/background-placeholder-screen/BackgroundPlaceholderScreen'
 
 const ForgotPasswordScreen = (): ReactNode => {
     const navigate = useNavigate()
@@ -43,7 +44,7 @@ const ForgotPasswordScreen = (): ReactNode => {
     }
 
     return (
-        <Column>
+        <BackgroundPlaceholderScreen>
             <Card
                 maxWidth={800}
                 padding={24}
@@ -102,7 +103,7 @@ const ForgotPasswordScreen = (): ReactNode => {
                     </Icon>
                 </Row>
             </Card>
-        </Column>
+        </BackgroundPlaceholderScreen>
     )
 }
 

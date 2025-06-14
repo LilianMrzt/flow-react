@@ -14,6 +14,7 @@ import { ConnectedHumansImage } from '@resources/Images'
 import Text from '@components/text/Text'
 import { useTheme } from '@hooks/contexts/ThemeContext'
 import SubTitle from '@components/text/SubTitle'
+import BackgroundPlaceholderScreen from '@components/layout/background-placeholder-screen/BackgroundPlaceholderScreen'
 
 const JoinExistingTeamScreen = (): ReactNode => {
     const [teamJoinCode, setTeamJoinCode] = useState('')
@@ -53,7 +54,7 @@ const JoinExistingTeamScreen = (): ReactNode => {
     }
 
     return (
-        <Column>
+        <BackgroundPlaceholderScreen>
             <Card
                 maxWidth={800}
                 padding={24}
@@ -115,7 +116,7 @@ const JoinExistingTeamScreen = (): ReactNode => {
                     </Icon>
                 </Row>
             </Card>
-        </Column>
+        </BackgroundPlaceholderScreen>
     )
 }
 

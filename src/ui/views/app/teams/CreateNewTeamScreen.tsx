@@ -14,6 +14,7 @@ import { TeamCreationHumansImage } from '@resources/Images'
 import SubTitle from '@components/text/SubTitle'
 import Text from '@components/text/Text'
 import { useTheme } from '@hooks/contexts/ThemeContext'
+import BackgroundPlaceholderScreen from '@components/layout/background-placeholder-screen/BackgroundPlaceholderScreen'
 
 const CreateNewTeamScreen = (): ReactNode => {
     const navigate = useNavigate()
@@ -54,7 +55,7 @@ const CreateNewTeamScreen = (): ReactNode => {
     }
 
     return (
-        <Column>
+        <BackgroundPlaceholderScreen>
             <Card
                 maxWidth={800}
                 padding={24}
@@ -116,7 +117,7 @@ const CreateNewTeamScreen = (): ReactNode => {
                     </Icon>
                 </Row>
             </Card>
-        </Column>
+        </BackgroundPlaceholderScreen>
     )
 }
 

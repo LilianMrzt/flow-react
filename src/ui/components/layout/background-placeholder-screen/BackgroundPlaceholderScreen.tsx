@@ -4,10 +4,11 @@ import './background-placeholder-screen.css'
 import Row from '@components/layout/Row'
 import BackgroundPlaceholderDrawer
     from '@components/layout/background-placeholder-screen/background-placeholder-drawer/BackgroundPlaceholderDrawer'
-
-export interface BackgroundPlaceholderScreenProps {
-    children: ReactNode
-}
+import BackgroundPlaceholderScreenContent
+    from '@components/layout/background-placeholder-screen/background-placeholder-screen-content/BackgroundPlaceholderScreenContent'
+import {
+    BackgroundPlaceholderScreenProps
+} from '@interfaces/ui/components/layout/background-placeholder-screen/BackgroundPlaceholderScreenProps'
 
 const BackgroundPlaceholderScreen: FC<BackgroundPlaceholderScreenProps> = ({
     children
@@ -29,10 +30,13 @@ const BackgroundPlaceholderScreen: FC<BackgroundPlaceholderScreenProps> = ({
                 <BackgroundPlaceholderDrawer/>
                 <Column
                     justifyContent={'start'}
+                    gap={0}
+                    alignItems={'start'}
                 >
                     <div
                         className={'header-placeholder-dummy'}
                     />
+                    <BackgroundPlaceholderScreenContent/>
                 </Column>
             </Row>
             <Column

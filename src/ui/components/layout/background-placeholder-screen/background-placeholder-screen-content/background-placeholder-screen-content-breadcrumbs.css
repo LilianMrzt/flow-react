@@ -1,0 +1,13 @@
+.background-placeholder-screen-content-breadcrumbs-first-label {
+    height: 8px;
+    width: 100px;
+    background-color: var(--outlineSecondary);
+    border-radius: 4px;
+}
+
+.background-placeholder-screen-content-breadcrumbs-second-label {
+    height: 8px;
+    width: 80px;
+    background-color: var(--outlineSecondary);
+    border-radius: 4px;
+}
