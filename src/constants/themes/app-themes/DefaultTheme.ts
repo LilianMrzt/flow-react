@@ -11,7 +11,7 @@ export const DefaultTheme = {
     error: '#f04343',
     hoverError: '#ec1414',
     outline: '#E7E9EF',
-    outlineSecondary: '#5B5B5B',
-    primaryDark: '#263A61',
-    secondaryDark: '#5c5e64'
+    outlineSecondary: '#727272',
+    primaryDark: '#003773',
+    secondaryDark: '#72767d'
 }
