@@ -126,7 +126,7 @@ const LoginScreen = (): ReactNode => {
                                     onClick={() => {
                                         navigate(AuthRoutes.forgotPassword.path)
                                     }}
-                                    label={'Recover password'}
+                                    label={'Reset password'}
                                     backgroundColor={theme.surface}
                                     color={theme.primary}
                                     hoverBackgroundColor={theme.secondary}
