@@ -15,10 +15,13 @@ import SubTitle from '@components/text/SubTitle'
 import Text from '@components/text/Text'
 import { useTheme } from '@hooks/contexts/ThemeContext'
 import BackgroundPlaceholderScreen from '@components/layout/background-placeholder-screen/BackgroundPlaceholderScreen'
+import IconButton from '@components/buttons/IconButton'
+import { LogoutIcon } from '@resources/Icons'
+import './team-screens.css'
 
 const CreateNewTeamScreen = (): ReactNode => {
     const navigate = useNavigate()
-    const { setUser } = useUser()
+    const { setUser, logout } = useUser()
     const { showAlert } = useAlert()
     const { theme } = useTheme()
 
@@ -116,6 +119,18 @@ const CreateNewTeamScreen = (): ReactNode => {
                         <TeamCreationHumansImage/>
                     </Icon>
                 </Row>
+                <div
+                    className={'team-disconnect-button'}
+                >
+                    <IconButton
+                        onClick={logout}
+                        backgroundColor={theme.surface}
+                        hoverBackgroundColor={theme.tertiary}
+                        hoverColor={theme.hoverError}
+                    >
+                        <LogoutIcon/>
+                    </IconButton>
+                </div>
             </Card>
         </BackgroundPlaceholderScreen>
     )

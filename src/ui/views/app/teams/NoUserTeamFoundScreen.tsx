@@ -9,13 +9,17 @@ import SubTitle from '@components/text/SubTitle'
 import Row from '@components/layout/Row'
 import Icon from '@components/resources/Icon'
 import { CoworkingHumansImage } from '@resources/Images'
-import { AddIcon, JoinIcon } from '@resources/Icons'
+import { AddIcon, JoinIcon, LogoutIcon } from '@resources/Icons'
 import { useTheme } from '@hooks/contexts/ThemeContext'
 import BackgroundPlaceholderScreen from '@components/layout/background-placeholder-screen/BackgroundPlaceholderScreen'
+import IconButton from '@components/buttons/IconButton'
+import { useUser } from '@hooks/contexts/api/UserContext'
+import './team-screens.css'
 
 const NoUserTeamFoundScreen = (): ReactNode => {
     const navigate = useNavigate()
     const { theme } = useTheme()
+    const { logout } = useUser()
 
     return (
         <BackgroundPlaceholderScreen>
@@ -76,6 +80,18 @@ const NoUserTeamFoundScreen = (): ReactNode => {
                         <CoworkingHumansImage/>
                     </Icon>
                 </Row>
+                <div
+                    className={'team-disconnect-button'}
+                >
+                    <IconButton
+                        onClick={logout}
+                        backgroundColor={theme.surface}
+                        hoverBackgroundColor={theme.tertiary}
+                        hoverColor={theme.hoverError}
+                    >
+                        <LogoutIcon/>
+                    </IconButton>
+                </div>
             </Card>
         </BackgroundPlaceholderScreen>
     )

@@ -15,11 +15,14 @@ import Text from '@components/text/Text'
 import { useTheme } from '@hooks/contexts/ThemeContext'
 import SubTitle from '@components/text/SubTitle'
 import BackgroundPlaceholderScreen from '@components/layout/background-placeholder-screen/BackgroundPlaceholderScreen'
+import IconButton from '@components/buttons/IconButton'
+import { LogoutIcon } from '@resources/Icons'
+import './team-screens.css'
 
 const JoinExistingTeamScreen = (): ReactNode => {
     const [teamJoinCode, setTeamJoinCode] = useState('')
     const { showAlert } = useAlert()
-    const { setUser } = useUser()
+    const { setUser, logout } = useUser()
     const { theme } = useTheme()
 
     const navigate = useNavigate()
@@ -115,6 +118,18 @@ const JoinExistingTeamScreen = (): ReactNode => {
                         <ConnectedHumansImage/>
                     </Icon>
                 </Row>
+                <div
+                    className={'team-disconnect-button'}
+                >
+                    <IconButton
+                        onClick={logout}
+                        backgroundColor={theme.surface}
+                        hoverBackgroundColor={theme.tertiary}
+                        hoverColor={theme.hoverError}
+                    >
+                        <LogoutIcon/>
+                    </IconButton>
+                </div>
             </Card>
         </BackgroundPlaceholderScreen>
     )
