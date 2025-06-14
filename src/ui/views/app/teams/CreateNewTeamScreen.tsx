@@ -127,6 +127,7 @@ const CreateNewTeamScreen = (): ReactNode => {
                         backgroundColor={theme.surface}
                         hoverBackgroundColor={theme.tertiary}
                         hoverColor={theme.hoverError}
+                        color={theme.textSecondary}
                     >
                         <LogoutIcon/>
                     </IconButton>
