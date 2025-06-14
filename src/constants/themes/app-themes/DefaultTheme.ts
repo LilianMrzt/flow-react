@@ -10,5 +10,8 @@ export const DefaultTheme = {
     textSecondary: '#6c7993',
     error: '#f04343',
     hoverError: '#ec1414',
-    outline: '#E7E9EF'
+    outline: '#E7E9EF',
+    outlineSecondary: '#5B5B5B',
+    primaryDark: '#263A61',
+    secondaryDark: '#5c5e64'
 }

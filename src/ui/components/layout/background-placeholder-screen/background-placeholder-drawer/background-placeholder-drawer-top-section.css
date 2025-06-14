@@ -1,0 +1,17 @@
+.background-placeholder-drawer-top-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 60px;
+    padding: 12px;
+    gap: 12px;
+    border-bottom: 1px solid var(--outlineSecondary);
+}
+
+.background-placeholder-drawer-top-section-app-name-text {
+    font-size: 1.8rem;
+    font-family: 'Poppins', sans-serif;
+    color: var(--primaryDark);
+    font-weight: 600;
+    user-select: none;
+}

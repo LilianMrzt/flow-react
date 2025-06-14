@@ -11,13 +11,14 @@ import Icon from '@components/resources/Icon'
 import { CoworkingHumansImage } from '@resources/Images'
 import { AddIcon, JoinIcon } from '@resources/Icons'
 import { useTheme } from '@hooks/contexts/ThemeContext'
+import BackgroundPlaceholderScreen from '@components/layout/background-placeholder-screen/BackgroundPlaceholderScreen'
 
 const NoUserTeamFoundScreen = (): ReactNode => {
     const navigate = useNavigate()
     const { theme } = useTheme()
 
     return (
-        <Column>
+        <BackgroundPlaceholderScreen>
             <Card
                 maxWidth={800}
                 padding={24}
@@ -76,7 +77,7 @@ const NoUserTeamFoundScreen = (): ReactNode => {
                     </Icon>
                 </Row>
             </Card>
-        </Column>
+        </BackgroundPlaceholderScreen>
     )
 }
 

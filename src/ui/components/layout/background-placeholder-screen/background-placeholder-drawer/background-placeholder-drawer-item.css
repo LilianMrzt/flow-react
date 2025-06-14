@@ -1,0 +1,23 @@
+.background-placeholder-drawer-item {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 8px;
+    gap: 8px;
+    border-radius: 4px;
+}
+
+.background-placeholder-drawer-item-icon {
+    height: 24px;
+    width: 24px;
+    min-width: 24px;
+    border-radius: 4px;
+}
+
+.background-placeholder-drawer-item-label {
+    width: 100%;
+    height: 8px;
+    border-radius: 4px;
+}

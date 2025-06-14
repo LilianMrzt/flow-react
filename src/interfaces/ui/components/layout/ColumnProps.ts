@@ -10,4 +10,5 @@ export interface ColumnProps {
     height?: CSSProperties['height']
     border?: CSSProperties['border']
     padding?: CSSProperties['padding']
+    borderRadius?: CSSProperties['borderRadius']
 }

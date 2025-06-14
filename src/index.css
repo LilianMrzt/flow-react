@@ -26,6 +26,9 @@ code {
   --textSecondary: '';
   --error: '';
   --outline: '';
+  --outlineSecondary: '';
+  --primaryDark: '';
+  --secondaryDark: '';
 }
 
 body.theme-changing * {

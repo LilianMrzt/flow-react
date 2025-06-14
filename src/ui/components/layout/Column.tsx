@@ -11,7 +11,8 @@ const Column: FC<ColumnProps> = ({
     height,
     width,
     border,
-    padding
+    padding,
+    borderRadius
 }): ReactNode => {
     return (
         <div
@@ -23,7 +24,8 @@ const Column: FC<ColumnProps> = ({
                 height: height ?? '100%',
                 width: width ?? '100%',
                 border: border,
-                padding: padding
+                padding: padding,
+                borderRadius: borderRadius ?? 8
             }}
         >
             {children}
