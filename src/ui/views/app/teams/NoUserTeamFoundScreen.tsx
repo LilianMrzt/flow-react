@@ -35,7 +35,6 @@ const NoUserTeamFoundScreen = (): ReactNode => {
                             </SubTitle>
                             <Text
                                 color={theme.primary}
-                                fontWeight={500}
                             >
                                 To get started with Flow, you need to be part of a team.
                             </Text>

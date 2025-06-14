@@ -72,7 +72,6 @@ const CreateNewTeamScreen = (): ReactNode => {
                             </SubTitle>
                             <Text
                                 color={theme.primary}
-                                fontWeight={500}
                             >
                                 Teams are the heart of collaboration in Flow
                             </Text>

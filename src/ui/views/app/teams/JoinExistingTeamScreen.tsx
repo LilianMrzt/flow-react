@@ -71,7 +71,6 @@ const JoinExistingTeamScreen = (): ReactNode => {
                             </SubTitle>
                             <Text
                                 color={theme.primary}
-                                fontWeight={500}
                             >
                                 Enter the invitation code you received to join your team on Flow.
                             </Text>
