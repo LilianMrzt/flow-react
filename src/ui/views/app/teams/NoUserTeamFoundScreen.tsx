@@ -37,13 +37,13 @@ const NoUserTeamFoundScreen = (): ReactNode => {
                                 color={theme.primary}
                                 fontWeight={500}
                             >
-                                To get started with Flow, you need to be in a team.
+                                To get started with Flow, you need to be part of a team.
                             </Text>
                             <Text>
-                                Teams help you collaborate and manage your projects effectively.
+                                Teams help you collaborate and manage your projects more effectively.
                             </Text>
                             <Text>
-                                Please create a new team or join an existing one.
+                                You can either create a new team or join an existing one.
                             </Text>
                         </Column>
                         <Column
@@ -55,9 +55,10 @@ const NoUserTeamFoundScreen = (): ReactNode => {
                                 }}
                                 label={'Create a new team'}
                                 icon={<AddIcon/>}
+                                width={'100%'}
                             />
                             <Text>
-                                OR
+                                or
                             </Text>
                             <Button
                                 onClick={() => {
@@ -65,6 +66,7 @@ const NoUserTeamFoundScreen = (): ReactNode => {
                                 }}
                                 label={'Join an existing Team'}
                                 icon={<JoinIcon/>}
+                                width={'100%'}
                             />
                         </Column>
                     </Column>
