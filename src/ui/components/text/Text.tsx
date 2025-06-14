@@ -8,28 +8,29 @@ const Text: FC<TextProps> = ({
     fontSize,
     fontWeight,
     color,
-    wrap,
     textAlign,
     width,
     isSelectable = true,
+    noWrap,
     maxLines
 }) => {
     const { theme } = useTheme()
 
     return (
         <p
-            className={`text ${wrap ? 'wrap' : ''} ${isSelectable ? 'is-selectable' : ''}`}
+            className={`text ${isSelectable ? 'is-selectable' : ''}`}
             style={{
                 fontSize: fontSize ?? 16,
                 fontWeight: fontWeight ?? 'normal',
                 color: color ?? theme.text,
                 textAlign: textAlign ?? 'start',
                 width: width ?? 'fit-content',
-                textOverflow: !maxLines ? 'ellipsis' : undefined,
+                whiteSpace: noWrap ? 'nowrap' : 'normal',
+                overflow: noWrap || maxLines ? 'hidden' : undefined,
+                textOverflow: noWrap ? 'ellipsis' : undefined,
                 display: maxLines ? '-webkit-box' : undefined,
                 WebkitLineClamp: maxLines,
-                WebkitBoxOrient: maxLines ? 'vertical' : undefined,
-                whiteSpace: maxLines ? 'normal' : 'nowrap'
+                WebkitBoxOrient: maxLines ? 'vertical' : undefined
             }}
         >
             {children}

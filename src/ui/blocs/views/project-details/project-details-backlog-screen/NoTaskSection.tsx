@@ -38,7 +38,6 @@ const NoTaskSection: FC<NoTaskSectionProps> = ({
                 </Text>
                 <Text
                     color={theme.textSecondary}
-                    wrap
                 >
                     There are no tasks for this project yet. Start by creating your first task.
                 </Text>

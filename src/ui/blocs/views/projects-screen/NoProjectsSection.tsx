@@ -36,7 +36,6 @@ const NoProjectsSection: FC<NoProjectsSectionProps> = ({
                 </Text>
                 <Text
                     color={theme.textSecondary}
-                    wrap
                 >
                     {'You haven\'t created a project yet. Start by creating your first project to organize your tasks.'}
                 </Text>

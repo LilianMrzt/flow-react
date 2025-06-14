@@ -59,7 +59,6 @@ const Alert: FC<AlertProps> = ({
                             </Icon>
                             <Text
                                 color={getAlertColor(type)}
-                                wrap
                                 maxLines={5}
                             >
                                 {message}

@@ -72,7 +72,6 @@ const ProjectCard: FC<ProjectCardProps> = ({
                         <Text
                             color={theme.textSecondary}
                             fontSize={14}
-                            wrap
                             textAlign={'start'}
                             maxLines={2}
                         >

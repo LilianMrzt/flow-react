@@ -7,7 +7,7 @@ export interface TextProps {
     color?: CSSProperties['color']
     textAlign?: CSSProperties['textAlign']
     width?: CSSProperties['width']
-    wrap?: boolean
     isSelectable?: boolean
+    noWrap?: boolean
     maxLines?: number
 }
