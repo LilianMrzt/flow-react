@@ -1,5 +1,4 @@
 import React, { ReactNode, useState } from 'react'
-import './auth-screens.css'
 import Card from '@components/layout/Card'
 import { SendEmailIcon } from '@resources/Icons'
 import SubTitle from '@components/text/SubTitle'
@@ -12,6 +11,9 @@ import { AuthRoutes } from '@constants/routes/AuthRoutes'
 import { useAlert } from '@hooks/contexts/AlertContext'
 import { forgotPasswordAction } from '@api/AuthApiCalls'
 import Row from '@components/layout/Row'
+import Column from '@components/layout/Column'
+import Icon from '@components/resources/Icon'
+import { ForgotPasswordImage } from '@resources/Images'
 
 const ForgotPasswordScreen = (): ReactNode => {
     const navigate = useNavigate()
@@ -41,50 +43,66 @@ const ForgotPasswordScreen = (): ReactNode => {
     }
 
     return (
-        <div
-            className={'forgot-password-screen'}
-        >
+        <Column>
             <Card
-                maxWidth={400}
+                maxWidth={800}
                 padding={24}
+                width={'100%'}
             >
-                <SubTitle>
-                    Recover your password
-                </SubTitle>
-                <TextField
-                    inputValue={email}
-                    setInputValue={setEmail}
-                    label={'Email'}
-                    placeholder={'example@email.com'}
-                    name={'user-email'}
-                />
-                <Button
-                    onClick={handleSubmit}
-                    label={'Send recovery email'}
-                    icon={<SendEmailIcon/>}
-                    width={'100%'}
-                    fontWeight={500}
-                />
                 <Row>
-                    <Text
-                        fontSize={14}
+                    <Column
+                        alignItems={'start'}
+                        gap={16}
                     >
-                        Want to sign in?
-                    </Text>
-                    <Button
-                        fontSize={14}
-                        onClick={() => {
-                            navigate(AuthRoutes.signIn.path)
-                        }}
-                        label={'Sign in'}
-                        backgroundColor={theme.surface}
-                        color={theme.primary}
-                        hoverBackgroundColor={theme.secondary}
-                        borderColor={theme.surface}
-                    />
+                        <SubTitle>
+                           Forgot your password?
+                        </SubTitle>
+                        <Text
+                            color={theme.textSecondary}
+                        >
+                            Please enter your email address and we will send you a link to reset your password.
+                        </Text>
+                        <TextField
+                            inputValue={email}
+                            setInputValue={setEmail}
+                            label={'Email'}
+                            placeholder={'example@email.com'}
+                            name={'user-email'}
+                        />
+                        <Button
+                            onClick={handleSubmit}
+                            label={'Request reset link'}
+                            icon={<SendEmailIcon/>}
+                            width={'100%'}
+                            fontWeight={500}
+                        />
+                        <Row>
+                            <Text
+                                fontSize={14}
+                            >
+                               Want to sign in?
+                            </Text>
+                            <Button
+                                fontSize={14}
+                                onClick={() => {
+                                    navigate(AuthRoutes.signIn.path)
+                                }}
+                                label={'Sign in'}
+                                backgroundColor={theme.surface}
+                                color={theme.primary}
+                                hoverBackgroundColor={theme.secondary}
+                                borderColor={theme.surface}
+                            />
+                        </Row>
+                    </Column>
+                    <Icon
+                        size={400}
+                    >
+                        <ForgotPasswordImage/>
+                    </Icon>
                 </Row>
             </Card>
-        </div>
+        </Column>
     )
 }
 

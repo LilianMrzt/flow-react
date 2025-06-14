@@ -1,5 +1,4 @@
 import React, { ReactNode, useEffect, useState } from 'react'
-import './auth-screens.css'
 import Card from '@components/layout/Card'
 import SubTitle from '@components/text/SubTitle'
 import TextField from '@components/inputs/TextField'
@@ -11,6 +10,9 @@ import { AuthRoutes } from '@constants/routes/AuthRoutes'
 import Row from '@components/layout/Row'
 import Text from '@components/text/Text'
 import { useTheme } from '@hooks/contexts/ThemeContext'
+import Column from '@components/layout/Column'
+import Icon from '@components/resources/Icon'
+import { ResetPasswordImage } from '@resources/Images'
 
 const ResetPasswordScreen = (): ReactNode => {
     const navigate = useNavigate()
@@ -78,58 +80,69 @@ const ResetPasswordScreen = (): ReactNode => {
     }, [token])
 
     return (
-        <div
-            className={'forgot-password-screen'}
-        >
+        <Column>
             <Card
-                maxWidth={400}
+                maxWidth={800}
                 padding={24}
+                width={'100%'}
             >
-                <SubTitle>
-                    Recover your password
-                </SubTitle>
-                <TextField
-                    inputValue={newPassword}
-                    setInputValue={setNewPassword}
-                    label={'New password'}
-                    placeholder={'•••••••'}
-                    name={'new-user-password'}
-                    type={'password'}
-                />
-                <TextField
-                    inputValue={confirmNewPassword}
-                    setInputValue={setConfirmNewPassword}
-                    label={'Confirm new password'}
-                    placeholder={'•••••••'}
-                    name={'confirm-new-user-password'}
-                    type={'password'}
-                />
-                <Button
-                    onClick={handleSubmit}
-                    label={'Reset password'}
-                    width={'100%'}
-                    fontWeight={500}
-                />
                 <Row>
-                    <Text
-                        fontSize={14}
+                    <Column
+                        alignItems={'start'}
+                        gap={16}
                     >
-                        Want to sign in?
-                    </Text>
-                    <Button
-                        fontSize={14}
-                        onClick={() => {
-                            navigate(AuthRoutes.signIn.path)
-                        }}
-                        label={'Sign in'}
-                        backgroundColor={theme.surface}
-                        color={theme.primary}
-                        hoverBackgroundColor={theme.secondary}
-                        borderColor={theme.surface}
-                    />
+                        <SubTitle>
+                            Reset your password
+                        </SubTitle>
+                        <TextField
+                            inputValue={newPassword}
+                            setInputValue={setNewPassword}
+                            label={'New password'}
+                            placeholder={'•••••••'}
+                            name={'new-user-password'}
+                            type={'password'}
+                        />
+                        <TextField
+                            inputValue={confirmNewPassword}
+                            setInputValue={setConfirmNewPassword}
+                            label={'Confirm new password'}
+                            placeholder={'•••••••'}
+                            name={'confirm-new-user-password'}
+                            type={'password'}
+                        />
+                        <Button
+                            onClick={handleSubmit}
+                            label={'Reset password'}
+                            width={'100%'}
+                            fontWeight={500}
+                        />
+                        <Row>
+                            <Text
+                                fontSize={14}
+                            >
+                                Want to sign in?
+                            </Text>
+                            <Button
+                                fontSize={14}
+                                onClick={() => {
+                                    navigate(AuthRoutes.signIn.path)
+                                }}
+                                label={'Sign in'}
+                                backgroundColor={theme.surface}
+                                color={theme.primary}
+                                hoverBackgroundColor={theme.secondary}
+                                borderColor={theme.surface}
+                            />
+                        </Row>
+                    </Column>
+                    <Icon
+                        size={400}
+                    >
+                        <ResetPasswordImage/>
+                    </Icon>
                 </Row>
             </Card>
-        </div>
+        </Column>
     )
 }
 

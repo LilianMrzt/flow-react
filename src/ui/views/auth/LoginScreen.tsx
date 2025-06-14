@@ -6,7 +6,6 @@ import { loginUserAction } from '@api/AuthApiCalls'
 import { StorageConstants } from '@constants/StorageConstants'
 import { useAlert } from '@hooks/contexts/AlertContext'
 import { AuthRoutes } from '@constants/routes/AuthRoutes'
-import './auth-screens.css'
 import Card from '@components/layout/Card'
 import SubTitle from '@components/text/SubTitle'
 import { LoginIcon } from '@resources/Icons'
@@ -16,6 +15,8 @@ import { useTheme } from '@hooks/contexts/ThemeContext'
 import { AppRoutes } from '@constants/routes/AppRoutes'
 import { useUser } from '@hooks/contexts/api/UserContext'
 import Column from '@components/layout/Column'
+import Icon from '@components/resources/Icon'
+import { LoginImage } from '@resources/Images'
 
 const LoginScreen = (): ReactNode => {
     const { showAlert } = useAlert()
@@ -50,83 +51,98 @@ const LoginScreen = (): ReactNode => {
     }
 
     return (
-        <div
-            className={'login-screen'}
-        >
+        <Column>
             <Card
-                maxWidth={400}
+                maxWidth={800}
                 padding={24}
+                width={'100%'}
             >
-                <SubTitle>
-                    Welcome to Flow
-                </SubTitle>
-                <TextField
-                    inputValue={email}
-                    setInputValue={setEmail}
-                    label={'Email'}
-                    placeholder={'example@email.com'}
-                    name={'user-email'}
-                />
-                <TextField
-                    inputValue={password}
-                    setInputValue={setPassword}
-                    label={'Password'}
-                    placeholder={'•••••••'}
-                    type={'password'}
-                    name={'user-password'}
-                />
-                <Button
-                    onClick={() => {
-                        void handleSubmit()
-                    }}
-                    label={'Login'}
-                    icon={<LoginIcon/>}
-                    width={'100%'}
-                />
-                <Column
-                    gap={0}
-                >
-                    <Row>
-                        <Text
-                            fontSize={14}
-                            color={theme.textSecondary}
+                <Row>
+                    <Column>
+                        <Column
+                            height={'fit-content'}
+                            gap={16}
+                            alignItems={'start'}
                         >
-                            {'Don\'t have an account?'}
-                        </Text>
-                        <Button
-                            fontSize={14}
-                            onClick={() => {
-                                navigate(AuthRoutes.register.path)
-                            }}
-                            label={'Register'}
-                            backgroundColor={theme.surface}
-                            color={theme.primary}
-                            hoverBackgroundColor={theme.secondary}
-                            borderColor={theme.surface}
-                        />
-                    </Row>
-                    <Row>
-                        <Text
-                            fontSize={14}
-                            color={theme.textSecondary}
+                            <SubTitle>
+                                Welcome to Flow
+                            </SubTitle>
+                            <TextField
+                                inputValue={email}
+                                setInputValue={setEmail}
+                                label={'Email'}
+                                placeholder={'example@email.com'}
+                                name={'user-email'}
+                            />
+                            <TextField
+                                inputValue={password}
+                                setInputValue={setPassword}
+                                label={'Password'}
+                                placeholder={'•••••••'}
+                                type={'password'}
+                                name={'user-password'}
+                            />
+                            <Button
+                                onClick={() => {
+                                    void handleSubmit()
+                                }}
+                                label={'Login'}
+                                icon={<LoginIcon/>}
+                                width={'100%'}
+                            />
+                        </Column>
+                        <Column
+                            gap={0}
+                            height={'fit-content'}
                         >
-                            Forgot your password?
-                        </Text>
-                        <Button
-                            fontSize={14}
-                            onClick={() => {
-                                navigate(AuthRoutes.forgotPassword.path)
-                            }}
-                            label={'Recover password'}
-                            backgroundColor={theme.surface}
-                            color={theme.primary}
-                            hoverBackgroundColor={theme.secondary}
-                            borderColor={theme.surface}
-                        />
-                    </Row>
-                </Column>
+                            <Row>
+                                <Text
+                                    fontSize={14}
+                                    color={theme.textSecondary}
+                                >
+                                    {'Don\'t have an account?'}
+                                </Text>
+                                <Button
+                                    fontSize={14}
+                                    onClick={() => {
+                                        navigate(AuthRoutes.register.path)
+                                    }}
+                                    label={'Register'}
+                                    backgroundColor={theme.surface}
+                                    color={theme.primary}
+                                    hoverBackgroundColor={theme.secondary}
+                                    borderColor={theme.surface}
+                                />
+                            </Row>
+                            <Row>
+                                <Text
+                                    fontSize={14}
+                                    color={theme.textSecondary}
+                                >
+                                    Forgot your password?
+                                </Text>
+                                <Button
+                                    fontSize={14}
+                                    onClick={() => {
+                                        navigate(AuthRoutes.forgotPassword.path)
+                                    }}
+                                    label={'Recover password'}
+                                    backgroundColor={theme.surface}
+                                    color={theme.primary}
+                                    hoverBackgroundColor={theme.secondary}
+                                    borderColor={theme.surface}
+                                />
+                            </Row>
+                        </Column>
+                    </Column>
+                    <Icon
+                        size={400}
+                    >
+                        <LoginImage/>
+                    </Icon>
+                </Row>
             </Card>
-        </div>
+        </Column>
     )
 }
 
