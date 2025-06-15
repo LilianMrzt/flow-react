@@ -33,6 +33,7 @@ const DrawerTitle: FC<DrawerTitleProps> = ({
                 <Text
                     fontSize={14}
                     color={theme.textSecondary}
+                    noWrap
                 >
                     {label}
                 </Text>

@@ -69,6 +69,7 @@ const DrawerItem: FC<DrawerItemProps> = ({
             <Text
                 color={componentColor}
                 isSelectable={false}
+                noWrap
             >
                 {route.label}
             </Text>
