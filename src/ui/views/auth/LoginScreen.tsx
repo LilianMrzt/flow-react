@@ -44,7 +44,6 @@ const LoginScreen = (): ReactNode => {
         }).then((response) => {
             localStorage.setItem(StorageConstants.token, response.token || '')
             navigate(AppRoutes.dashboard.path)
-            showAlert(response.message , 'success')
             setUser(response.user)
         }).catch((error) => {
             showAlert(error.message , 'error')

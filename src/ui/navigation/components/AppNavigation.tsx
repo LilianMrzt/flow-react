@@ -19,9 +19,7 @@ import JoinExistingTeamScreen from '@ui/views/app/teams/JoinExistingTeamScreen'
 const AppNavigation = (): ReactNode => {
     const { user } = useUser()
 
-    if (user === null) return null
-
-    const userHasTeam = user.memberships.length > 0
+    const userHasTeam = (user?.memberships.length ?? 0) > 0
 
     return (
         <Route
