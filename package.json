@@ -9,6 +9,7 @@
     "eject": "craco eject"
   },
   "dependencies": {
+    "@react-oauth/google": "^0.12.2",
     "@tiptap/extension-color": "^2.12.0",
     "@tiptap/extension-text-style": "^2.12.0",
     "@tiptap/extension-underline": "^2.12.0",

@@ -2,7 +2,7 @@ import React, { ReactNode, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Button from '@components/buttons/Button'
 import TextField from '@components/inputs/TextField'
-import { loginUserAction } from '@api/AuthApiCalls'
+import { loginUserAction, loginWithGoogleAction } from '@api/AuthApiCalls'
 import { StorageConstants } from '@constants/StorageConstants'
 import { useAlert } from '@hooks/contexts/AlertContext'
 import { AuthRoutes } from '@constants/routes/AuthRoutes'
@@ -18,6 +18,7 @@ import Column from '@components/layout/Column'
 import Icon from '@components/resources/Icon'
 import { LoginImage } from '@resources/Images'
 import BackgroundPlaceholderScreen from '@components/layout/background-placeholder-screen/BackgroundPlaceholderScreen'
+import { GoogleLogin } from '@react-oauth/google'
 
 const LoginScreen = (): ReactNode => {
     const { showAlert } = useAlert()
@@ -50,6 +51,21 @@ const LoginScreen = (): ReactNode => {
         })
     }
 
+    /**
+     * Gestion du login via google
+     */
+    const handleGoogleLogin = async (idToken: string): Promise<void> => {
+        await loginWithGoogleAction(idToken)
+            .then((response) => {
+                localStorage.setItem(StorageConstants.token, response.token || '')
+                navigate(AppRoutes.dashboard.path)
+                setUser(response.user)
+            })
+            .catch((error) => {
+                showAlert(error.message, 'error')
+            })
+    }
+
     return (
         <BackgroundPlaceholderScreen>
             <Card
@@ -67,29 +83,53 @@ const LoginScreen = (): ReactNode => {
                             <SubTitle>
                                 Welcome to Flow
                             </SubTitle>
-                            <TextField
-                                inputValue={email}
-                                setInputValue={setEmail}
-                                label={'Email'}
-                                placeholder={'example@email.com'}
-                                name={'user-email'}
-                            />
-                            <TextField
-                                inputValue={password}
-                                setInputValue={setPassword}
-                                label={'Password'}
-                                placeholder={'•••••••'}
-                                type={'password'}
-                                name={'user-password'}
-                            />
-                            <Button
-                                onClick={() => {
-                                    void handleSubmit()
-                                }}
-                                label={'Login'}
-                                icon={<LoginIcon/>}
-                                width={'100%'}
-                            />
+                            <Column
+                                height={'fit-content'}
+                                gap={16}
+                            >
+                                <TextField
+                                    inputValue={email}
+                                    setInputValue={setEmail}
+                                    label={'Email'}
+                                    placeholder={'example@email.com'}
+                                    name={'user-email'}
+                                />
+                                <TextField
+                                    inputValue={password}
+                                    setInputValue={setPassword}
+                                    label={'Password'}
+                                    placeholder={'•••••••'}
+                                    type={'password'}
+                                    name={'user-password'}
+                                />
+                                <Button
+                                    onClick={() => {
+                                        void handleSubmit()
+                                    }}
+                                    label={'Login'}
+                                    icon={<LoginIcon/>}
+                                    width={'100%'}
+                                />
+                                <Text
+                                    color={theme.textSecondary}
+                                    fontSize={14}
+                                >
+                                    or continue with:
+                                </Text>
+                                <GoogleLogin
+                                    onSuccess={async (credentialResponse) => {
+                                        const idToken = credentialResponse.credential
+                                        if (idToken) {
+                                            await handleGoogleLogin(idToken)
+                                        } else {
+                                            showAlert('Invalid Google credential', 'error')
+                                        }
+                                    }}
+                                    onError={() => {
+                                        showAlert('Google login failed', 'error')
+                                    }}
+                                />
+                            </Column>
                         </Column>
                         <Column
                             gap={0}
