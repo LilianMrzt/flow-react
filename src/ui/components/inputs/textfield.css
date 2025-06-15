@@ -39,3 +39,10 @@
     justify-content: center;
     pointer-events: none;
 }
+
+.text-field-password-toggle {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+}

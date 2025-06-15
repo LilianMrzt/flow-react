@@ -5,6 +5,8 @@ import { TextFieldProps } from '@interfaces/ui/components/inputs/TextFieldProps'
 import { useTheme } from '@hooks/contexts/ThemeContext'
 import Icon from '@components/resources/Icon'
 import Row from '@components/layout/Row'
+import { EyeIcon, EyeOffIcon } from '@resources/Icons'
+import IconButton from '@components/buttons/IconButton'
 
 const TextField: FC<TextFieldProps> = ({
     inputValue,
@@ -21,6 +23,9 @@ const TextField: FC<TextFieldProps> = ({
     } = useTheme()
 
     const [isActive, setIsActive] = useState(false)
+    const [showPassword, setShowPassword] = useState(false)
+
+    const isPassword = type === 'password'
 
     /**
      * Gère l'événement de focus du textField
@@ -76,18 +81,42 @@ const TextField: FC<TextFieldProps> = ({
                     className={`text-field ${icon ? 'text-field-with-icon' : ''}`}
                     value={inputValue}
                     placeholder={placeholder}
-                    type={type ?? 'text'}
+                    type={isPassword && !showPassword ? 'password' : 'text'}
                     onChange={(e) => {
                         setInputValue(e.target.value)
                     }}
                     onFocus={handleFocus}
                     onBlur={handleBlur}
                     style={{
-                        borderColor: isActive ? theme.primary : theme.outline
+                        borderColor: isActive ? theme.primary : theme.outline,
+                        paddingRight: isPassword ? 38 : 12
                     }}
                     name={name}
                     autoComplete={name}
                 />
+                {isPassword && (
+                    <div
+                        className={'text-field-password-toggle'}
+                    >
+                        <IconButton
+                            onClick={() => {
+                                return setShowPassword(!showPassword)
+                            }}
+                            padding={4}
+                            hoverBackgroundColor={theme.secondary}
+                            backgroundColor={theme.surface}
+                            hoverColor={theme.primary}
+                            color={theme.textSecondary}
+                            iconSize={20}
+                        >
+                            {showPassword ? (
+                                <EyeIcon />
+                            ) : (
+                                <EyeOffIcon />
+                            )}
+                        </IconButton>
+                    </div>
+                )}
             </div>
         </div>
     )

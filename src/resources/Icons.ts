@@ -44,6 +44,7 @@ import { ReactComponent as SaveIcon } from '@resources/assets/icons/SaveIcon.svg
 import { ReactComponent as EyeIcon } from '@resources/assets/icons/EyeIcon.svg'
 import { ReactComponent as SendEmailIcon } from '@resources/assets/icons/SendEmailIcon.svg'
 import { ReactComponent as JoinIcon } from '@resources/assets/icons/JoinIcon.svg'
+import { ReactComponent as EyeOffIcon } from '@resources/assets/icons/EyeOffIcon.svg'
 
 // text-editor
 import { ReactComponent as UnderlineIcon } from '@resources/assets/text-editor/UnderlineIcon.svg'
@@ -101,5 +102,6 @@ export {
     SaveIcon,
     EyeIcon,
     SendEmailIcon,
-    JoinIcon
+    JoinIcon,
+    EyeOffIcon
 }
