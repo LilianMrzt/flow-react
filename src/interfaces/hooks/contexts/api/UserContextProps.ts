@@ -5,4 +5,6 @@ export interface UserContextProps {
     user: UserObject | null
     setUser: Dispatch<SetStateAction<UserObject | null>>
     logout: () => void
+    isUserLoading: boolean
+    setIsUserLoading: Dispatch<SetStateAction<boolean>>
 }

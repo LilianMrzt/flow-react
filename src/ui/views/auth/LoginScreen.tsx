@@ -11,7 +11,6 @@ import { LoginIcon, WavesIcon } from '@resources/Icons'
 import Row from '@components/layout/Row'
 import Text from '@components/text/Text'
 import { useTheme } from '@hooks/contexts/ThemeContext'
-import { AppRoutes } from '@constants/routes/AppRoutes'
 import { useUser } from '@hooks/contexts/api/UserContext'
 import Column from '@components/layout/Column'
 import Icon from '@components/resources/Icon'
@@ -23,7 +22,7 @@ import SubTitle from '@components/text/SubTitle'
 const LoginScreen = (): ReactNode => {
     const { showAlert } = useAlert()
     const { theme } = useTheme()
-    const { setUser } = useUser()
+    const { setUser, setIsUserLoading } = useUser()
 
     const navigate = useNavigate()
 
@@ -44,10 +43,11 @@ const LoginScreen = (): ReactNode => {
             password: password
         }).then((response) => {
             localStorage.setItem(StorageConstants.token, response.token || '')
-            navigate(AppRoutes.dashboard.path)
             setUser(response.user)
         }).catch((error) => {
             showAlert(error.message , 'error')
+        }).finally(() => {
+            setIsUserLoading(false)
         })
     }
 
@@ -58,11 +58,12 @@ const LoginScreen = (): ReactNode => {
         await loginWithGoogleAction(idToken)
             .then((response) => {
                 localStorage.setItem(StorageConstants.token, response.token || '')
-                navigate(AppRoutes.dashboard.path)
                 setUser(response.user)
             })
             .catch((error) => {
                 showAlert(error.message, 'error')
+            }).finally(() => {
+                setIsUserLoading(false)
             })
     }
 

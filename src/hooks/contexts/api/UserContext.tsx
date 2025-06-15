@@ -25,6 +25,7 @@ export const UserProvider: FC<UserProviderProps> = ({
     const hasFetched = useRef(false)
 
     const [user, setUser] = useState<UserObject | null>(null)
+    const [isUserLoading, setIsUserLoading] = useState(true)
 
     /**
      * Récupération de l'utilisateur connecté
@@ -42,6 +43,9 @@ export const UserProvider: FC<UserProviderProps> = ({
                 })
                 .catch((error) => {
                     showAlert(error.message, 'error')
+                })
+                .finally(() => {
+                    setIsUserLoading(false)
                 })
         }
     }
@@ -64,7 +68,9 @@ export const UserProvider: FC<UserProviderProps> = ({
             value={{
                 user,
                 logout,
-                setUser
+                setUser,
+                isUserLoading,
+                setIsUserLoading
             }}
         >
             {children}
