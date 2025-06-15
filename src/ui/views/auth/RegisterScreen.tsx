@@ -54,7 +54,7 @@ const RegisterScreen = (): ReactNode => {
             lastName: lastName,
             firstName: firstName
         }).then(() => {
-            showAlert('Account created successfully.' , 'success')
+            showAlert('Account created successfully. Please check your email address to verify your account in order to log in.' , 'success')
             navigate(AuthRoutes.signIn.path)
         }).catch((error) => {
             showAlert(error.message , 'error')

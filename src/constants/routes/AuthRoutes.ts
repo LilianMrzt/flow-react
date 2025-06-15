@@ -16,5 +16,9 @@ export const AuthRoutes: Record<string, RouteType> = {
     resetPassword: {
         label: 'Reset password',
         path: '/auth/reset-password'
+    },
+    verifyEmail: {
+        label: 'Verify email',
+        path: '/auth/verify-email'
     }
 }

@@ -160,3 +160,20 @@ export const loginWithGoogleAction = async (
         user: data.user
     }
 }
+
+/**
+ * Fonction pour vérifier l'email d'un compte utilisateur nouvellement créé
+ * @param token
+ */
+export const verifyEmailAction = async (
+    token: string
+): Promise<void> => {
+    const res = await fetch(`${process.env.REACT_APP_API_BASE_URL}/auth/verify-email?token=${token}`, {
+        method: 'GET'
+    })
+
+    if (!res.ok) {
+        const error = await res.json()
+        throw new Error(error.message || 'Email verification failed.')
+    }
+}
