@@ -9,4 +9,5 @@ export interface TextFieldProps {
     type?: HTMLInputTypeAttribute
     icon?: ReactElement
     name?: string
+    disabled?: boolean
 }

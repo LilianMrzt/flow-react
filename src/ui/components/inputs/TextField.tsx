@@ -16,7 +16,8 @@ const TextField: FC<TextFieldProps> = ({
     mandatory,
     type,
     icon,
-    name
+    name,
+    disabled
 }): ReactNode => {
     const {
         theme
@@ -78,6 +79,7 @@ const TextField: FC<TextFieldProps> = ({
                     </span>
                 )}
                 <input
+                    disabled={disabled}
                     className={`text-field ${icon ? 'text-field-with-icon' : ''}`}
                     value={inputValue}
                     placeholder={placeholder}
@@ -89,7 +91,8 @@ const TextField: FC<TextFieldProps> = ({
                     onBlur={handleBlur}
                     style={{
                         borderColor: isActive ? theme.primary : theme.outline,
-                        paddingRight: isPassword ? 38 : 12
+                        paddingRight: isPassword ? 38 : 12,
+                        color: disabled ? theme.textSecondary : theme.text
                     }}
                     name={name}
                     autoComplete={name}

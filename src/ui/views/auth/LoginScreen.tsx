@@ -18,6 +18,7 @@ import { LoginImage } from '@resources/Images'
 import BackgroundPlaceholderScreen from '@components/layout/background-placeholder-screen/BackgroundPlaceholderScreen'
 import { GoogleLogin } from '@react-oauth/google'
 import SubTitle from '@components/text/SubTitle'
+import { isValidEmail } from '@utils/AuthUtils'
 
 const LoginScreen = (): ReactNode => {
     const { showAlert } = useAlert()
@@ -35,6 +36,11 @@ const LoginScreen = (): ReactNode => {
     const handleSubmit = async (): Promise<void> => {
         if (!email || !password) {
             showAlert('Missing email or password.' , 'warning')
+            return
+        }
+
+        if (!isValidEmail(email)) {
+            showAlert('Invalid email format.', 'warning')
             return
         }
 

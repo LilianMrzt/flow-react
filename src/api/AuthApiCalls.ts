@@ -193,3 +193,15 @@ export const verifyEmailAction = async (
         throw new Error(error.message || 'Email verification failed.')
     }
 }
+
+/**
+ * Fonction pour vérifier si l'email existe deja
+ * @param email
+ */
+export const checkIfEmailExists = async (
+    email: string
+): Promise<boolean> => {
+    const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/auth/check-email?email=${encodeURIComponent(email)}`)
+    const data = await response.json()
+    return data.exists
+}

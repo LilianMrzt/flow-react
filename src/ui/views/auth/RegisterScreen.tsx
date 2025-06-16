@@ -2,7 +2,7 @@ import React, { ReactNode, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Button from '@components/buttons/Button'
 import TextField from '@components/inputs/TextField'
-import { registerUserAction, registerWithGoogleAction } from '@api/AuthApiCalls'
+import { checkIfEmailExists, registerUserAction, registerWithGoogleAction } from '@api/AuthApiCalls'
 import { useAlert } from '@hooks/contexts/AlertContext'
 import { AuthRoutes } from '@constants/routes/AuthRoutes'
 import Card from '@components/layout/Card'
@@ -17,6 +17,7 @@ import { RegisterImage } from '@resources/Images'
 import BackgroundPlaceholderScreen from '@components/layout/background-placeholder-screen/BackgroundPlaceholderScreen'
 import { GoogleLogin } from '@react-oauth/google'
 import IconButton from '@components/buttons/IconButton'
+import { isValidEmail } from '@utils/AuthUtils'
 
 const RegisterScreen = (): ReactNode => {
     const navigate = useNavigate()
@@ -41,6 +42,11 @@ const RegisterScreen = (): ReactNode => {
 
         if (password !== confirmPassword) {
             showAlert('Passwords are not the same.' , 'warning')
+            return
+        }
+
+        if (!isValidEmail(email)) {
+            showAlert('Invalid email format.', 'warning')
             return
         }
 
@@ -70,6 +76,28 @@ const RegisterScreen = (): ReactNode => {
             .catch((error) => {
                 showAlert(error.message, 'error')
             })
+    }
+
+    /**
+     * Vérification de l'email pour la creation de compte
+     */
+    const handleCheckEmailExist = (): void => {
+        if (!isValidEmail(email)) {
+            showAlert('Invalid email format.', 'warning')
+            return
+        }
+
+        checkIfEmailExists(
+            email
+        ).then((res) => {
+            if(res) {
+                showAlert('This email is already used.', 'error')
+            } else {
+                setIsManualAccountCreationInformationsVisible(true)
+            }
+        }).catch((error) => {
+            showAlert(error.message, 'error')
+        })
     }
 
     return (
@@ -112,6 +140,7 @@ const RegisterScreen = (): ReactNode => {
                                         setInputValue={setEmail}
                                         label={'Email'}
                                         placeholder={'example@email.com'}
+                                        disabled
                                     />
                                     <Row
                                         gap={16}
@@ -162,9 +191,7 @@ const RegisterScreen = (): ReactNode => {
                                         placeholder={'example@email.com'}
                                     />
                                     <Button
-                                        onClick={() => {
-                                            setIsManualAccountCreationInformationsVisible(true)
-                                        }}
+                                        onClick={handleCheckEmailExist}
                                         label={'Continue'}
                                         width={'100%'}
                                         disabled={email === ''}
