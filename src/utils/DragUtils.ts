@@ -9,9 +9,10 @@ import { flushSync } from 'react-dom'
  */
 export const createDragImageFromElement = (
     e: DragEvent<HTMLDivElement>,
-    element: HTMLDivElement
+    element: HTMLDivElement | null
 ): void => {
     if (!e.dataTransfer) return
+    if (!element) return
 
     const rect = element.getBoundingClientRect()
     const offsetX = e.clientX - rect.left
