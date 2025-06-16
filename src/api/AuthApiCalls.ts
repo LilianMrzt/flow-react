@@ -140,7 +140,7 @@ export const verifyResetTokenAction = async (
 export const loginWithGoogleAction = async (
     idToken: string
 ): Promise<UserLoginResponseObject> => {
-    const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/auth/google`, {
+    const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/auth/google-login`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -158,6 +158,22 @@ export const loginWithGoogleAction = async (
         token: data.token,
         message: data.message,
         user: data.user
+    }
+}
+
+export const registerWithGoogleAction = async (
+    idToken: string
+): Promise<void> => {
+    const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/auth/google-register`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ idToken })
+    })
+
+    const data = await response.json()
+
+    if (!response.ok) {
+        throw new Error(data.message)
     }
 }
 
