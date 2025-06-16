@@ -20,5 +20,9 @@ export const AuthRoutes: Record<string, RouteType> = {
     verifyEmail: {
         label: 'Verify email',
         path: '/auth/verify-email'
+    },
+    accountCreated: {
+        label: 'Account created',
+        path: '/auth/account-created'
     }
 }

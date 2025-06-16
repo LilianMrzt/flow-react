@@ -29,7 +29,7 @@ const AccountCreationLandingSection: FC<AccountCreationLandingSectionProps> = ({
         await registerWithGoogleAction(idToken)
             .then(() => {
                 showAlert('Account created successfully. Please check your email address to verify your account in order to log in.' , 'success')
-                navigate(AuthRoutes.signIn.path)
+                navigate(AuthRoutes.accountCreated.path)
             })
             .catch((error) => {
                 showAlert(error.message, 'error')

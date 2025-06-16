@@ -7,6 +7,7 @@ import LoggedRoute from '@ui/navigation/LoggedRoute'
 import ForgotPasswordScreen from '@ui/views/auth/ForgotPasswordScreen'
 import ResetPasswordScreen from '@ui/views/auth/ResetPasswordScreen'
 import VerifyEmailScreen from '@ui/views/auth/VerifyEmailScreen'
+import AccountCreatedScreen from '@ui/views/auth/AccountCreatedScreen'
 
 const AuthNavigation = (): ReactNode => {
     return (
@@ -42,6 +43,10 @@ const AuthNavigation = (): ReactNode => {
                 <Route
                     path={AuthRoutes.verifyEmail.path}
                     element={<VerifyEmailScreen />}
+                />
+                <Route
+                    path={AuthRoutes.accountCreated.path}
+                    element={<AccountCreatedScreen />}
                 />
             </Route>
         </>
