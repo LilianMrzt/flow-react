@@ -1,7 +1,7 @@
 import React, { FC, ReactNode } from 'react'
 import Card from '@components/layout/Card'
 import Text from '@components/text/Text'
-import { DashboardCardProps } from '@interfaces/ui/blocs/views/dashboard-screen/DashboardCardProps'
+import { DashboardCardProps } from '@interfaces/ui/blocs/views/app/dashboard-screen/DashboardCardProps'
 import Column from '@components/layout/Column'
 import Icon from '@components/resources/Icon'
 import Row from '@components/layout/Row'

@@ -1,7 +1,7 @@
 import React, { FC, ReactNode, useState } from 'react'
 import './board-column.css'
 import Text from '@components/text/Text'
-import { BoardColumnProps } from '@interfaces/ui/blocs/views/project-details/project-details-board-screen/BoardColumnProps'
+import { BoardColumnProps } from '@interfaces/ui/blocs/views/app/project-details/project-details-board-screen/BoardColumnProps'
 import { useTasks } from '@hooks/contexts/api/TasksProvider'
 import ColumnTask from '@ui/blocs/views/app/project-details/project-details-board-screen/ColumnTask'
 import { useAlert } from '@hooks/contexts/AlertContext'

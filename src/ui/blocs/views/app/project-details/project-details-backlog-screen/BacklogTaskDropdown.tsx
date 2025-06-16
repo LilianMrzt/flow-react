@@ -2,7 +2,7 @@ import React, { FC, ReactNode, useState } from 'react'
 import MenuDropdown from '@components/dropdowns/menu/MenuDropdown'
 import {
     BacklogTaskDropdownProps
-} from '@interfaces/ui/blocs/views/project-details/project-details-backlog-screen/BacklogTaskDropdownProps'
+} from '@interfaces/ui/blocs/views/app/project-details/project-details-backlog-screen/BacklogTaskDropdownProps'
 import MenuGroup from '@components/dropdowns/menu/MenuGroup'
 import { TrashIcon } from '@resources/Icons'
 import MenuItem from '@components/dropdowns/menu/MenuItem'

@@ -4,7 +4,7 @@ import React, { FC, ReactNode } from 'react'
 import { useTheme } from '@hooks/contexts/ThemeContext'
 import {
     TaskModalEditFieldButtonRowProps
-} from '@interfaces/ui/blocs/views/project-details/task-modal/TaskModalEditFieldButtonRowProps'
+} from '@interfaces/ui/blocs/views/app/project-details/task-modal/TaskModalEditFieldButtonRowProps'
 
 export const TaskModalEditFieldButtonRow: FC<TaskModalEditFieldButtonRowProps> = ({
     onSaveButtonClick,

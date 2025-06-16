@@ -5,7 +5,7 @@ import Button from '@components/buttons/Button'
 import { AddIcon, FileTextIcon } from '@resources/Icons'
 import Icon from '@components/resources/Icon'
 import { useTheme } from '@hooks/contexts/ThemeContext'
-import { NoProjectsSectionProps } from '@interfaces/ui/blocs/views/projects-screen/NoProjectsSectionProps'
+import { NoProjectsSectionProps } from '@interfaces/ui/blocs/views/app/projects-screen/NoProjectsSectionProps'
 import Card from '@components/layout/Card'
 
 const NoProjectsSection: FC<NoProjectsSectionProps> = ({

@@ -2,7 +2,7 @@ import React, { FC, ReactNode } from 'react'
 import './backlog-table-cell.css'
 import {
     BackTableCellProps
-} from '@interfaces/ui/blocs/views/project-details/project-details-backlog-screen/backlog-table/BackTableCellProps'
+} from '@interfaces/ui/blocs/views/app/project-details/project-details-backlog-screen/backlog-table/BackTableCellProps'
 
 const BackTableCell: FC<BackTableCellProps> = ({
     width,

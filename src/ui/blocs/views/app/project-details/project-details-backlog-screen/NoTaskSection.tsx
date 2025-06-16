@@ -8,7 +8,7 @@ import Text from '@components/text/Text'
 import Button from '@components/buttons/Button'
 import {
     NoTaskSectionProps
-} from '@interfaces/ui/blocs/views/project-details/project-details-backlog-screen/NoTaskSectionProps'
+} from '@interfaces/ui/blocs/views/app/project-details/project-details-backlog-screen/NoTaskSectionProps'
 
 const NoTaskSection: FC<NoTaskSectionProps> = ({
     setIsTaskCreationModalOpen

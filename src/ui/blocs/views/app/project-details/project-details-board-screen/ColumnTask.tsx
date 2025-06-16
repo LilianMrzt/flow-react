@@ -1,6 +1,6 @@
 import React, { FC, ReactNode, useRef } from 'react'
 import Text from '@components/text/Text'
-import { ColumnTaskProps } from '@interfaces/ui/blocs/views/project-details/project-details-board-screen/ColumnTaskProps'
+import { ColumnTaskProps } from '@interfaces/ui/blocs/views/app/project-details/project-details-board-screen/ColumnTaskProps'
 import './column-task.css'
 import { createDragImageFromElement } from '@utils/DragUtils'
 import { useNavigate } from 'react-router-dom'
