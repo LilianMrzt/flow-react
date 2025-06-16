@@ -1,6 +1,6 @@
 import React, { ReactNode, useState } from 'react'
 import './board-column-section.css'
-import BoardColumn from '@ui/blocs/views/project-details/project-details-board-screen/BoardColumn'
+import BoardColumn from '@ui/blocs/views/app/project-details/project-details-board-screen/BoardColumn'
 import { useBoardColumns } from '@hooks/contexts/api/BoardColumnsProvider'
 import Skeleton from '@components/layout/Skeleton'
 import { useTasks } from '@hooks/contexts/api/TasksProvider'

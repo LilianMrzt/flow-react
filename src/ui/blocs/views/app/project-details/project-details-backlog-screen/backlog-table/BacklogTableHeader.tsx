@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react'
 import './backlog-table-header.css'
 import BackTableCell
-    from '@ui/blocs/views/project-details/project-details-backlog-screen/backlog-table/BackTableCell'
+    from '@ui/blocs/views/app/project-details/project-details-backlog-screen/backlog-table/BackTableCell'
 import Text from '@components/text/Text'
 import { useTheme } from '@hooks/contexts/ThemeContext'
 

@@ -3,15 +3,15 @@ import Screen from '@components/layout/screen/Screen'
 import TaskCreationModalContent from '@ui/blocs/modals/TaskCreationModalContent'
 import Modal from '@components/layout/Modal'
 import { AddIcon } from '@resources/Icons'
-import NoTaskSection from '@ui/blocs/views/project-details/project-details-backlog-screen/NoTaskSection'
+import NoTaskSection from '@ui/blocs/views/app/project-details/project-details-backlog-screen/NoTaskSection'
 import { useTasks } from '@hooks/contexts/api/TasksProvider'
 import BacklogTable
-    from '@ui/blocs/views/project-details/project-details-backlog-screen/backlog-table/BacklogTable'
+    from '@ui/blocs/views/app/project-details/project-details-backlog-screen/backlog-table/BacklogTable'
 import { useLoadedProject } from '@hooks/contexts/api/LoadedProjectContext'
 import { PROJECT_DETAILS_BREADCRUMBS } from '@constants/breadcrumbs/ProjectDetailsBreadcrumbs'
 import { useBoardColumns } from '@hooks/contexts/api/BoardColumnsProvider'
 import Skeleton from '@components/layout/Skeleton'
-import TaskModal from '@ui/blocs/views/project-details/task-modal/TaskModal'
+import TaskModal from '@ui/blocs/views/app/project-details/task-modal/TaskModal'
 import { useSelectedTaskFromUrl } from '@hooks/hooks/useSelectedTaskFromUrl'
 
 const ProjectDetailsBacklogScreen = (): ReactNode => {

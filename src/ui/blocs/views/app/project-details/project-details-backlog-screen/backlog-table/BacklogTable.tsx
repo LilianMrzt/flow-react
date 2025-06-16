@@ -1,8 +1,8 @@
 import React, { ReactNode, useState } from 'react'
 import './backlog-table.css'
-import BacklogTableHeader from '@ui/blocs/views/project-details/project-details-backlog-screen/backlog-table/BacklogTableHeader'
+import BacklogTableHeader from '@ui/blocs/views/app/project-details/project-details-backlog-screen/backlog-table/BacklogTableHeader'
 import { useTasks } from '@hooks/contexts/api/TasksProvider'
-import BacklogTask from '@ui/blocs/views/project-details/project-details-backlog-screen/backlog-table/BacklogTask'
+import BacklogTask from '@ui/blocs/views/app/project-details/project-details-backlog-screen/backlog-table/BacklogTask'
 import { useTheme } from '@hooks/contexts/ThemeContext'
 
 const BacklogTable = (): ReactNode => {

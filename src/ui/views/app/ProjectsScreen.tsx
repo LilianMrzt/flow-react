@@ -4,9 +4,9 @@ import { AddIcon } from '@resources/Icons'
 import Modal from '@components/layout/Modal'
 import ProjectCreationModalContent from '@ui/blocs/modals/ProjectCreationModalContent'
 import { useProjects } from '@hooks/contexts/api/ProjectsContext'
-import ProjectCard from '@ui/blocs/views/projects-screen/ProjectCard'
+import ProjectCard from '@ui/blocs/views/app/projects-screen/ProjectCard'
 import './projects-screen.css'
-import NoProjectsSection from '@ui/blocs/views/projects-screen/NoProjectsSection'
+import NoProjectsSection from '@ui/blocs/views/app/projects-screen/NoProjectsSection'
 import Skeleton from '@components/layout/Skeleton'
 
 const ProjectsScreen = (): ReactNode => {

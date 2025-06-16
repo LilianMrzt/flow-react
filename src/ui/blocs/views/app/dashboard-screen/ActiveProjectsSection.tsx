@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react'
 import './active-projects-section.css'
 import { useProjects } from '@hooks/contexts/api/ProjectsContext'
-import ProjectCard from '@ui/blocs/views/projects-screen/ProjectCard'
+import ProjectCard from '@ui/blocs/views/app/projects-screen/ProjectCard'
 
 const ActiveProjectsSection = (): ReactNode => {
     const {
