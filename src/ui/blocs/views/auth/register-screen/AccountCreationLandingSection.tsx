@@ -90,6 +90,7 @@ const AccountCreationLandingSection: FC<AccountCreationLandingSectionProps> = ({
                 onError={() => {
                     showAlert('Google login failed', 'error')
                 }}
+                text={'signup_with'}
             />
         </>
     )
